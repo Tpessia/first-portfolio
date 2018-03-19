@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>    
+    <!-- Head -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110855560-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-110855560-1');
+    </script> -->
+
+<title>Default Materialize</title>
+
+<meta charset="utf-8">
+
+<!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
+<!-- <meta name="apple-mobile-web-app-title" content="Materialize"> -->
+<!-- <meta name="mobile-web-app-capable" content="yes"> -->
+<!-- <link rel="manifest" href="/manifest.json"> -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#151515">
+<meta name="description" content="Page description...">
+
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<link rel="stylesheet" href="assets/styles/css/min/error.min.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script src="assets/js/error.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/offline-js/0.7.19/offline.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.0/fuse.min.js"></script> -->
+</head>
+<body>    
+    <!-- Header -->
+    <header>
+    <nav class="nav-extended navbar-fixed">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">
+                <i class="material-icons right hide-on-small-only">
+                    <img src="/favicon.png">
+                </i>Default Materialize</a>
+
+            <a href="#" data-activates="mobileNav" class="button-collapse">
+                <i class="material-icons">menu</i>
+            </a>
+
+            <ul class="right hide-on-med-and-down">
+                <li class="@@primeiro">
+                    <a href="/primeiro.html">Primeiro</a>
+                </li>
+                <li class="@@segundo">
+                    <a href="/segundo.html">Segundo</a>
+                </li>
+                <li class="@@terceiro">
+                    <a href="/terceiro.html">Terceiro</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="nav-content">
+            <form onsubmit="return false">
+                <div class="input-field">
+                    <input type="search" id="searchVal" placeholder="Pesquisar Nome" required style="margin: 0; padding-left: 3.5em;" name="nome">
+                    <i id="search" class="material-icons">search</i>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <ul class="side-nav" id="mobileNav">
+        <li class="@@primeiro">
+            <a href="/primeiro.html">Primeiro</a>
+        </li>
+        <li class="@@segundo">
+            <a href="/segundo.html">Segundo</a>
+        </li>
+        <li class="@@terceiro">
+            <a href="/terceiro.html">Terceiro</a>
+        </li>
+    </ul>
+</header>
+
+    <main style="background-image: url(/assets/img/404.png)">
+        <h1>Erro 404</h1>
+        <div class="container">A URL informada está incorreta ou a página não existe!</div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Col 1</h5>
+                <p class="grey-text text-lighten-4">Row A</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Col 2</h5>
+                <ul>
+                    <li>
+                        <a class="grey-text text-lighten-3">List A</a>
+                    </li>
+                    <li>
+                        <a class="grey-text text-lighten-3">List B</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    Sub 1
+                    <br> Sub 2
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <a class="grey-text text-lighten-4">Sub 3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript">
+    $('.collapsible').collapsible();
+    $(".button-collapse").sideNav({ closeOnClick: true });
+    $(document).ready(function () {
+        $('.modal').modal();
+    });
+</script>
+</body>
+</html>

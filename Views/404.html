@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>    
+    <!-- Head -->
+    @@include('Shared/head.html', {"file":"error","title":"Default Materialize","description":"Page description..."})
+</head>
+<body>    
+    <!-- Header -->
+    @@include('Shared/header.html')
+
+    <main style="background-image: url(/assets/img/404.png)">
+        <h1>Erro 404</h1>
+        <div class="container">A URL informada está incorreta ou a página não existe!</div>
+    </main>
+
+    <!-- Footer -->
+    @@include('Shared/footer.html')
+</body>
+</html>

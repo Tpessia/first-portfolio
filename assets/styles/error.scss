@@ -1,0 +1,26 @@
+@import '_main.scss';
+
+.nav-content {
+    display: none;
+}
+
+main {
+    background-repeat: no-repeat;
+    background-position: center;
+
+    h1 {
+        text-align: center;
+        font-size: 45px;
+        margin-top: 27vh;
+    }
+
+    .container {
+        text-align: center;
+        font-size: 1.2em;
+        margin-top: 5%;
+    }
+}
+
+footer {
+    margin-top: 0px !important;
+}
