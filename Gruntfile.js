@@ -43,7 +43,7 @@ module.exports = function (grunt) {
         includereplace: {
             options: {
                 globals: {
-                    title: "Default Materialize",
+                    title: "Thiago Pessia",
                     description: "",
                     file: "index",
                     index: "",

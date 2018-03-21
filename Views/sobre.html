@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Head -->
+    @@include('Shared/head.html', {"file":"sobre","title":"Sobre - Thiago Pessia","description":"Minhas habilidades, hobbies e cursos finalizados."})
+</head>
+<body>
+    <!-- Header -->
+    @@include('Shared/header.html', {"sobre": "active"})
+
+    <main class="container">
+        <div class="row">
+            <div class="col s12">
+                <h2>Conteúdo Principal</h2>
+            </div>
+        </div>
+    </main>
+
+    <section>
+        <div id="modal" class="modal modal-fixed-footer sm">
+            <div class="modal-content">
+                <h4>Título Modal</h4>
+                <p>Conteudo</p>
+                <p>Do</p>
+                <p>Modal</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-teal btn-flat">Fechar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    @@include('Shared/footer.html')
+</body>
+</html>

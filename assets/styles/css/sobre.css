@@ -1,0 +1,95 @@
+.colorNav {
+  background-color: #151515 !important; }
+
+.colorA {
+  background-color: #0F1626 !important; }
+
+.colorB {
+  background-color: #ffab40 !important; }
+
+.colorC {
+  background-color: #1A2930 !important; }
+
+.colorD {
+  background-color: #A9B7C0 !important; }
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; }
+  body header nav {
+    background-color: #151515; }
+    body header nav .brand-logo {
+      white-space: nowrap; }
+      body header nav .brand-logo i {
+        margin-left: 7px; }
+        body header nav .brand-logo i img {
+          padding: 5%;
+          margin-top: 5px;
+          height: 80%; }
+    body header nav .nav-wrapper > ul li.active {
+      background-color: #3b3b3b; }
+    body header nav .nav-content {
+      background-color: #181818;
+      padding-left: 80%;
+      border-top: 3px solid rgba(0, 0, 0, 0.1); }
+      @media screen and (max-width: 992px) {
+        body header nav .nav-content {
+          padding-left: 0px; } }
+    body header nav .input-field #searchVal {
+      padding-right: 3.5em;
+      border-bottom: 0;
+      box-shadow: none;
+      box-sizing: border-box; }
+      body header nav .input-field #searchVal:focus + #search {
+        color: #444; }
+    body header nav .input-field #search {
+      color: rgba(230, 230, 230, 0.9);
+      right: initial;
+      left: 0.5em;
+      top: -11%; }
+      body header nav .input-field #search + i {
+        top: -11%; }
+      @media (max-width: 992px) {
+        body header nav .input-field #search {
+          top: -15%; }
+          body header nav .input-field #search + i {
+            top: -15%; } }
+  body header .side-nav {
+    padding-top: 15px; }
+  body main {
+    flex: 1 0 auto;
+    font-size: 1.08rem; }
+  body .modal .lg {
+    top: 10%;
+    width: 65%;
+    min-height: 350px;
+    height: 80%;
+    max-height: 80%; }
+    @media screen and (max-width: 992px) {
+      body .modal .lg {
+        width: 85%; } }
+    body .modal .lg .modal-content > h4 {
+      text-align: center;
+      position: sticky;
+      top: 0;
+      padding: 22px;
+      margin: 0; }
+  body .modal .sm {
+    top: 15% !important;
+    height: 35vh !important;
+    max-height: 35vh; }
+  body footer {
+    background-color: #151515 !important;
+    margin-top: 60px; }
+    body footer .footer-copyright {
+      background-color: #181818; }
+      body footer .footer-copyright .container .row {
+        margin-bottom: 0;
+        position: relative; }
+        @media screen and (min-width: 993px) {
+          body footer .footer-copyright .container .row div:last-of-type {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0; } }
