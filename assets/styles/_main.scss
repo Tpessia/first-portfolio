@@ -16,17 +16,89 @@ body {
     min-height: 100vh;
     flex-direction: column;
 
+    &.loading {
+        .brand-logo {
+            i {
+                pointer-events: none;
+                cursor: default;
+            }
+        }
+        &.start {
+            .brand-logo {
+                i {
+                    width: 50px;
+                    #ldnLayer {
+                        position: fixed;
+                        background-color: $colorNav;
+                        width: 100vw;
+                        height: 100vh;
+                        left: 0;
+                        top: 0;
+                    }
+                    img {
+                        height: 25vh;
+                        width: 25vh;
+                        position: fixed;
+                        margin: 0;
+                        padding: 0;
+                        left: 0;
+                        top: 0;
+                        margin-left: calc(50vw - 25vh / 2);
+                        margin-top: calc(50vh - 25vh / 2);
+                        animation-name: pulseLogo;
+                        animation-duration: 1.5s;
+                        animation-iteration-count: infinite;
+                        animation-timing-function: ease-in-out;
+                        @keyframes pulseLogo {
+                            0% {
+                                transform: scale(1)
+                            }
+                            50% {
+                                transform: scale(1.25)
+                            }
+                            100% {
+                                transform: scale(1)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &.onprogress {
+            .brand-logo {
+                i {
+                    width: 50px;
+                    #ldnLayer {
+                        transition: all 1.8s ease-out;
+                        position: fixed;
+                        background-color: $colorNav;
+                        width: 100vw;
+                        height: 100vh;
+                        left: 0;
+                        top: 0;
+                        opacity: 0;
+                    }
+                    img {
+                        transition: all 1.8s ease-out;
+                    }
+                }
+            }
+        }
+    }
+
     header {
         nav {
             background-color: $colorNav;
             .brand-logo {
+                z-index: 1; //acima da subnav
                 white-space: nowrap;
                 i {
                     margin-left: 7px;
                     img {
                         padding: 5%;
                         margin-top: 5px;
-                        height: 80%;
+                        height: 50px;
+                        width: 50px;
                     }
                 }
             }
@@ -37,7 +109,7 @@ body {
                 background-color: $colorSubNav;
                 padding-left: 80%;
                 border-top: 3px solid rgba(0, 0, 0, 0.1);
-                @media screen and (max-width: 992px) {
+                @media (max-width: 992px) {
                     padding-left: 0px;
                 }
             }
