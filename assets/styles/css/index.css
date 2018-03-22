@@ -142,28 +142,6 @@ body {
             transform: translateY(-50%);
             right: 0; } }
 
-body #resumo {
-  text-align: justify;
-  background-image: url(/assets/img/background-home2.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  font-size: 1.15rem;
-  padding: 0 calc((100% - 90%) / 2); }
-  @media (min-width: 993px) {
-    body #resumo {
-      padding: 0 calc((100% - 70%) / 2); } }
-  @media (min-width: 601px) {
-    body #resumo {
-      padding: 0 calc((100% - 85%) / 2); } }
-  body #resumo div {
-    padding-top: 50px;
-    padding-bottom: 50px; }
-    body #resumo div .first-letter {
-      font-size: 3em;
-      float: left;
-      line-height: 98%;
-      width: 0.75em; }
 body main #cursos .card-image, body main #projetos .card-image {
   overflow: hidden;
   height: 170px; }

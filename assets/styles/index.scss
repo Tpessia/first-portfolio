@@ -1,33 +1,33 @@
 @import '_main.scss';
 
 body {
-    #resumo {
-        text-align: justify;
-        background-image: url(/assets/img/background-home2.jpg);
-        background-repeat : no-repeat;
-        background-position : center;
-        background-size: cover;
-        font-size: 1.15rem;
-        padding: 0 calc((100% - 90%) / 2);
+    // #resumo {
+    //     text-align: justify;
+    //     background-image: url(/assets/img/background-home2.jpg);
+    //     background-repeat : no-repeat;
+    //     background-position : center;
+    //     background-size: cover;
+    //     font-size: 1.15rem;
+    //     padding: 0 calc((100% - 90%) / 2);
 
-        @media (min-width: 993px) {
-            padding: 0 calc((100% - 70%) / 2);
-        }
-        @media (min-width: 601px) {
-            padding: 0 calc((100% - 85%) / 2);
-        }
+    //     @media (min-width: 993px) {
+    //         padding: 0 calc((100% - 70%) / 2);
+    //     }
+    //     @media (min-width: 601px) {
+    //         padding: 0 calc((100% - 85%) / 2);
+    //     }
 
-        div {
-            padding-top: 50px;
-            padding-bottom: 50px;
-            .first-letter {
-                font-size: 3em;
-                float: left;
-                line-height: 98%;
-                width: 0.75em;
-            }
-        }
-    }    
+    //     div {
+    //         padding-top: 50px;
+    //         padding-bottom: 50px;
+    //         .first-letter {
+    //             font-size: 3em;
+    //             float: left;
+    //             line-height: 98%;
+    //             width: 0.75em;
+    //         }
+    //     }
+    // }
     main {
         #cursos, #projetos {
             .card-image {
