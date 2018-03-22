@@ -29,32 +29,81 @@ body {
     //     }
     // }
     main {
-        #cursos, #projetos {
-            .card-image {
+        #projetos {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            h1 {
+                letter-spacing: 15px;
+                text-transform: uppercase;
+                font-size: 8rem;
+            }
+        }
+        #cursos {
+            h1 {
+                font-size: 5rem;
+                text-transform: uppercase;
+                letter-spacing: 5px;
+            }
+            .card {
                 overflow: hidden;
-                height: 170px;
-
-                .card-bg {
-                    height: 100%;
-                    background-position: center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    transition: transform 0.4s ease-in-out;
+                .card-image {
+                    overflow: hidden;
+                    height: 170px;
+                    .card-bg {
+                        height: 100%;
+                        background-position: center;
+                        background-size: cover;
+                        background-repeat: no-repeat; // transition: transform 0.4s ease-in-out;
+                    } // &:hover {
+                    //     .card-bg {
+                    //         transform: scale(1.05);
+                    //     }
+                    // }
                 }
 
-                &:hover {
-                    .card-bg {
-                        transform: scale(1.05);
+                .card-title {
+                    color: white;
+                    padding: 10px 15px;
+                }
+
+                .card-action {
+                    background-color: #1C2833;
+                    padding-left: 15px;
+                }
+
+                .card-reveal {
+                    transition: transform .6s;
+                    &.preBottom {
+                        display: block;
+                        transform: translate(0, -200%);
+                    }
+                    &.toBottom {
+                        display: block;
+                        transform: translate(0, -100%);
+                    }
+                    &.preTop {}
+                    &.toTop {
+                        display: block;
+                        transform: translateY(-100%);
+                    }
+                    &.preLeft {
+                        display: block;
+                        transform: translate(100%, -100%);
+                    }
+                    &.toLeft {
+                        display: block;
+                        transform: translate(0, -100%);
+                    }
+                    &.preRight {
+                        display: block;
+                        transform: translate(-100%, -100%);
+                    }
+                    &.toRight {
+                        display: block;
+                        transform: translate(0, -100%);
                     }
                 }
-            }
 
-            .card-title {
-                padding: 10px 15px;
-            }
-
-            .card-action {
-                padding-left: 15px;
             }
         }
     }

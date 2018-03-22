@@ -1,8 +1,10 @@
-$page-bg: #f5f5f5;
-$colorSubNav: #181818;
-$colorNav: #151515; //nav/footer color
+$page-bg: #fff;
+$colorSubNav: #fff;
+$colorNav: #fff; //nav/footer color
+$navTextColor: #000;
+
 .colorNav {background-color: $colorNav !important;}
-$colorA: #0F1626; //main color
+$colorA: #1C2833; //main color
 .colorA {background-color: $colorA !important;}
 $colorB: #ffab40; //secondary color
 .colorB {background-color: $colorB !important;}
@@ -17,13 +19,12 @@ body {
     flex-direction: column;
 
     &.loading {
-        .brand-logo {
-            i {
-                pointer-events: none;
-                cursor: default;
-            }
+        * {
+            pointer-events: none;
+            cursor: default;
         }
         &.start {
+            overflow: hidden;
             .brand-logo {
                 i {
                     width: 50px;
@@ -89,9 +90,12 @@ body {
     header {
         nav {
             background-color: $colorNav;
+            box-shadow: initial;
+            border-bottom: 2px solid black;
             .brand-logo {
                 z-index: 1; //acima da subnav
                 white-space: nowrap;
+                color: $navTextColor;
                 i {
                     margin-left: 7px;
                     img {
@@ -102,29 +106,56 @@ body {
                     }
                 }
             }
-            .nav-wrapper>ul li.active {
-                background-color: lighten($colorNav,15%);
+            .nav-wrapper {
+                &>ul {
+                    li {
+                        a {
+                            color: lighten($navTextColor, 54%);
+                            border-bottom: 2px solid transparent;
+                            background: transparent;
+                            line-height: 50px;
+                            padding-top: 6px;
+                            margin-bottom: 6px;
+                            &:hover {
+                                transition: all 0.5s ease-in;
+                                color: $navTextColor;
+                                border-bottom: 2px solid $navTextColor;
+                            }
+                        }
+                        &.active {
+                            background: transparent;
+                            a {
+                                color: $navTextColor;
+                                border-bottom: 2px solid $navTextColor;
+                            }
+                        }
+                    }
+                }
             }
             .nav-content {
+                color: $navTextColor;
                 background-color: $colorSubNav;
                 padding-left: 80%;
-                border-top: 3px solid rgba(0, 0, 0, 0.1);
                 @media (max-width: 992px) {
                     padding-left: 0px;
                 }
             }
             .input-field {
                 #searchVal {
+                    color: lighten($navTextColor, 54%);
                     padding-right: 3.5em;
                     border-bottom: 0;
                     box-shadow: none;
                     box-sizing: border-box;
-                    &:focus+#search {
-                        color: #444;
+                    &:focus {
+                        color: $navTextColor;
+                        &+#search {
+                            color: $navTextColor;
+                        }
                     }
                 }
                 #search {
-                    color: rgba(230, 230, 230, 0.9);
+                    color: lighten($navTextColor,54%);
                     right: initial;
                     left: 0.5em;
                     top: -11%;

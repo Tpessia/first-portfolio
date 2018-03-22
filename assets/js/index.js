@@ -7,4 +7,10 @@ $(function() {
     $("#searchVal").on("search", function () {
         $("#modal").modal('open');
     });
+
+    var elem = document.querySelector('.carousel');
+    $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true
+    });
 });
