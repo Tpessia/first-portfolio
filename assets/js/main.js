@@ -17,7 +17,7 @@ function loading() {
             $body.removeClass("start");
             $body.addClass("onprogress");
 
-            if ($(window).scrollTop() != 0) {
+            if (/*$(window).scrollTop() != 0*/true) {
                 $body.removeClass("loading onprogress");
             }
             else {

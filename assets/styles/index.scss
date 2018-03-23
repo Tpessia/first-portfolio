@@ -1,33 +1,6 @@
 @import '_main.scss';
 
 body {
-    // #resumo {
-    //     text-align: justify;
-    //     background-image: url(/assets/img/background-home2.jpg);
-    //     background-repeat : no-repeat;
-    //     background-position : center;
-    //     background-size: cover;
-    //     font-size: 1.15rem;
-    //     padding: 0 calc((100% - 90%) / 2);
-
-    //     @media (min-width: 993px) {
-    //         padding: 0 calc((100% - 70%) / 2);
-    //     }
-    //     @media (min-width: 601px) {
-    //         padding: 0 calc((100% - 85%) / 2);
-    //     }
-
-    //     div {
-    //         padding-top: 50px;
-    //         padding-bottom: 50px;
-    //         .first-letter {
-    //             font-size: 3em;
-    //             float: left;
-    //             line-height: 98%;
-    //             width: 0.75em;
-    //         }
-    //     }
-    // }
     main {
         #projetos {
             margin-top: 50px;
@@ -53,26 +26,14 @@ body {
                         height: 100%;
                         background-position: center;
                         background-size: cover;
-                        background-repeat: no-repeat; // transition: transform 0.4s ease-in-out;
-                    } // &:hover {
-                    //     .card-bg {
-                    //         transform: scale(1.05);
-                    //     }
-                    // }
+                        background-repeat: no-repeat;
+                    }
                 }
-
-                .card-title {
-                    color: white;
-                    padding: 10px 15px;
-                }
-
                 .card-action {
-                    background-color: #1C2833;
                     padding-left: 15px;
                 }
-
                 .card-reveal {
-                    transition: transform .6s;
+                    transition: transform .7s;
                     &.preTop {
                         display: block;
                         transform: translate(0, -200%);

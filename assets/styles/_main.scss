@@ -17,6 +17,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    margin-bottom: 66px;
 
     &.loading {
         * {
@@ -37,15 +38,15 @@ body {
                         top: 0;
                     }
                     img {
-                        height: 25vh;
-                        width: 25vh;
+                        height: 20vh;
+                        width: 20vh;
                         position: fixed;
                         margin: 0;
                         padding: 0;
                         left: 0;
                         top: 0;
-                        margin-left: calc(50vw - 25vh / 2);
-                        margin-top: calc(50vh - 25vh / 2);
+                        margin-left: calc(50vw - 20vh / 2);
+                        margin-top: calc(50vh - 20vh / 2);
                         animation-name: pulseLogo;
                         animation-duration: 1.5s;
                         animation-iteration-count: infinite;
@@ -70,7 +71,8 @@ body {
                 i {
                     width: 50px;
                     #ldnLayer {
-                        transition: all 1.8s ease-out;
+                        transition: all 1.8s;
+                        transition-timing-function: cubic-bezier(1, 0, 1, 1);
                         position: fixed;
                         background-color: $colorNav;
                         width: 100vw;
@@ -81,6 +83,7 @@ body {
                     }
                     img {
                         transition: all 1.8s ease-out;
+                        opacity: 1;
                     }
                 }
             }
@@ -210,24 +213,19 @@ body {
 
     footer {
         background-color: $colorNav !important;
-        margin-top: 60px;
-        .footer-copyright {
-            background-color: $colorSubNav;
-            .container {
-                .row {
-                    margin-bottom: 0;
-                    position: relative;
-                    div {
-                        &:last-of-type {
-                            @media screen and (min-width: 993px) {
-                                position: absolute;
-                                top: 50%;
-                                transform: translateY(-50%);
-                                right: 0;
-                            }
-                        }
-                    }
-                }
+        padding: 8px;
+        line-height: normal;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        box-sizing: content-box;
+        img {
+            height: 50px;
+            transition: transform 0.4s ease-in-out;
+            &:hover {
+                transform: scale(1.1);
             }
         }
     }
