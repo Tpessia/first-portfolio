@@ -193,24 +193,26 @@ body main #cursos .card {
     padding-left: 15px; }
   body main #cursos .card .card-reveal {
     transition: transform .6s; }
-    body main #cursos .card .card-reveal.preBottom {
+    body main #cursos .card .card-reveal.preTop {
       display: block;
       transform: translate(0, -200%); }
-    body main #cursos .card .card-reveal.toBottom {
+    body main #cursos .card .card-reveal.fromTop {
       display: block;
       transform: translate(0, -100%); }
-    body main #cursos .card .card-reveal.toTop {
+    body main #cursos .card .card-reveal.preBottom {
+      display: block; }
+    body main #cursos .card .card-reveal.fromBottom {
       display: block;
       transform: translateY(-100%); }
-    body main #cursos .card .card-reveal.preLeft {
-      display: block;
-      transform: translate(100%, -100%); }
-    body main #cursos .card .card-reveal.toLeft {
-      display: block;
-      transform: translate(0, -100%); }
     body main #cursos .card .card-reveal.preRight {
       display: block;
+      transform: translate(100%, -100%); }
+    body main #cursos .card .card-reveal.fromRight {
+      display: block;
+      transform: translate(0, -100%); }
+    body main #cursos .card .card-reveal.preLeft {
+      display: block;
       transform: translate(-100%, -100%); }
-    body main #cursos .card .card-reveal.toRight {
+    body main #cursos .card .card-reveal.fromLeft {
       display: block;
       transform: translate(0, -100%); }

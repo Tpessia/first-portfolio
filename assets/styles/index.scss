@@ -73,32 +73,34 @@ body {
 
                 .card-reveal {
                     transition: transform .6s;
-                    &.preBottom {
+                    &.preTop {
                         display: block;
                         transform: translate(0, -200%);
                     }
-                    &.toBottom {
+                    &.fromTop {
                         display: block;
                         transform: translate(0, -100%);
                     }
-                    &.preTop {}
-                    &.toTop {
+                    &.preBottom {
+                        display: block;
+                    }
+                    &.fromBottom {
                         display: block;
                         transform: translateY(-100%);
                     }
-                    &.preLeft {
+                    &.preRight {
                         display: block;
                         transform: translate(100%, -100%);
                     }
-                    &.toLeft {
+                    &.fromRight {
                         display: block;
                         transform: translate(0, -100%);
                     }
-                    &.preRight {
+                    &.preLeft {
                         display: block;
                         transform: translate(-100%, -100%);
                     }
-                    &.toRight {
+                    &.fromLeft {
                         display: block;
                         transform: translate(0, -100%);
                     }

@@ -1,26 +1,7 @@
-//CONTROLLER
-$(function() {
-    $('#search').on("click", function () {
-        $("#modal").modal('open');
-    });
-
-    $("#searchVal").on("search", function () {
-        $("#modal").modal('open');
-    });
-
-    var elem = document.querySelector('.carousel');
-    $('.carousel.carousel-slider').carousel({
-        fullWidth: true,
-        indicators: true
-    });
-
-    smartHover("#cursos .card");
-});
-
 function smartHover(elem) {
     var pageX,
         pageY;
-        
+
     $(elem).each(function () {
         var $elem = $(this),
             posicao = getOffsets($elem);
@@ -59,9 +40,7 @@ function smartHover(elem) {
 
         $elem.on("mouseleave", function () {
             $this = $(this);
-            console.log("start");
             setTimeout(function () {
-                console.log("hover out");
                 if (pageX < posicao.left) {
                     $this.removeClass(function (index, className) {
                         return (className.match(/(^|\s)out-\S+/g) || []).join(' ');
@@ -105,7 +84,6 @@ function smartHover(elem) {
         });
 
         $elem.on("hover-out", function () {
-            console.log("on hover out");
             var position = $(this).attr("class").split(" ").filter(val => val.match("out-"))[0].split("out-")[1];
             position = position[0].toUpperCase() + position.substr(1);
 
@@ -116,13 +94,9 @@ function smartHover(elem) {
             }).addClass("pre" + position);
 
             $cardReveal.removeClass(function (index, className) {
-                console.log("remove from ");
-                console.log($cardReveal.closest(".col").index());
                 return (className.match(/(^|\s)from\S+/g) || []).join(' ');
             });
-            $cardReveal.one("transitionend", function () {
-                console.log("end");
-                console.log($cardReveal.closest(".col").index());
+            $cardReveal.on("transitionend", function () {
                 $cardReveal.removeClass(function (index, className) {
                     return (className.match(/(^|\s)pre\S+/g) || []).join(' ');
                 });
