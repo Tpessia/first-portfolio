@@ -13,77 +13,58 @@ $colorC: #1A2930; //ternary color
 $colorD: #A9B7C0; //extra color
 .colorD {background-color: $colorD !important;}
 
+@font-face {
+    font-family: Pessia;
+    src: url("/assets/fonts/Pessia-Regular.ttf");
+}
+
+@font-face {
+    font-family: Redressed;
+    src: url("/assets/fonts/Redressed.ttf");
+}
+
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     margin-bottom: 66px;
 
+    #ldn {
+        display: none;
+    }
+
     &.loading {
+        overflow: hidden;
         * {
             pointer-events: none;
             cursor: default;
         }
-        &.start {
-            overflow: hidden;
-            .brand-logo {
-                i {
-                    width: 50px;
-                    #ldnLayer {
-                        position: fixed;
-                        background-color: $colorNav;
-                        width: 100vw;
-                        height: 100vh;
-                        left: 0;
-                        top: 0;
+        #ldn {
+            display: block;
+            position: fixed;
+            z-index: 10000;
+            width: 100vw;
+            height: 100vh;
+            background: white;
+            img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                animation-name: pulseLogo;
+                animation-duration: 1.5s;
+                animation-iteration-count: infinite;
+                animation-timing-function: ease-in-out;
+                transform-origin: top left;
+                @keyframes pulseLogo {
+                    0% {
+                        transform: scale(1) translate(-50%, -50%);
                     }
-                    img {
-                        height: 20vh;
-                        width: 20vh;
-                        position: fixed;
-                        margin: 0;
-                        padding: 0;
-                        left: 0;
-                        top: 0;
-                        margin-left: calc(50vw - 20vh / 2);
-                        margin-top: calc(50vh - 20vh / 2);
-                        animation-name: pulseLogo;
-                        animation-duration: 1.5s;
-                        animation-iteration-count: infinite;
-                        animation-timing-function: ease-in-out;
-                        @keyframes pulseLogo {
-                            0% {
-                                transform: scale(1)
-                            }
-                            50% {
-                                transform: scale(1.25)
-                            }
-                            100% {
-                                transform: scale(1)
-                            }
-                        }
+                    50% {
+                        transform: scale(1.25) translate(-50%, -50%);
                     }
-                }
-            }
-        }
-        &.onprogress {
-            .brand-logo {
-                i {
-                    width: 50px;
-                    #ldnLayer {
-                        transition: all 1.8s;
-                        transition-timing-function: cubic-bezier(1, 0, 1, 1);
-                        position: fixed;
-                        background-color: $colorNav;
-                        width: 100vw;
-                        height: 100vh;
-                        left: 0;
-                        top: 0;
-                        opacity: 0;
-                    }
-                    img {
-                        transition: all 1.8s ease-out;
-                        opacity: 1;
+                    100% {
+                        transform: scale(1) translate(-50%, -50%);
                     }
                 }
             }
@@ -94,9 +75,9 @@ body {
         nav {
             background-color: $colorNav;
             box-shadow: initial;
-            border-bottom: 2px solid black;
             .brand-logo {
-                z-index: 1; //acima da subnav
+                font-family: Pessia;
+                font-size: 4rem;
                 white-space: nowrap;
                 color: $navTextColor;
                 i {
@@ -110,6 +91,11 @@ body {
                 }
             }
             .nav-wrapper {
+                position: fixed;
+                width: 100%;
+                z-index: 1;
+                background: $colorNav;
+                top: 0;
                 &>ul {
                     li {
                         a {
@@ -120,7 +106,7 @@ body {
                             padding-top: 6px;
                             margin-bottom: 6px;
                             &:hover {
-                                transition: all 0.5s ease-in;
+                                transition: all 0.5s ease-in-out;
                                 color: $navTextColor;
                                 border-bottom: 2px solid $navTextColor;
                             }
@@ -136,6 +122,7 @@ body {
                 }
             }
             .nav-content {
+                margin-top: 64px;
                 color: $navTextColor;
                 background-color: $colorSubNav;
                 padding-left: 80%;
@@ -213,7 +200,7 @@ body {
 
     footer {
         background-color: $colorNav !important;
-        padding: 8px;
+        padding: 5px;
         line-height: normal;
         position: fixed;
         bottom: 0;
@@ -221,16 +208,17 @@ body {
         right: 0;
         height: 50px;
         box-sizing: content-box;
-        img {
-            height: 50px;
-            transition: transform 0.4s ease-in-out;
-            &:hover {
-                transform: scale(1.1);
+        z-index: 5;
+        span {
+            float: right;
+            img {
+                margin-top: 3px;
+                height: 44px;
+                transition: transform 0.4s ease-in-out;
+                &:hover {
+                    transform: scale(1.1);
+                }
             }
         }
     }
 }
-
-// .offline-ui {
-//     display: none;
-// }

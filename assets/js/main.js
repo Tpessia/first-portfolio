@@ -10,21 +10,14 @@ $(function () {
 });
 
 function loading() {
-    $logo = $(".brand-logo img");
+    $ldn = $("#ldn");
+    $ldnLogo = $ldn.children("img");
     $body = $("body");
     window.onload = function() {
-        $logo.one("animationiteration", function() {
-            $body.removeClass("start");
-            $body.addClass("onprogress");
-
-            if (/*$(window).scrollTop() != 0*/true) {
-                $body.removeClass("loading onprogress");
-            }
-            else {
-                $logo.one("transitionend", function () {
-                    $body.removeClass("loading onprogress");
-                });
-            }
+        $ldnLogo.one("animationiteration", function() {
+            $ldn.animate({ opacity: 0 }, 1000, function() {
+                $body.removeClass("loading");
+            });
         });
     };
 }
