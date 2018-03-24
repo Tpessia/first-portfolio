@@ -107,6 +107,17 @@ function smartHover(elem) {
                 });
             });
         });
+
+        $(this).on("click", function() {
+            if (/Mobi/i.test(navigator.userAgent) || /Android/i.test(navigator.userAgent)) {
+                var $cardReveal = $(this).find(".card-reveal");
+                //melhorar
+                $cardReveal.addClass("pre-bottom");
+                setTimeout(function () {
+                    $cardReveal.addClass("from-bottom");
+                }, 5);
+            }
+        });
     });
 }
 

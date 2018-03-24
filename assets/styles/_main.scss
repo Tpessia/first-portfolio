@@ -48,6 +48,7 @@ body {
             background: white;
             img {
                 position: absolute;
+                max-width: 50vw;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
@@ -74,23 +75,28 @@ body {
     header {
         nav {
             background-color: $colorNav;
-            box-shadow: initial;
-            .brand-logo {
-                font-family: Pessia;
-                font-size: 4rem;
-                white-space: nowrap;
-                color: $navTextColor;
-                i {
-                    margin-left: 7px;
-                    img {
-                        padding: 5%;
-                        margin-top: 5px;
-                        height: 50px;
-                        width: 50px;
+            box-shadow: initial;            
+            .nav-wrapper {
+                .brand-logo {
+                    font-family: Pessia;
+                    font-size: 4rem;
+                    white-space: nowrap;
+                    color: $navTextColor;
+                    i {
+                        margin-left: 7px;
+                        img {
+                            padding: 5%;
+                            margin-top: 5px;
+                            height: 50px;
+                            width: 50px;
+                        }
                     }
                 }
-            }
-            .nav-wrapper {
+                .button-collapse {
+                    i {
+                        color: black;
+                    }
+                }
                 position: fixed;
                 width: 100%;
                 z-index: 1;
