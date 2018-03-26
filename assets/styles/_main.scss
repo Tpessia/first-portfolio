@@ -135,36 +135,56 @@ body {
                 color: $navTextColor;
                 background-color: $colorSubNav;
                 padding-left: 80%;
+                border-top: 1px solid transparent;
                 @media (max-width: 992px) {
                     padding-left: 0px;
                 }
-            }
-            .input-field {
-                #searchVal {
-                    color: lighten($navTextColor, 54%);
-                    padding-right: 3.5em;
-                    border-bottom: 0;
-                    box-shadow: none;
-                    box-sizing: border-box;
-                    &:focus {
-                        color: $navTextColor;
-                        &+#search {
+                .input-field {
+                    margin-right: 3px;
+                    #searchVal {
+                        color: lighten($navTextColor, 54%);
+                        padding-right: 3.5em;
+                        border-bottom: 0;
+                        box-shadow: none;
+                        box-sizing: border-box;
+                        &:focus {
                             color: $navTextColor;
+                            &+#search {
+                                color: $navTextColor;
+                            }
+                        }
+                        @media (min-width: 993px) {
+                            &:focus {
+                                box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.14), 0px 0px 5px 0px rgba(0, 0, 0, 0.12), 0px 0px 1px -2px rgba(0, 0, 0, 0.2);
+                            }
                         }
                     }
-                }
-                #search {
-                    color: lighten($navTextColor,54%);
-                    right: initial;
-                    left: 0.5em;
-                    top: -11%;
-                    &+i {
+                    #search {
+                        color: lighten($navTextColor, 54%);
+                        right: initial;
+                        left: 0.5em;
                         top: -11%;
-                    }
-                    @media (max-width: 992px) {
-                        top: -15%;
                         &+i {
+                            top: -11%;
+                        }
+                        @media (max-width: 992px) {
                             top: -15%;
+                            &+i {
+                                top: -15%;
+                            }
+                        }
+                    }
+                    .autocomplete-content {
+                        margin: 0;
+                        position: absolute;
+                        width: 100%;
+                        li {
+                            span {
+                                color: rgba(0, 0, 0, 0.5);
+                                &.highlight {
+                                    color: rgba(0, 0, 0, 0.87);
+                                }
+                            }
                         }
                     }
                 }

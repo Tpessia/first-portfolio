@@ -27,6 +27,7 @@ body {
                     }
                     &.verMais {
                         background-color: rgba(0, 0, 0, 0.87) !important;
+                        overflow-x: hidden;
                         .text {
                             color: white !important;
                             padding-top: 100px;

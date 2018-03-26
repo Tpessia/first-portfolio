@@ -12,9 +12,75 @@
     @@include('Shared/header.html', {"contato": "active"})
 
     <main class="container">
-        <div class="row">
+        <div class="row" style="
+        padding:  0 5px;
+    ">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input id="primeiro_nome" type="text" class="validate" style="
+    ">
+                        <label for="first_name" class="">Nome</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name" class="">Sobrenome</label>
+                    </div>
+                </div>
+    
+    
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" class="validate">
+                        <label for="email" class="">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="subject" type="email" class="validate" style="
+    ">
+                        <label for="subject" class="">Assunto</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="message" class="materialize-textarea" data-length="500" maxlength="500"></textarea>
+                        <label for="message" class="">Mensagem</label>
+                    </div>
+                </div>
+                <div class="row" style="
+    ">
+                    <div class="col s12">
+                        <input type="submit" style="border: 0;background: none;box-shadow: none;border-radius: 0px;padding:  10px 25px;color: rgb(55, 55, 55);font-weight:  500;border: 2px solid rgb(55, 55, 55);transition:  all 0.4s;">
+                    </div>
+                </div>
+            </form>
+    
+        </div>
+        <hr>
+        <div class="row" style="
+        margin-top: 40px;
+        font-weight:  300;
+    ">
             <div class="col s12">
-                Conteúdo Principal
+                <div class="row">
+                    <div class="col s12">Thiago Pessia
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <a href="mailto:thiago@pessia.xyz" style="
+        color:  rgba(0,0,0,0.87);
+    ">thiago@pessia.xyz</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <a href="tel:+551194991-1003" style="
+        color:  rgba(0,0,0,0.87);
+    ">+55 (11) 94991-1003</a>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

@@ -20,10 +20,27 @@ $(function() {
         window.open("https://pt.wikipedia.org/wiki/" + $(this).html());
     });
 
-    $(".verMais .card").on('mouseenter',function(){
-        $(".arrow").animate({left: '100%'},500,function(){
-            $(this).css('left', '-100%');
-            $(".arrow").animate({left: '0'},500);
+    $("#cursos .verMais .card").on('mouseenter', function () {
+        $arrow = $(this).find(".arrow");
+        $arrow.animate({
+            left: '100%'
+        }, 500, function () {
+            $arrow.css('left', '-100%');
+            $arrow.animate({
+                left: '0'
+            }, 500);
+        });
+    });
+
+    $("#projetos .verMais").on("mouseenter", function () {
+        $arrow = $(this).find(".arrow");
+        $arrow.animate({
+            'margin-left': '150%'
+        }, 500, function () {
+            $arrow.css('margin-left', '-150%');
+            $arrow.animate({
+                'margin-left': '0'
+            }, 500);
         });
     });
 });
