@@ -73,6 +73,22 @@ body {
                                 color: #fff;
                                 font-weight: 300;
                             }
+                            &.verMais {
+                                background-color: rgba(0, 0, 0, .87) !important;
+                                overflow-x: hidden;
+                                text-align : center;
+                                .text {
+                                    color: #fff !important;
+                                    padding-top: 40px;
+                                    font-size: 8vw;
+                                }
+                                .arrow {
+                                    margin-left: 0px;
+                                    width: 115px;
+                                    margin-top: -25px;
+                                    left: 0;
+                                }
+                            }
                         }
                     }
                 }

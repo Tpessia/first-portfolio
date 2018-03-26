@@ -32,7 +32,7 @@ $(function() {
         });
     });
 
-    $("#projetos .verMais").on("mouseenter", function () {
+    $("#projetos .carousel .verMais").on("mouseenter", function () {
         $arrow = $(this).find(".arrow");
         $arrow.animate({
             'margin-left': '150%'

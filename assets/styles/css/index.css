@@ -242,6 +242,19 @@ body main #projetos {
         font-size: 5.5vw;
         color: #fff;
         font-weight: 300; }
+      body main #projetos div.hide-on-med-and-up .col .bg-projetos.verMais {
+        background-color: rgba(0, 0, 0, 0.87) !important;
+        overflow-x: hidden;
+        text-align: center; }
+        body main #projetos div.hide-on-med-and-up .col .bg-projetos.verMais .text {
+          color: #fff !important;
+          padding-top: 40px;
+          font-size: 8vw; }
+        body main #projetos div.hide-on-med-and-up .col .bg-projetos.verMais .arrow {
+          margin-left: 0px;
+          width: 115px;
+          margin-top: -25px;
+          left: 0; }
 body main #cursos .card {
   overflow: hidden; }
   body main #cursos .card .card-image {
