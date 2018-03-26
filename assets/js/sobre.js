@@ -1,0 +1,3 @@
+$(function() {
+    smartHover("#cursos .card");
+});

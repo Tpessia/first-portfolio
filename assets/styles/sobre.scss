@@ -1,1 +1,105 @@
 @import '_main.scss';
+
+body {
+    #resumo {
+        text-align: justify;
+        .first-letter {
+            font-size: 3em;
+            float: left;
+            line-height: 98%;
+            width: 0.7em;
+        }
+    }
+    #cursos {
+        overflow-x: hidden;
+        h1 {
+            font-size: 5rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            @media (max-width: 992px) {
+                font-size: 11vw;
+            }
+        }
+        .card {
+            overflow: hidden;
+            .card-image {
+                overflow: hidden;
+                height: 170px;
+                .card-bg {
+                    height: 100%;
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+            }
+            .card-action {
+                padding: 14px 21px;
+            }
+            .card-reveal {
+                transition: transform .7s;
+                .card-title {
+                    pointer-events: none;
+                }
+                .tags {
+                    margin: 5px 0 0 -5px;
+                    max-height: 115px;
+                    overflow: auto;
+                    div {
+                        display: inline-block;
+                        font-size: 1rem;
+                        min-width: 50px;
+                        text-align: center;
+                        border: 1px solid rgba(0, 0, 0, 0.8);
+                        margin: 4px 5px;
+                        padding: 2px 5px;
+                        cursor: pointer;
+                    }
+                }
+                .course-link {
+                    position: absolute;
+                    bottom: 15px;
+                    a {
+                        cursor: pointer;
+                        font-size: 1.2rem;
+                        font-weight: 300;
+                        transition: color .3s;
+                        &:active {
+                            color: black;
+                        }
+                    }
+                }
+                &.preTop {
+                    display: block;
+                    transform: translate(0, -200%);
+                }
+                &.fromTop {
+                    display: block;
+                    transform: translate(0, -100%);
+                }
+                &.preBottom {
+                    display: block;
+                }
+                &.fromBottom {
+                    display: block;
+                    transform: translateY(-100%);
+                }
+                &.preRight {
+                    display: block;
+                    transform: translate(100%, -100%);
+                }
+                &.fromRight {
+                    display: block;
+                    transform: translate(0, -100%);
+                }
+                &.preLeft {
+                    display: block;
+                    transform: translate(-100%, -100%);
+                }
+                &.fromLeft {
+                    display: block;
+                    transform: translate(0, -100%);
+                }
+            }
+        }
+    }
+}
