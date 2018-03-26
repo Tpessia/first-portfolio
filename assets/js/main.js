@@ -31,8 +31,9 @@ $(function () {
     loading();
 
     function animeteScroll(elem) {
+        var navHeight = window.innerWidth > 600 ? 64 : 56;
         $('html, body').animate({
-            scrollTop: $(elem).offset().top - 64
+            scrollTop: $(elem).offset().top - navHeight
         }, 1500);
     }
     if(location.hash) {
