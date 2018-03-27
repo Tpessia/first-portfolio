@@ -1,72 +1,254 @@
-
 $(function () {
-    projetos = [
-        {name: "Projeto 1", id: "1", description: "Proident aliquip quis elit magna reprehenderit esse proident.", img: "/assets/img/old/maps/format/img_12.jpg", url: "/assets/img/old/maps/format/img_12.jpg"},
-        {name: "Projeto 2", id: "2", description: "Consectetur reprehenderit ad magna ut laboris ex excepteur in ad non.", img: "/assets/img/old/maps/format/img_12.jpg", url: "/assets/img/old/maps/format/img_12.jpg"},
-        {name: "Projeto 3", id: "3", description: "Sint non reprehenderit magna consectetur do quis laboris nulla sunt fugiat.", img: "/assets/img/old/maps/format/img_12.jpg", url: "/assets/img/old/maps/format/img_12.jpg"},
-        {name: "Projeto 4", id: "4", description: "Id ea officia aliquip deserunt elit proident irure mollit laboris ullamco.", img: "/assets/img/old/maps/format/img_12.jpg", url: "/assets/img/old/maps/format/img_12.jpg"},
-        {name: "Projeto 5", id: "5", description: "Et consequat velit ex nostrud esse eiusmod sint aliquip veniam cillum id sint.", img: "/assets/img/old/maps/format/img_12.jpg", url: "/assets/img/old/maps/format/img_12.jpg"},
-        {name: "Projeto 6", id: "6", description: "Irure minim sunt id ea tempor.", img: "/assets/img/old/maps/format/img_12.jpg", url: "/assets/img/old/maps/format/img_12.jpg"},
-    ];
+    projetos = {
+        "Projeto 1":
+            {
+                "name": "Projeto 1",
+                "id": "1",
+                "description": "Proident aliquip quis elit magna reprehenderit esse proident.",
+                "img": "/assets/img/old/maps/format/img_12.jpg",
+                "url": "/assets/img/old/maps/format/img_12.jpg"
+            },
+        "Projeto 2":
+            {
+                "name": "Projeto 2",
+                "id": "2",
+                "description": "Consectetur reprehenderit ad magna ut laboris ex excepteur in ad non.",
+                "img": "/assets/img/old/maps/format/img_12.jpg",
+                "url": "/assets/img/old/maps/format/img_12.jpg"
+            },
+        "Projeto 3":
+            {
+                "name": "Projeto 3",
+                "id": "3",
+                "description": "Sint non reprehenderit magna consectetur do quis laboris nulla sunt fugiat.",
+                "img": "/assets/img/old/maps/format/img_12.jpg",
+                "url": "/assets/img/old/maps/format/img_12.jpg"
+            },
+        "Projeto 4":
+            {
+                "name": "Projeto 4",
+                "id": "4",
+                "description": "Id ea officia aliquip deserunt elit proident irure mollit laboris ullamco.",
+                "img": "/assets/img/old/maps/format/img_12.jpg",
+                "url": "/assets/img/old/maps/format/img_12.jpg"
+            },
+        "Projeto 5":
+            {
+                "name": "Projeto 5",
+                "id": "5",
+                "description": "Et consequat velit ex nostrud esse eiusmod sint aliquip veniam cillum id sint.",
+                "img": "/assets/img/old/maps/format/img_12.jpg",
+                "url": "/assets/img/old/maps/format/img_12.jpg"
+            },
+        "Projeto 6":
+            {
+                "name": "Projeto 6",
+                "id": "6",
+                "description": "Irure minim sunt id ea tempor.",
+                "img": "/assets/img/old/maps/format/img_12.jpg",
+                "url": "/assets/img/old/maps/format/img_12.jpg"
+            }
+    };
 
-    cursos = [
-        {name: "Curso 1", id: "1", tags: ["Que", "Curso", "Legal"], img: "/assets/img/old/maps/format/img_12.jpg", url: "/assets/img/old/maps/format/img_12.jpg"},
-        {name: "Curso 2", id: "2", tags: ["Que", "Curso", "Legal"], img: "/assets/img/old/maps/format/img_12.jpg", url: "/assets/img/old/maps/format/img_12.jpg"},
-        {name: "Curso 3", id: "3", tags: ["Que", "Curso", "Legal"], img: "/assets/img/old/maps/format/img_12.jpg", url: "/assets/img/old/maps/format/img_12.jpg"},
-        {name: "Curso 4", id: "4", tags: ["Que", "Curso", "Legal"], img: "/assets/img/old/maps/format/img_12.jpg", url: "/assets/img/old/maps/format/img_12.jpg"},
-        {name: "Curso 5", id: "5", tags: ["Que", "Curso", "Legal"], img: "/assets/img/old/maps/format/img_12.jpg", url: "/assets/img/old/maps/format/img_12.jpg"},
-        {name: "Curso 6", id: "6", tags: ["Que", "Curso", "Legal"], img: "/assets/img/old/maps/format/img_12.jpg", url: "/assets/img/old/maps/format/img_12.jpg"},
-    ];
+    cursos = {
+        "Curso 1":
+            {
+                "name": "Curso 1",
+                "id": "1",
+                "tags": ["Que", "Curso", "Legal"],
+                "img": "/assets/img/old/maps/format/img_12.jpg",
+                "url": "/assets/img/old/maps/format/img_12.jpg"
+            },
+        "Curso 2":
+            {
+                "name": "Curso 2",
+                "id": "2",
+                "tags": ["Que", "Curso", "Legal"],
+                "img": "/assets/img/old/maps/format/img_12.jpg",
+                "url": "/assets/img/old/maps/format/img_12.jpg"
+            },
+        "Curso 3":
+            {
+                "name": "Curso 3",
+                "id": "3",
+                "tags": ["Que", "Curso", "Legal"],
+                "img": "/assets/img/old/maps/format/img_12.jpg",
+                "url": "/assets/img/old/maps/format/img_12.jpg"
+            },
+        "Curso 4":
+            {
+                "name": "Curso 4",
+                "id": "4",
+                "tags": ["Que", "Curso", "Legal"],
+                "img": "/assets/img/old/maps/format/img_12.jpg",
+                "url": "/assets/img/old/maps/format/img_12.jpg"
+            },
+        "Curso 5":
+            {
+                "name": "Curso 5",
+                "id": "5",
+                "tags": ["Que", "Curso", "Legal"],
+                "img": "/assets/img/old/maps/format/img_12.jpg",
+                "url": "/assets/img/old/maps/format/img_12.jpg"
+            },
+        "Curso 6":
+            {
+                "name": "Curso 6",
+                "id": "6",
+                "tags": ["Que", "Curso", "Legal"],
+                "img": "/assets/img/old/maps/format/img_12.jpg",
+                "url": "/assets/img/old/maps/format/img_12.jpg"
+            }
+    };
 
-    function getObjByValue(obj, key, value) {
-        return obj.filter(function(obj) {return obj[key] === value});
+    habilidades = {
+        "HTML":
+            {
+                "name": "HTML",
+                "img": "/assets/img/html.png",
+                "url": "https://pt.wikipedia.org/wiki/HTML"
+            },
+        "CSS":
+            {
+                "name": "CSS",
+                "img": "/assets/img/css.png",
+                "url": "https://pt.wikipedia.org/wiki/Cascading_Style_Sheets"
+            },
+        "JavaScript":
+            {
+                "name": "JavaScript",
+                "img": "/assets/img/javascript.png",
+                "url": "https://pt.wikipedia.org/wiki/JavaScript"
+            },
+        "Bootstrap":
+            {
+                "name": "Bootstrap",
+                "img": "/assets/img/bootstrap.png",
+                "url": "http://getbootstrap.com/"
+            },
+        "Materialize":
+            {
+                "name": "Materialize",
+                "img": "/assets/img/materialize.png",
+                "url": "http://materializecss.com/"
+            },
+        "JQuery":
+            {
+                "name": "JQuery",
+                "img": "/assets/img/jquery.png",
+                "url": "https://jquery.com/"
+            }
+    };
+
+    main_loading();
+
+    main_initializers();
+
+    main_bindAnimations();
+
+    main_clickHandlers();
+});
+
+class TemplateManager {
+    constructor(template) {
+        this.template = template;
     }
 
+    generateContent(content) {
+        var finalContent = this.template;
+        for (var text in content) {
+            // if (Array.isArray(text)) {
+
+            // }
+            // else {
+                var regex = new RegExp("%%" + text + "%%", "gi");
+                finalContent = finalContent.replace(regex, content[text]);
+            // }
+        }
+        return finalContent;
+    }
+
+    JsonToContent(json, maxIteration, revert) {
+        var contents = [],
+            count = 0;
+
+        if (typeof revert === "undefined") {
+            revert = false;
+        }
+
+        if (revert) {
+            for (var i = Object.keys(json).length - 1; i > 0; i--) {
+                if (typeof maxIteration != "undefined" && count >= maxIteration) {
+                    break;
+                }
+
+                var content = projetos[Object.keys(projetos)[i]]; //e.g. "Projetos 1": {}
+                var template = new TemplateManager(this.template);
+
+                contents.push(template.generateContent(content));
+
+                count++;
+            }
+        }
+        else {
+            for (var i = 0; i < Object.keys(json).length; i++) {
+                if (typeof maxIteration != "undefined" && count >= maxIteration) {
+                    break;
+                }
+
+                var content = projetos[Object.keys(projetos)[i]]; //e.g. "Projetos 1": {}
+                var template = new TemplateManager(this.template);
+
+                contents.push(template.generateContent(content));
+
+                count++;
+            }
+        }
+
+        return contents;
+    }
+}
+
+function main_loading() {
+    $ldn = $("#ldn");
+    $ldnLogo = $ldn.children("img");
+    $body = $("body");
+    if (document.readyState == "complete") {
+        removeLdn();
+    }
+    else {
+        $(window).on("load", function () {
+            removeLdn();
+        });
+    }
+
+    function removeLdn() {
+        $ldnLogo.one("animationiteration", function () {
+            $body.trigger("load-finishing");
+            $body.css("overflow", "initial");
+            $ldn.animate({
+                opacity: 0
+            }, 1000, function () {
+                $body.removeClass("loading");
+            });
+        });
+    }
+}
+
+function main_initializers() {
     $('.collapsible').collapsible();
     $(".button-collapse").sideNav({ closeOnClick: true });
     $(document).ready(function () {
         $('.modal').modal();
     });
     
-    loading();
-
-    function animeteScroll(elem) {
-        var navHeight = window.innerWidth > 600 ? 64 : 56;
-        $('html, body').animate({
-            scrollTop: $(elem).offset().top - navHeight
-        }, 1500);
-    }
-    if(location.hash) {
-        $("body").on("load-finishing", function () {
-            window.scrollTo(0, 0);
-            animeteScroll(location.hash);
-        });
-    }
-    $(window).on("hashchange", function() {
-        window.scrollTo(0, 0);
-        animeteScroll(location.hash);
-    });
-
     $('#searchVal.autocomplete').autocomplete({
-        data: {
-            "Projeto 1": null,
-            "Projeto 2": null,
-            "Projeto 3": 'https://placehold.it/250x250',
-            "Projeto 4": null,
-            "Projeto 5": null,
-            "Projeto 6": 'https://placehold.it/250x250',
-            "Curso 1": null,
-            "Curso 2": null,
-            "Curso 3": 'https://placehold.it/250x250',
-            "Curso 4": null,
-            "Curso 5": null,
-            "Curso 6": 'https://placehold.it/250x250'
-        },
+        data: JsonToAutocomplete([projetos, cursos]),
         limit: 3, // The max amount of results that can be shown at once. Default: Infinity.
         onAutocomplete: function (val) {
             // Callback function when value is autcompleted.
-            var projeto = getObjByValue(projetos, "name", val)[0];
-            var curso = getObjByValue(cursos, "name", val)[0];
+            var projeto = projetos[val];
+            var curso = cursos[val];
 
             var destination = jQuery.isEmptyObject(projeto) ? "/sobre.html#" + curso.id : "/projetos.html#" + projeto.id;
 
@@ -81,21 +263,61 @@ $(function () {
             }
         }
     });
-});
+}
 
-function loading() {
-    $ldn = $("#ldn");
-    $ldnLogo = $ldn.children("img");
-    $body = $("body");
-    window.onload = function() {
-        $ldnLogo.one("animationiteration", function () {
-            $body.trigger("load-finishing");
-            $body.css("overflow","initial");
-            $ldn.animate({ opacity: 0 }, 1000, function() {
-                $body.removeClass("loading");
-            });
+function main_bindAnimations() {
+    if (location.hash) {
+        $("body").on("load-finishing", function () {
+            window.scrollTo(0, 0);
+            animeteScroll(location.hash);
         });
-    };
+    }
+
+    $(window).on("hashchange", function () {
+        window.scrollTo(0, 0);
+        animeteScroll(location.hash);
+    });
+
+    function animeteScroll(elem) {
+        var navHeight = window.innerWidth > 600 ? 64 : 56;
+        try {
+            $('html, body').animate({
+                scrollTop: $(elem).offset().top - navHeight
+            }, 1500);
+        }
+        catch (e) {
+
+        }
+    }
+}
+
+function main_clickHandlers() {
+    $('#search').on("click", function () {
+        $("#modal").modal('open');
+    });
+
+    $("#searchVal").on("search", function () {
+        $("#modal").modal('open');
+    });
+
+    $("#close").on("click", function () {
+        $("#searchVal").blur();
+        $("#searchVal").val("");
+    });
+}
+
+function JsonToAutocomplete(contents) {
+    var autocomplete = { content: {}, names: {} }
+
+    for (var i = 0; i < contents.length; i++) {
+        autocomplete.content = $.extend({}, autocomplete.content, contents[i]);
+    }
+
+    for (var i in autocomplete.content) {
+        autocomplete.names[i] = null;
+    }
+
+    return autocomplete.names;
 }
 
 function smartHover(elem) {
@@ -145,13 +367,17 @@ function smartHover(elem) {
     _nodes.forEach(function (el) {
         el.addEventListener('mouseover', function (ev) {
             if (!$(el).is('[class*="in"]')) {
-                addClass(ev, this, 'in');
+                if (!/Mobi/i.test(navigator.userAgent) && !/Android/i.test(navigator.userAgent)) {
+                    addClass(ev, this, 'in');
+                }
             }
         }, false);
 
         el.addEventListener('mouseleave', function (ev) {
             if (!$(el).is('[class*="out"]')) {
-                addClass(ev, this, 'out');
+                if (!/Mobi/i.test(navigator.userAgent) && !/Android/i.test(navigator.userAgent)) {
+                    addClass(ev, this, 'out');
+                }
             }
         }, false);
     });
@@ -189,15 +415,42 @@ function smartHover(elem) {
             });
         });
 
-        $(this).on("click", function () {
+        $(this).on("click", function (e) {
             if (/Mobi/i.test(navigator.userAgent) || /Android/i.test(navigator.userAgent)) {
+                e.preventDefault();
+                e.stopPropagation();
+
                 var $cardReveal = $(this).find(".card-reveal");
-                //melhorar
+
+                clearAllMobile(e, $cardReveal);
+
                 $cardReveal.addClass("preBottom");
                 setTimeout(function () {
                     $cardReveal.addClass("fromBottom");
                 }, 5);
             }
         });
+
+        $(document).on("click", function(e) {
+            clearAllMobile(e,"");
+        });
+
+        function clearAllMobile(e, $notThis) {
+            if (/Mobi/i.test(navigator.userAgent) || /Android/i.test(navigator.userAgent)) {
+                var $cardReveal = $(_nodes).find(".card-reveal").not($notThis);
+                
+                $cardReveal.removeClass(function (index, className) {
+                    return (className.match(/(^|\s)from\S+/g) || []).join(' ');
+                });
+                $cardReveal.one("transitionend", function() {
+                    if (!$cardReveal.is("[class*=from]")) {
+                        $cardReveal.removeClass(function (index, className) {
+                            return (className.match(/(^|\s)pre\S+/g) || []).join(' ');
+                            alert();
+                        });
+                    }
+                });
+            }
+        }
     });
 }

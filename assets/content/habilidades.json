@@ -1,0 +1,38 @@
+{
+    "HTML": 
+    { 
+        "name": "HTML",
+        "img": "/assets/img/html.png", 
+        "url": "https://pt.wikipedia.org/wiki/HTML" 
+    },
+    "CSS": 
+    { 
+        "name": "CSS",
+        "img": "/assets/img/css.png", 
+        "url": "https://pt.wikipedia.org/wiki/Cascading_Style_Sheets" 
+    },
+    "JavaScript": 
+    { 
+        "name": "JavaScript",
+        "img": "/assets/img/javascript.png", 
+        "url": "https://pt.wikipedia.org/wiki/JavaScript" 
+    },
+    "Bootstrap": 
+    { 
+        "name": "Bootstrap",
+        "img": "/assets/img/bootstrap.png", 
+        "url": "http://getbootstrap.com/" 
+    },
+    "Materialize": 
+    { 
+        "name": "Materialize",
+        "img": "/assets/img/materialize.png", 
+        "url": "http://materializecss.com/" 
+    },
+    "JQuery": 
+    { 
+        "name": "JQuery",
+        "img": "/assets/img/jquery.png", 
+        "url": "https://jquery.com/" 
+    }
+}

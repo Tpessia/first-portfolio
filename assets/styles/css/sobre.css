@@ -135,6 +135,9 @@ body {
               top: -15%; }
               body header nav .nav-content .input-field #search + i {
                 top: -15%; } }
+        body header nav .nav-content .input-field #close {
+          background: transparent !important;
+          outline: 0 !important; }
         body header nav .nav-content .input-field .autocomplete-content {
           margin: 0;
           position: absolute;

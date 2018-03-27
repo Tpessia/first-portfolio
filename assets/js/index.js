@@ -1,24 +1,65 @@
-//CONTROLLER
 $(function() {
-    $('#search').on("click", function () {
-        $("#modal").modal('open');
-    });
+    createContent();
 
-    $("#searchVal").on("search", function () {
-        $("#modal").modal('open');
-    });
+    initializers();
 
+    bindAnimations(); //arrumar pois vai quebrar no ajax async na hora de chamar os jsons
+
+    clickHandlers(); //arrumar pois vai quebrar no ajax async na hora de chamar os jsons
+});
+
+function createContent() {
+    carouselProjetos();
+    gridProjetos();
+    gridCursos();
+    
+    function carouselProjetos() {
+        var carousel = '<div class="carousel-item red white-text" href="#%%COUNT%%!"><a href="%%URL%%" target="_blank"><div class="bg-carousel" style="background-image: url(%%IMG%%);"></div></a></div>';
+
+        var carouselT = new TemplateManager(carousel);
+
+        var projetosCount = ["one", "two", "three", "four", "five"];
+
+        for (var projeto in projetos) {
+            projetos[projeto].count = projetosCount.shift();
+        }
+
+        var carouselContent = carouselT.JsonToContent(projetos, 5, true);
+
+        $("#projetos .carousel .verMais").parent("a").before(carouselContent);
+    }
+
+    function gridProjetos() {
+        var flatGrid = '<div class="col s12 m6"><div class="bg-projetos" style="background-image: url(%%IMG%%)"><div class="content-projetos"><div class="title">%%NAME%%</div><div class="hidden-content">%%DESCRIPTION%%</div><a class="visitar">Visitar</a><span class="close hide">x</span></div></div></div>';
+
+        var flatGridT = new TemplateManager(flatGrid);
+
+        var flatGridContent = flatGridT.JsonToContent(projetos, 5, true);
+
+        $("#projetos .hide-on-med-and-up .verMais").parent(".col").before(flatGridContent);
+    }
+
+    function gridCursos() {
+        var cursosGrid = '<div class="col l4 m6 s12"><div class="card"><div class="card-image"><div class="card-bg" style="background-image: url(%%IMG%%)"></div></div><div class="card-action grey darken-4 white-text">%%NAME%%</div><div class="card-reveal"><span class="card-title grey-text text-darken-4" style="font-weight:  400;">%%NAME%%</span><div class="tags">##<div>%%TAGS%%</div>##</div><div class="course-link"><a href="#" target="_blank">Visitar curso</a></div></div></div></div>';
+
+        var cursosGridT = new TemplateManager(cursosGrid);
+
+        var cursosGridContent = cursosGridT.JsonToContent(cursos, 5, true);
+
+        $("#cursos .col.verMais").before(cursosGridContent);
+    }
+}
+
+function initializers() {
     var elem = document.querySelector('.carousel');
     $('.carousel.carousel-slider').carousel({
         fullWidth: true,
         indicators: true
     });
+}
 
+function bindAnimations() {
     smartHover("#cursos .card");
-
-    $(".tags div").on("click", function () {
-        window.open("https://pt.wikipedia.org/wiki/" + $(this).html());
-    });
 
     $("#cursos .verMais .card").on('mouseenter', function () {
         $arrow = $(this).find(".arrow");
@@ -43,7 +84,21 @@ $(function() {
             }, 500);
         });
     });
-});
+}
+
+function clickHandlers() {
+    //duplicado do projetos.js
+    $(".content-projetos").on("click", function (e) {
+        if (!$(e.target).hasClass('visitar') || !$(this).hasClass('mobileAnim')) {
+            $(this).toggleClass('mobileAnim');
+        }
+    });
+
+    $(".tags div").on("click", function () { //click nas habilidades leva ao wikipedia
+        window.open("https://pt.wikipedia.org/wiki/" + $(this).html());
+    });
+}
+
 
 // function smartHover(elem) {
 //     var pageX,

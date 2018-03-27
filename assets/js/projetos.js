@@ -1,13 +1,11 @@
 $(function() {
-    // $(".content-projetos").each(function () {
-    //     this.addEventListener('click', function () { $(this).addClass('mobileAnim'); }, true);
-    // });
-    // $(".close").each(function() {
-    //     this.addEventListener('click', function () { $(this).closest('.content-projetos').removeClass('mobileAnim'); }, true);
-    // });
-    $(".content-projetos").on("click", function (e) {
+    clickHandlers(); //arrumar pois vai quebrar no ajax async na hora de chamar os jsons
+});
+
+function clickHandlers() {
+    $(".content-projetos").on("click", function (e) { //previne o click no elemento "visitar" antes do bubble up
         if (!$(e.target).hasClass('visitar') || !$(this).hasClass('mobileAnim')) {
             $(this).toggleClass('mobileAnim');
         }
     });
-});
+}

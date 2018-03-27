@@ -1,0 +1,50 @@
+{
+    "Curso 1": 
+    { 
+        "name": "Curso 1",
+        "id": "1", 
+        "tags": ["Que", "Curso", "Legal"], 
+        "img": "/assets/img/old/maps/format/img_12.jpg", 
+        "url": "/assets/img/old/maps/format/img_12.jpg"
+    },
+    "Curso 2": 
+    { 
+        "name": "Curso 2",
+        "id": "2", 
+        "tags": ["Que", "Curso", "Legal"], 
+        "img": "/assets/img/old/maps/format/img_12.jpg", 
+        "url": "/assets/img/old/maps/format/img_12.jpg"
+    },
+    "Curso 3": 
+    { 
+        "name": "Curso 3",
+        "id": "3", 
+        "tags": ["Que", "Curso", "Legal"], 
+        "img": "/assets/img/old/maps/format/img_12.jpg", 
+        "url": "/assets/img/old/maps/format/img_12.jpg"
+    },
+    "Curso 4": 
+    { 
+        "name": "Curso 4",
+        "id": "4", 
+        "tags": ["Que", "Curso", "Legal"], 
+        "img": "/assets/img/old/maps/format/img_12.jpg", 
+        "url": "/assets/img/old/maps/format/img_12.jpg"
+    },
+    "Curso 5": 
+    { 
+        "name": "Curso 5",
+        "id": "5", 
+        "tags": ["Que", "Curso", "Legal"], 
+        "img": "/assets/img/old/maps/format/img_12.jpg", 
+        "url": "/assets/img/old/maps/format/img_12.jpg"
+    },
+    "Curso 6": 
+    { 
+        "name": "Curso 6",
+        "id": "6", 
+        "tags": ["Que", "Curso", "Legal"], 
+        "img": "/assets/img/old/maps/format/img_12.jpg", 
+        "url": "/assets/img/old/maps/format/img_12.jpg"
+    }
+}
