@@ -34,5 +34,20 @@
         "name": "JQuery",
         "img": "/assets/img/jquery.png", 
         "url": "https://jquery.com/" 
+    },
+    "Photoshop": {
+        "name": "Photoshop",
+        "img": "/assets/img/photoshop.jpg",
+        "url": "https://pt.wikipedia.org/wiki/Adobe_Photoshop"
+    },
+    "C#": {
+        "name": "C#",
+        "img": "/assets/img/csharp.png",
+        "url": "https://pt.wikipedia.org/wiki/C_Sharp"
+    },
+    "ASP.NET MVC": {
+        "name": "ASP.NET MVC",
+        "img": "/assets/img/aspnetmvc.png",
+        "url": "https://msdn.microsoft.com/pt-br/library/dd381412(v=vs.108).aspx"
     }
 }

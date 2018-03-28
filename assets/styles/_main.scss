@@ -160,6 +160,7 @@ body {
                         }
                     }
                     #search {
+                        cursor: default;
                         color: lighten($navTextColor, 54%);
                         right: initial;
                         left: 0.5em;

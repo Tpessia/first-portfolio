@@ -46,5 +46,13 @@
         "tags": ["Que", "Curso", "Legal"], 
         "img": "/assets/img/old/maps/format/img_12.jpg", 
         "url": "/assets/img/old/maps/format/img_12.jpg"
+    },
+    "Curso 7": 
+    { 
+        "name": "Curso 7",
+        "id": "7", 
+        "tags": ["Ola", "Tudo", "Bem"], 
+        "img": "/assets/img/old/maps/format/img_12.jpg", 
+        "url": "/assets/img/old/maps/format/img_12.jpg"
     }
 }

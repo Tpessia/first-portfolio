@@ -1,152 +1,182 @@
-$(function () {
-    projetos = {
-        "Projeto 1":
-            {
-                "name": "Projeto 1",
-                "id": "1",
-                "description": "Proident aliquip quis elit magna reprehenderit esse proident.",
-                "img": "/assets/img/old/maps/format/img_12.jpg",
-                "url": "/assets/img/old/maps/format/img_12.jpg"
-            },
-        "Projeto 2":
-            {
-                "name": "Projeto 2",
-                "id": "2",
-                "description": "Consectetur reprehenderit ad magna ut laboris ex excepteur in ad non.",
-                "img": "/assets/img/old/maps/format/img_12.jpg",
-                "url": "/assets/img/old/maps/format/img_12.jpg"
-            },
-        "Projeto 3":
-            {
-                "name": "Projeto 3",
-                "id": "3",
-                "description": "Sint non reprehenderit magna consectetur do quis laboris nulla sunt fugiat.",
-                "img": "/assets/img/old/maps/format/img_12.jpg",
-                "url": "/assets/img/old/maps/format/img_12.jpg"
-            },
-        "Projeto 4":
-            {
-                "name": "Projeto 4",
-                "id": "4",
-                "description": "Id ea officia aliquip deserunt elit proident irure mollit laboris ullamco.",
-                "img": "/assets/img/old/maps/format/img_12.jpg",
-                "url": "/assets/img/old/maps/format/img_12.jpg"
-            },
-        "Projeto 5":
-            {
-                "name": "Projeto 5",
-                "id": "5",
-                "description": "Et consequat velit ex nostrud esse eiusmod sint aliquip veniam cillum id sint.",
-                "img": "/assets/img/old/maps/format/img_12.jpg",
-                "url": "/assets/img/old/maps/format/img_12.jpg"
-            },
-        "Projeto 6":
-            {
-                "name": "Projeto 6",
-                "id": "6",
-                "description": "Irure minim sunt id ea tempor.",
-                "img": "/assets/img/old/maps/format/img_12.jpg",
-                "url": "/assets/img/old/maps/format/img_12.jpg"
-            }
-    };
+$(function () {    
+    // projetos = {
+    //     "Projeto 1":
+    //         {
+    //             "name": "Projeto 1",
+    //             "id": "1",
+    //             "description": "Proident aliquip quis elit magna reprehenderit esse proident.",
+    //             "img": "/assets/img/old/maps/format/img_12.jpg",
+    //             "url": "/assets/img/old/maps/format/img_12.jpg"
+    //         },
+    //     "Projeto 2":
+    //         {
+    //             "name": "Projeto 2",
+    //             "id": "2",
+    //             "description": "Consectetur reprehenderit ad magna ut laboris ex excepteur in ad non.",
+    //             "img": "/assets/img/old/maps/format/img_12.jpg",
+    //             "url": "/assets/img/old/maps/format/img_12.jpg"
+    //         },
+    //     "Projeto 3":
+    //         {
+    //             "name": "Projeto 3",
+    //             "id": "3",
+    //             "description": "Sint non reprehenderit magna consectetur do quis laboris nulla sunt fugiat.",
+    //             "img": "/assets/img/old/maps/format/img_12.jpg",
+    //             "url": "/assets/img/old/maps/format/img_12.jpg"
+    //         },
+    //     "Projeto 4":
+    //         {
+    //             "name": "Projeto 4",
+    //             "id": "4",
+    //             "description": "Id ea officia aliquip deserunt elit proident irure mollit laboris ullamco.",
+    //             "img": "/assets/img/old/maps/format/img_12.jpg",
+    //             "url": "/assets/img/old/maps/format/img_12.jpg"
+    //         },
+    //     "Projeto 5":
+    //         {
+    //             "name": "Projeto 5",
+    //             "id": "5",
+    //             "description": "Et consequat velit ex nostrud esse eiusmod sint aliquip veniam cillum id sint.",
+    //             "img": "/assets/img/old/maps/format/img_12.jpg",
+    //             "url": "/assets/img/old/maps/format/img_12.jpg"
+    //         },
+    //     "Projeto 6":
+    //         {
+    //             "name": "Projeto 6",
+    //             "id": "6",
+    //             "description": "Irure minim sunt id ea tempor.",
+    //             "img": "/assets/img/old/maps/format/img_12.jpg",
+    //             "url": "/assets/img/old/maps/format/img_12.jpg"
+    //         }
+    // };
 
-    cursos = {
-        "Curso 1":
-            {
-                "name": "Curso 1",
-                "id": "1",
-                "tags": ["Que", "Curso", "Legal"],
-                "img": "/assets/img/old/maps/format/img_12.jpg",
-                "url": "/assets/img/old/maps/format/img_12.jpg"
-            },
-        "Curso 2":
-            {
-                "name": "Curso 2",
-                "id": "2",
-                "tags": ["Que", "Curso", "Legal"],
-                "img": "/assets/img/old/maps/format/img_12.jpg",
-                "url": "/assets/img/old/maps/format/img_12.jpg"
-            },
-        "Curso 3":
-            {
-                "name": "Curso 3",
-                "id": "3",
-                "tags": ["Que", "Curso", "Legal"],
-                "img": "/assets/img/old/maps/format/img_12.jpg",
-                "url": "/assets/img/old/maps/format/img_12.jpg"
-            },
-        "Curso 4":
-            {
-                "name": "Curso 4",
-                "id": "4",
-                "tags": ["Que", "Curso", "Legal"],
-                "img": "/assets/img/old/maps/format/img_12.jpg",
-                "url": "/assets/img/old/maps/format/img_12.jpg"
-            },
-        "Curso 5":
-            {
-                "name": "Curso 5",
-                "id": "5",
-                "tags": ["Que", "Curso", "Legal"],
-                "img": "/assets/img/old/maps/format/img_12.jpg",
-                "url": "/assets/img/old/maps/format/img_12.jpg"
-            },
-        "Curso 6":
-            {
-                "name": "Curso 6",
-                "id": "6",
-                "tags": ["Que", "Curso", "Legal"],
-                "img": "/assets/img/old/maps/format/img_12.jpg",
-                "url": "/assets/img/old/maps/format/img_12.jpg"
-            }
-    };
+    // cursos = {
+    //     "Curso 1":
+    //         {
+    //             "name": "Curso 1",
+    //             "id": "1",
+    //             "tags": ["Que", "Curso", "Legal"],
+    //             "img": "/assets/img/old/maps/format/img_12.jpg",
+    //             "url": "/assets/img/old/maps/format/img_12.jpg"
+    //         },
+    //     "Curso 2":
+    //         {
+    //             "name": "Curso 2",
+    //             "id": "2",
+    //             "tags": ["Que", "Curso", "Legal"],
+    //             "img": "/assets/img/old/maps/format/img_12.jpg",
+    //             "url": "/assets/img/old/maps/format/img_12.jpg"
+    //         },
+    //     "Curso 3":
+    //         {
+    //             "name": "Curso 3",
+    //             "id": "3",
+    //             "tags": ["Que", "Curso", "Legal"],
+    //             "img": "/assets/img/old/maps/format/img_12.jpg",
+    //             "url": "/assets/img/old/maps/format/img_12.jpg"
+    //         },
+    //     "Curso 4":
+    //         {
+    //             "name": "Curso 4",
+    //             "id": "4",
+    //             "tags": ["Que", "Curso", "Legal"],
+    //             "img": "/assets/img/old/maps/format/img_12.jpg",
+    //             "url": "/assets/img/old/maps/format/img_12.jpg"
+    //         },
+    //     "Curso 5":
+    //         {
+    //             "name": "Curso 5",
+    //             "id": "5",
+    //             "tags": ["Que", "Curso", "Legal"],
+    //             "img": "/assets/img/old/maps/format/img_12.jpg",
+    //             "url": "/assets/img/old/maps/format/img_12.jpg"
+    //         },
+    //     "Curso 6":
+    //         {
+    //             "name": "Curso 6",
+    //             "id": "6",
+    //             "tags": ["Que", "Curso", "Legal"],
+    //             "img": "/assets/img/old/maps/format/img_12.jpg",
+    //             "url": "/assets/img/old/maps/format/img_12.jpg"
+    //         },
+    //     "Curso 7":
+    //         {
+    //             "name": "Curso 7",
+    //             "id": "7",
+    //             "tags": ["Ola", "Tudo", "Bem"],
+    //             "img": "/assets/img/old/maps/format/img_12.jpg",
+    //             "url": "/assets/img/old/maps/format/img_12.jpg"
+    //         }
+    // };
 
-    habilidades = {
-        "HTML":
-            {
-                "name": "HTML",
-                "img": "/assets/img/html.png",
-                "url": "https://pt.wikipedia.org/wiki/HTML"
-            },
-        "CSS":
-            {
-                "name": "CSS",
-                "img": "/assets/img/css.png",
-                "url": "https://pt.wikipedia.org/wiki/Cascading_Style_Sheets"
-            },
-        "JavaScript":
-            {
-                "name": "JavaScript",
-                "img": "/assets/img/javascript.png",
-                "url": "https://pt.wikipedia.org/wiki/JavaScript"
-            },
-        "Bootstrap":
-            {
-                "name": "Bootstrap",
-                "img": "/assets/img/bootstrap.png",
-                "url": "http://getbootstrap.com/"
-            },
-        "Materialize":
-            {
-                "name": "Materialize",
-                "img": "/assets/img/materialize.png",
-                "url": "http://materializecss.com/"
-            },
-        "JQuery":
-            {
-                "name": "JQuery",
-                "img": "/assets/img/jquery.png",
-                "url": "https://jquery.com/"
-            }
-    };
+    // habilidades = {
+    //     "HTML":
+    //         {
+    //             "name": "HTML",
+    //             "img": "/assets/img/html.png",
+    //             "url": "https://pt.wikipedia.org/wiki/HTML"
+    //         },
+    //     "CSS":
+    //         {
+    //             "name": "CSS",
+    //             "img": "/assets/img/css.png",
+    //             "url": "https://pt.wikipedia.org/wiki/Cascading_Style_Sheets"
+    //         },
+    //     "JavaScript":
+    //         {
+    //             "name": "JavaScript",
+    //             "img": "/assets/img/javascript.png",
+    //             "url": "https://pt.wikipedia.org/wiki/JavaScript"
+    //         },
+    //     "Bootstrap":
+    //         {
+    //             "name": "Bootstrap",
+    //             "img": "/assets/img/bootstrap.png",
+    //             "url": "http://getbootstrap.com/"
+    //         },
+    //     "Materialize":
+    //         {
+    //             "name": "Materialize",
+    //             "img": "/assets/img/materialize.png",
+    //             "url": "http://materializecss.com/"
+    //         },
+    //     "JQuery":
+    //         {
+    //             "name": "JQuery",
+    //             "img": "/assets/img/jquery.png",
+    //             "url": "https://jquery.com/"
+    //         }
+    // };
 
-    main_loading();
+    $(document).on("mainAjax", function() {
+        main_loading();
 
-    main_initializers();
+        main_initializers();
 
-    main_bindAnimations();
+        main_bindAnimations();
 
-    main_clickHandlers();
+        main_clickHandlers();
+    });
+
+    $.ajax({
+        url: "/assets/contents/projetos.json",
+        datatype: "json",
+        success: function (data) {
+            projetos = data;
+            $(document).trigger("projetos");
+        },
+    });
+
+    $(document).on("projetos", function () {
+        $.ajax({
+            url: "/assets/contents/cursos.json",
+            datatype: "json",
+            success: function (data) {
+                cursos = data;
+                $(document).trigger("mainAjax");
+            },
+        });
+    });
 });
 
 class TemplateManager {
@@ -157,13 +187,30 @@ class TemplateManager {
     generateContent(content) {
         var finalContent = this.template;
         for (var text in content) {
-            // if (Array.isArray(text)) {
+            if (Array.isArray(content[text])) {
+                
+                var regex = new RegExp("##", "g");
 
-            // }
-            // else {
+                var i1 = regex.exec(finalContent).index;
+                var i2 = regex.exec(finalContent).index + 2;
+
+                var match = finalContent.substring(i1, i2); //##<div>%TESTE%</div>##
+
+                var trimmedMatch = match.substring(2, match.length - 2); //<div>%TESTE%</div>
+
+                var partialContent = "";
+
+                for (var i in content[text]) {
+                    var regex = new RegExp("%%" + text + "%%", "gi");
+                    partialContent += trimmedMatch.replace(regex, content[text][i]);
+                }
+                
+                finalContent = finalContent.replace(match, partialContent);
+            }
+            else {
                 var regex = new RegExp("%%" + text + "%%", "gi");
                 finalContent = finalContent.replace(regex, content[text]);
-            // }
+            }
         }
         return finalContent;
     }
@@ -172,17 +219,17 @@ class TemplateManager {
         var contents = [],
             count = 0;
 
-        if (typeof revert === "undefined") {
+        if (typeof revert === "undefined" || revert == null) {
             revert = false;
         }
 
         if (revert) {
-            for (var i = Object.keys(json).length - 1; i > 0; i--) {
-                if (typeof maxIteration != "undefined" && count >= maxIteration) {
+            for (var i = Object.keys(json).length - 1; i >= 0; i--) {
+                if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
                     break;
                 }
-
-                var content = projetos[Object.keys(projetos)[i]]; //e.g. "Projetos 1": {}
+                
+                var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
                 var template = new TemplateManager(this.template);
 
                 contents.push(template.generateContent(content));
@@ -192,11 +239,11 @@ class TemplateManager {
         }
         else {
             for (var i = 0; i < Object.keys(json).length; i++) {
-                if (typeof maxIteration != "undefined" && count >= maxIteration) {
+                if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
                     break;
                 }
 
-                var content = projetos[Object.keys(projetos)[i]]; //e.g. "Projetos 1": {}
+                var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
                 var template = new TemplateManager(this.template);
 
                 contents.push(template.generateContent(content));
@@ -204,7 +251,7 @@ class TemplateManager {
                 count++;
             }
         }
-
+        
         return contents;
     }
 }
@@ -242,7 +289,7 @@ function main_initializers() {
         $('.modal').modal();
     });
     
-    $('#searchVal.autocomplete').autocomplete({
+    $('#searchVal').autocomplete({
         data: JsonToAutocomplete([projetos, cursos]),
         limit: 3, // The max amount of results that can be shown at once. Default: Infinity.
         onAutocomplete: function (val) {
@@ -255,13 +302,6 @@ function main_initializers() {
             window.location.replace(destination);
         },
         minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-    }).keypress(function (e) {
-        if (e.which == 13) {
-            $autocomplete = $(".autocomplete-content li");
-            if ($autocomplete.length == 1) {
-                $autocomplete.trigger("mousedown");
-            }
-        }
     });
 }
 
@@ -292,12 +332,11 @@ function main_bindAnimations() {
 }
 
 function main_clickHandlers() {
-    $('#search').on("click", function () {
-        $("#modal").modal('open');
-    });
-
     $("#searchVal").on("search", function () {
-        $("#modal").modal('open');
+        $autocomplete = $(".autocomplete-content li");
+        if ($autocomplete.length == 1) {
+            $autocomplete.trigger("mousedown");
+        }
     });
 
     $("#close").on("click", function () {

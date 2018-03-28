@@ -1,29 +1,23 @@
-
 <!DOCTYPE html>
 <html>
-
 <head>
     <!-- Head -->
     @@include('Shared/head.html', {"file":"contato","title":"Contato","description":"Entre em contato para mais informações."})
 </head>
-
 <body>
     <!-- Header -->
     @@include('Shared/header.html', {"contato": "active"})
 
     <main class="container">
-        <div class="row" style="
-        padding:  0 5px;
-    ">
+        <div id="formulario" class="row">
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12 m6">
-                        <input id="primeiro_nome" type="text" class="validate" style="
-    ">
+                        <input id="primeiro_nome" type="text">
                         <label for="first_name" class="">Nome</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input id="last_name" type="text" class="validate">
+                        <input id="last_name" type="text">
                         <label for="last_name" class="">Sobrenome</label>
                     </div>
                 </div>
@@ -31,14 +25,13 @@
     
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="email" class="validate">
+                        <input id="email" type="email">
                         <label for="email" class="">Email</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="subject" type="email" class="validate" style="
-    ">
+                        <input id="subject" type="text">
                         <label for="subject" class="">Assunto</label>
                     </div>
                 </div>
@@ -48,37 +41,29 @@
                         <label for="message" class="">Mensagem</label>
                     </div>
                 </div>
-                <div class="row" style="
-    ">
+                <div class="row">
                     <div class="col s12">
-                        <input type="submit" style="border: 0;background: none;box-shadow: none;border-radius: 0px;padding:  10px 25px;color: rgb(55, 55, 55);font-weight:  500;border: 2px solid rgb(55, 55, 55);transition:  all 0.4s;">
+                        <input type="submit" class="submit">
                     </div>
                 </div>
             </form>
     
         </div>
         <hr>
-        <div class="row" style="
-        margin-top: 40px;
-        font-weight:  300;
-    ">
+        <div id="contatos" class="row">
             <div class="col s12">
-                <div class="row">
+                <div class="row nome">
                     <div class="col s12">Thiago Pessia
                     </div>
                 </div>
-                <div class="row">
+                <div class="row email">
                     <div class="col s12">
-                        <a href="mailto:thiago@pessia.xyz" style="
-        color:  rgba(0,0,0,0.87);
-    ">thiago@pessia.xyz</a>
+                        <a href="mailto:thiago@pessia.xyz">thiago@pessia.xyz</a>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row telefone">
                     <div class="col s12">
-                        <a href="tel:+551194991-1003" style="
-        color:  rgba(0,0,0,0.87);
-    ">+55 (11) 94991-1003</a>
+                        <a href="tel:+551194991-1003">+55 (11) 94991-1003</a>
                     </div>
                 </div>
             </div>
@@ -101,20 +86,5 @@
 
     <!-- Footer -->
     @@include('Shared/footer.html')
-
-    <!-- SW -> PWA e Offline -->
-    <script>
-        // if ('serviceWorker' in navigator) {
-        //     console.log('CLIENT: service worker registration in progress.');
-        //     navigator.serviceWorker.register('/sw.js').then(function() {
-        //         console.log('CLIENT: service worker registration complete.');
-        //     }, function() {
-        //         console.log('CLIENT: service worker registration failure.');
-        //     });
-        //     } else {
-        //     console.log('CLIENT: service worker is not supported.');
-        // }
-    </script>
 </body>
-
 </html>
