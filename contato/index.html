@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Head -->
+    <title>Contato</title>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <meta name="theme-color" content="#151515"> -->
+<meta name="description" content="Entre em contato para mais informações.">
+
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+<link rel="stylesheet" href="/assets/styles/css/min/contato.min.css">
+
+<script src="/lib/jquery-3.2.1.min.js"></script>
+<script src="/lib/materialize.min.js"></script>
+<script src="/lib/pessia-lib.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/contato.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <div id="ldn"><img src="/favicon.png"></div>
+<header>
+    <nav class="nav-extended navbar-fixed">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">
+                <i class="material-icons hide-on-small-only">
+                    <img src="/favicon.png">
+                </i>Pessia
+            </a>
+
+            <a href="#" data-activates="mobileNav" class="button-collapse">
+                <i class="material-icons">menu</i>
+            </a>
+
+            <ul class="right hide-on-med-and-down">
+                <li class="">
+                    <a href="/">Home</a>
+                </li>
+                <li class="">
+                    <a href="/projetos.html">Projetos</a>
+                </li>
+                <li class="">
+                    <a href="/sobre.html">Sobre</a>
+                </li>
+                <li class="active">
+                    <a href="/contato.html">Contato</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="nav-content">
+            <form onsubmit="return false">
+                <div class="input-field">
+                    <input tabindex="1" type="search" id="searchVal" placeholder="Projetos/Cursos" class="autocomplete" autocomplete="off" required style="margin: 0; padding-left: 3.5em;" name="nome">
+                    <i id="search" class="material-icons">search</i>
+                    <i id="close" class="material-icons">close</i>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <ul class="side-nav" id="mobileNav">
+        <li class="">
+            <a href="/">Home</a>
+        </li>
+        <li class="">
+            <a href="/projetos.html">Projetos</a>
+        </li>
+        <li class="">
+            <a href="/sobre.html">Sobre</a>
+        </li>
+        <li class="active">
+            <a href="/contato.html">Contato</a>
+        </li>
+    </ul>
+</header>
+
+    <main class="container">
+        <div id="formulario" class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <input id="primeiro_nome" type="text">
+                        <label for="first_name" class="">Nome</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="last_name" type="text">
+                        <label for="last_name" class="">Sobrenome</label>
+                    </div>
+                </div>
+    
+    
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email">
+                        <label for="email" class="">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="subject" type="text">
+                        <label for="subject" class="">Assunto</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="message" class="materialize-textarea" data-length="500" maxlength="500"></textarea>
+                        <label for="message" class="">Mensagem</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <input type="submit" class="submit">
+                    </div>
+                </div>
+            </form>
+    
+        </div>
+        <hr>
+        <div id="contatos" class="row">
+            <div class="col s12">
+                <div class="row nome">
+                    <div class="col s12">Thiago Pessia
+                    </div>
+                </div>
+                <div class="row email">
+                    <div class="col s12">
+                        <a href="mailto:thiago@pessia.xyz">thiago@pessia.xyz</a>
+                    </div>
+                </div>
+                <div class="row telefone">
+                    <div class="col s12">
+                        <a href="tel:+551194991-1003">+55 (11) 94991-1003</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section>
+        <div id="modal" class="modal modal-fixed-footer sm">
+            <div class="modal-content">
+                <h4>Título Modal</h4>
+                <p>Conteudo</p>
+                <p>Do</p>
+                <p>Modal</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-teal btn-flat">Fechar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+    <span>
+        <a href="https://www.linkedin.com/in/thiagopessia/" target="_blank"><img src="/assets/img/linkedin.png"></a>
+        <a href="mailto:thiago@pessia.xyz"><img src="/assets/img/email.png"></a>
+    </span>
+</footer>
+</body>
+</html>

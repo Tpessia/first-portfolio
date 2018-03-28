@@ -53,7 +53,20 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: [
-                    { cwd: 'Views', src: '*.html', dest: './', expand: true },
+                    { 
+                        cwd: 'Views',
+                        src: '*.html',
+                        dest: './',
+                        expand: true,
+                        rename: function (dest, src) {
+                            if (src.split("/").pop().split(".")[0] != "index") {
+                                return dest + src.split("/").pop().split(".")[0] + '/index.html';
+                            }
+                            else {
+                                return dest + "index.html";
+                            }
+                        }
+                    },
                 ]
             }
         },
