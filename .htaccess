@@ -55,9 +55,9 @@ Header unset X-UA-Compatible
 #RewriteCond %{HTTP_HOST} !^test.bolaodomauricio.xyz$
 #RewriteRule ^(.*)$ https://www.bolaodomauricio.xyz/$1 [L,R=301]
 
-ErrorDocument 404 /404.html
+ErrorDocument 404 /404/
 
-ErrorDocument 403 /403.html
+ErrorDocument 403 /403/
 
 Options -Indexes
 

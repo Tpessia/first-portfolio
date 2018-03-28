@@ -277,7 +277,7 @@ function main_initializers() {
             var projeto = projetos[val];
             var curso = cursos[val];
 
-            var destination = jQuery.isEmptyObject(projeto) ? "/sobre.html#" + curso.id : "/projetos.html#" + projeto.id;
+            var destination = jQuery.isEmptyObject(projeto) ? "/sobre/#" + curso.id : "/projetos/#" + projeto.id;
 
             window.location.replace(destination);
         },
