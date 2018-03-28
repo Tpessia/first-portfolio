@@ -93,8 +93,8 @@ body {
                                 }
                                 .visitar {
                                     transition: all 0.7s;
-                                    cursor: pointer;
                                     bottom: 0;
+                                    cursor: pointer;
                                     position: absolute;
                                     left: 0;
                                     padding: 20px;
@@ -110,6 +110,10 @@ body {
                                         top: 50%;
                                         transform: translateY(-50%);
                                         width: calc(100% - 40px);
+                                    }
+                                    .visitar {
+                                        pointer-events: none;
+                                        cursor: default;
                                     }
                                 }
                                 &.mobileAnim {

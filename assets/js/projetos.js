@@ -4,6 +4,26 @@ $(function () {
 
         clickHandlers(); //arrumar pois vai quebrar no ajax async na hora de chamar os jsons        
     });
+
+    $.ajax({
+        url: "/assets/contents/projetos.json",
+        datatype: "json",
+        success: function (data) {
+            projetos = data;
+            $(document).trigger("projetos");
+        },
+    });
+
+    $(document).on("projetos", function () {
+        $.ajax({
+            url: "/assets/contents/cursos.json",
+            datatype: "json",
+            success: function (data) {
+                cursos = data;
+                $(document).trigger("mainAjax");
+            },
+        });
+    });
 });
 
 function createContent() {

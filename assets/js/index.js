@@ -1,5 +1,5 @@
 $(function() {
-    $(document).on("habilidades", function () {
+    $(document).on("mainAjax", function () {
         createContent();
 
         initializers();
@@ -9,13 +9,33 @@ $(function() {
         clickHandlers(); //arrumar pois vai quebrar no ajax async na hora de chamar os jsons
     });
 
-    $(document).on("mainAjax", function () {
+    $.ajax({
+        url: "/assets/contents/projetos.json",
+        datatype: "json",
+        success: function (data) {
+            projetos = data;
+            $(document).trigger("projetos");
+        },
+    });
+
+    $(document).on("projetos", function () {
+        $.ajax({
+            url: "/assets/contents/cursos.json",
+            datatype: "json",
+            success: function (data) {
+                cursos = data;
+                $(document).trigger("cursos");
+            },
+        });
+    });
+
+    $(document).on("cursos", function () {
         $.ajax({
             url: "/assets/contents/habilidades.json",
             datatype: "json",
             success: function (data) {
                 habilidades = data;
-                $(document).trigger("habilidades");
+                $(document).trigger("mainAjax");
             },
         });
     });
@@ -50,7 +70,7 @@ function createContent() {
 
         var flatGridContent = flatGridT.JsonToContent(projetos, 5, true);
 
-        $("#projetos .hide-on-med-and-up .verMais").parent(".col").before(flatGridContent);
+        $("#projetos .hide-on-med-and-up .verMais").closest(".col").before(flatGridContent);
     }
 
     function gridCursos() {
@@ -83,7 +103,7 @@ function initializers() {
 }
 
 function bindAnimations() {
-    smartHover("#cursos .card");
+    smartHover("#cursos .col:not(.verMais)>.card");
 
     $("#cursos .verMais .card").on('mouseenter', function () {
         $arrow = $(this).find(".arrow");

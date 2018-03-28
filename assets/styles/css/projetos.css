@@ -260,6 +260,9 @@ body main {
                 top: 50%;
                 transform: translateY(-50%);
                 width: calc(100% - 40px); }
+              body main .row .col .bg-projetos .content-projetos:not(.mobileAnim) .visitar {
+                pointer-events: none;
+                cursor: default; }
               body main .row .col .bg-projetos .content-projetos.mobileAnim {
                 width: 100%;
                 height: inherit;

@@ -75,6 +75,10 @@ body {
                                     transform: translateY(-50%);
                                     width: calc(100% - 40px);
                                 }
+                                .visitar {
+                                    pointer-events: none;
+                                    cursor: default;
+                                }
                             }
                             &.mobileAnim {
                                 width: 100%;

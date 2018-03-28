@@ -266,8 +266,8 @@ body main #projetos {
           opacity: 0; }
         body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos .visitar {
           transition: all 0.7s;
-          cursor: pointer;
           bottom: 0;
+          cursor: pointer;
           position: absolute;
           left: 0;
           padding: 20px;
@@ -281,6 +281,9 @@ body main #projetos {
           top: 50%;
           transform: translateY(-50%);
           width: calc(100% - 40px); }
+        body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos:not(.mobileAnim) .visitar {
+          pointer-events: none;
+          cursor: default; }
         body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos.mobileAnim {
           width: 100%;
           height: inherit;
