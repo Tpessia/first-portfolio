@@ -1,58 +1,80 @@
 {
-    "Curso 1": 
+    "JavaScript 1": 
     { 
-        "name": "Curso 1",
+        "name": "JavaScript 1",
         "id": "1", 
-        "tags": ["Que", "Curso", "Legal"], 
-        "img": "/assets/img/old/maps/format/img_12.jpg", 
-        "url": "/assets/img/old/maps/format/img_12.jpg"
+        "tags": ["Básico", "Volume 1", "Front end"], 
+        "img": "/assets/img/certificados/js-fundamentals/javascript-full.png",
+        "url": "https://www.pluralsight.com/courses/quick-start-javascript-1-1870",
+        "certificate_url": "/assets/img/certificados/js-fundamentals/certificado-js1.jpg"
     },
-    "Curso 2": 
+    "JavaScript 2": 
     { 
-        "name": "Curso 2",
+        "name": "JavaScript 2",
         "id": "2", 
-        "tags": ["Que", "Curso", "Legal"], 
-        "img": "/assets/img/old/maps/format/img_12.jpg", 
-        "url": "/assets/img/old/maps/format/img_12.jpg"
+        "tags": ["Básico", "Volume 2", "Front end"], 
+        "img": "/assets/img/certificados/js-fundamentals/javascript-full.png",
+        "url": "https://www.pluralsight.com/courses/quick-start-javascript-2-1917",
+        "certificate_url": "/assets/img/certificados/js-fundamentals/certificado-js2.jpg"
     },
-    "Curso 3": 
+    "JavaScript 3": 
     { 
-        "name": "Curso 3",
+        "name": "JavaScript 3",
         "id": "3", 
-        "tags": ["Que", "Curso", "Legal"], 
-        "img": "/assets/img/old/maps/format/img_12.jpg", 
-        "url": "/assets/img/old/maps/format/img_12.jpg"
+        "tags": ["Básico", "Volume 3", "Front end"], 
+        "img": "/assets/img/certificados/js-fundamentals/javascript-full.png",
+        "url": "https://www.pluralsight.com/courses/quick-start-javascript-3-1918",
+        "certificate_url": "/assets/img/certificados/js-fundamentals/certificado-js3.jpg"
     },
-    "Curso 4": 
-    { 
-        "name": "Curso 4",
+    "Introdução à SQL": {
+        "name": "Introdução à SQL",
         "id": "4", 
-        "tags": ["Que", "Curso", "Legal"], 
-        "img": "/assets/img/old/maps/format/img_12.jpg", 
-        "url": "/assets/img/old/maps/format/img_12.jpg"
+        "tags": ["Básico", "Banco de Dados"], 
+        "img": "/assets/img/certificados/sql-introduction/sql.png",
+        "url": "https://www.pluralsight.com/courses/introduction-to-sql",
+        "certificate_url": "/assets/img/certificados/sql-introduction/certificatdo-sql.jpg"
     },
-    "Curso 5": 
-    { 
-        "name": "Curso 5",
+    "jQuery": {
+        "name": "jQuery",
         "id": "5", 
-        "tags": ["Que", "Curso", "Legal"], 
-        "img": "/assets/img/old/maps/format/img_12.jpg", 
-        "url": "/assets/img/old/maps/format/img_12.jpg"
+        "tags": ["Intermediário", "Front end"], 
+        "img": "/assets/img/certificados/jquery/jquery-full.png",
+        "url": "https://www.pluralsight.com/courses/jquery-fundamentals",
+        "certificate_url": "/assets/img/certificados/jquery/certificado-jquery.jpg"
     },
-    "Curso 6": 
-    { 
-        "name": "Curso 6",
+    "Bootstrap 3": {
+        "name": "Bootstrap 3",
         "id": "6", 
-        "tags": ["Que", "Curso", "Legal"], 
-        "img": "/assets/img/old/maps/format/img_12.jpg", 
-        "url": "/assets/img/old/maps/format/img_12.jpg"
+        "tags": ["Framework", "Front end"], 
+        "img": "/assets/img/certificados/bootstrap/bootstrap.png",
+        "url": "https://www.pluralsight.com/courses/bootstrap-3",
+        "certificate_url": "/assets/img/certificados/bootstrap/certificado-bootstrap.jpg"
     },
-    "Curso 7": 
+    "C# Básico": 
     { 
-        "name": "Curso 7",
+        "name": "C# Básico",
         "id": "7", 
-        "tags": ["Ola", "Tudo", "Bem"], 
-        "img": "/assets/img/old/maps/format/img_12.jpg", 
-        "url": "/assets/img/old/maps/format/img_12.jpg"
+        "tags": ["Básico", "Back end"], 
+        "img": "/assets/img/certificados/csharp/csharp.png",
+        "url": "https://www.udemy.com/csharp-tutorial-for-beginners/",
+        "certificate_url": "/assets/img/certificados/csharp/certificado-csharp1.jpg"
+    },
+    "C# Intermediário": 
+    { 
+        "name": "C# Intermediário",
+        "id": "8", 
+        "tags": ["Intermediário", "Back end"], 
+        "img": "/assets/img/certificados/csharp/csharp.png",
+        "url": "https://www.udemy.com/csharp-intermediate-classes-interfaces-and-oop/",
+        "certificate_url": "/assets/img/certificados/csharp/certificado-csharp2.jpg"
+    },
+    "C# Avançado": 
+    { 
+        "name": "C# Avançado",
+        "id": "9", 
+        "tags": ["Avançado", "Back end"], 
+        "img": "/assets/img/certificados/csharp/csharp.png",
+        "url": "https://www.udemy.com/csharp-advanced/",
+        "certificate_url": "/assets/img/certificados/csharp/certificado-csharp3.jpg"
     }
 }

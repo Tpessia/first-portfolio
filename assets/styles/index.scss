@@ -183,6 +183,13 @@ body {
                     transition: transform .7s;
                     .card-title {
                         pointer-events: none;
+                        .certificate {
+                            pointer-events: auto;
+                            img {
+                                width: 30px;
+                                float : right;
+                            }
+                        }
                     }
                     .tags {
                         margin: 5px 0 0 -5px;

@@ -2,52 +2,57 @@
     "HTML": 
     { 
         "name": "HTML",
-        "img": "/assets/img/html.png", 
+        "img": "/assets/img/habilidades/html.png", 
         "url": "https://pt.wikipedia.org/wiki/HTML" 
     },
     "CSS": 
     { 
         "name": "CSS",
-        "img": "/assets/img/css.png", 
+        "img": "/assets/img/habilidades/css.png", 
         "url": "https://pt.wikipedia.org/wiki/Cascading_Style_Sheets" 
     },
     "JavaScript": 
     { 
         "name": "JavaScript",
-        "img": "/assets/img/javascript.png", 
+        "img": "/assets/img/habilidades/javascript.png", 
         "url": "https://pt.wikipedia.org/wiki/JavaScript" 
     },
     "Bootstrap": 
     { 
         "name": "Bootstrap",
-        "img": "/assets/img/bootstrap.png", 
+        "img": "/assets/img/habilidades/bootstrap.png", 
         "url": "http://getbootstrap.com/" 
     },
     "Materialize": 
     { 
         "name": "Materialize",
-        "img": "/assets/img/materialize.png", 
+        "img": "/assets/img/habilidades/materialize.png", 
         "url": "http://materializecss.com/" 
     },
     "JQuery": 
     { 
         "name": "JQuery",
-        "img": "/assets/img/jquery.png", 
+        "img": "/assets/img/habilidades/jquery.png", 
         "url": "https://jquery.com/" 
     },
     "Photoshop": {
         "name": "Photoshop",
-        "img": "/assets/img/photoshop.jpg",
+        "img": "/assets/img/habilidades/photoshop.jpg",
         "url": "https://pt.wikipedia.org/wiki/Adobe_Photoshop"
     },
     "C#": {
         "name": "C#",
-        "img": "/assets/img/csharp.png",
+        "img": "/assets/img/habilidades/csharp.png",
         "url": "https://pt.wikipedia.org/wiki/C_Sharp"
     },
     "ASP.NET MVC": {
         "name": "ASP.NET MVC",
-        "img": "/assets/img/aspnetmvc.png",
+        "img": "/assets/img/habilidades/aspnetmvc.png",
         "url": "https://msdn.microsoft.com/pt-br/library/dd381412(v=vs.108).aspx"
+    },
+    "SQL": {
+        "name": "SQL",
+        "img": "/assets/img/habilidades/sql.png",
+        "url": "https://pt.wikipedia.org/wiki/SQL"
     }
 }

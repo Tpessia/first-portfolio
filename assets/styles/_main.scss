@@ -24,6 +24,9 @@ $colorD: #A9B7C0; //extra color
 }
 
 body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
     @media (min-width: 993px) {
         margin-bottom: 66px;
     }
@@ -207,6 +210,7 @@ body {
     }
 
     main {
+        flex: 1 0 auto;
         font-size: 1.08rem;
     }
 
