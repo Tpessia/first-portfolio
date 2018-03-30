@@ -161,22 +161,22 @@ body {
   body main {
     flex: 1 0 auto;
     font-size: 1.08rem; }
-  body .modal .lg {
+  body .modal.lg {
     top: 10%;
     width: 65%;
     min-height: 350px;
     height: 80%;
     max-height: 80%; }
     @media screen and (max-width: 992px) {
-      body .modal .lg {
+      body .modal.lg {
         width: 85%; } }
-    body .modal .lg .modal-content > h4 {
+    body .modal.lg .modal-content > h4 {
       text-align: center;
       position: sticky;
       top: 0;
       padding: 22px;
       margin: 0; }
-  body .modal .sm {
+  body .modal.sm {
     top: 15% !important;
     height: 35vh !important;
     max-height: 35vh; }
@@ -214,8 +214,10 @@ main {
     padding: 0 5px; }
     main #formulario form .row input {
       margin-bottom: 20px !important; }
-      main #formulario form .row input:not(.submit):focus {
-        border-top: 1px solid transparent; }
+      main #formulario form .row input:not(.submit) {
+        padding-left: 5px !important; }
+        main #formulario form .row input:not(.submit):focus {
+          border-top: 1px solid transparent; }
       main #formulario form .row input.submit {
         border: 0;
         background: none;
@@ -241,13 +243,13 @@ main {
       main #formulario form .row input:not(.submit):focus + label,
       main #formulario form .row textarea:focus + label {
         color: rgba(0, 0, 0, 0.8) !important; }
-        main #formulario form .row input:not(.submit):focus + label.active,
-        main #formulario form .row textarea:focus + label.active {
-          -webkit-transform: translateY(-17px) scale(0.8);
-          transform: translateY(-17px) scale(0.8); }
     main #formulario form .row input:not(.submit):not(:focus),
     main #formulario form .row textarea:not(:focus) {
       border: 1px solid #9e9e9e !important; }
+      main #formulario form .row input:not(.submit):not(:focus) + label.active,
+      main #formulario form .row textarea:not(:focus) + label.active {
+        -webkit-transform: translateY(-20px) scale(0.8);
+        transform: translateY(-20px) scale(0.8); }
     main #formulario form .row input,
     main #formulario form .row textarea {
       margin-left: -5px !important;

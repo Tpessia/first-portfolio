@@ -12,20 +12,24 @@ $(function() {
     $.ajax({
         url: "/assets/contents/projetos.json",
         datatype: "json",
-        success: function (data) {
+        success: function(data) {
             projetos = data;
-            $(document).trigger("projetos");
         },
+        complete: function() {
+            $(document).trigger("projetos");
+        }
     });
 
     $(document).on("projetos", function () {
         $.ajax({
             url: "/assets/contents/cursos.json",
             datatype: "json",
-            success: function (data) {
+            success: function(data) {
                 cursos = data;
-                $(document).trigger("cursos");
             },
+            complete: function() {
+                $(document).trigger("cursos");
+            }
         });
     });
 
@@ -33,10 +37,12 @@ $(function() {
         $.ajax({
             url: "/assets/contents/habilidades.json",
             datatype: "json",
-            success: function (data) {
+            success: function(data) {
                 habilidades = data;
-                $(document).trigger("mainAjax");
             },
+            complete: function() {
+                $(document).trigger("mainAjax");
+            }
         });
     });
 });

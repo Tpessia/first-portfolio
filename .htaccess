@@ -5,7 +5,7 @@ Header unset ETag
  FileETag None
 <IfModule mod_expires.c>
 ExpiresActive on
-ExpiresDefault "access plus 15 days"
+ExpiresDefault "access plus 3 days"
 ExpiresByType text/cache-manifest "access plus 0 seconds"
 # Html
 ExpiresByType text/html "access plus 0 seconds"
@@ -19,14 +19,14 @@ ExpiresByType application/atom+xml "access plus 1 hour"
 # Favicon
 ExpiresByType image/x-icon "access plus 1 week"
 # Media: images, video, audio
-ExpiresByType image/gif "access plus 15 days"
-ExpiresByType image/png "access plus 15 days"
-ExpiresByType image/jpg "access plus 15 days"
-ExpiresByType image/jpeg "access plus 15 days"
-ExpiresByType video/ogg "access plus 15 days"
-ExpiresByType audio/ogg "access plus 15 days"
-ExpiresByType video/mp4 "access plus 15 days"
-ExpiresByType video/webm "access plus 15 days"
+ExpiresByType image/gif "access plus 3 days"
+ExpiresByType image/png "access plus 3 days"
+ExpiresByType image/jpg "access plus 3 days"
+ExpiresByType image/jpeg "access plus 3 days"
+ExpiresByType video/ogg "access plus 3 days"
+ExpiresByType audio/ogg "access plus 3 days"
+ExpiresByType video/mp4 "access plus 3 days"
+ExpiresByType video/webm "access plus 3 days"
 # HTC files
 ExpiresByType text/x-component "access plus 1 month"
 # Webfonts

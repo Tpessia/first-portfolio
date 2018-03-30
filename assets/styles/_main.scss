@@ -215,7 +215,7 @@ body {
     }
 
     .modal {
-        .lg {
+        &.lg {
             top: 10%;
             width: 65%;
             min-height: 350px;
@@ -234,7 +234,7 @@ body {
                 }
             }
         }
-        .sm {
+        &.sm {
             top: 15% !important;
             height: 35vh !important;
             max-height: 35vh;

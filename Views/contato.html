@@ -13,41 +13,38 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12 m6">
-                        <input id="primeiro_nome" type="text">
+                        <input id="first_name" type="text" required tabindex="2">
                         <label for="first_name" class="">Nome</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input id="last_name" type="text">
+                        <input id="last_name" type="text" required tabindex="3">
                         <label for="last_name" class="">Sobrenome</label>
                     </div>
                 </div>
-    
-    
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="email">
+                        <input id="email" type="email" required tabindex="4">
                         <label for="email" class="">Email</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="subject" type="text">
+                        <input id="subject" type="text" required tabindex="5">
                         <label for="subject" class="">Assunto</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="message" class="materialize-textarea" data-length="500" maxlength="500"></textarea>
+                        <textarea id="message" class="materialize-textarea" data-length="500" maxlength="500" required tabindex="6"></textarea>
                         <label for="message" class="">Mensagem</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <input type="submit" class="submit">
+                        <input type="submit" class="submit" tabindex="7">
                     </div>
                 </div>
             </form>
-    
         </div>
         <hr>
         <div id="contatos" class="row">
@@ -71,12 +68,22 @@
     </main>
 
     <section>
-        <div id="modal" class="modal modal-fixed-footer sm">
+        <div id="modal_success" class="modal modal-fixed-footer sm">
             <div class="modal-content">
-                <h4>Título Modal</h4>
-                <p>Conteudo</p>
-                <p>Do</p>
-                <p>Modal</p>
+                <h4>Email Enviado :)</h4>
+                <p>Seu email foi enviado com sucesso! Obrigado por entrar em contato, tentarei responder o mais rápido possível.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-teal btn-flat">Fechar</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div id="modal_error" class="modal modal-fixed-footer sm">
+            <div class="modal-content">
+                <h4>Falha ao Enviar :(</h4>
+                <p>Houve uma falha ao enviar seu email! Por favor, tente novamente mais tarde ou entre em contato através dos outros canais de comunicação!</p>
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-action modal-close waves-effect waves-teal btn-flat">Fechar</a>

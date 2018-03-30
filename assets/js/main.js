@@ -299,7 +299,7 @@ function main_bindAnimations() {
     });
 
     function animeteScroll(elem) {
-        var navHeight = window.innerWidth > 600 ? 64 : 56;
+        var navHeight = window.innerWidth > 600 ? 64 : 0;
         try {
             $('html, body').animate({
                 scrollTop: $(elem).offset().top - navHeight

@@ -1,50 +1,26 @@
 {
-    "Projeto 1": 
+    "Cronometro": 
     { 
-        "name": "Projeto 1",
+        "name": "Cronometro",
         "id": "1", 
-        "description": "Proident aliquip quis elit magna reprehenderit esse proident.", 
-        "img": "/assets/img/old/maps/format/img_12.jpg", 
-        "url": "/assets/img/old/maps/format/img_12.jpg"
+        "description": "Primeiro projeto que desenvolvi para a web, utilizando CSS e JavaScript nativos.", 
+        "img": "/assets/img/projetos/cronometro.png",
+        "url": "http://www.pessia.xyz/projetos/cronometro/"
     },
-    "Projeto 2": 
+    "Tablefy": 
     { 
-        "name": "Projeto 2",
+        "name": "Tablefy",
         "id": "2", 
-        "description": "Consectetur reprehenderit ad magna ut laboris ex excepteur in ad non.", 
-        "img": "/assets/img/old/maps/format/img_12.jpg", 
-        "url": "/assets/img/old/maps/format/img_12.jpg"
+        "description": "App que transforma tabelas do Excel ou escritas manualmente em tabelas HTML.", 
+        "img": "/assets/img/projetos/tablefy.png",
+        "url": "http://www.pessia.xyz/projetos/tablefy/"
     },
-    "Projeto 3": 
+    "Bolão Russia": 
     { 
-        "name": "Projeto 3",
+        "name": "Bolão Russia",
         "id": "3", 
-        "description": "Sint non reprehenderit magna consectetur do quis laboris nulla sunt fugiat.", 
-        "img": "/assets/img/old/maps/format/img_12.jpg", 
-        "url": "/assets/img/old/maps/format/img_12.jpg"
-    },
-    "Projeto 4": 
-    { 
-        "name": "Projeto 4",
-        "id": "4", 
-        "description": "Id ea officia aliquip deserunt elit proident irure mollit laboris ullamco.", 
-        "img": "/assets/img/old/maps/format/img_12.jpg", 
-        "url": "/assets/img/old/maps/format/img_12.jpg"
-    },
-    "Projeto 5": 
-    { 
-        "name": "Projeto 5",
-        "id": "5", 
-        "description": "Et consequat velit ex nostrud esse eiusmod sint aliquip veniam cillum id sint.", 
-        "img": "/assets/img/old/maps/format/img_12.jpg", 
-        "url": "/assets/img/old/maps/format/img_12.jpg"
-    },
-    "Projeto 6": 
-    { 
-        "name": "Projeto 6",
-        "id": "6", 
-        "description": "Irure minim sunt id ea tempor.", 
-        "img": "/assets/img/old/maps/format/img_12.jpg", 
-        "url": "/assets/img/old/maps/format/img_12.jpg"
+        "description": "Web App de bolões para a Copa do Mundo de 2018.", 
+        "img": "/assets/img/projetos/bolao.jpg",
+        "url": "https://www.bolaodomauricio.xyz/?login=0005"
     }
 }
