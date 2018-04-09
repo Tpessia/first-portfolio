@@ -10,173 +10,171 @@ $(function () {
     });
 });
 
-function classES6() {
-    try {
-        eval('"use strict"; class foo {}');
-    } catch (e) {
-        return false;
-    }
-    return true;
+var isIE9OrBelow = function () {
+    return /MSIE\s/.test(navigator.userAgent) && parseFloat(navigator.appVersion.split("MSIE")[1]) < 10;
 }
 
-class TemplateManager {
-    constructor(template) {
-        this.template = template;
-    }
+// class TemplateManager {
+//     constructor(template) {
+//         this.template = template;
+//     }
 
-    generateContent(content) {
-        var finalContent = this.template;
-        for (var text in content) {
-            if (Array.isArray(content[text])) {
+//     generateContent(content) {
+//         var finalContent = this.template;
+//         for (var text in content) {
+//             if (Array.isArray(content[text])) {
 
-                var regex = new RegExp("##", "g");
+//                 var regex = new RegExp("##", "g");
 
-                var i1 = regex.exec(finalContent).index;
-                var i2 = regex.exec(finalContent).index + 2;
+//                 var i1 = regex.exec(finalContent).index;
+//                 var i2 = regex.exec(finalContent).index + 2;
 
-                var match = finalContent.substring(i1, i2); //##<div>%TESTE%</div>##
+//                 var match = finalContent.substring(i1, i2); //##<div>%TESTE%</div>##
 
-                var trimmedMatch = match.substring(2, match.length - 2); //<div>%TESTE%</div>
+//                 var trimmedMatch = match.substring(2, match.length - 2); //<div>%TESTE%</div>
 
-                var partialContent = "";
+//                 var partialContent = "";
 
-                for (var i in content[text]) {
-                    var regex = new RegExp("%%" + text + "%%", "gi");
-                    partialContent += trimmedMatch.replace(regex, content[text][i]);
-                }
+//                 for (var i in content[text]) {
+//                     var regex = new RegExp("%%" + text + "%%", "gi");
+//                     partialContent += trimmedMatch.replace(regex, content[text][i]);
+//                 }
 
-                finalContent = finalContent.replace(match, partialContent);
-            }
-            else {
-                var regex = new RegExp("%%" + text + "%%", "gi");
-                finalContent = finalContent.replace(regex, content[text]);
-            }
-        }
-        return finalContent;
-    }
-
-    JsonToContent(json, maxIteration, revert) {
-        var contents = [],
-            count = 0;
-
-        if (typeof revert === "undefined" || revert == null) {
-            revert = false;
-        }
-
-        if (revert) {
-            for (var i = Object.keys(json).length - 1; i >= 0; i--) {
-                if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
-                    break;
-                }
-
-                var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
-                var template = new TemplateManager(this.template);
-
-                contents.push(template.generateContent(content));
-
-                count++;
-            }
-        }
-        else {
-            for (var i = 0; i < Object.keys(json).length; i++) {
-                if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
-                    break;
-                }
-
-                var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
-                var template = new TemplateManager(this.template);
-
-                contents.push(template.generateContent(content));
-
-                count++;
-            }
-        }
-
-        return contents;
-    }
-}
-    
-// function TemplateManager(template) {
-//     this.template = template;
-// }
-
-// TemplateManager.prototype.generateContent = function(content) {
-//     var finalContent = this.template;
-
-//     for (var text in content) {
-//         if (Array.isArray(content[text])) {
-
-//             var regex = new RegExp("##", "g");
-
-//             var i1 = regex.exec(finalContent).index;
-//             var i2 = regex.exec(finalContent).index + 2;
-
-//             var match = finalContent.substring(i1, i2); //##<div>%TESTE%</div>##
-
-//             var trimmedMatch = match.substring(2, match.length - 2); //<div>%TESTE%</div>
-
-//             var partialContent = "";
-
-//             for (var i in content[text]) {
+//                 finalContent = finalContent.replace(match, partialContent);
+//             } else {
 //                 var regex = new RegExp("%%" + text + "%%", "gi");
-//                 partialContent += trimmedMatch.replace(regex, content[text][i]);
+//                 finalContent = finalContent.replace(regex, content[text]);
 //             }
-
-//             finalContent = finalContent.replace(match, partialContent);
 //         }
-//         else {
-//             var regex = new RegExp("%%" + text + "%%", "gi");
-//             finalContent = finalContent.replace(regex, content[text]);
-//         }
+//         return finalContent;
 //     }
 
-//     return finalContent;
+//     JsonToContent(json, maxIteration, revert) {
+//         var contents = [],
+//             count = 0;
+
+//         if (typeof revert === "undefined" || revert == null) {
+//             revert = false;
+//         }
+
+//         if (revert) {
+//             for (var i = Object.keys(json).length - 1; i >= 0; i--) {
+//                 if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
+//                     break;
+//                 }
+
+//                 var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
+//                 var template = new TemplateManager(this.template);
+
+//                 contents.push(template.generateContent(content));
+
+//                 count++;
+//             }
+//         } else {
+//             for (var i = 0; i < Object.keys(json).length; i++) {
+//                 if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
+//                     break;
+//                 }
+
+//                 var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
+//                 var template = new TemplateManager(this.template);
+
+//                 contents.push(template.generateContent(content));
+
+//                 count++;
+//             }
+//         }
+
+//         return contents;
+//     }
 // }
 
-// TemplateManager.prototype.JsonToContent = function(json, maxIteration, revert) {
-//     var contents = [],
-//         count = 0;
+function TemplateManager(template) {
+    this.template = template;
+}
 
-//     if (typeof revert === "undefined" || revert == null) {
-//         revert = false;
-//     }
+TemplateManager.prototype.generateContent = function (content) {
+    var finalContent = this.template;
 
-//     if (revert) {
-//         for (var i = Object.keys(json).length - 1; i >= 0; i--) {
-//             if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
-//                 break;
-//             }
+    for (var text in content) {
+        if (Array.isArray(content[text])) {
 
-//             var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
-//             var template = new TemplateManager(this.template);
+            var regex = new RegExp("##", "g");
 
-//             contents.push(template.generateContent(content));
+            var i1 = regex.exec(finalContent).index;
+            var i2 = regex.exec(finalContent).index + 2;
 
-//             count++;
-//         }
-//     }
-//     else {
-//         for (var i = 0; i < Object.keys(json).length; i++) {
-//             if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
-//                 break;
-//             }
+            var match = finalContent.substring(i1, i2); //##<div>%TESTE%</div>##
 
-//             var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
-//             var template = new TemplateManager(this.template);
+            var trimmedMatch = match.substring(2, match.length - 2); //<div>%TESTE%</div>
 
-//             contents.push(template.generateContent(content));
+            var partialContent = "";
 
-//             count++;
-//         }
-//     }
+            for (var i in content[text]) {
+                var regex = new RegExp("%%" + text + "%%", "gi");
+                partialContent += trimmedMatch.replace(regex, content[text][i]);
+            }
 
-//     return contents;
-// }
+            finalContent = finalContent.replace(match, partialContent);
+        } else {
+            var regex = new RegExp("%%" + text + "%%", "gi");
+            finalContent = finalContent.replace(regex, content[text]);
+        }
+    }
+
+    return finalContent;
+}
+
+TemplateManager.prototype.JsonToContent = function (json, maxIteration, revert) {
+    var contents = [],
+        count = 0;
+
+    if (typeof revert === "undefined" || revert == null) {
+        revert = false;
+    }
+
+    if (revert) {
+        for (var i = Object.keys(json).length - 1; i >= 0; i--) {
+            if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
+                break;
+            }
+
+            var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
+            var template = new TemplateManager(this.template);
+
+            contents.push(template.generateContent(content));
+
+            count++;
+        }
+    } else {
+        for (var i = 0; i < Object.keys(json).length; i++) {
+            if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
+                break;
+            }
+
+            var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
+            var template = new TemplateManager(this.template);
+
+            contents.push(template.generateContent(content));
+
+            count++;
+        }
+    }
+
+    return contents;
+}
 
 function main_loading() {
     $ldn = $("#ldn");
     $ldnLogo = $ldn.children("img");
     $body = $("body");
+
+    if (isIE9OrBelow()) {
+        $body.removeClass("loading");
+        $body.css("overflow", "visible");
+        $ldn.css("opacity","0");
+    }
+
     if (document.readyState == "complete") {
         removeLdn();
     }
@@ -356,7 +354,7 @@ function smartHover(elem) {
 
     $(_nodes).each(function () {
         $(this).on("in", function () {
-            var position = $(this).attr("class").split(" ").filter(val => val.match("in-"))[0].split("in-")[1];
+            var position = $(this).attr("class").split(" ").filter(function(val) {return  val.match("in-") })[0].split("in-")[1];
             position = position[0].toUpperCase() + position.substr(1);
 
             var $cardReveal = $(this).find(".card-reveal");
@@ -368,7 +366,7 @@ function smartHover(elem) {
         });
 
         $(this).on("out", function () {
-            var position = $(this).attr("class").split(" ").filter(val => val.match("out-"))[0].split("out-")[1];
+            var position = $(this).attr("class").split(" ").filter(function(val) { return val.match("out-") })[0].split("out-")[1];
             position = position[0].toUpperCase() + position.substr(1);
 
             var $cardReveal = $(this).find(".card-reveal");
@@ -388,7 +386,7 @@ function smartHover(elem) {
         });
 
         $(this).on("click", function (e) {
-            if (/Mobi/i.test(navigator.userAgent) || /Android/i.test(navigator.userAgent)) {
+            if (/Mobi/i.test(navigator.userAgent) || /Android/i.test(navigator.userAgent) || isIE9OrBelow()) {
                 e.stopPropagation();
 
                 var $cardReveal = $(this).find(".card-reveal");
@@ -403,24 +401,24 @@ function smartHover(elem) {
         });
 
         $(document).on("click", function(e) {
-            clearAllMobile(e,"");
+            if (/Mobi/i.test(navigator.userAgent) || /Android/i.test(navigator.userAgent) || isIE9OrBelow()) {
+                clearAllMobile(e, "");
+            }
         });
 
-        function clearAllMobile(e, $notThis) {
-            if (/Mobi/i.test(navigator.userAgent) || /Android/i.test(navigator.userAgent)) {
-                var $cardReveal = $(_nodes).find(".card-reveal").not($notThis);
-                
-                $cardReveal.removeClass(function (index, className) {
-                    return (className.match(/(^|\s)from\S+/g) || []).join(' ');
-                });
-                $cardReveal.one("transitionend", function() {
-                    if (!$cardReveal.is("[class*=from]")) {
-                        $cardReveal.removeClass(function (index, className) {
-                            return (className.match(/(^|\s)pre\S+/g) || []).join(' ');
-                        });
-                    }
-                });
-            }
+        function clearAllMobile(e, $notThis) {            
+            var $cardReveal = $(_nodes).find(".card-reveal").not($notThis);
+            
+            $cardReveal.removeClass(function (index, className) {
+                return (className.match(/(^|\s)from\S+/g) || []).join(' ');
+            });
+            $cardReveal.one("transitionend", function() {
+                if (!$cardReveal.is("[class*=from]")) {
+                    $cardReveal.removeClass(function (index, className) {
+                        return (className.match(/(^|\s)pre\S+/g) || []).join(' ');
+                    });
+                }
+            });
         }
     });
 }

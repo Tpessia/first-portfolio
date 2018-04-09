@@ -83,7 +83,7 @@ body {
     header {
         nav {
             background-color: $colorNav;
-            box-shadow: initial;            
+            box-shadow: none;            
             .nav-wrapper {
                 @media (min-width: 601px) {
                     position: fixed;
@@ -172,7 +172,7 @@ body {
                     #search {
                         cursor: default;
                         color: lighten($navTextColor, 54%);
-                        right: initial;
+                        right: auto;
                         left: 0.5em;
                         top: -11%;
                         &+i {

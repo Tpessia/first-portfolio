@@ -66,7 +66,7 @@ body {
     transform: scale(1) translate(-50%, -50%); } }
   body header nav {
     background-color: #fff;
-    box-shadow: initial; }
+    box-shadow: none; }
     body header nav .nav-wrapper {
       background: #fff; }
       @media (min-width: 601px) {
@@ -136,7 +136,7 @@ body {
         body header nav .nav-content .input-field #search {
           cursor: default;
           color: #8a8a8a;
-          right: initial;
+          right: auto;
           left: 0.5em;
           top: -11%; }
           body header nav .nav-content .input-field #search + i {
