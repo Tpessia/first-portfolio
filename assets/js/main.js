@@ -10,6 +10,15 @@ $(function () {
     });
 });
 
+function classES6() {
+    try {
+        eval('"use strict"; class foo {}');
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 class TemplateManager {
     constructor(template) {
         this.template = template;
@@ -19,7 +28,7 @@ class TemplateManager {
         var finalContent = this.template;
         for (var text in content) {
             if (Array.isArray(content[text])) {
-                
+
                 var regex = new RegExp("##", "g");
 
                 var i1 = regex.exec(finalContent).index;
@@ -35,7 +44,7 @@ class TemplateManager {
                     var regex = new RegExp("%%" + text + "%%", "gi");
                     partialContent += trimmedMatch.replace(regex, content[text][i]);
                 }
-                
+
                 finalContent = finalContent.replace(match, partialContent);
             }
             else {
@@ -59,7 +68,7 @@ class TemplateManager {
                 if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
                     break;
                 }
-                
+
                 var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
                 var template = new TemplateManager(this.template);
 
@@ -82,10 +91,87 @@ class TemplateManager {
                 count++;
             }
         }
-        
+
         return contents;
     }
 }
+    
+// function TemplateManager(template) {
+//     this.template = template;
+// }
+
+// TemplateManager.prototype.generateContent = function(content) {
+//     var finalContent = this.template;
+
+//     for (var text in content) {
+//         if (Array.isArray(content[text])) {
+
+//             var regex = new RegExp("##", "g");
+
+//             var i1 = regex.exec(finalContent).index;
+//             var i2 = regex.exec(finalContent).index + 2;
+
+//             var match = finalContent.substring(i1, i2); //##<div>%TESTE%</div>##
+
+//             var trimmedMatch = match.substring(2, match.length - 2); //<div>%TESTE%</div>
+
+//             var partialContent = "";
+
+//             for (var i in content[text]) {
+//                 var regex = new RegExp("%%" + text + "%%", "gi");
+//                 partialContent += trimmedMatch.replace(regex, content[text][i]);
+//             }
+
+//             finalContent = finalContent.replace(match, partialContent);
+//         }
+//         else {
+//             var regex = new RegExp("%%" + text + "%%", "gi");
+//             finalContent = finalContent.replace(regex, content[text]);
+//         }
+//     }
+
+//     return finalContent;
+// }
+
+// TemplateManager.prototype.JsonToContent = function(json, maxIteration, revert) {
+//     var contents = [],
+//         count = 0;
+
+//     if (typeof revert === "undefined" || revert == null) {
+//         revert = false;
+//     }
+
+//     if (revert) {
+//         for (var i = Object.keys(json).length - 1; i >= 0; i--) {
+//             if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
+//                 break;
+//             }
+
+//             var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
+//             var template = new TemplateManager(this.template);
+
+//             contents.push(template.generateContent(content));
+
+//             count++;
+//         }
+//     }
+//     else {
+//         for (var i = 0; i < Object.keys(json).length; i++) {
+//             if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
+//                 break;
+//             }
+
+//             var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
+//             var template = new TemplateManager(this.template);
+
+//             contents.push(template.generateContent(content));
+
+//             count++;
+//         }
+//     }
+
+//     return contents;
+// }
 
 function main_loading() {
     $ldn = $("#ldn");
