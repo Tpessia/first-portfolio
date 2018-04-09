@@ -1,0 +1,18 @@
+Na pastas "LED_LigaDesliga" está o código (Sketch) para o Arduino.
+
+Na pasta "Liga" está o projeto do Visual Studio em console C# para ser compilado o programa Liga.exe
+
+Na pasta "Desliga" está o projeto do Visual Studio em console C# para ser compilado o programa Desliga.exe
+
+
+Após terminar a compilação, os arquivos estarão na pasta onde vc salvou o projeto dentro de \bin\Debug
+
+Copie o arquivo "Liga.exe" e "Desliga.exe" para a pasta de automação que você criou... 
+Ex: C:\MeusComandos.
+
+Depois crie os comandos shell para o Jarvis executar esses arquivos, um para o Liga.exe e outro para o Desliga.exe
+
+Se preferir, crie atalhos para os dois arquivos e direcione o Jarvis para abrir os mesmos no lugar dos arquivos .exe diretamente. Isso permitirá que as aplicações sejam executadas minimizadas, bastando, para isso, mudar suas propriedades em Executar.
+
+ 
+Benedito Amaral

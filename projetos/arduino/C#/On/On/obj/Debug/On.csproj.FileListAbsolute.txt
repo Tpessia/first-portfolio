@@ -1,0 +1,6 @@
+C:\Users\Thiago Pessia\Desktop\Arduino\On\On\bin\Debug\On.exe.config
+C:\Users\Thiago Pessia\Desktop\Arduino\On\On\bin\Debug\On.exe
+C:\Users\Thiago Pessia\Desktop\Arduino\On\On\bin\Debug\On.pdb
+C:\Users\Thiago Pessia\Desktop\Arduino\On\On\obj\Debug\On.csproj.CoreCompileInputs.cache
+C:\Users\Thiago Pessia\Desktop\Arduino\On\On\obj\Debug\On.exe
+C:\Users\Thiago Pessia\Desktop\Arduino\On\On\obj\Debug\On.pdb

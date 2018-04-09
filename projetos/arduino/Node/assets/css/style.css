@@ -1,0 +1,74 @@
+.container {
+  padding-left: 8%;
+  padding-right: 8%; }
+
+header {
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  margin: -22px 0 21px !important;
+  padding-top: 22px;
+  background-color: #191919; }
+
+#overall .offline span.status {
+  background-color: #D3D3D3; }
+#overall .off span.status {
+  background-color: red; }
+#overall .on span.status {
+  background-color: green; }
+#overall #server.offline + #controls, #overall #server.off + #controls {
+  display: none; }
+#overall #server.online + #controls {
+  display: block; }
+#overall #server h3 {
+  display: inline-block; }
+#overall #server span.status {
+  height: 22px;
+  width: 22px;
+  display: inline-block;
+  border-radius: 11px;
+  margin-bottom: -1px; }
+#overall #controls > div {
+  margin-top: 20px; }
+#overall #controls span.status {
+  height: 16px;
+  width: 16px;
+  display: inline-block;
+  border-radius: 8px;
+  margin-bottom: -4px; }
+#overall #controls .componentLed > div:first-of-type {
+  display: inline-block;
+  margin-right: 20px; }
+#overall #controls .componentLed h4 {
+  display: inline-block;
+  vertical-align: middle; }
+#overall #controls .componentButton > div:first-of-type {
+  display: inline-block;
+  margin-right: 20px; }
+#overall #controls .componentButton .button {
+  height: 39px;
+  display: inline-block;
+  vertical-align: top; }
+  #overall #controls .componentButton .button span {
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    background-color: blue;
+    border-bottom: 3px solid darkblue;
+    transition: all 0.5s; }
+@media screen and (max-width: 768px) {
+  #overall #controls .componentLed, #overall #controls .componentButton {
+    text-align: center; }
+    #overall #controls .componentLed > div:first-of-type, #overall #controls .componentButton > div:first-of-type {
+      display: block !important;
+      margin-right: 0 !important; } }
+
+#myModal h4 {
+  text-align: center; }
+#myModal .modal-footer {
+  border-top: 0 !important; }
+  @media screen and (max-width: 768px) {
+    #myModal .modal-footer button {
+      width: 100%; } }
+
+/*# sourceMappingURL=style.css.map */

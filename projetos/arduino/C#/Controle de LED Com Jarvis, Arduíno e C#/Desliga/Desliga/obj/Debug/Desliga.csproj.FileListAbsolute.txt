@@ -1,0 +1,12 @@
+C:\Users\Benedito\Desktop\LigaDesliga Com Arduino e C#\Desliga\Desliga\bin\Debug\Desliga.exe.config
+C:\Users\Benedito\Desktop\LigaDesliga Com Arduino e C#\Desliga\Desliga\bin\Debug\Desliga.exe
+C:\Users\Benedito\Desktop\LigaDesliga Com Arduino e C#\Desliga\Desliga\bin\Debug\Desliga.pdb
+C:\Users\Benedito\Desktop\LigaDesliga Com Arduino e C#\Desliga\Desliga\obj\Debug\Desliga.exe
+C:\Users\Benedito\Desktop\LigaDesliga Com Arduino e C#\Desliga\Desliga\obj\Debug\Desliga.pdb
+C:\Users\Thiago Pessia\Desktop\Controle de LED Com Jarvis, Arduíno e C#\Desliga\Desliga\bin\Debug\Desliga.exe.config
+C:\Users\Thiago Pessia\Desktop\Controle de LED Com Jarvis, Arduíno e C#\Desliga\Desliga\bin\Debug\Desliga.exe
+C:\Users\Thiago Pessia\Desktop\Controle de LED Com Jarvis, Arduíno e C#\Desliga\Desliga\bin\Debug\Desliga.pdb
+C:\Users\Thiago Pessia\Desktop\Controle de LED Com Jarvis, Arduíno e C#\Desliga\Desliga\obj\Debug\Desliga.csprojResolveAssemblyReference.cache
+C:\Users\Thiago Pessia\Desktop\Controle de LED Com Jarvis, Arduíno e C#\Desliga\Desliga\obj\Debug\Desliga.csproj.CoreCompileInputs.cache
+C:\Users\Thiago Pessia\Desktop\Controle de LED Com Jarvis, Arduíno e C#\Desliga\Desliga\obj\Debug\Desliga.exe
+C:\Users\Thiago Pessia\Desktop\Controle de LED Com Jarvis, Arduíno e C#\Desliga\Desliga\obj\Debug\Desliga.pdb

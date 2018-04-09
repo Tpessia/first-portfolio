@@ -1,0 +1,7 @@
+C:\Users\Thiago Pessia\Desktop\Arduino\Off\Off\bin\Debug\Off.exe.config
+C:\Users\Thiago Pessia\Desktop\Arduino\Off\Off\bin\Debug\Off.exe
+C:\Users\Thiago Pessia\Desktop\Arduino\Off\Off\bin\Debug\Off.pdb
+C:\Users\Thiago Pessia\Desktop\Arduino\Off\Off\obj\Debug\Off.csprojResolveAssemblyReference.cache
+C:\Users\Thiago Pessia\Desktop\Arduino\Off\Off\obj\Debug\Off.csproj.CoreCompileInputs.cache
+C:\Users\Thiago Pessia\Desktop\Arduino\Off\Off\obj\Debug\Off.exe
+C:\Users\Thiago Pessia\Desktop\Arduino\Off\Off\obj\Debug\Off.pdb

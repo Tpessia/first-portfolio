@@ -1,0 +1,14 @@
+C:\Users\Thiago Pessia\Desktop\Arduino\Test\Test\bin\Debug\Test.exe.config
+C:\Users\Thiago Pessia\Desktop\Arduino\Test\Test\bin\Debug\Test.exe
+C:\Users\Thiago Pessia\Desktop\Arduino\Test\Test\bin\Debug\Test.pdb
+C:\Users\Thiago Pessia\Desktop\Arduino\Test\Test\obj\Debug\Status.csproj.CoreCompileInputs.cache
+C:\Users\Thiago Pessia\Desktop\Arduino\Test\Test\obj\Debug\Test.exe
+C:\Users\Thiago Pessia\Desktop\Arduino\Test\Test\obj\Debug\Test.pdb
+C:\Users\Thiago Pessia\Desktop\Arduino\Test\Test\obj\Debug\Status.csprojResolveAssemblyReference.cache
+C:\Users\Thiago Pessia\Documents\GitHub\arduino\C#\Test\Test\bin\Debug\Test.exe.config
+C:\Users\Thiago Pessia\Documents\GitHub\arduino\C#\Test\Test\bin\Debug\Test.exe
+C:\Users\Thiago Pessia\Documents\GitHub\arduino\C#\Test\Test\bin\Debug\Test.pdb
+C:\Users\Thiago Pessia\Documents\GitHub\arduino\C#\Test\Test\obj\Debug\Status.csprojResolveAssemblyReference.cache
+C:\Users\Thiago Pessia\Documents\GitHub\arduino\C#\Test\Test\obj\Debug\Status.csproj.CoreCompileInputs.cache
+C:\Users\Thiago Pessia\Documents\GitHub\arduino\C#\Test\Test\obj\Debug\Test.exe
+C:\Users\Thiago Pessia\Documents\GitHub\arduino\C#\Test\Test\obj\Debug\Test.pdb

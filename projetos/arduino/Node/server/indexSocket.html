@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Arduino</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    </head>
+    <body style="height: 100vh; margin: 0;">
+        <div style="position: absolute; top: 5%; transform: scale(0.85); z-index: 10;"><a href="http://192.168.1.8:3000/">Redirect to Local Network</a></div>
+        <div style="position: absolute; top: 5%; transform: scale(0.85); width: 100%; text-align: right;">Local&nbsp;<input id="ajax" type="range" min="0" max="1" step="1" value="0">&nbsp;Ajax</div>
+        <div style="position: absolute; top: 50%; transform: translateY(-50%); width: 100%; text-align: center;"><div style="text-align: center">UNSAFE</div>OFF&nbsp;<input id="range" type="range" min="0" max="1" step="1" value="0">&nbsp;ON</div>
+        <div style="position: absolute; top: 50%; transform: translateY(-50%); width: 100%; text-align: center;" class="hide"><button id="btn">Manual Update</button><button id="btnAuto">Auto Update</button><button id="stop">Stop</button></div>
+
+        <!-- include the client socket library-->
+        <script src="/socket.io/socket.io.js"></script>
+
+        <script>
+            // client.js
+
+            (function () {
+                var socket = io.connect(window.location.hostname + ':' + 3000); //socket connection
+
+                var range = document.getElementById("range");
+
+
+                function emitValue(myBool) { //data emition func
+                    // console.log("state emited - " + myBool);
+                    socket.emit('state', { //emit value as state command
+                        bool: myBool
+                    });
+                }
+
+
+                range.addEventListener('change', function() {
+                    emitValue(range.value); //on range change, send new data to server
+                });
+
+                socket.on('connect', function (data) { //on connect
+                    socket.emit('join', 'Client is connected!');
+                });
+
+                socket.on('state', function (data) { //receive changed data
+                    // console.log("state received - " + data.bool)
+                    if(range.value != data.bool) {
+                        range.value = data.bool; //evita que o range change trigger se o valor for o mesmo
+                    }
+                });
+
+
+
+                // NEW ----------------------------
+
+                $("#ajax").on('change', function() {
+                    $("#range").parent("div").toggleClass("hide");
+                    $("#btn").parent("div").toggleClass("hide");
+                });
+
+                $("#btn").on("click", function() {
+                    socket.emit('ajax');
+                });
+
+                $("#btnAuto").on("click", function () {
+                    socket.emit('ajaxAuto');
+                    $("#btnAuto").css("background-color", "green");
+                });
+
+                $("#stop").on("click", function() {
+                    socket.emit('ajaxAutoStop');
+                    $("#btnAuto").css("background-color", "initial");
+                });           
+                
+                socket.on('block', function () {
+                    $("body").html("LOG OUT FROM THE OTHER SERVER MANAGEMENT INSTANCE!");
+                });
+
+                // window.addEventListener("beforeunload", function (event) {
+                //     socket.emit('ajaxAutoStop', {
+
+                //     });
+                // });
+
+                // NEW ----------------------------
+            }());
+        </script>
+
+        <style>
+            .hide {
+                display: none;
+            }
+        </style>
+    </body>
+</html>

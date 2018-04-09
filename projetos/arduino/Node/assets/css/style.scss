@@ -1,0 +1,129 @@
+.container {
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+header {
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+    margin: -22px 0 21px !important;
+    padding-top: 22px;
+    background-color: rgb(25, 25, 25);
+}
+
+#overall {
+    .offline {
+        span.status {
+            background-color: #D3D3D3;
+        }
+    }
+
+    .off {
+        span.status {
+            background-color: red;
+        }
+    }
+
+    .on {
+        span.status {
+            background-color: green;
+        }
+    }
+
+    #server {
+        &.offline+#controls,
+        &.off+#controls {
+            display: none;
+        }
+        &.online+#controls {
+            display: block;
+        }
+
+        h3 {
+            display: inline-block;
+        }
+
+        span.status {
+            height: 22px;
+            width: 22px;
+            display: inline-block;
+            border-radius: 11px;
+            margin-bottom: -1px;
+        }
+    }
+
+    #controls {
+        &>div {
+            margin-top: 20px;
+        }
+
+        span.status {
+            height: 16px;
+            width: 16px;
+            display: inline-block;
+            border-radius: 8px;
+            margin-bottom: -4px;
+        }
+
+        .componentLed {
+            >div:first-of-type {
+                display: inline-block;
+                margin-right: 20px;
+            }
+
+            h4 {
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+
+        .componentButton {
+            >div:first-of-type {
+                display : inline-block;
+                margin-right : 20px;
+            }
+
+            .button {
+                height: 39px;
+                display: inline-block;
+                vertical-align: top;
+                span {
+                    display: inline-block;
+                    height: 36px;
+                    width: 36px;
+                    border-radius: 50%;
+                    background-color: blue;
+                    border-bottom: 3px solid darkblue;
+                    transition: all 0.5s;
+                }
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .componentLed, .componentButton {
+                text-align: center;
+
+                &>div:first-of-type {
+                    display: block !important;
+                    margin-right: 0 !important;
+                }
+            }
+        }
+    }
+}
+
+#myModal {
+    h4 {
+        text-align: center;
+    }
+
+    .modal-footer {
+        border-top: 0 !important;
+
+        @media screen and (max-width: 768px) {
+            button {
+                width: 100%;
+            }
+        }
+    }
+}

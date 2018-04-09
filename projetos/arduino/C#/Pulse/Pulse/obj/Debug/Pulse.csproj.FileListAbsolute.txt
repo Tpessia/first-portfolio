@@ -1,0 +1,7 @@
+C:\Users\Thiago Pessia\Desktop\Arduino\Pulse\Pulse\bin\Debug\Pulse.exe.config
+C:\Users\Thiago Pessia\Desktop\Arduino\Pulse\Pulse\bin\Debug\Pulse.exe
+C:\Users\Thiago Pessia\Desktop\Arduino\Pulse\Pulse\bin\Debug\Pulse.pdb
+C:\Users\Thiago Pessia\Desktop\Arduino\Pulse\Pulse\obj\Debug\Pulse.csprojResolveAssemblyReference.cache
+C:\Users\Thiago Pessia\Desktop\Arduino\Pulse\Pulse\obj\Debug\Pulse.csproj.CoreCompileInputs.cache
+C:\Users\Thiago Pessia\Desktop\Arduino\Pulse\Pulse\obj\Debug\Pulse.exe
+C:\Users\Thiago Pessia\Desktop\Arduino\Pulse\Pulse\obj\Debug\Pulse.pdb

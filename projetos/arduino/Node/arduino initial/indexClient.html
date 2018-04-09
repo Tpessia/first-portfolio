@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Arduino Remote</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <!-- GENERATE A TXT FILE WITH 1 OR 0 IN IT, WHICH THE APP.JS READS WITH A REQUEST -->
+    <form action="first.php" method="post">
+        <label for="bin">Arduino Bin</label>
+        <input type="text" id="bin" name="bin">
+
+        <input type="button" value="Upload">
+    </form>
+
+    <script>
+        $('input[value="Upload"]').on("click", function () {
+            myData = { "bin": $("#bin").val() }
+
+            $.ajax({
+                method: "POST",
+                url: "filegen.php",
+                data: myData,
+                success: function () {
+                    alert("Sent!");
+                },
+                error: function (err, status) {
+                    alert("ERROR");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

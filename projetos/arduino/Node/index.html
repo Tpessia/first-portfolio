@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Arduino Remote</title>
+
+    <link rel="icon" type="image/png" href="assets/img/icon.png">
+
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta charset="UTF-8">
+
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous"> -->
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-S7YMK1xjUjSpEnF4P8hPUcgjXYLZKK3fQW1j5ObLSl787II9p8RO9XUGehRmKsxd"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+</head>
+
+<body>
+    <header class="page-header">
+        <h2>Arduino - Smart Home</h2>
+        <span id="simulate" style="position: absolute; right: 5px; top: 5px;">Simulate</span>
+    </header>
+    <main class="container">
+        <div id="overall">
+            <div id="server" class="row offline">
+                <h3>SERVIDOR&nbsp;</h3><span class="status"></span>
+            </div>
+    
+            <div id="controls" class="row"> <!--style="display: initial !important"-->
+                <div id="led" class="componentLed offline">
+                    <div>
+                        <h4>LED&nbsp;</h4><span class="status"></span>
+                    </div>
+                    <input id="input" type="checkbox" input="0">
+                </div>
+                <div id="portao" class="componentButton">
+                    <div>
+                        <h4>Portão</h4>
+                    </div>
+                    <div class="button"><span></span></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4></h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#myModal').modal({ show: false });
+        $("[type='checkbox']").bootstrapSwitch();
+    </script>
+
+    <script>
+        // OUTPUT
+
+        $.ajax({
+            method: "POST", url: "assets/php/ledStatus.bin", async: false,
+            success: function (data) {
+                if (data == 1) {
+                    $('#input').bootstrapSwitch('state', true, true);
+                    $("#led").addClass("on");
+                } else if (data == 0) {
+                    $('#input').bootstrapSwitch('state', false, true);
+                    $("#led").addClass("off");
+                }
+            }
+        }); //change led color and switch state in relation to the bin file
+
+        var sv;
+        var ajaxes = [];
+
+        statusGet();
+        setInterval(function() {
+            statusGet();
+        }, 2000);
+
+        function statusGet() {
+
+            // Server Status
+
+            if(ajaxes.length < 2 || ajaxes[0].readyState == 0 || ajaxes[0].readyState == 4) {
+                ajaxes[0] = $.ajax({
+                    method: "POST",
+                    url: "assets/php/serverStatus.txt",
+                    success: function (data) {
+                        var date = new Date();
+                        date = date.getTime();
+
+                        date - data < 25000 ? sv = true : sv = false;  //verifica se a ultima comunicação com o servidor faz mais de x segundos
+                        
+                        if(sv) {
+                            $("#server").removeClass("off offline");
+                            $("#server").addClass("on");
+                        }
+                        else {
+                            $("#server").removeClass("on offline");
+                            $("#server").addClass("off");
+                        }
+                    },
+                    error: function (err, status) {
+                        if(status != "abort") {
+                            $("#server").removeClass("on off");
+                            $("#server").addClass("offline");
+                        }
+                    }
+                });
+            }
+            // LED Status
+
+            if(sv && (ajaxes.length < 2 || ajaxes[1].readyState == 0 || ajaxes[1].readyState == 4)) {
+                ajaxes[1] = $.ajax({
+                    method: "POST",
+                    url: "assets/php/ledStatus.bin",
+                    success: function (data) {
+                        if (data == 1 && !$("#led").hasClass("on")) {
+                            $("#led").removeClass("off offline");
+                            $("#led").addClass("on");
+                            $('#input').bootstrapSwitch('state', true, true);
+                            $("#input").bootstrapSwitch('disabled', false);
+                        }
+                        else if (data == 0 && !$("#led").hasClass("off")) {
+                            $("#led").removeClass("on offline");
+                            $("#led").addClass("off");
+                            $('#input').bootstrapSwitch('state', false, true);
+                            $("#input").bootstrapSwitch('disabled', false);
+                        }
+                    },
+                    error: function (err, status) {
+                        if (status != "abort") {
+                            if (!$("#led").hasClass("offline")) {
+                                $("#led").removeClass("on off");
+                                $("#server").addClass("offline");
+                                $('#input').bootstrapSwitch('state', false, true);
+                                $("#input").bootstrapSwitch('disabled', false);
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // INPUT
+
+        //led
+
+        $('#input').on('switchChange.bootstrapSwitch', function (event, state) {
+            $("#input").bootstrapSwitch('disabled', true);
+            $('#input').bootstrapSwitch('state') == true ? $(this).attr("input", "1") : $(this).attr("input", "0");
+            sendInput();
+        });
+
+        function sendInput() {
+            myData = { "input": $("#input").attr("input") }
+
+            // VALIDACAO E ENVIO
+
+            if (parseInt(myData.input) !== 1 && parseInt(myData.input) !== 0) {
+                $(".modal-body h4").html("Valor Inválido!");
+                $('#myModal').modal('show');
+                return;
+            }
+            else {
+                ajaxes.forEach(function(content){ content.abort(); });
+
+                $.ajax({
+                    method: "POST",
+                    url: "assets/php/input.php",
+                    data: myData,
+                    success: function () {
+                        toastr.info('Comando "LED" enviado!');
+                    },
+                    error: function (err, status) {
+                        $(".modal-body h4").html("Erro! Tente novamente mais tarde.");
+                        $('#myModal').modal('show');
+                    }
+                });
+            }
+        }
+
+        //portao
+
+        $("#portao .button").on("click", function () {
+            $("#portao .button span").css({"border-bottom": "0px solid darkblue","background-color":"#3a3aff"});
+            $("#portao .button span").css("transform", "translateY(3px)");/* transform: translateY(3px); */
+            setTimeout(function () {
+                $("#portao .button span").css({"border-bottom": "3px solid darkblue","background-color":"blue"});
+                $("#portao .button span").css("transform", "translateY(0px)");
+            }, 600);
+            
+            ajaxes.forEach(function (content) { content.abort(); });
+
+            $.ajax({
+                method: "POST",
+                url: "assets/php/portao.php",
+                success: function () {
+                    toastr.info('Comando "Portão" enviado!');
+                },
+                error: function (err, status) {
+                    $(".modal-body h4").html("Erro! Tente novamente mais tarde.");
+                    $('#myModal').modal('show');
+                }
+            });
+        });
+
+        // SIMULATE SERVER (DEBUG)
+
+        $("#simulate").on("click", simulation);
+        var click = true;
+        function simulation() {
+            if(click) {
+                $("body").append('<aside><iframe src="http://www.pessia.xyz/arduino/server" frameborder="0"></iframe></aside>');
+            }
+            else {
+                $("aside").remove();
+            }
+            click = !click;
+        }
+    </script>
+</body>
+</html>

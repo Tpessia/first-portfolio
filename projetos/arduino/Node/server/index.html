@@ -1,0 +1,59 @@
+<html>
+<head>
+	<title>Arduino Server Simulate</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+<body style="color: #c3c3c3">
+	<p id="svStatus"></p>
+	<p id="in"></p>
+	<p id="portao"></p>
+	<p id="out"></p>
+
+	<script>		
+		setInterval(ajax, 1000);
+		ledStatus = 0;
+		function ajax() {
+			$.ajax({
+				url: "http://www.pessia.xyz/arduino/assets/php/serverStatus.php", //envia uma conexao vazia
+				success: function (data) {
+					$("#svStatus").html("You are simulating the server! " + data);
+				},
+				error: function () {
+					$("#svStatus").html("FAILED");
+				}
+			});
+
+			$.ajax({
+				url: "http://www.pessia.xyz/arduino/assets/php/input.bin"  + "?" + Math.random(), //recebe o input do usuario
+				success: function (data) {
+					ledStatus = data;
+					$("#in").html("Input ok " + data);
+				},
+				error: function () {
+					$("#in").html("Input FAILED");
+				}
+			});
+
+			$.ajax({
+				url: "http://www.pessia.xyz/arduino/assets/php/portao.bin" + "?" + Math.random(), //recebe o input do usuario
+				success: function (data) {
+					$("#portao").html("Portao ok " + data);
+				},
+				error: function () {
+					$("#portao").html("Input FAILED");
+				}
+			});
+
+			$.ajax({
+				url: "http://www.pessia.xyz/arduino/assets/php/ledStatus.php?output=" + ledStatus, //finge que o valor recebido foi enviado ao led da placa
+				success: function (data) {
+					$("#out").html("Output ok " + data);
+				},
+				error: function () {
+					$("#out").html("Output FAILED");
+				}
+			});
+		}
+	</script>
+</body>
+</html>
