@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JSON</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script>
+		window.jQuery || document.write('src="C:\Thiago\Mega\Programming\JavaScript\jQuery\jquery.js">/x3c/script>');
+	</script>
+</head>
+<body>
+	<div style="width: 324px;">
+		<form onsubmit="return addObj(this)">
+			<label for="objName">Insert the object name:</label>
+			<input name="objName" id="objName"><br><br>
+			<label for="objValue">Insert the object value:</label>
+			<input name="objValue" id="objValue"><br><br>
+			<input type="submit" value="Add item" style="width: calc(50% - 2px);">
+			<input type="button" value="Show list" onclick="window.alert(JSON.stringify(storageObj))" style="width: calc(50% - 3px);">
+		</form><br>
+
+		<a id="downloadAnchorElem" style="border: 2px solid rgb(30,30,30); padding: 5px; width: 100%; display: inline-block; box-sizing: border-box; text-align: center; color: black; text-decoration: none; cursor: pointer;">Download</a>
+
+		<div id="div"></div>
+	</div>
+</body>
+<script type="text/javascript">
+	var storageObj = {}
+
+	function addObj(form) {
+	  storageObj[form.objName.value] = form.objValue.value;
+	  return false;
+	}
+
+	document.getElementById("downloadAnchorElem").addEventListener("click", function() {
+		var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(storageObj));
+		var dlAnchorElem = document.getElementById('downloadAnchorElem');
+		dlAnchorElem.setAttribute("href",     dataStr     );
+		dlAnchorElem.setAttribute("download", "scene.json");
+	});
+	
+	
+
+	$.getJSON('scene.json', function(data) {
+			var arr = [];
+
+			for (i in data) {
+				console.log(i + data[i]); //verifica os valores de: nome e valor (valueA) do objeto (A)
+
+				arr.push(data[i]);//insere os valores (valueA) de todos objetos no array
+			}
+
+			var obj = { };
+
+			for (var i = 0, j = arr.length; i < j; i++) {
+			   obj[arr[i]] = (obj[arr[i]] || 0) + 1; //cria um objeto (B) que verifica a ocorrência de valores iguais no objeto A, e cria um novo objeto (valueA: ocorrências)
+			}
+
+			console.log(obj);
+
+			var arr2 = Object.values(obj); //transforma o valor dos objetos em array
+
+			var max = Math.max(...arr2); //verifica o index com o maio número
+
+			for (j in obj) { //acha o nome do valor (valueA) que possui valor igual ao do max no objeto B
+				if (obj[j] == max) {
+					console.log(j);
+
+					$("html").css("background-color", j);
+				}
+			}
+	});
+
+</script>
+</html>

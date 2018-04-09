@@ -5,6 +5,7 @@
         "id": "1", 
         "description": "Primeiro projeto que desenvolvi para a web, utilizando CSS e JavaScript nativos.", 
         "img": "/assets/img/projetos/cronometro.png",
+        "iswhite": "",
         "url": "http://www.pessia.xyz/projetos/cronometro/"
     },
     "Tablefy": 
@@ -13,6 +14,7 @@
         "id": "2", 
         "description": "App que transforma tabelas do Excel ou escritas manualmente em tabelas HTML.", 
         "img": "/assets/img/projetos/tablefy.png",
+        "iswhite": "iswhite",
         "url": "http://www.pessia.xyz/projetos/tablefy/"
     },
     "Bolão Russia": 
@@ -21,6 +23,7 @@
         "id": "3", 
         "description": "Web App de bolões para a Copa do Mundo de 2018.", 
         "img": "/assets/img/projetos/bolao.jpg",
+        "iswhite": "",
         "url": "https://www.bolaodomauricio.xyz/?login=0005"
     }
 }

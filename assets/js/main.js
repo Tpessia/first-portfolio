@@ -1,153 +1,4 @@
 $(function () {    
-    // projetos = {
-    //     "Projeto 1":
-    //         {
-    //             "name": "Projeto 1",
-    //             "id": "1",
-    //             "description": "Proident aliquip quis elit magna reprehenderit esse proident.",
-    //             "img": "/assets/img/old/maps/format/img_12.jpg",
-    //             "url": "/assets/img/old/maps/format/img_12.jpg"
-    //         },
-    //     "Projeto 2":
-    //         {
-    //             "name": "Projeto 2",
-    //             "id": "2",
-    //             "description": "Consectetur reprehenderit ad magna ut laboris ex excepteur in ad non.",
-    //             "img": "/assets/img/old/maps/format/img_12.jpg",
-    //             "url": "/assets/img/old/maps/format/img_12.jpg"
-    //         },
-    //     "Projeto 3":
-    //         {
-    //             "name": "Projeto 3",
-    //             "id": "3",
-    //             "description": "Sint non reprehenderit magna consectetur do quis laboris nulla sunt fugiat.",
-    //             "img": "/assets/img/old/maps/format/img_12.jpg",
-    //             "url": "/assets/img/old/maps/format/img_12.jpg"
-    //         },
-    //     "Projeto 4":
-    //         {
-    //             "name": "Projeto 4",
-    //             "id": "4",
-    //             "description": "Id ea officia aliquip deserunt elit proident irure mollit laboris ullamco.",
-    //             "img": "/assets/img/old/maps/format/img_12.jpg",
-    //             "url": "/assets/img/old/maps/format/img_12.jpg"
-    //         },
-    //     "Projeto 5":
-    //         {
-    //             "name": "Projeto 5",
-    //             "id": "5",
-    //             "description": "Et consequat velit ex nostrud esse eiusmod sint aliquip veniam cillum id sint.",
-    //             "img": "/assets/img/old/maps/format/img_12.jpg",
-    //             "url": "/assets/img/old/maps/format/img_12.jpg"
-    //         },
-    //     "Projeto 6":
-    //         {
-    //             "name": "Projeto 6",
-    //             "id": "6",
-    //             "description": "Irure minim sunt id ea tempor.",
-    //             "img": "/assets/img/old/maps/format/img_12.jpg",
-    //             "url": "/assets/img/old/maps/format/img_12.jpg"
-    //         }
-    // };
-
-    // cursos = {
-    //     "Curso 1":
-    //         {
-    //             "name": "Curso 1",
-    //             "id": "1",
-    //             "tags": ["Que", "Curso", "Legal"],
-    //             "img": "/assets/img/old/maps/format/img_12.jpg",
-    //             "url": "/assets/img/old/maps/format/img_12.jpg"
-    //         },
-    //     "Curso 2":
-    //         {
-    //             "name": "Curso 2",
-    //             "id": "2",
-    //             "tags": ["Que", "Curso", "Legal"],
-    //             "img": "/assets/img/old/maps/format/img_12.jpg",
-    //             "url": "/assets/img/old/maps/format/img_12.jpg"
-    //         },
-    //     "Curso 3":
-    //         {
-    //             "name": "Curso 3",
-    //             "id": "3",
-    //             "tags": ["Que", "Curso", "Legal"],
-    //             "img": "/assets/img/old/maps/format/img_12.jpg",
-    //             "url": "/assets/img/old/maps/format/img_12.jpg"
-    //         },
-    //     "Curso 4":
-    //         {
-    //             "name": "Curso 4",
-    //             "id": "4",
-    //             "tags": ["Que", "Curso", "Legal"],
-    //             "img": "/assets/img/old/maps/format/img_12.jpg",
-    //             "url": "/assets/img/old/maps/format/img_12.jpg"
-    //         },
-    //     "Curso 5":
-    //         {
-    //             "name": "Curso 5",
-    //             "id": "5",
-    //             "tags": ["Que", "Curso", "Legal"],
-    //             "img": "/assets/img/old/maps/format/img_12.jpg",
-    //             "url": "/assets/img/old/maps/format/img_12.jpg"
-    //         },
-    //     "Curso 6":
-    //         {
-    //             "name": "Curso 6",
-    //             "id": "6",
-    //             "tags": ["Que", "Curso", "Legal"],
-    //             "img": "/assets/img/old/maps/format/img_12.jpg",
-    //             "url": "/assets/img/old/maps/format/img_12.jpg"
-    //         },
-    //     "Curso 7":
-    //         {
-    //             "name": "Curso 7",
-    //             "id": "7",
-    //             "tags": ["Ola", "Tudo", "Bem"],
-    //             "img": "/assets/img/old/maps/format/img_12.jpg",
-    //             "url": "/assets/img/old/maps/format/img_12.jpg"
-    //         }
-    // };
-
-    // habilidades = {
-    //     "HTML":
-    //         {
-    //             "name": "HTML",
-    //             "img": "/assets/img/html.png",
-    //             "url": "https://pt.wikipedia.org/wiki/HTML"
-    //         },
-    //     "CSS":
-    //         {
-    //             "name": "CSS",
-    //             "img": "/assets/img/css.png",
-    //             "url": "https://pt.wikipedia.org/wiki/Cascading_Style_Sheets"
-    //         },
-    //     "JavaScript":
-    //         {
-    //             "name": "JavaScript",
-    //             "img": "/assets/img/javascript.png",
-    //             "url": "https://pt.wikipedia.org/wiki/JavaScript"
-    //         },
-    //     "Bootstrap":
-    //         {
-    //             "name": "Bootstrap",
-    //             "img": "/assets/img/bootstrap.png",
-    //             "url": "http://getbootstrap.com/"
-    //         },
-    //     "Materialize":
-    //         {
-    //             "name": "Materialize",
-    //             "img": "/assets/img/materialize.png",
-    //             "url": "http://materializecss.com/"
-    //         },
-    //     "JQuery":
-    //         {
-    //             "name": "JQuery",
-    //             "img": "/assets/img/jquery.png",
-    //             "url": "https://jquery.com/"
-    //         }
-    // };
-
     $(document).on("mainAjax", function() {
         main_loading();
 
@@ -282,6 +133,15 @@ function main_initializers() {
             window.location.replace(destination);
         },
         minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+    }).on("focus", function () {
+        var p = Object.keys(projetos);
+        var c = Object.keys(cursos);
+        $(".autocomplete-content").html(
+            '<small style="display: block; padding-top: 5px; padding-left: 16px; color: rgba(0, 0, 0, 0.5);">Sugestões</small>' +
+            "<li><span>" + p.pop() + "</span></li>" +
+            "<li><span>" + c.pop() + "</span></li>" +
+            "<li><span>" + p.pop() + "</span></li>"
+        );
     });
 }
 
@@ -309,6 +169,13 @@ function main_bindAnimations() {
 
         }
     }
+
+    $("footer a img").on("mouseenter", function() {
+        $(this).css({ "transition": "transform .6s ease-in-out", "transform": "rotateY(360deg)"});
+        $(this).one("transitionend", function() {
+            $(this).css({ "transition": "none", "transform": "rotateY(0deg)" });
+        });
+    });
 }
 
 function main_clickHandlers() {
@@ -436,7 +303,6 @@ function smartHover(elem) {
 
         $(this).on("click", function (e) {
             if (/Mobi/i.test(navigator.userAgent) || /Android/i.test(navigator.userAgent)) {
-                e.preventDefault();
                 e.stopPropagation();
 
                 var $cardReveal = $(this).find(".card-reveal");
@@ -465,7 +331,6 @@ function smartHover(elem) {
                     if (!$cardReveal.is("[class*=from]")) {
                         $cardReveal.removeClass(function (index, className) {
                             return (className.match(/(^|\s)pre\S+/g) || []).join(' ');
-                            alert();
                         });
                     }
                 });

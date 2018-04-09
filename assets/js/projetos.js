@@ -2,7 +2,7 @@ $(function () {
     $(document).on("mainAjax", function () {
         createContent();
 
-        clickHandlers(); //arrumar pois vai quebrar no ajax async na hora de chamar os jsons        
+        clickHandlers();
     });
 
     $.ajax({

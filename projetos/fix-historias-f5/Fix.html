@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<span style="width: 50%; float: left;">
+    <input id="input1" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+	<textarea id="text1" placeholder="<p>Texto</p>"></textarea>
+	<input id="input2" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+	<input id="input3" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+	<input id="input4" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+	<input id="input5" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+	<input id="input6" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+	<input id="input7" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+	<input id="input8" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+</span>
+<span style="width: 50%">
+	<textarea id="text2">
+		
+	</textarea>
+	<button id="btn">Go</button>
+</span>
+
+<script type="text/javascript">
+	$("#btn").on("click", function() {
+		if($("#input2").val() != ""){
+			var string = '<div class="box">\n'+$("#input1").val()+'\n</div>\n<div class="box">\n'+$("#text1").val() + '\n</div>'
+
+			$("input:not(:first-of-type)").each(function() {
+				
+				if($(this).val() != "") {
+					string += '\n<div class="box">\n'+$(this).val()+'\n</div>'
+				}
+			})
+
+			$("#text2").html(string)
+
+		}
+		else {
+			var string = '<div class="box box-fix">\n<div class="box-content">\n<div class="image ng-scope">\n'+$("#input1").val()+'\n</div>\n<div class="text">\n'+$("#text1").val()+'\n</div>\n</div>\n</div>'
+
+			$("#text2").html(string)
+		}
+		
+	})
+	
+</script>
+<style type="text/css">
+	span:first-of-type * {
+		display: block;
+		margin-bottom: 15px;
+	}
+</style>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Speed Check</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    Speed:&nbsp;<span id="speed">0.00</span>&nbsp;m/s
+    <script>
+
+        // mouseSpeed();
+
+        function mouseSpeed(){
+            mspdConfig = {
+                options: (typeof mspdConfig == "undefined" || typeof mspdConfig.options == "undefined") ? "all" : mspdConfig.options,
+                unit: (typeof mspdConfig == "undefined" || typeof mspdConfig.unit == "undefined") ? "m/s" : mspdConfig.unit
+            };
+
+            if (mspdConfig.unit != "m/s" && mspdConfig.unit != "px/s") {
+                throw "mspdConfig.unit inicializada incorretamente! (Valores possíveis: \"m/s\" ou \"px/s\")";
+            }
+
+            if (mspdConfig.options != "all" && mspdConfig.options != "direction" && mspdConfig.options != "speed")
+                throw "mspdConfig.options inicializada incorretamente! (Valores possíveis: \"all\", \"direction\" ou \"speed\")";
+
+            mspd = {};
+            mspdData = {};
+            mspdData.t0 = new Date();
+            mspdData.x0 = 0;
+            mspdData.y0 = 0;
+
+            if (mspdConfig.options == "all") {
+                $(document).mousemove(function (e) {
+                    initPosTime(e);
+
+                    calcSpeed(mspdConfig.unit);
+                    verifDir();
+
+                    savePosTime();
+                });
+            }
+
+            if (mspdConfig.options == "speed") {
+                $(document).mousemove(function (e) {
+                    initPosTime(e);
+
+                    calcSpeed(mspdConfig.unit);
+                    
+                    savePosTime(e);
+                });
+            }
+
+            if (mspdConfig.options == "direction") {
+                $(document).mousemove(function (e) {
+                    initPosTime();
+                    
+                    verifDir();
+
+                    savePosTime();
+                });
+            }
+
+            function initPosTime(e) {
+                mspdData.t = new Date();
+                mspdData.x = e.pageX;
+                mspdData.y = e.pageY;
+            }
+
+            function savePosTime() {
+                mspdData.t0 = mspdData.t;
+                mspdData.x0 = mspdData.x;
+                mspdData.y0 = mspdData.y;
+            }
+
+            function calcSpeed(_unit) {
+                mspdData.dD = Math.sqrt( Math.pow(mspdData.y - mspdData.y0, 2) + Math.pow(mspdData.x - mspdData.x0, 2) ); //em pixels
+
+                if (_unit == "m/s") {
+                    mspdData.dD = mspdData.dD / 3779.527559055; //em metros
+                }
+
+
+                mspdData.dT = (mspdData.t.getTime() - mspdData.t0.getTime()) / 1000; //em segundos
+
+                mspd.rawSpeed = (mspdData.dD / mspdData.dT).toFixed(2);
+
+                mspd.speed = mspd.rawSpeed + " " + _unit;
+            }                
+
+            function verifDir() {
+                if (mspdData.x > mspdData.x0)
+                    mspd.dirX = "right";
+                else if (mspdData.x < mspdData.x0)
+                    mspd.dirX = "left";
+
+                if (mspdData.y > mspdData.y0)
+                    mspd.dirY = "down";
+                else if (mspdData.y < mspdData.y0)
+                    mspd.dirY = "up";
+            }
+        }
+    </script>
+</body>
+</html>

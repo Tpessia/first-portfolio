@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+</head>
+<body>
+	<form>
+<span style="width: 50%; float: left;">
+    <input id="title" type="text" placeholder="Título Acontecimento (ALTs)">
+	<input id="input1" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+	<textarea id="text1" placeholder="<p>Texto</p>" rows="5"></textarea>
+	<input id="input2" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+	<input id="input3" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+	<input id="input4" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+	<input id="input5" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+	<input id="input6" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+	<input id="input7" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+	<input id="input8" type="text" placeholder='<img src="/path/file.jpg" alt="file">'>
+</span>
+<span style="width: 50%; float: left;">
+	<textarea id="text2" rows="5" placeholder="Output">
+		
+	</textarea>
+	<input type="submit" onClick="return false" id="btn" value="Gerar HTML">
+</span>
+</form>
+
+<div style="position: absolute; bottom: 0; margin-bottom: 25px; margin-left: 15px;">
+	*Deve-se preencher o input "Título Acontecimento (ALTs)" com o título do acontecimento em questão, para que esse se torne o atributo "alt" de todas as imagens.
+</div>
+<script type="text/javascript">
+	$("#btn").on("click", function() {
+		if(($("#title").val() != "" && $("#input1").val() == "") || ($("#title").val() == "" && $("#input1").val() != "") || ($("#input1").val() == "" && $("#text1").val() == "")) {alert("Insira os valores corretamente!"); return;}
+
+	    var titulo = ' alt="'+$("#title").val()+'">';
+
+	    var i = 0;
+	    $("input:not(:nth-of-type(1)):not(:nth-of-type(2))").each(function() {
+	    	if($(this).val() != ""){i++;}
+	    })
+
+		if(i>0){
+			var string = '<div class="box">\n'+$("#input1").val().replace(/alt="[a-zA-Z0-9:;\.\s\(\)\-\,]*"/gi,"").replace('>',titulo).replace(/\s\s/," ")+'\n</div>\n<div class="box">\n'+$("#text1").val() + '\n</div>'
+
+			$("input:not(:nth-of-type(1)):not(:nth-of-type(2))").each(function() {
+				
+				if($(this).val() != "") {
+					string += '\n<div class="box">\n'+$(this).val().replace(/alt="[a-zA-Z0-9:;\.\s\(\)\-\,]*"/gi,"").replace('>',titulo).replace(/\s\s/," ")+'\n</div>'
+				}
+			})
+
+			$("#text2").html(string)
+
+		}
+		else {
+			var string = '<div class="box box-fix">\n<div class="box-content">\n<div class="image ng-scope">\n'+$("#input1").val().replace(/alt="[a-zA-Z0-9:;\.\s\(\)\-\,]*"/gi,"").replace('>',titulo).replace(/\s\s/," ")+'\n</div>\n<div class="text">\n'+$("#text1").val()+'\n</div>\n</div>\n</div>'
+
+			$("#text2").html(string)
+		}
+		
+	})
+	
+</script>
+<style type="text/css">
+	span:first-of-type * {
+		display: block;
+		margin-bottom: 15px;
+		min-width: 60%;
+		max-width: calc(100% - 8px);
+	}
+	#text2 {
+		min-width: 50%;
+		max-width: calc(100%);
+	}
+
+	#btn {
+		display: block;
+		width: calc(50% + 6px);
+	}
+</style>
+</body>
+</html>

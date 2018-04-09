@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>MyFirst php</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" type="image/png" href="/assets/img/subscription-icon.png" />
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+  <form action="first.php" method="post">
+    <label for="nome">Nome</label>
+    <input type="text" id="nome" name="nome">
+
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email">
+    <input type="submit" value="Submit">
+    <input type="button" value="Ajax">
+    <input type="button" value="Send Email">
+  </form>
+
+  <script>
+    $('input[value="Ajax"], input[value="Send Email"').on("click", function () {
+      myData = { "botao": $(this).val(), "nome": $("#nome").val(), "email": $("#email").val() }
+
+      $.ajax({
+        method: "POST",
+        url: "first.php",
+        data: myData,
+        success: function () {
+          alert(myData.nome);
+        },
+        error: function (err, status) {
+          alert(status);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

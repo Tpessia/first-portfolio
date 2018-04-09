@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<meta charset="utf-8">
+</head>
+<body>
+
+<button onclick="newData(null,'1I5avuVF1MCJyDQAEk9lrflQsuA4q6wWoMiVqO6pKiT0')">New Data</button>
+
+<div id="div">
+    
+</div>
+
+<!--<script src=https://spreadsheets.google.com/feeds/cells/12oWtSrHQhllUOiFTbCs-gQA2k5Hs5_30kBS8ZZuFpNA/1/public/values?alt=json-in-script&callback=getData"></script>-->
+
+<script>
+
+/*function getData(json) { data = json.feed.entry;}*/
+
+function newData(pages, id) {
+    var id = id || window.prompt("Insira o ID da spreadsheet:\n\n\n\nExemplo:\n\nSpreadsheet: https://docs.google.com/spreadsheets/d/12oWtSrHQhllUOiFTbCs-gQA2k5Hs5_30kBS8ZZuFpNA/edit#gid=1362625055\n\n ID: 12oWtSrHQhllUOiFTbCs-gQA2k5Hs5_30kBS8ZZuFpNA"); //remover do projeto oficial
+    pages = pages || window.prompt("Insira quais páginas utilizar (1,2,3...):"); //remover do projeto oficial
+
+    pages = pages.split(',');
+
+    pages.forEach(function(page,index) {
+
+        var urlJSON = 'https://spreadsheets.google.com/feeds/cells/' + id + '/' + page + '/public/values?alt=json';
+
+        $.ajax({ //verifica se a url existe
+            url: urlJSON,
+            dataType: 'html',
+            async:false,
+            timeout:5000,
+            success: function (json) {
+                data = JSON.parse(json).feed.entry //recebe a data como json
+
+                page = "page" + page; //cria a pageN
+
+                arrayfy(page, true); //gera array (table.pageN.rowM[cell1,cell2,cell3])
+
+                for (i in table[page]) { //só mostra na div (remover no projeto oficial)
+                    $("#div").html($("#div").html() + table[page][i]);
+                    $("#div").html($("#div").html() + "\<br\>");
+                 }
+            },
+            error: function (xhr, status, error) {
+                alert('ERROR! No Internet Connection or ID/Page Number are Invalid');
+            }
+        });
+    })
+
+}
+
+
+
+function arrayfy(sheetPage,nullify=false) {
+    if(typeof table=="undefined"){table = {};}
+
+    table[sheetPage] = {};
+
+    var lastRow=0;
+
+    for (var i = 0; i< data.length; i++) {
+        var dataTemp=data[i];
+
+        if (!table[sheetPage]["row" + dataTemp.gs$cell.row]) { table[sheetPage]["row" + dataTemp.gs$cell.row] = []; } //create table.rowN
+
+        if(lastRow!=dataTemp.gs$cell.row){ lastCol=0; } //new row
+
+        if(dataTemp.gs$cell.col>lastCol && nullify){ //add null para células vazias
+            var holes = dataTemp.gs$cell.col - lastCol - 1; //number of emptys
+
+            for(var j = 0;j<holes;j++){
+                table[sheetPage]["row" + dataTemp.gs$cell.row].push(null);
+            }
+        }
+
+        table[sheetPage]["row" + dataTemp.gs$cell.row].push(dataTemp.gs$cell.$t); //add value
+        
+        lastCol = dataTemp.gs$cell.col;
+        lastRow = dataTemp.gs$cell.row;
+    }
+}
+
+
+</script>
+
+</body>
+</html>

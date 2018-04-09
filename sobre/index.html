@@ -34,13 +34,13 @@
 </head>
 <body class="loading">
     <!-- Header -->
-    <div id="ldn"><img src="/favicon.png"></div>
+    <div id="ldn"><img src="/favicon.png" alt="brand-icon"></div>
 <header>
     <nav class="nav-extended navbar-fixed">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo">
                 <i class="material-icons hide-on-small-only">
-                    <img src="/favicon.png">
+                    <img src="/favicon.png" alt="brand-icon">
                 </i>Pessia
             </a>
 
@@ -110,7 +110,7 @@
                     PHP e MySQL, além de buscar evoluir minhas habilidades em Front End (e.g. ECMAScript 6).
                 </p>        
                 <p>
-                    Para entrar em contato, me notifique através de um dos canais de comunicação ou do formulario de email na pagina de <a href="/contato/">contato</a> ou através das redes disponiveis no <a href='javascript:$("html, body").animate({ scrollTop: $(document).height()-$(window).height() });'>footer</a> desta pagina.
+                    Para entrar em contato, me notifique através de um dos canais de comunicação ou do formulario de email na pagina de <a href="/contato/">contato</a>, ou através das redes disponiveis no <a href='javascript:if(window.innerWidth <= 1200) { $("html, body").animate({ scrollTop: $(document).height()-$(window).height() }); } $("footer").one("animationend", function() {$(this).removeClass("flash");}).addClass("flash");'>footer</a> desta pagina.
                 </p>
             </div>
         </div>
@@ -126,10 +126,9 @@
 
     <!-- Footer -->
     <footer>
-    <span>
-        <a href="https://www.linkedin.com/in/thiagopessia/" target="_blank"><img src="/assets/img/icons/linkedin.png"></a>
-        <a href="mailto:thiago@pessia.xyz"><img src="/assets/img/icons/email.png"></a>
-    </span>
+    <a href="mailto:thiago@pessia.xyz"><img src="/assets/img/icons/email.png" alt="email"></a>
+    <a href="https://www.linkedin.com/in/thiagopessia/" target="_blank"><img src="/assets/img/icons/linkedin.png" alt="linkedin"></a>
+    <a href="https://github.com/Tpessia/" target="_blank"><img src="/assets/img/icons/github.png" alt="github"></a>
 </footer>
 </body>
 </html>

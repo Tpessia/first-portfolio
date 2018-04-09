@@ -1,21 +1,52 @@
 $(function() {
-    $('.modal').modal();
+    $(document).on("mainAjax", function() {
+        $('.modal').modal();
 
-    $("#formulario").on("submit", function (event) {
-        event.preventDefault();
+        $("form").on("submit", function (event) {
+            event.preventDefault();
 
-        var myData = { nome: $("#first_name").val() + " " + $("#last_name").val(), email: $("#email").val(), assunto: $("#subject").val(), mensagem: $("#message").val().replace(/(?:\r\n|\r|\n)/g, '<br />') }
+            var myData = { nome: $("#first_name").val() + " " + $("#last_name").val(), email: $("#email").val(), assunto: $("#subject").val(), mensagem: $("#message").val().replace(/(?:\r\n|\r|\n)/g, '<br />') }
 
+            $.ajax({
+                method: "POST",
+                url: "/assets/php/contact.php",
+                data: myData,
+                success: function (data) {
+                    if (data == "1") {
+                        $("#email, #subject, #message, #first_name, #last_name").val("").trigger("focusin").trigger("focusout");;
+                        $('#modal_success').modal('open');
+                    }
+                    else {
+                        $('#modal_error').modal('open');
+                    }
+                },
+                error: function () {
+                    $('#modal_error').modal('open');
+                }
+            });
+        });
+    });
+    
+    $.ajax({
+        url: "/assets/contents/projetos.json",
+        datatype: "json",
+        success: function(data) {
+            projetos = data;
+        },
+        complete: function() {
+            $(document).trigger("projetos");
+        }
+    });
+
+    $(document).on("projetos", function () {
         $.ajax({
-            method: "POST",
-            url: "/assets/php/contact.php",
-            data: myData,
-            success: function () {
-                $("#email, #subject, #message, #first_name, #last_name").val("");
-                $('#modal_success').modal('open');
+            url: "/assets/contents/cursos.json",
+            datatype: "json",
+            success: function(data) {
+                cursos = data;
             },
-            error: function () {
-                $('#modal_error').modal('open');;
+            complete: function() {
+                $(document).trigger("mainAjax");
             }
         });
     });

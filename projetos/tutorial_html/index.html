@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Titulo</title>
+	<meta charset="uft-8" /> <!-- define caracteres -->
+</head>
+<body>
+
+	<hr /><h1>Aula 1</h1><hr />
+
+		<p><b>Hello <i>World</i></b></p> <!-- <p></p> define parágrafo -->
+		<b>Negrito</b>
+		<strong> / Strong</strong>
+		<p><i>Italico</i><em> / Enfase</em></p> <!-- essas diferentes nomenclaturas ocorem pois a função do html não é simplesmente estilizar... esta função é dada ao css, enquanto o hmtl estrutura o texto -->
+		<p><ins>Sublinhado</ins></p>
+		<p><del>Riscado</del></p>
+		<p><small>Pequeno</small></p>
+		<sup>Acima</sup>
+		<sub>Abaixo</sub>
+		<p><q>Citacao</q></p>
+		<br /> <!-- Quebra de linha -->
+		<p><span>Span</span></p>
+		<p><h1>Titulo</h1></p> <!-- Próximos títulos são h2, h3, h4, h5 e h6 com fontes menores -->
+		<hr /> <!-- Linha horizontal -->
+		<p><bdo dir="rtl" >Direcao</bdo></p> <!-- Muda direção do texto / rtl = "right to left" -->
+		<p><ruby>
+		Ideograma <rt> Significado </rt>
+		</ruby></p>
+
+	<hr /><h1>Aula 2</h1><hr />
+
+		<ol type="1"> <!-- pode ser type="{1 ou A ou a ou I ou i} -->
+			<li>Topico 1</li> <!-- ol = ordered list / li = list item -->
+			<li>Topico 2</li>
+			<li>Topico 3</li>
+		</ol>
+
+		<p><ul> <!-- Marcador simples -->
+			<li>Topico 1</li> <!-- ul = unordered list -->
+			<li>Topico 2</li>
+			<li>Topico 3</li>
+		</ul></p>
+
+		<dl> <!-- Lista de Descrição -->
+			<dt>Topico 1</dt> <!-- dl = description list / dt = description title --> 
+			<dd>- Subtopico 1</dd>
+			<dt>Topico 2</dt>
+			<dd>- Topico 2</dd>
+		</dl>
+
+		<progress value="30" max="100" ></progress> <!-- barra de progresso -->
+
+		<meter value="30" max="100" min="0" ></meter> <!-- barra de progresso que analisa max e min -->
+
+		<br /><br />
+
+		<table> <!-- tabelas -->
+			<thead> <!-- cabeçalho -->
+			<tr> <!-- linhas / tr = table row -->
+				<th>Nome</th> <!-- colunas (th usado para título) -->
+				<th>Sobrenome</th>
+				<th>Idade</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td rowspan="2">Joao</td> <!-- colunas (td usado para frase comum) / rowspan serve para mesclar linhas / COLSPAN USADO PARA MESCLAR COLUNAS -->
+				<td>Silva</td>
+				<td>28</td>
+			</tr>
+			<tr>
+				<!-- td>Maria</td --> <!-- excluida devido à mescla do rowspan -->
+				<td>Souza</td>
+				<td>23</td>
+			</tr>
+			</tbody>
+		</table>
+
+	<hr /><h1 id="aula3">Aula 3</h1><hr />
+
+		<p><h4>Direcionamento para paginas</h4></p>
+		<a href="http://google.com" target="_blank" >Google</a> <!-- Cria uma referência para outra página ('a' vem de âncora), neste caso para google.com, enquanto target="_blank" abre a referência em outra página, caso queira que abra na mesma aba, apenas remova a tag-->
+
+		<a href="onibus2.html" target="_blank" >Onibus</a> <!-- Outros arquivos html também podem ser referenciados -->
+
+		<a href="onibus.html" download >Download</a>
+		<!-- href pode ser utilizado para download, com a tag 'download', análoga à tag target, com o nome do arquivo entre "", ou sem nome específicado-->
+
+		<a href="#title1" >Rolar Pagina</a> <!-- Direciona o ralador para uma posição da página definida pela tag id="nome", presente na frase 'Alvo do Rolamento' neste exemplo -->
+
+		<br /><br /><br /><br /><br />
+
+		<h1 id="title1">Alvo do Rolamento</h1>
+
+		<br /><br /><br /><br /><br />
+
+		<a href="#aula3" >Aula 3</a>
+
+	<br /><hr /><h1>Aula 4</h1><hr />
+
+		<form accept-charset="utf-8" autocomplete="on" action="http://www.nosso-servidor.com.br/cadastro/usuario.php" method="post" enctype="multipart/form-data" novalidate target="_blank"> <!--charset definido para o formulário / autocomplete completa o formulário automaticamente a partir de valores digitados anteriormente / action define para onde a informação será enviada, geralmente para uma página do servidor / method define o método http que será utilizado para submissão (get ou post) /enctype especifica quando os dados do formulário precisam ser codificados antes de serem enviados ao servidor (só em 'post')?? / novalidate impede a validação dos campos antes da submissão / target igual à <a>-->
+
+			<p><h4>Caixas de Escrita</h4></p>
+			<input type="text" name="email" placeholder="Email" maxlength="5" required /> <!-- type="text" é o padrão, então não precisa colocar / name é a categoria da caixa, que auxilia no autopreenchimento / placeholder é o texto que aparece quando o campo está vazio / maxlength é a quantidade máxima de caracteres / required indica obrigatoriedade ao campo / disabled desabilita o campo / readonly impede edições, permitindo apenas leitura-->
+			<p><textarea>Meu Texto</textarea></p> <!-- oferece espaço para escrita??-->
+
+			<p><input type="email" placeholder="Email"/></p> <!-- modifica a entrada que é esperada-->
+			<p><input type="search" placeholder="Search" /></p>
+			<p><input type="url" placeholder="Url" /></p>
+			<p><input type="number" placeholder="Number" /></p>
+
+			<p><h4>Caixas de Selecao</h4></p>
+			<p><input type="radio" name="sexo" checked="checked" /> Homem
+			<input type="radio" name="sexo" /> Mulher </p> <!-- Radio são as caixas para marcação, deve-se colocar o mesmo name quando deseja-se selecionar apenas 1 das opções (pelo checked, o homem começa clicado)-->
+
+			<h2>Escolha quantos desejar</h2>
+			
+			<input type="checkbox" name="opcao1" /> A
+			<input type="checkbox" name="opcao2" /> B
+			<input type="checkbox" name="opcao3" /> C <!-- possiblita a marcação de diversas caixas-->
+
+			<p><input type="date" /></p> <!-- oferece caixa com calendário-->
+			<p><input type="time" /></p> <!-- oferece caixa com tempo-->
+			<p><input type="datetime-local" /></p> <!-- oferece caixa com calendário e tempo-->
+			<p><input type="month" /></p> <!-- oferece caixa com calendário apenas com seleção dos meses-->
+			<p><input type="week" /></p> <!-- oferece caixa com calendário apenas com seleção das semanas-->
+
+			<p><input type="range" min="0" max="10" /></p> <!-- Barra deslizante com valores max e min-->
+
+			<p><input type="color" /></p> <!-- caixa com cores para seleção-->
+
+			<p><h4>Botoes</h4></p>
+			<p><input type="file" /></p> <!-- permite a seleção de um arquivo na memória do computador-->
+
+			<p><input type="button" value="Botao" /></p> <!-- cria um botão-->
+			<p><input type="reset" value="RESET" /></p> <!-- Botao que reseta o formulário-->
+			<p><input type="submit" value="SUBMIT" /></p> <!-- envia as informações do formulário-->
+
+			<p><h4>Lista de opcoes</h4></p>
+			<p><select multiple=""> <!-- Caixa que abre uma lista para seleção, o value é o que sera enviado ao servidor / multiple possibilita a seleção de diversas opções-->
+				<option value="html">HTML5</option>
+				<option value="css">CSS 3</option>
+				<option value="js">JavaScript</option>
+			</select></p>
+
+			<input list="browsers" name="browser"> <!--Semelhante ao select, mas possui um id de identificação, o user também pode escrever na caixa (name e id devem ser os mesmos)-->
+				<datalist id="browsers">
+					<option value="Internet Explorer">
+					<option value="Firefox">
+					<option value="Chrome">
+					<option value="Opera">
+					<option value="Safari">
+				</datalist>
+
+			<br><p><h4>Campo dentro do formulario</h4></p>
+			<fieldset> <!--Cria campo dentro do formulário para melhor organização-->
+				<legend>Cadastro</legend> <!--Título da caixa-->
+				Nome: <input type="text"><br> <!-- Caixas de input dentro do campo-->
+				Email: <input type="email"><br>
+			</fieldset>
+
+			<p><h4>Label</h4></p>
+			<p><label for="email">Email</label> <!--Dá nome ao campo, este nome pode ser clicado para a seleção da caixa/ for e id devem ser os mesmos-->
+			<input type="text" id="email"></p>
+
+			<p><h4>Output</h4></p>
+			<form oninput="x.value=parseInt(a.value)+parseInt(b.value)">
+				0<input type="range" id="a" min="0" max="100"/>100
+				<input type="number" id="b" value="50"/>
+				<output name="x" for="a b"></output> <!-- Apresenta um output??? nao funcionou-->
+			</form>
+		</form>
+
+		<hr><h1>Aula 5</h1><hr>
+			<h4>Imagens</h4>
+			<img src="images.png" alt="HTML5" width="50"/> <!-- src é o nome da imagem / pode-se usar os atributos width e height para mudar as dimensões / alt serve para descrever a imagem (o texto pode aparecer quando há erro)-->
+
+			<h4>Figura</h4>
+			<figure> <!-- É utilizado para marcar fotos ou figuras, melhorando a semântica-->
+				<img src="images.png" width=50/>
+				<figcaption>Figura1. - Logo do HTML5</figcaption> <!-- figcaption cria uma legenda para a imagem-->
+			</figure>
+
+			<h4>Audio</h4>
+			<audio controls> <!--o atributo controls exibe os controles-->
+				<source src="Can't Stop Playing (Oliver Heldens & Gregor Salto Remix) - Dr Kucho! & Gregor Salto.ogg" type="audio/ogg"> 
+				<source src="Can't Stop Playing (Oliver Heldens & Gregor Salto Remix) - Dr Kucho! & Gregor Salto.mp3" type="audio/mpeg"> <!-- várias tags source devem ser aplicadas para o mesmo arquivo pois o navegador pode não conseguir ler um tipo x de arquivo, então tentará seguir para o próximo tipo / outros atributos são o AUTOPLAY e o LOOP-->
+			</audio>
+
+			<h4>Video</h4>
+			<video width="320" height="240" controls poster="images.png"> <!--a tag video deve possuir os atributos width e height para exibir a tela de video e o atributo controls para mostrar os controles / AUTOPLAY e LOOp também podem ser utilizados / poster serve para mostrar uma imagem enquanto o video não esta tocando-->
+				<source src="Funny Seal Playing Sax - George Michael's cover song..mp4" type="video/mp4">
+				<source src="Funny Seal Playing Sax - George Michael's cover song..mp4" type="video/ogg">
+			</video>
+
+</body>
+</html>

@@ -48,12 +48,10 @@ Header unset X-UA-Compatible
 </FilesMatch>
 </IfModule>
 
-#text.xyz -> https://www.test.xyz
-#RewriteEngine On
-#RewriteCond %{HTTPS} off [OR]
-#RewriteCond %{HTTP_HOST} !^www\.bolaodomauricio\.xyz$ [NC]
-#RewriteCond %{HTTP_HOST} !^test.bolaodomauricio.xyz$
-#RewriteRule ^(.*)$ https://www.bolaodomauricio.xyz/$1 [L,R=301]
+#text.xyz -> http://www.test.xyz
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !^www\.pessia\.xyz$ [NC]
+RewriteRule ^(.*)$ http://www.pessia.xyz/$1 [L,R=301]
 
 ErrorDocument 404 /404/
 
@@ -62,5 +60,5 @@ ErrorDocument 403 /403/
 Options -Indexes
 
 #block php unless from post
-#RewriteCond %{REQUEST_METHOD} !^POST$
-#RewriteRule ^assets/php/contact.php$ - [NC,R=403,L]
+RewriteCond %{REQUEST_METHOD} !^POST$
+RewriteRule ^assets/php/contact.php$ - [NC,R=403,L]

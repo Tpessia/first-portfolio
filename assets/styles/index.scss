@@ -40,6 +40,12 @@ body {
                             left: 0px;
                         }
                     }
+                    &.active.iswhite ~ .indicators {
+                        .indicator-item {
+                            -webkit-filter: invert(100%);
+                            filter: invert(100%);
+                        }
+                    }
                 }
             }
             div {
@@ -83,7 +89,6 @@ body {
                                     line-height: normal;
                                     font-size: 7vw;
                                     max-width: 95%;
-                                    transition: all 0.7s;
                                 }
                                 .hidden-content {
                                     font-size: 1rem;

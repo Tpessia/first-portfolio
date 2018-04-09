@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My SQL Test</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="/assets/img/subscription-icon.png" />
+    
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+    <form action="sql.php" method="post">
+        <input type="text" name="username" id="username" placeholder="UserName">
+        <input type="text" name="password" id="password" placeholder="PassWord">
+        <input type="button" id="btn" value="Create User">
+        <input type="submit" id="submit" value="Submit"> <!-- Sem submit o php roda duas vezes, e a segunda com valores nulos, por conta da action junto com o ajax -->
+        <input type="button"onclick="location.href='show.php';" id="show" value="Show DB">
+        <input type="button" id="trunc" value="Truncate">
+    </form>
+    
+    <div id="queryResult">
+        
+    </div>
+    
+    <script>
+        window.onbeforeunload = function() {
+          return true;
+        };
+        
+        $("#btn").on("click", function() {
+           var myData = {"username":$("#username").val(),"password":$("#password").val()}
+        
+            $.ajax({
+                url: "insert.php",
+                method: "POST",
+                data: myData,
+                success: function(response) {
+                    $("#queryResult").html(response);
+                },
+                error: function() {
+                    alert("error");
+                }
+            }) 
+        });
+        
+        $("#trunc").on("click", function() {
+            $.ajax({
+                url: "trunc.php",
+                success: function() {
+                    alert("Truncate Successful!")
+                },
+                error: function() {
+                    alert("error");
+                }
+            }) 
+        });
+    </script>
+</body>
+</html>

@@ -23,9 +23,9 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column; }
-  @media (min-width: 993px) {
+  @media (min-width: 1201px) {
     body {
-      margin-bottom: 66px; } }
+      padding-bottom: 66px; } }
   body #ldn {
     display: none; }
   body.loading {
@@ -42,6 +42,7 @@ body {
       background: white;
       top: 0; }
       body.loading #ldn img {
+        outline: 1px solid transparent;
         position: absolute;
         max-width: 50vw;
         top: 50%;
@@ -180,11 +181,15 @@ body {
     top: 15% !important;
     height: 35vh !important;
     max-height: 35vh; }
+    @media (max-width: 600px) {
+      body .modal.sm {
+        height: 55vh !important;
+        max-height: 55vh; } }
   body footer {
     background-color: #fff !important;
-    padding: 5px;
+    padding: 5px 10px 0 0;
     line-height: normal;
-    height: 50px;
+    height: 55px;
     box-sizing: content-box; }
     @media (min-width: 1201px) {
       body footer {
@@ -193,19 +198,17 @@ body {
         left: 0;
         right: 0;
         z-index: 5; } }
-    body footer span {
-      float: right; }
-      body footer span img {
+    body footer a {
+      float: right;
+      height: 44px;
+      width: 44px;
+      margin-top: 2px;
+      margin-left: 5px; }
+      body footer a img {
         box-sizing: border-box;
-        padding: 8%;
-        margin-top: 3px;
-        height: 44px;
-        transition: transform 0.4s ease-in-out; }
-        body footer span img[src*="email"] {
-          padding-top: 15%;
-          padding-right: 15%; }
-        body footer span img:hover {
-          transform: scale(1.08); }
+        padding: 18%;
+        height: inherit;
+        outline: 1px solid transparent; }
 
 @media (min-width: 993px) {
   body main {
@@ -240,6 +243,9 @@ body main #projetos {
         width: 200px;
         margin-top: -50px;
         left: 0px; }
+    body main #projetos .carousel .carousel-item.active.iswhite ~ .indicators .indicator-item {
+      -webkit-filter: invert(100%);
+      filter: invert(100%); }
   body main #projetos div h1 {
     letter-spacing: 15px;
     text-transform: uppercase;
@@ -274,8 +280,7 @@ body main #projetos {
         body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos .title {
           line-height: normal;
           font-size: 7vw;
-          max-width: 95%;
-          transition: all 0.7s; }
+          max-width: 95%; }
         body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos .hidden-content {
           font-size: 1rem;
           transition: all 0.7s;

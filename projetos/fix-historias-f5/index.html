@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+</head>
+<body>
+	<form>
+<span style="width: 50%; float: left;">
+    <input id="title" type="text" placeholder="ANO - Título Acontecimento (ALTs)">
+	<input id="input1" type="text" placeholder='<img src="/path/file.jpg" alt="file"> OU /path/file'>
+	<textarea id="text1" placeholder="<p>Texto</p>" rows="5"></textarea>
+	<input id="input2" type="text" placeholder='<img src="/path/file.jpg" alt="file"> OU /path/file'>
+	<input id="input3" type="text" placeholder='<img src="/path/file.jpg" alt="file"> OU /path/file'>
+	<input id="input4" type="text" placeholder='<img src="/path/file.jpg" alt="file"> OU /path/file'>
+	<input id="input5" type="text" placeholder='<img src="/path/file.jpg" alt="file"> OU /path/file'>
+	<input id="input6" type="text" placeholder='<img src="/path/file.jpg" alt="file"> OU /path/file'>
+	<input id="input7" type="text" placeholder='<img src="/path/file.jpg" alt="file"> OU /path/file'>
+	<input id="input8" type="text" placeholder='<img src="/path/file.jpg" alt="file"> OU /path/file'>
+</span>
+<span style="width: 50%; float: left;">
+	<textarea id="text2" rows="5" placeholder="Output">
+		
+	</textarea>
+	<input type="submit" onClick="return false" id="btn" value="Gerar HTML">
+</span>
+</form>
+<script type="text/javascript">
+
+	title = $("#title");
+
+	input = [$("#input1"),$("#input2"),$("#input3"),$("#input4"),$("#input5"),$("#input6"),$("#input7"),$("#input8")];
+
+	textarea = [$("#text1"),$("#text2")];
+
+	$("#btn").on("click", function() {
+		var i = 0;
+
+	    $("input:not(:nth-of-type(1)):not(:nth-of-type(2))").each(function() {
+	    	if($(this).val() != ""){i++;}
+	    }); //check for other images
+	
+		if((input[0].val() == "" && textarea[0].val() == "") || (i > 0 && title.val() == "" || (title.val() == "" && input[0].val() != ""))) {
+			alert("Valores inseridos diferentes do esperado!");
+			return;
+		} //validation
+
+	    var titulo = ' alt="' + title.val()+'">'; // alt attribute
+	    
+	    function formatImg(seletor) {
+
+	    		attrClean = ['title','alt'];
+
+	    		value = $(seletor).val();
+
+	    		attrClean.forEach(function(item) {
+	    			var regex = item + '="[^\"]*"';
+	    			regex = new RegExp(regex,"gi");
+	    			value = value.replace(regex, "");
+	    		});
+	    		
+	    		return value.replace('>',titulo).replace(/\s\s/gi," ").replace(/\s\s/gi," ");
+	    }
+
+	    var regex2 = new RegExp(/<img(.*?)>/);
+
+		if(i>0) { // has other images
+	
+			if(input[0].val().match(regex2)) { //check if path or tag
+	
+				var img = formatImg("#input1");
+	
+				string = '<div class="box">\n' + img + '\n</div>\n<div class="box">\n' + textarea[0].val() + '\n</div>'
+			}
+			else {
+				string = '<div class="box">\n' + '<img src="' + input[0].val() + '"' + titulo + '\n</div>\n<div class="box">\n' + textarea[0].val() + '\n</div>'
+			}
+
+			$("input:not(:nth-of-type(1)):not(:nth-of-type(2))").each(function() { // other imgs
+				
+				if($(this).val() != "") {
+						
+					if($(this).val().match(regex2)){ //check if path or tag
+					
+						var img = formatImg(this);
+					
+						string += '\n<div class="box">\n'+img+'\n</div>'
+					}
+					else {
+						string += '\n<div class="box">\n'+'<img src="' + $(this).val() + '"' + titulo +'\n</div>'
+					}
+				}
+			});
+		}
+		else { // hasn't other images
+			
+			if($(this).val().match(regex2)) { //check if path or tag
+				
+				var img = formatImg("#input1");
+		
+				string = '<div class="box box-fix">\n<div class="box-content">\n<div class="image ng-scope">\n' + img + '\n</div>\n<div class="text">\n'+textarea[0].val()+'\n</div>\n</div>\n</div>'
+			}
+			else {
+				string = '<div class="box box-fix">\n<div class="box-content">\n<div class="image ng-scope">\n'+'<img src="' + input[0].val() + '"' + titulo+'\n</div>\n<div class="text">\n'+textarea[0].val()+'\n</div>\n</div>\n</div>'
+			}
+		}
+		
+		string = string.replace(/\n<div class="box">\n\n<\/div>/gi, "").replace(/\n<div class="text">\n\n<\/div>/gi, ""); //clean empty box
+
+		textarea[1].html(string);
+	});
+	
+</script>
+<style type="text/css">
+	span:first-of-type * {
+		display: block;
+		margin-bottom: 15px;
+		min-width: 60%;
+		max-width: calc(100% - 8px);
+	}
+	#text2 {
+		min-width: 50%;
+		max-width: calc(100%);
+	}
+
+	#btn {
+		display: block;
+		width: calc(50% + 6px);
+	}
+</style>
+</body>
+</html>

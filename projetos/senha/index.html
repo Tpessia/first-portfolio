@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Senha</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png" />
+    
+    <!--<script>
+    window.onerror = function (msg, url, linenumber) {
+        alert('Error message: ' + msg + '\nURL: ' + url + '\nLine Number: ' + linenumber);
+        return true;
+    }
+    </script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <div id="wrapper">
+        <div><input type="number" id="numeric" placeholder="Numeric?" autocomplete="off"></div>
+        
+        <div><input type="password" id="login" placeholder="Login" autocomplete="off"></div>
+    
+        <div><input type="password" id="key" placeholder="Key" autocomplete="off"></div>
+    
+        <div><button onclick="login()">Login</button></div>
+        
+    	<div><p id="senha"></p></div>
+    </div>
+    
+    <div id="CPR"><small>Icon made from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a> is licensed by CC BY 3.0</small></div>
+
+    <script>
+        $("#wrapper").css("margin-top", (window.innerHeight / 2));
+        $("html").css("height", (window.innerHeight));
+        $("#CPR").css("margin-top", (window.innerHeight * 0.99));
+        window.onload = () => {
+        	$("div")[$("div").length - 1].remove();
+        }
+        
+        function login() {
+            var login = $("#login").val();
+            var key = $("#key").val();
+            var numeric = ($("#numeric").val() == "" || $("#numeric").val() < 0) ? "0" : $("#numeric").val();
+            
+            var postData = {"login": login, "key": key, "numeric": numeric};
+            
+            $.ajax({
+            	url: "senha.php",
+            	method: "POST",
+            	data: postData,
+            	success: function(data) {
+            		$("#senha").html(data);
+                }
+            });
+        }
+        $('#wrapper input#numeric').on('keydown', function(event) {
+            if(event.keyCode==13){
+               $('#wrapper input#login').focus();
+            }
+        });
+        $('#wrapper input#login').on('keydown', function(event) {
+            if(event.keyCode==13){
+               $('#wrapper input#key').focus();
+            }
+        });
+        $('#wrapper input#key').on('keydown', function(event) {
+            if(event.keyCode==13){
+               $('#wrapper button').trigger("click");
+            }
+        });
+    </script>
+    
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            box-sizing:  border-box;
+            margin:  0;
+            background-color: rgba(0,0,0,0.95);
+        }
+        #wrapper {
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        #wrapper div {
+            margin: 7px 5px;
+        }
+        #wrapper div input {
+            line-height: 2;
+        }
+        #wrapper div button {
+            line-height: 2;
+            width: 110px;
+        }
+        #wrapper div p {
+            color: rgba(255,255,255,0.2);
+        }
+        #CPR {
+            position:  absolute;
+            right: 1%;
+            transform: translateY(-100%);
+        }
+        #CPR small {
+            color: rgba(255,255,255,0.2);
+        }
+        #CPR small a {
+            color: rgba(255,255,255,0.2);
+        }
+    </style>
+</body>
+</html>

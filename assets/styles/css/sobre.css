@@ -23,9 +23,9 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column; }
-  @media (min-width: 993px) {
+  @media (min-width: 1201px) {
     body {
-      margin-bottom: 66px; } }
+      padding-bottom: 66px; } }
   body #ldn {
     display: none; }
   body.loading {
@@ -42,6 +42,7 @@ body {
       background: white;
       top: 0; }
       body.loading #ldn img {
+        outline: 1px solid transparent;
         position: absolute;
         max-width: 50vw;
         top: 50%;
@@ -180,11 +181,15 @@ body {
     top: 15% !important;
     height: 35vh !important;
     max-height: 35vh; }
+    @media (max-width: 600px) {
+      body .modal.sm {
+        height: 55vh !important;
+        max-height: 55vh; } }
   body footer {
     background-color: #fff !important;
-    padding: 5px;
+    padding: 5px 10px 0 0;
     line-height: normal;
-    height: 50px;
+    height: 55px;
     box-sizing: content-box; }
     @media (min-width: 1201px) {
       body footer {
@@ -193,19 +198,17 @@ body {
         left: 0;
         right: 0;
         z-index: 5; } }
-    body footer span {
-      float: right; }
-      body footer span img {
+    body footer a {
+      float: right;
+      height: 44px;
+      width: 44px;
+      margin-top: 2px;
+      margin-left: 5px; }
+      body footer a img {
         box-sizing: border-box;
-        padding: 8%;
-        margin-top: 3px;
-        height: 44px;
-        transition: transform 0.4s ease-in-out; }
-        body footer span img[src*="email"] {
-          padding-top: 15%;
-          padding-right: 15%; }
-        body footer span img:hover {
-          transform: scale(1.08); }
+        padding: 18%;
+        height: inherit;
+        outline: 1px solid transparent; }
 
 body #resumo {
   text-align: justify; }
@@ -239,6 +242,11 @@ body #cursos {
       transition: transform .7s; }
       body #cursos .card .card-reveal .card-title {
         pointer-events: none; }
+        body #cursos .card .card-reveal .card-title .certificate {
+          pointer-events: auto; }
+          body #cursos .card .card-reveal .card-title .certificate img {
+            width: 30px;
+            float: right; }
       body #cursos .card .card-reveal .tags {
         margin: 5px 0 0 -5px;
         max-height: 115px;
@@ -285,3 +293,12 @@ body #cursos {
       body #cursos .card .card-reveal.fromLeft {
         display: block;
         transform: translate(0, -100%); }
+@keyframes flash {
+  0% {
+    background-color: white; }
+  50% {
+    background-color: #c8c8c8; }
+  100% {
+    background-color: white; } }
+body footer.flash {
+  animation: flash 2.2s normal forwards; }

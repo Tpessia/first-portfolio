@@ -27,8 +27,8 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    @media (min-width: 993px) {
-        margin-bottom: 66px;
+    @media (min-width: 1201px) {
+        padding-bottom: 66px;
     }
 
     #ldn {
@@ -50,6 +50,7 @@ body {
             background: white;
             top: 0;
             img {
+                outline: 1px solid transparent;
                 position: absolute;
                 max-width: 50vw;
                 top: 50%;
@@ -238,6 +239,10 @@ body {
             top: 15% !important;
             height: 35vh !important;
             max-height: 35vh;
+            @media (max-width: 600px) {
+                height: 55vh !important;
+                max-height: 55vh;
+            }
         }
     }
 
@@ -250,24 +255,24 @@ body {
             z-index: 5;
         }
         background-color: $colorNav !important;
-        padding: 5px;
+        padding: 5px 10px 0 0;
         line-height: normal;
-        height: 50px;
+        height: 55px;
         box-sizing: content-box;
-        span {
+        a {
             float: right;
+            height: 44px;
+            width: 44px;
+            margin-top: 2px;
+            margin-left: 5px;
             img {
                 box-sizing: border-box;
-                padding: 8%;
-                margin-top: 3px;
-                height: 44px;
-                transition: transform 0.4s ease-in-out;
-                &[src*="email"] {
-                    padding-top: 15%;
-                    padding-right: 15%;
-                }
+                padding: 18%;
+                height: inherit;
+                outline: 1px solid transparent;
+                // transition: transform .3s ease-in-out;
                 &:hover {
-                    transform: scale(1.08);
+                    // transform: scale(1.08);
                 }
             }
         }

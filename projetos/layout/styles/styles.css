@@ -1,0 +1,161 @@
+* {
+	--navHeigth: 40px;
+	--menuHeight: 18px; /*height do .li1 > a.nav (menu da nav)*/
+}
+
+body, html {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(30, 30, 30);
+}
+
+nav {
+	position: fixed;
+	width: 100%;
+	background-color: rgba(30, 30, 30, 1);
+	height: var(--navHeigth); /*----ABSOLUTA, PODE CAUSAR PROBELMAS COM MODIFICAÇÕES*/
+	z-index: 100;
+}
+
+#headerDiv {
+	width: 100%;
+	height: var(--navHeigth);
+}
+
+#navLogo, form {
+	height: 100%;
+	float: left;
+}
+
+.navDiv {
+	text-align: center;
+	width: 100%;
+	height: 100%;
+
+} 
+
+#ul1 {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	margin-top: calc((var(--navHeigth) / 2) - (var(--menuHeight) / 2)); /*9px = */
+}
+
+.li1 {
+	vertical-align: middle;
+	display: inline-block;
+	text-align: center;
+	width: calc((100% / 3) - (var(--navHeigth) / 3)); /*----logo widht / 3, só funciona pra logo quadrado (width = height)*/
+	box-sizing: border-box;
+	float: left;
+	/*margin-bottom: 15px; /*Pode causar problemas com fixed height absoluta*/
+}
+
+.li1 > a.nav {
+	margin-bottom: calc((var(--navHeigth) / 2) - (var(--menuHeight) / 2));
+	height: var(--menuHeight);
+}
+
+a.nav {
+	color: white;
+	display: inline-block;
+	width: 100%;
+	text-decoration: none;
+}
+
+
+
+.ul2 {
+	padding: 0;
+	list-style-type: none;
+	display: none;
+	/*opacity: 0; efeito da transaction, precisa trocar os displays por opacitys*/
+}
+
+.li2 {
+	/*margin-top: 2px; /*equals .li1 margin bottom quando position fixed height
+	é absoluta*/
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+/*.li2:first-child {
+	margin-top: 11.5px;
+}*/
+
+#li1a:hover #ul2a, #li1b:hover #ul2b, #li1c:hover #ul2c {
+	display: block;
+	background-color: rgba(80, 80, 80, 1);
+	opacity: 1;
+	/*transition: opacity 5s; efeito da transaction, precisa trocar os displays por opacitys*/
+}
+
+#topVideoPai {
+	position: relative;
+}
+
+#topVideoFilho {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+#videoCoffee {
+	width: 100%;
+	height: auto;
+}
+
+#logoImg {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 400px;
+	width: 50%;
+}
+
+main {
+	margin-top: -4.19px;
+	position: relative;
+	background-image: url('leafs.jpg');
+	width: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-sizing: border-box; 
+}
+
+#blackCover {
+	position: absolute;
+	background-color: rgba(30, 30 ,30 , 0.4);
+	width: 100%;
+	height: 100%;
+	min-width: 
+}
+
+#section1 {
+	width: 100%;
+	padding: 5px 20px 5px 20px;
+	box-sizing: border-box;
+}
+
+#section2 {
+	background-color: rgba(255, 255, 255, 0.8);
+	border-style: ridge;
+	border-color: black;
+	border-radius: 5px;
+        min-height: 500px;
+}
+
+footer {
+	width: 100%;
+}
+
+.footerSection {
+	background-color: rgba(10, 10, 10, 1);
+	width: calc(100% / 1);
+	display: inline-block;
+	float: left;
+	color: white;
+}

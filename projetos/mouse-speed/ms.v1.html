@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Speed Check</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    Speed:&nbsp;<span id="speed">0.00</span>&nbsp;m/s
+    <script>
+        mouseSpeed("time");
+
+        function mouseSpeed(version) { //version "move" or "time"
+            if (typeof mousespeed === "undefined") {
+                mousespeed = {x0: null, y0: null, t0: null, x: null, y: null, t: null, dD: null, dT: null, speed: null, higher: null, tempX: null, tempY: null, intervalTime: null, interval: null};
+            }
+
+            if (version == "move") {
+                //on mouse move
+
+                mousespeed.t0 = new Date();
+                $(document).mousemove(function (e) {
+                    mousespeed.t = new Date();
+                    mousespeed.x = e.pageX;
+                    mousespeed.y = e.pageY;
+
+                    mousespeed.dD = Math.sqrt( Math.pow(mousespeed.y - mousespeed.y0, 2) + Math.pow(mousespeed.x - mousespeed.x0, 2) ); //em pixels
+                    mousespeed.dD = mousespeed.dD / 3779.527559055; //em metros
+                    mousespeed.dT = (mousespeed.t.getTime() - mousespeed.t0.getTime()) / 1000; //em segundos
+                    mousespeed.speed = (mousespeed.dD / mousespeed.dT).toFixed(2);;
+
+                    mousespeed.t0 = mousespeed.t;
+                    mousespeed.x0 = mousespeed.x;
+                    mousespeed.y0 = mousespeed.y;
+
+                    $("#speed").html(mousespeed.speed);
+
+                    $("body").css("background-color", "rgba(255, 0, 0, " + mousespeed.speed / 5 + ")");
+                    console.log(mousespeed.speed)
+
+                    if (mousespeed.speed > mousespeed.higher) {
+                        mousespeed.higher = mousespeed.speed;
+                    }
+                });
+            }
+            else if (version == "time") {
+                //Tempo Definido (mousespeed.intervalTime)
+
+                mousespeed.tempX = 0;
+                mousespeed.tempY = 0;
+                $(document).mousemove(function (e) {
+                    mousespeed.tempX = e.pageX;
+                    mousespeed.tempY = e.pageY;
+                });
+
+                mousespeed.intervalTime = 50;
+                mousespeed.interval = setInterval(function () {
+                    mousespeed.x = mousespeed.tempX;
+                    mousespeed.y = mousespeed.tempY;
+
+                    mousespeed.dD = Math.sqrt(Math.pow(mousespeed.y - mousespeed.y0, 2) + Math.pow(mousespeed.x - mousespeed.x0, 2)); //em pixels
+                    mousespeed.dD = mousespeed.dD / 3779.527559055; //em metros
+                    mousespeed.speed = (mousespeed.dD / (mousespeed.intervalTime / 1000)).toFixed(2);
+
+                    mousespeed.x0 = mousespeed.x;
+                    mousespeed.y0 = mousespeed.y;
+
+                    $("#speed").html(mousespeed.speed);
+
+                    $("body").css("background-color", "rgba(255, 0, 0, " + mousespeed.speed / 5 + ")");
+
+                    if (mousespeed.speed > mousespeed.higher) {
+                        mousespeed.higher = mousespeed.speed;
+                    }
+                }, mousespeed.intervalTime);
+            }
+            else {
+                throw 'Error! Incorrect unknown version "' + version + '", should be "move" or "type"';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Rastreamento Correios</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <form action="">
+        <input id="idCompra" type="text" placeholder="ID da compra">
+        <input id="btn" type="button" value="Verificar" onclick="rastreamentoCorreios($('#idCompra').val());">
+    </form>
+
+    <p>
+        Data: <span id="data"></span>
+        <br>
+        Hora: <span id="hora"></span>
+        <br>
+        Localidade: <span id="localidade"></span>
+        <br>
+        Status: <span id="status"></span>
+    </p>
+
+    <script>
+        var loading = {
+            start: function () {
+                $("#btn").val("Carregando.").css("pointer-events", "none");
+                loadingInterval = setInterval(() => {
+                    (typeof loadN === "undefined" || loadN > 2) ? loadN = 0 : loadN++;
+                    $("#btn").val("Carregando" + ".".repeat(loadN));
+                }, 500);
+            },
+            stop: function () {
+                clearInterval(loadingInterval);
+                $("#btn").val("Verificar").css("pointer-events", "auto");;
+            }
+        };
+
+        function getURLParameter(name) {
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        }
+
+        var urlPar = getURLParameter("id")
+        if (urlPar != null) {
+            rastreamentoCorreios(urlPar);
+            $("#idCompra").val(urlPar);
+            // $("body").html("");
+        }
+
+        function rastreamentoCorreios(id) {
+            $.ajaxSetup({
+                scriptCharset: "utf-8",
+                contentType: "application/json; charset=utf-8"
+            });
+
+            console.log("Iniciando busca...");
+            loading.start();
+
+            $.getJSON('http://whateverorigin.org/get?url=' + 
+                encodeURIComponent("http://www.websro.com.br/correios.php?P_COD_UNI=" + id) + '&callback=?',
+                function (dt) {
+                    dado = dt.contents;
+                    if (dt.contents.match("Objeto não encontrado na base de dados dos Correios.")) {
+                        alert("ID inserido é inválido!")
+                        loading.stop();
+                        return;
+                    }
+
+                    try {
+                        var el = $('<div></div>');
+                        el.html(dt.contents);
+
+                        correios = {};
+
+                        correios.data = $('table table tbody tr:first-of-type td:first-of-type', el).html().split(" ")[0];
+                        console.log(correios.data);
+                        correios.hora = $('table table tbody tr:first-of-type td:first-of-type', el).html().split(" ")[1];
+                        console.log(correios.hora);
+                        correios.status = $('table table tbody tr:first-of-type td:nth-of-type(2) strong', el).html();
+                        console.log(correios.status);
+                        correios.localidade = $('table table tbody tr:nth-of-type(2) td', el).html().split("Local: ")[1];
+                        console.log(correios.localidade);
+                        console.log("Informações obtidas com sucesso!");
+                    } catch (error) {
+                        alert("Houve um erro no processo, verifique se o ID está correto!");
+                        loading.stop();
+                    }                    
+
+                    $("#data").html(correios.data);
+                    $("#hora").html(correios.hora);
+                    $("#localidade").html(correios.localidade);
+                    $("#status").html(correios.status);
+
+                    loading.stop();
+
+                    // if (getURLParameter("id") != null) {
+                    //     $("body").html(JSON.stringify({ data: correios.data, hora: correios.hora, localidade: correios.localidade, status: correios.status }));
+                    // }
+                }
+            );
+        }
+    </script>
+</body>
+</html>
