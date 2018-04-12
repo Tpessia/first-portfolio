@@ -97,7 +97,8 @@ body {
           background: transparent;
           line-height: 50px;
           padding-top: 6px;
-          margin-bottom: 6px; }
+          margin-bottom: 6px;
+          transition: all 0.2s ease-in-out; }
           body header nav .nav-wrapper > ul li a:hover {
             transition: all 0.5s ease-in-out;
             color: #000;
@@ -247,7 +248,7 @@ body main #projetos {
       -webkit-filter: invert(100%);
       filter: invert(100%); }
   body main #projetos div h1 {
-    letter-spacing: 15px;
+    letter-spacing: 1.5vw;
     text-transform: uppercase;
     font-size: 8rem; }
   body main #projetos div.hide-on-large-only h1 {
