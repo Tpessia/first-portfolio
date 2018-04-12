@@ -314,6 +314,14 @@ body {
         #cursos,
         #habilidades {
             overflow-x: hidden;
+            .title-link {
+                color: rgba(0, 0, 0, 0.87);
+                cursor: default;
+                * {
+                    color: rgba(0, 0, 0, 0.87);
+                    cursor: default;
+                }
+            }
         }
     }
 }

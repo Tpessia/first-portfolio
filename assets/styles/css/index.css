@@ -446,3 +446,13 @@ body main #projetos,
 body main #cursos,
 body main #habilidades {
   overflow-x: hidden; }
+  body main #projetos .title-link,
+  body main #cursos .title-link,
+  body main #habilidades .title-link {
+    color: rgba(0, 0, 0, 0.87);
+    cursor: default; }
+    body main #projetos .title-link *,
+    body main #cursos .title-link *,
+    body main #habilidades .title-link * {
+      color: rgba(0, 0, 0, 0.87);
+      cursor: default; }
