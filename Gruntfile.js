@@ -71,6 +71,14 @@ module.exports = function (grunt) {
             }
         },
 
+        sitemap: {
+            dist: {
+                pattern: ['Views/*.html', '!Views/403.html'],
+                siteRoot: './',
+                homepage: "http://www.pessia.xyz"
+            }
+        },
+
         watch: {
             sass: {
                 files: 'assets/styles/*.scss',
@@ -80,6 +88,11 @@ module.exports = function (grunt) {
             html: {
                 files: ['Views/{,*/}*.html'],
                 tasks: ['includereplace']
+            },
+
+            sitemap: {
+                files: ['Views/{,*/}*.html'],
+                tasks: ['sitemap']
             }
         },
     });
@@ -89,10 +102,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-include-replace');
+    grunt.loadNpmTasks('grunt-sitemap');
 
     // Default task(s).
     grunt.registerTask('default', ['encapsulator']);
 
-    grunt.registerTask('encapsulator', ['sass', 'cssmin', 'connect', 'includereplace', 'watch']);
+    grunt.registerTask('encapsulator', ['sass', 'cssmin', 'connect', 'includereplace', 'sitemap', 'watch']);
 
 };
