@@ -3,25 +3,25 @@
   <url>
     <loc>http://www.pessia.xyz/Views/contato.html</loc>
     <lastmod>2018-04-12T17:11:51.721Z</lastmod>
-    <changefreq>daily</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://www.pessia.xyz/Views/</loc>
     <lastmod>2018-04-12T17:00:48.123Z</lastmod>
-    <changefreq>daily</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://www.pessia.xyz/Views/projetos.html</loc>
     <lastmod>2018-04-12T17:35:56.339Z</lastmod>
-    <changefreq>daily</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://www.pessia.xyz/Views/sobre.html</loc>
     <lastmod>2018-04-02T19:22:43.753Z</lastmod>
-    <changefreq>daily</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 </urlset>
