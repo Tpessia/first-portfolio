@@ -28,5 +28,15 @@
         "iswhite": "",
         "url": "https://www.bolaodomauricio.xyz/?login=0005",
         "fallback_url": "/assets/img/projetos/bolao_fallback.png"
+    },
+    "Promoção Nesfit Smart Fit": 
+    { 
+        "name": "Promoção Nesfit Smart Fit",
+        "id": "3", 
+        "description": "Promoção da empresa Nestlé® em parceria com a Smart Fit. Neste projeto fui responsável pela alteração de páginas como \"Regulamento\", \"Perguntas Frequentes\", \"Fale Conosco\", etc, e de Emails Marketing.",
+        "img": "/assets/img/projetos/nesfit-smartfit.png",
+        "iswhite": "",
+        "url": "https://www.promonestle.com.br/nesfitsmartfit",
+        "fallback_url": "/assets/img/projetos/nesfit-smartfit-fallback.png"
     }
 }
