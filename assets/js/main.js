@@ -295,6 +295,7 @@ function checkLinksProjetos(elems, linkLabel) {
         var $link = $(this).find(linkLabel);
         $.ajax({
             url: $link.attr("href"),
+            type: 'HEAD',
             error: function () {
                 if ($link.attr("fallback-url") != "" && typeof $link.attr("fallback-url") != "undefined") {
                     $.ajax({
