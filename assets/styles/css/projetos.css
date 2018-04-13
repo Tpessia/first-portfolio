@@ -263,6 +263,10 @@ body main {
             padding: 20px;
             font-weight: 400;
             opacity: 0; }
+            body main .row .col .bg-projetos .content-projetos .visitar.disabled {
+              color: #039be542;
+              cursor: default !important;
+              pointer-events: none; }
           @media (max-width: 992px) {
             body main .row .col .bg-projetos .content-projetos {
               border-radius: 50%;
@@ -273,7 +277,7 @@ body main {
               bottom: auto;
               top: 50%;
               left: 50%;
-              transform: translate(-50%, -50.4%); }
+              transform: translate(-50%, -50.2%); }
               body main .row .col .bg-projetos .content-projetos:not(.mobileAnim) .title {
                 display: flex;
                 justify-content: center;

@@ -290,6 +290,31 @@ function JsonToAutocomplete(contents) {
     return autocomplete.names;
 }
 
+function checkLinksProjetos(elems, linkLabel) {
+    $(elems).each(function () {
+        var $link = $(this).find(linkLabel);
+        $.ajax({
+            url: $link.attr("href"),
+            error: function () {
+                if ($link.attr("fallback-url") != "" && typeof $link.attr("fallback-url") != "undefined") {
+                    $.ajax({
+                        url: $link.attr("fallback-url"),
+                        success: function() {
+                            $link.attr("href", $link.attr("fallback-url"));
+                        },
+                        error: function () {
+                            $link.addClass("disabled");
+                        }
+                    });
+                }
+                else {
+                    $link.addClass("disabled");
+                }
+            }
+        });
+    });
+}
+
 function smartHover(elem) {
     var nodes = document.querySelectorAll(elem),
         _nodes = [].slice.call(nodes, 0);

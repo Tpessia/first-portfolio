@@ -3,6 +3,8 @@ $(function () {
         createContent();
 
         clickHandlers();
+
+        checkLinksProjetos("main .col", ".visitar");
     });
 
     $.ajax({
@@ -34,7 +36,7 @@ function createContent() {
     gridProjetos();
 
     function gridProjetos() {
-        var projetosGrid = '<div class="col s12 m6"><div id="%%ID%%" class="bg-projetos" style="background-image: url(%%IMG%%)"><div class="content-projetos"><div class="title">%%NAME%%</div><div class="hidden-content">%%DESCRIPTION%%</div><a href="%%URL%%" target="_blank" class="visitar">Visitar</a><span class="close hide">x</span></div></div></div>';
+        var projetosGrid = '<div class="col s12 m6"><div id="%%ID%%" class="bg-projetos" style="background-image: url(%%IMG%%)"><div class="content-projetos"><div class="title">%%NAME%%</div><div class="hidden-content">%%DESCRIPTION%%</div><a href="%%URL%%" target="_blank" class="visitar" fallback-url="%%FALLBACK_URL%%">Visitar</a><span class="close hide">x</span></div></div></div>';
 
         var projetosGridT = new TemplateManager(projetosGrid);
 
