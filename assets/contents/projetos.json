@@ -23,7 +23,7 @@
     { 
         "name": "Bolão Russia",
         "id": "3", 
-        "description": "Web App de bolões para a Copa do Mundo de 2018. Desenvolvido como PWA (Powerful Web App) e Offline First", 
+        "description": "Web App de bolões para a Copa do Mundo de 2018. Desenvolvido como PWA (Powerful Web App) e Offline First.", 
         "img": "/assets/img/projetos/bolao.jpg",
         "iswhite": "",
         "url": "https://www.bolaodomauricio.xyz/?login=0005",
