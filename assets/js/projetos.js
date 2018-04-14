@@ -4,7 +4,7 @@ $(function () {
 
         clickHandlers();
 
-        checkLinksProjetos("main .col", ".visitar");
+        // checkLinksProjetos("main .col", ".visitar");
     });
 
     $.ajax({

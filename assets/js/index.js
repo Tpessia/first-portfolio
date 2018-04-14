@@ -8,7 +8,7 @@ $(function() {
 
         clickHandlers();
 
-        checkLinksProjetos("#projetos .hide-on-med-and-up .col", ".visitar");
+        // checkLinksProjetos("#projetos .hide-on-med-and-up .col", ".visitar");
     });
 
     $.ajax({
