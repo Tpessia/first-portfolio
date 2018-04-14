@@ -241,7 +241,8 @@ body main {
           background-color: rgba(10, 10, 10, 0.85);
           width: 100%;
           color: #fff;
-          font-weight: 200; }
+          font-weight: 200;
+          overflow: hidden; }
           body main .row .col .bg-projetos .content-projetos .title {
             line-height: normal;
             font-size: 7vw;
@@ -277,7 +278,7 @@ body main {
               bottom: auto;
               top: 50%;
               left: 50%;
-              transform: translate(-50%, -50.2%); }
+              transform: translate(-50%, -50.1%); }
               body main .row .col .bg-projetos .content-projetos:not(.mobileAnim) .title {
                 display: flex;
                 justify-content: center;
@@ -286,9 +287,12 @@ body main {
                 top: 50%;
                 transform: translateY(-50%);
                 width: calc(100% - 40px); }
+              body main .row .col .bg-projetos .content-projetos:not(.mobileAnim) .hidden-content {
+                transition: opacity 0s; }
               body main .row .col .bg-projetos .content-projetos:not(.mobileAnim) .visitar {
                 pointer-events: none;
-                cursor: default; }
+                cursor: default;
+                transition: opacity 0s; }
               body main .row .col .bg-projetos .content-projetos.mobileAnim {
                 width: 100%;
                 height: inherit;

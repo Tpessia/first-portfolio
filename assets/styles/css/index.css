@@ -277,7 +277,8 @@ body main #projetos {
         bottom: auto;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -49.8%); }
+        transform: translate(-50%, -49.8%);
+        overflow: hidden; }
         body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos .title {
           line-height: normal;
           font-size: 7vw;
@@ -308,9 +309,12 @@ body main #projetos {
           top: 50%;
           transform: translateY(-50%);
           width: calc(100% - 40px); }
+        body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos:not(.mobileAnim) .hidden-content {
+          transition: opacity 0s; }
         body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos:not(.mobileAnim) .visitar {
           pointer-events: none;
-          cursor: default; }
+          cursor: default;
+          transition: opacity 0s; }
         body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos.mobileAnim {
           width: 100%;
           height: inherit;

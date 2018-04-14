@@ -14,80 +14,7 @@ var isIE9OrBelow = function () {
     return /MSIE\s/.test(navigator.userAgent) && parseFloat(navigator.appVersion.split("MSIE")[1]) < 10;
 }
 
-// class TemplateManager {
-//     constructor(template) {
-//         this.template = template;
-//     }
-
-//     generateContent(content) {
-//         var finalContent = this.template;
-//         for (var text in content) {
-//             if (Array.isArray(content[text])) {
-
-//                 var regex = new RegExp("##", "g");
-
-//                 var i1 = regex.exec(finalContent).index;
-//                 var i2 = regex.exec(finalContent).index + 2;
-
-//                 var match = finalContent.substring(i1, i2); //##<div>%TESTE%</div>##
-
-//                 var trimmedMatch = match.substring(2, match.length - 2); //<div>%TESTE%</div>
-
-//                 var partialContent = "";
-
-//                 for (var i in content[text]) {
-//                     var regex = new RegExp("%%" + text + "%%", "gi");
-//                     partialContent += trimmedMatch.replace(regex, content[text][i]);
-//                 }
-
-//                 finalContent = finalContent.replace(match, partialContent);
-//             } else {
-//                 var regex = new RegExp("%%" + text + "%%", "gi");
-//                 finalContent = finalContent.replace(regex, content[text]);
-//             }
-//         }
-//         return finalContent;
-//     }
-
-//     JsonToContent(json, maxIteration, revert) {
-//         var contents = [],
-//             count = 0;
-
-//         if (typeof revert === "undefined" || revert == null) {
-//             revert = false;
-//         }
-
-//         if (revert) {
-//             for (var i = Object.keys(json).length - 1; i >= 0; i--) {
-//                 if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
-//                     break;
-//                 }
-
-//                 var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
-//                 var template = new TemplateManager(this.template);
-
-//                 contents.push(template.generateContent(content));
-
-//                 count++;
-//             }
-//         } else {
-//             for (var i = 0; i < Object.keys(json).length; i++) {
-//                 if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
-//                     break;
-//                 }
-
-//                 var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
-//                 var template = new TemplateManager(this.template);
-
-//                 contents.push(template.generateContent(content));
-
-//                 count++;
-//             }
-//         }
-
-//         return contents;
-//     }
-// }
+//Template Manager
 
 function TemplateManager(template) {
     this.template = template;
@@ -164,6 +91,8 @@ TemplateManager.prototype.JsonToContent = function (json, maxIteration, revert) 
     return contents;
 }
 
+//LOADING
+
 function main_loading() {
     $ldn = $("#ldn");
     $ldnLogo = $ldn.children("img");
@@ -197,6 +126,8 @@ function main_loading() {
     }
 }
 
+//INITIALIZERS
+
 function main_initializers() {
     $('.collapsible').collapsible();
     $(".button-collapse").sideNav({ closeOnClick: true });
@@ -228,6 +159,8 @@ function main_initializers() {
         );
     });
 }
+
+//ANIMATIONS
 
 function main_bindAnimations() {
     if (location.hash) {
@@ -261,6 +194,8 @@ function main_bindAnimations() {
         });
     });
 }
+
+//EVENTS
 
 function main_clickHandlers() {
     $("#searchVal").on("search", function () {
@@ -448,3 +383,198 @@ function smartHover(elem) {
         }
     });
 }
+
+// function smartHover(elem) {
+//     var pageX,
+//         pageY;
+
+//     $(elem).each(function () {
+//         var $elem = $(this),
+//             posicao = getOffsets($elem);
+
+//         $elem.on("mouseenter", function () {
+//             var $this = $(this);
+//             var dirIn;
+
+//             if (pageX < posicao.left) {
+//                 dirIn = "left";
+//             }
+//             else if (pageX > posicao.right) {
+//                 dirIn = "right";
+//             }
+//             else if (pageY < posicao.top) {
+//                 dirIn = "top";
+//             }
+//             else if (pageY > posicao.bottom) {
+//                 dirIn = "bottom";
+//             }
+
+//             $this.removeClass(function (index, className) {
+//                 return (className.match(/(^|\s)in-\S+/g) || []).join(' ');
+//             }).addClass("in-" + dirIn);
+
+//             $this.trigger('hover-in');
+//         });
+
+//         $elem.on("mouseleave", function () {
+//             var $this = $(this);
+//             var dirOut;
+
+//             setTimeout(function () {
+//                 if (pageX < posicao.left) {
+//                     dirOut = "left";
+//                 }
+//                 else if (pageX > posicao.right) {
+//                     dirOut = "right";
+//                 }
+//                 else if (pageY < posicao.top) {
+//                     dirOut = "top";
+//                 }
+//                 else if (pageY > posicao.bottom) {
+//                     dirOut = "bottom";
+//                 }
+
+//                 $this.removeClass(function (index, className) {
+//                     return (className.match(/(^|\s)out-\S+/g) || []).join(' ');
+//                 }).addClass("out-" + dirOut);
+
+//                 $this.trigger('hover-out');
+//             }, 10);
+//         });
+
+//         $elem.on("hover-in", function () {
+//             var position = $(this).attr("class").split(" ").filter(val => val.match("in-"))[0].split("in-")[1];
+//             position = position[0].toUpperCase() + position.substr(1);
+
+//             var $cardReveal = $(this).find(".card-reveal");
+
+//             $cardReveal.addClass("pre" + position);
+//             setTimeout(function () {
+//                 $cardReveal.addClass("from" + position);
+//                 $elem.removeClass(function (index, className) {
+//                     return (className.match(/(^|\s)in-\S+/g) || []).join(' ');
+//                 });
+//             }, 10);
+//         });
+
+//         $elem.on("hover-out", function () {
+//             var position = $(this).attr("class").split(" ").filter(val => val.match("out-"))[0].split("out-")[1];
+//             position = position[0].toUpperCase() + position.substr(1);
+
+//             var $cardReveal = $(this).find(".card-reveal");
+
+//             $cardReveal.removeClass(function (index, className) {
+//                 return (className.match(/(^|\s)pre\S+/g) || []).join(' ');
+//             }).addClass("pre" + position);
+
+//             $cardReveal.removeClass(function (index, className) {
+//                 return (className.match(/(^|\s)from\S+/g) || []).join(' ');
+//             });
+//             $cardReveal.one("transitionend", function () {
+//                 $cardReveal.removeClass(function (index, className) {
+//                     return (className.match(/(^|\s)pre\S+/g) || []).join(' ');
+//                 });
+//                 $elem.removeClass(function (index, className) {
+//                     return (className.match(/(^|\s)out-\S+/g) || []).join(' ');
+//                 });
+//             });
+//         });
+//     });
+
+//     $(document).mousemove(function (e) {
+//         pageX = e.pageX;
+//         pageY = e.pageY;
+//     });
+
+//     function getOffsets(elem) {
+//         var offset = elem.offset();
+
+//         offsets = {};
+
+//         offsets.top = offset.top;
+//         offsets.left = offset.left;
+
+//         offsets.bottom = offsets.top + elem.outerHeight();
+//         offsets.right = offsets.left + elem.outerWidth();
+
+//         return offsets;
+//     }
+// }
+
+
+
+
+// class TemplateManager {
+//     constructor(template) {
+//         this.template = template;
+//     }
+
+//     generateContent(content) {
+//         var finalContent = this.template;
+//         for (var text in content) {
+//             if (Array.isArray(content[text])) {
+
+//                 var regex = new RegExp("##", "g");
+
+//                 var i1 = regex.exec(finalContent).index;
+//                 var i2 = regex.exec(finalContent).index + 2;
+
+//                 var match = finalContent.substring(i1, i2); //##<div>%TESTE%</div>##
+
+//                 var trimmedMatch = match.substring(2, match.length - 2); //<div>%TESTE%</div>
+
+//                 var partialContent = "";
+
+//                 for (var i in content[text]) {
+//                     var regex = new RegExp("%%" + text + "%%", "gi");
+//                     partialContent += trimmedMatch.replace(regex, content[text][i]);
+//                 }
+
+//                 finalContent = finalContent.replace(match, partialContent);
+//             } else {
+//                 var regex = new RegExp("%%" + text + "%%", "gi");
+//                 finalContent = finalContent.replace(regex, content[text]);
+//             }
+//         }
+//         return finalContent;
+//     }
+
+//     JsonToContent(json, maxIteration, revert) {
+//         var contents = [],
+//             count = 0;
+
+//         if (typeof revert === "undefined" || revert == null) {
+//             revert = false;
+//         }
+
+//         if (revert) {
+//             for (var i = Object.keys(json).length - 1; i >= 0; i--) {
+//                 if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
+//                     break;
+//                 }
+
+//                 var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
+//                 var template = new TemplateManager(this.template);
+
+//                 contents.push(template.generateContent(content));
+
+//                 count++;
+//             }
+//         } else {
+//             for (var i = 0; i < Object.keys(json).length; i++) {
+//                 if ((typeof maxIteration != "undefined" && maxIteration != null) && count >= maxIteration) {
+//                     break;
+//                 }
+
+//                 var content = json[Object.keys(json)[i]]; //e.g. "Projetos 1": {}
+//                 var template = new TemplateManager(this.template);
+
+//                 contents.push(template.generateContent(content));
+
+//                 count++;
+//             }
+//         }
+
+//         return contents;
+//     }
+// }

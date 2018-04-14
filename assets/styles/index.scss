@@ -85,6 +85,7 @@ body {
                                 top: 50%;
                                 left: 50%;
                                 transform: translate(-50%, -49.8%);
+                                overflow: hidden;
                                 .title {
                                     line-height: normal;
                                     font-size: 7vw;
@@ -121,9 +122,13 @@ body {
                                         transform: translateY(-50%);
                                         width: calc(100% - 40px);
                                     }
+                                    .hidden-content {
+                                        transition: opacity 0s;
+                                    }
                                     .visitar {
                                         pointer-events: none;
                                         cursor: default;
+                                        transition: opacity 0s;
                                     }
                                 }
                                 &.mobileAnim {
