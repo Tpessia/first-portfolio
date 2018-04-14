@@ -211,8 +211,6 @@ body {
         height: inherit;
         outline: 1px solid transparent; }
 
-body .nav-content {
-  display: none; }
 body main {
   background-repeat: no-repeat;
   background-position: center; }
@@ -224,5 +222,10 @@ body main {
     text-align: center;
     font-size: 1.2em;
     margin-top: 5vh; }
+  @media (max-width: 600px) {
+    body main {
+      background-size: 75%; }
+      body main h1 {
+        margin-top: 35vh; } }
 body footer {
   margin-top: 0px !important; }

@@ -135,29 +135,31 @@ function main_initializers() {
         $('.modal').modal();
     });
     
-    $('#searchVal').autocomplete({
-        data: JsonToAutocomplete([projetos, cursos]),
-        limit: 3, // The max amount of results that can be shown at once. Default: Infinity.
-        onAutocomplete: function (val) {
-            // Callback function when value is autcompleted.
-            var projeto = projetos[val];
-            var curso = cursos[val];
+    if (!$(".nav-content").hasClass("hide")) {
+        $('#searchVal').autocomplete({
+            data: JsonToAutocomplete([projetos, cursos]),
+            limit: 3, // The max amount of results that can be shown at once. Default: Infinity.
+            onAutocomplete: function (val) {
+                // Callback function when value is autcompleted.
+                var projeto = projetos[val];
+                var curso = cursos[val];
 
-            var destination = jQuery.isEmptyObject(projeto) ? "/sobre/#" + curso.id : "/projetos/#" + projeto.id;
+                var destination = jQuery.isEmptyObject(projeto) ? "/sobre/#" + curso.id : "/projetos/#" + projeto.id;
 
-            window.location.replace(destination);
-        },
-        minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-    }).on("focus", function () {
-        var p = Object.keys(projetos);
-        var c = Object.keys(cursos);
-        $(".autocomplete-content").html(
-            '<small style="display: block; padding-top: 5px; padding-left: 16px; color: rgba(0, 0, 0, 0.5);">Sugestões</small>' +
-            "<li><span>" + p.pop() + "</span></li>" +
-            "<li><span>" + c.pop() + "</span></li>" +
-            "<li><span>" + p.pop() + "</span></li>"
-        );
-    });
+                window.location.replace(destination);
+            },
+            minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+        }).on("focus", function () {
+            var p = Object.keys(projetos);
+            var c = Object.keys(cursos);
+            $(".autocomplete-content").html(
+                '<small style="display: block; padding-top: 5px; padding-left: 16px; color: rgba(0, 0, 0, 0.5);">Sugestões</small>' +
+                "<li><span>" + p.pop() + "</span></li>" +
+                "<li><span>" + c.pop() + "</span></li>" +
+                "<li><span>" + p.pop() + "</span></li>"
+            );
+        });
+    }
 }
 
 //ANIMATIONS
@@ -383,126 +385,6 @@ function smartHover(elem) {
         }
     });
 }
-
-// function smartHover(elem) {
-//     var pageX,
-//         pageY;
-
-//     $(elem).each(function () {
-//         var $elem = $(this),
-//             posicao = getOffsets($elem);
-
-//         $elem.on("mouseenter", function () {
-//             var $this = $(this);
-//             var dirIn;
-
-//             if (pageX < posicao.left) {
-//                 dirIn = "left";
-//             }
-//             else if (pageX > posicao.right) {
-//                 dirIn = "right";
-//             }
-//             else if (pageY < posicao.top) {
-//                 dirIn = "top";
-//             }
-//             else if (pageY > posicao.bottom) {
-//                 dirIn = "bottom";
-//             }
-
-//             $this.removeClass(function (index, className) {
-//                 return (className.match(/(^|\s)in-\S+/g) || []).join(' ');
-//             }).addClass("in-" + dirIn);
-
-//             $this.trigger('hover-in');
-//         });
-
-//         $elem.on("mouseleave", function () {
-//             var $this = $(this);
-//             var dirOut;
-
-//             setTimeout(function () {
-//                 if (pageX < posicao.left) {
-//                     dirOut = "left";
-//                 }
-//                 else if (pageX > posicao.right) {
-//                     dirOut = "right";
-//                 }
-//                 else if (pageY < posicao.top) {
-//                     dirOut = "top";
-//                 }
-//                 else if (pageY > posicao.bottom) {
-//                     dirOut = "bottom";
-//                 }
-
-//                 $this.removeClass(function (index, className) {
-//                     return (className.match(/(^|\s)out-\S+/g) || []).join(' ');
-//                 }).addClass("out-" + dirOut);
-
-//                 $this.trigger('hover-out');
-//             }, 10);
-//         });
-
-//         $elem.on("hover-in", function () {
-//             var position = $(this).attr("class").split(" ").filter(val => val.match("in-"))[0].split("in-")[1];
-//             position = position[0].toUpperCase() + position.substr(1);
-
-//             var $cardReveal = $(this).find(".card-reveal");
-
-//             $cardReveal.addClass("pre" + position);
-//             setTimeout(function () {
-//                 $cardReveal.addClass("from" + position);
-//                 $elem.removeClass(function (index, className) {
-//                     return (className.match(/(^|\s)in-\S+/g) || []).join(' ');
-//                 });
-//             }, 10);
-//         });
-
-//         $elem.on("hover-out", function () {
-//             var position = $(this).attr("class").split(" ").filter(val => val.match("out-"))[0].split("out-")[1];
-//             position = position[0].toUpperCase() + position.substr(1);
-
-//             var $cardReveal = $(this).find(".card-reveal");
-
-//             $cardReveal.removeClass(function (index, className) {
-//                 return (className.match(/(^|\s)pre\S+/g) || []).join(' ');
-//             }).addClass("pre" + position);
-
-//             $cardReveal.removeClass(function (index, className) {
-//                 return (className.match(/(^|\s)from\S+/g) || []).join(' ');
-//             });
-//             $cardReveal.one("transitionend", function () {
-//                 $cardReveal.removeClass(function (index, className) {
-//                     return (className.match(/(^|\s)pre\S+/g) || []).join(' ');
-//                 });
-//                 $elem.removeClass(function (index, className) {
-//                     return (className.match(/(^|\s)out-\S+/g) || []).join(' ');
-//                 });
-//             });
-//         });
-//     });
-
-//     $(document).mousemove(function (e) {
-//         pageX = e.pageX;
-//         pageY = e.pageY;
-//     });
-
-//     function getOffsets(elem) {
-//         var offset = elem.offset();
-
-//         offsets = {};
-
-//         offsets.top = offset.top;
-//         offsets.left = offset.left;
-
-//         offsets.bottom = offsets.top + elem.outerHeight();
-//         offsets.right = offsets.left + elem.outerWidth();
-
-//         return offsets;
-//     }
-// }
-
-
-
 
 // class TemplateManager {
 //     constructor(template) {
