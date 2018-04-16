@@ -290,22 +290,25 @@ body {
             }
         }
         #habilidades {
-            a {
-                text-align: center;
-                @media (min-width: 601px) {
-                    &:nth-child(3n+2) {
-                        text-align: left;
+            .col {
+                margin-bottom: 2.5vw;
+                a {
+                    text-align: center;
+                    @media (min-width: 601px) {
+                        &:nth-child(3n+2) {
+                            text-align: left;
+                        }
+                        &:nth-child(3n+3) {
+                            text-align: center;
+                        }
+                        &:nth-child(3n+4) {
+                            text-align: right;
+                        }
                     }
-                    &:nth-child(3n+3) {
-                        text-align: center;
+                    img {
+                        width: 65%;
+                        padding: 5%;
                     }
-                    &:nth-child(3n+4) {
-                        text-align: right;
-                    }
-                }
-                img {
-                    width: 65%;
-                    padding: 5%;
                 }
             }
         }

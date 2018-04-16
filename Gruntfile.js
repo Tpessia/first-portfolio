@@ -43,6 +43,7 @@ module.exports = function (grunt) {
         includereplace: {
             options: {
                 globals: {
+                    main_title: "Pessia",
                     title: "Pessia",
                     description: "",
                     file: "index",

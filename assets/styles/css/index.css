@@ -452,18 +452,20 @@ body main #cursos .verMais .card-action {
   color: transparent !important;
   background-color: #f5f5f5 !important;
   border-top: 1px solid #f5f5f5 !important; }
-body main #habilidades a {
-  text-align: center; }
-  @media (min-width: 601px) {
-    body main #habilidades a:nth-child(3n+2) {
-      text-align: left; }
-    body main #habilidades a:nth-child(3n+3) {
-      text-align: center; }
-    body main #habilidades a:nth-child(3n+4) {
-      text-align: right; } }
-  body main #habilidades a img {
-    width: 65%;
-    padding: 5%; }
+body main #habilidades .col {
+  margin-bottom: 2.5vw; }
+  body main #habilidades .col a {
+    text-align: center; }
+    @media (min-width: 601px) {
+      body main #habilidades .col a:nth-child(3n+2) {
+        text-align: left; }
+      body main #habilidades .col a:nth-child(3n+3) {
+        text-align: center; }
+      body main #habilidades .col a:nth-child(3n+4) {
+        text-align: right; } }
+    body main #habilidades .col a img {
+      width: 65%;
+      padding: 5%; }
 body main #cursos h1,
 body main #habilidades h1 {
   font-size: 5rem;

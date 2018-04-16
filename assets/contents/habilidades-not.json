@@ -1,0 +1,12 @@
+{
+    "ASP.NET MVC": {
+        "name": "ASP.NET MVC",
+        "img": "/assets/img/habilidades/aspnetmvc.png",
+        "url": "https://msdn.microsoft.com/pt-br/library/dd381412(v=vs.108).aspx"
+    },
+    "SQL": {
+        "name": "SQL",
+        "img": "/assets/img/habilidades/sql.png",
+        "url": "https://pt.wikipedia.org/wiki/SQL"
+    }
+}
