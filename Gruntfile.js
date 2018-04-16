@@ -14,9 +14,9 @@ module.exports = function (grunt) {
         },
 
         sass: {
-            options: {
-                sourcemap: 'none',
-            },
+            // options: {
+            //     sourcemap: 'none',
+            // },
             dist: {
                 files: [{
                     expand: true,
@@ -29,11 +29,14 @@ module.exports = function (grunt) {
         },
 
         cssmin: {
+            options: {
+                sourceMap: true
+            },
             target: {
                 files: [{
                     expand: true,
-                    cwd: 'assets/styles/css',
-                    src: ['*.css', '!*.min.css'],
+                    cwd: './',
+                    src: ['assets/styles/css/*.css', 'assets/styles/css/!*.min.css'],
                     dest: 'assets/styles/css/min',
                     ext: '.min.css'
                 }]
@@ -85,7 +88,7 @@ module.exports = function (grunt) {
         watch: {
             sass: {
                 files: 'assets/styles/*.scss',
-                tasks: ['sass', 'cssmin']
+                tasks: ['sass'/*, 'cssmin'*/]
             },
 
             html: {
@@ -110,6 +113,6 @@ module.exports = function (grunt) {
     // Default task(s).
     grunt.registerTask('default', ['encapsulator']);
 
-    grunt.registerTask('encapsulator', ['sass', 'cssmin', 'connect', 'includereplace', 'sitemap', 'watch']);
+    grunt.registerTask('encapsulator', ['sass'/*, 'cssmin'*/, 'connect', 'includereplace', 'sitemap', 'watch']);
 
 };
