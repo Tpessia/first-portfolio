@@ -114,8 +114,9 @@ function bindAnimations() {
     smartHover("#cursos .col:not(.verMais)>.card");
 
     $("#cursos .verMais .card").on('mouseenter', function () {
-        if (window.innerWidth > 992) {
-            $arrow = $(this).find(".arrow");
+        $arrow = $(this).find(".arrow");
+        var isAnimating = $arrow.filter(":animated").length > 0;
+        if (window.innerWidth >= 992 && !isAnimating) {
             $arrow.animate({
                 left: '100%'
             }, 500, function () {
