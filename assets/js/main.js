@@ -153,7 +153,7 @@ function main_initializers() {
             var p = Object.keys(projetos);
             var c = Object.keys(cursos);
             $(".autocomplete-content").html(
-                '<small style="display: block; padding-top: 5px; padding-left: 16px; color: rgba(0, 0, 0, 0.5);">Sugestões</small>' +
+                '<small style="display: block; padding-top: 3px; padding-bottom: 3px; padding-left: 16px; color: rgba(0, 0, 0, 0.5);">Sugestões</small>' +
                 "<li><span>" + p.pop() + "</span></li>" +
                 "<li><span>" + c.pop() + "</span></li>" +
                 "<li><span>" + p.pop() + "</span></li>"

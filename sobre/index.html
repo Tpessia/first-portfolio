@@ -40,7 +40,7 @@
             <a href="/" class="brand-logo">
                 <i class="material-icons hide-on-small-only">
                     <img src="/favicon.png" alt="brand-icon">
-                </i>Pessia
+                </i>PESSIA
             </a>
 
             <a href="#" data-activates="mobileNav" class="button-collapse">
@@ -57,7 +57,7 @@
                 <li class="active">
                     <a href="/sobre/">Sobre</a>
                 </li>
-                <li class="@@contato">
+                <li class="">
                     <a href="/contato/">Contato</a>
                 </li>
             </ul>
@@ -84,7 +84,7 @@
         <li class="active">
             <a href="/sobre/">Sobre</a>
         </li>
-        <li class="@@contato">
+        <li class="">
             <a href="/contato/">Contato</a>
         </li>
     </ul>
@@ -109,7 +109,19 @@
                     PHP e MySQL, além de buscar evoluir minhas habilidades em Front End (e.g. ECMAScript 6).
                 </p>        
                 <p>
-                    Para entrar em contato, me notifique através de um dos canais de comunicação ou do formulario de email na pagina de <a href="/contato/">contato</a>, ou através das redes disponiveis no <a href='javascript:if(window.innerWidth <= 1200) { $("html, body").animate({ scrollTop: $(document).height()-$(window).height() }); } $("footer").one("animationend", function() {$(this).removeClass("flash");}).addClass("flash");'>footer</a> desta pagina.
+                    Para entrar em contato, me notifique através de um dos canais de comunicação ou do formulario de email na pagina de <a href="/contato/">contato</a>, ou através das redes disponiveis no <a href='javascript:
+                        if(window.innerWidth <= 1200) {
+                            $( "html, body").animate({
+                                scrollTop: $(document).height()-$(window).height()
+                            });
+                            $("footer").one( "animationend", function() {
+                                $(this).removeClass( "flash");
+                            }).addClass( "flash");
+                        } else {
+                            $( "footer").removeClass("flash").one("animationend", function() {
+                                $(this).removeClass( "flash");
+                            }).addClass( "flash");
+                        }'>footer</a> desta pagina.
                 </p>
             </div>
         </div>

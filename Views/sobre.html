@@ -27,7 +27,19 @@
                     PHP e MySQL, além de buscar evoluir minhas habilidades em Front End (e.g. ECMAScript 6).
                 </p>        
                 <p>
-                    Para entrar em contato, me notifique através de um dos canais de comunicação ou do formulario de email na pagina de <a href="/contato/">contato</a>, ou através das redes disponiveis no <a href='javascript:if(window.innerWidth <= 1200) { $("html, body").animate({ scrollTop: $(document).height()-$(window).height() }); } $("footer").one("animationend", function() {$(this).removeClass("flash");}).addClass("flash");'>footer</a> desta pagina.
+                    Para entrar em contato, me notifique através de um dos canais de comunicação ou do formulario de email na pagina de <a href="/contato/">contato</a>, ou através das redes disponiveis no <a href='javascript:
+                        if(window.innerWidth <= 1200) {
+                            $( "html, body").animate({
+                                scrollTop: $(document).height()-$(window).height()
+                            });
+                            $("footer").one( "animationend", function() {
+                                $(this).removeClass( "flash");
+                            }).addClass( "flash");
+                        } else {
+                            $( "footer").removeClass("flash").one("animationend", function() {
+                                $(this).removeClass( "flash");
+                            }).addClass( "flash");
+                        }'>footer</a> desta pagina.
                 </p>
             </div>
         </div>

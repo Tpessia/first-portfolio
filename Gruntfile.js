@@ -49,6 +49,7 @@ module.exports = function (grunt) {
                     index: "",
                     projetos: "",
                     sobre: "",
+                    contato: ""
                 },
             },
             dist: {

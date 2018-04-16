@@ -81,29 +81,57 @@ body {
     }
 
     header {
+        @media (min-width: 601px) {
+            nav,
+            nav .nav-wrapper i,
+            nav a.button-collapse,
+            nav a.button-collapse i {
+                height: 75px;
+                line-height: 75px;
+            }
+            .brand-logo {
+                margin-top: 5px;
+                margin-bottom: 5px;
+                &,
+                i,
+                i img {
+                    height: 65px;
+                    line-height: 65px;                    
+                }
+            }
+        }
+        @media (max-width: 600px) {
+            nav .nav-wrapper,
+            nav .nav-wrapper i,
+            nav .nav-wrapper .brand-logo,
+            nav a.button-collapse,
+            nav a.button-collapse i {
+                height: 65px !important;
+                line-height: 65px !important;
+            }
+        }
         nav {
             background-color: $colorNav;
-            box-shadow: none;            
+            box-shadow: none;
             .nav-wrapper {
+                background: $colorNav;
                 @media (min-width: 601px) {
                     position: fixed;
                     width: 100%;
                     z-index: 1;
                     top: 0;
                 }
-                background: $colorNav;
                 .brand-logo {
-                    font-family: Pessia;
-                    font-size: 4rem;
+                    font-family: "Roboto";
+                    font-weight: 200;
+                    font-size: 3rem;
+                    letter-spacing: 5px;
                     white-space: nowrap;
                     color: $navTextColor;
                     i {
                         margin-left: 7px;
                         img {
                             padding: 5%;
-                            margin-top: 5px;
-                            height: 50px;
-                            width: 50px;
                         }
                     }
                 }
@@ -114,6 +142,7 @@ body {
                 }
                 &>ul {
                     padding-right: 10px;
+                    margin: calc((75px - 64px) / 2) 0;
                     li {
                         a {
                             color: lighten($navTextColor, 54%);
@@ -145,7 +174,7 @@ body {
                 padding-left: 80%;
                 border-top: 1px solid transparent;
                 @media (min-width: 601px) {
-                    margin-top: 64px;
+                    margin-top: 80px;
                 }
                 @media (max-width: 992px) {
                     padding-left: 0px;
