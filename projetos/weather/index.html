@@ -23,11 +23,11 @@
                             method: "POST",
                             url: "insert-daily.php",
                             data: summaryData(data),
-                            success: function (data) {
-                                alert("Ok summary!")
+                            success: function (response) {
+                                alert("Ok summary!\n\n" + response)
                             },
                             error: function () {
-                                alert("Error summary")
+                                alert("Error summary!\n\n" + response)
                             }
                         });
                     }
@@ -36,11 +36,11 @@
                         method: "POST",
                         url: "insert-hours.php",
                         data: hourlyData(data),
-                        success: function (data) {
-                            alert("Ok hours!")
+                        success: function (response) {
+                            alert("Ok hours!\n\n" + response)
                         },
                         error: function () {
-                            alert("Error hours")
+                            alert("Error hours!\n\n" + response)
                         }
                     });
                 }
