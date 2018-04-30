@@ -99,7 +99,7 @@
         $sql = "
 
             INSERT INTO sao_paulo (date, datetime, conds, icon, tempi, tempm, heatindexi, heatindexm, dewpti, dewptm, precipi, precipm, pressurei, pressurem, visi, vism, hum, fog, rain, thunder, hail, snow, tornado, wdird, wdire, wspdi, wspdm, wgusti, wgustm, windchilli, windchillm, metar)
-            VALUES ('".$json["date"]."','".$json["datetime"]."','".$json["conds"]."','".$json["icon"]."','".$json["tempi"]."',".$json["tempm"].",".$json["heatindexi"].",'".$json["heatindexm"]."','".$json["dewpti"]."','".$json["dewptm"]."','".$json["precipi"]."','".$json["precipm"]."','".$json["pressurei"]."','".$json["pressurem"]."','".$json["visi"]."','".$json["vism"]."',".$json["hum"].",".$json["fog"].",'".$json["rain"]."','".$json["thunder"]."',".$json["hail"].",".$json["snow"].",'".$json["tornado"]."','".$json["wdird"]."','".$json["wdire"]."','".$json["wspdi"]."','".$json["wspdm"]."','".$json["wgusti"]."','".$json["wgustm"]."','".$json["windchilli"]."','".$json["windchillm"]."','".$json["metar"]."')
+            VALUES ('".$json["date"]."','".$json["datetime"]."','".$json["conds"]."','".$json["icon"]."','".$json["tempi"]."','".$json["tempm"]."','".$json["heatindexi"]."','".$json["heatindexm"]."','".$json["dewpti"]."','".$json["dewptm"]."','".$json["precipi"]."','".$json["precipm"]."','".$json["pressurei"]."','".$json["pressurem"]."','".$json["visi"]."','".$json["vism"]."','".$json["hum"]."',".$json["fog"].",".$json["rain"].",".$json["thunder"].",".$json["hail"].",".$json["snow"].",".$json["tornado"].",'".$json["wdird"]."','".$json["wdire"]."','".$json["wspdi"]."','".$json["wspdm"]."','".$json["wgusti"]."','".$json["wgustm"]."','".$json["windchilli"]."','".$json["windchillm"]."','".$json["metar"]."')
 
         ";
         
