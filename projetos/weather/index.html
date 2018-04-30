@@ -33,6 +33,8 @@
     <script>
 
         $("#form").on("submit", function () {
+            $("#message").html('');
+            $("#message").css('background-color','#ff000054');
             $("#message").append("<div>INÍCIO DO PROCESSO</div>");
 
             var date = new Date($("#date").val());
@@ -94,6 +96,7 @@
                     });
 
                     if (isLast) {
+                        $("#message").css('background-color','#00800054');
                         $("#message").append("<div>PROCESSO FINALIZADO</div>");
                     }
                 },
