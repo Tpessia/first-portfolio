@@ -42,7 +42,7 @@
         $sql = "
 
             SELECT *
-            FROM `sao_paulo`
+            FROM `sao_paulo_summary`
             WHERE sao_paulo.date = '" . $_GET["date"] . "'
 
         ";
