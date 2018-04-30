@@ -18,17 +18,19 @@
             $.ajax({
                 url: "//api.wunderground.com/api/863a1b76beeb23bd/history_" + YYYYMMDD + "/q/zmw:00000.100.83779.json",
                 success: function (data) {
-                    $.ajax({
-                        method: "POST",
-                        url: "insert-daily.php",
-                        data: summaryData(data),
-                        success: function (data) {
-                            alert("Ok summary!")
-                        },
-                        error: function () {
-                            alert("Error summary")
-                        }
-                    });
+                    if (typeof data.history.dailysummary[0] !== "undefined") {
+                        $.ajax({
+                            method: "POST",
+                            url: "insert-daily.php",
+                            data: summaryData(data),
+                            success: function (data) {
+                                alert("Ok summary!")
+                            },
+                            error: function () {
+                                alert("Error summary")
+                            }
+                        });
+                    }
 
                     $.ajax({
                         method: "POST",
