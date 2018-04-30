@@ -43,7 +43,7 @@
 
             SELECT *
             FROM `sao_paulo_summary`
-            WHERE sao_paulo.date = '" . $_GET["date"] . "'
+            WHERE sao_paulo_summary.date = '" . $_GET["date"] . "'
 
         ";
 
