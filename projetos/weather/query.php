@@ -19,6 +19,7 @@
         SELECT *
         FROM `sao_paulo_summary`
         WHERE sao_paulo_summary.date = '" . $_GET["date"] . "'
+        LIMIT 1
 
     ";
 
@@ -40,9 +41,10 @@
             $output .= '},';
         }
 
-        $output = trim($output,',');
-
         // $output -> {"summary":{"a":"1"}}
+    }
+    else {
+        $output = '{';
     }
 
     // HOURLY
@@ -59,7 +61,7 @@
     
     if (mysqli_num_rows($hourly) > 0) {
 
-        $output = ',' . '"hourly":' . '[';
+        $output .= '"hourly":' . '[';
 
         // output data of each row
         while($row = mysqli_fetch_assoc($hourly)) {
@@ -77,6 +79,9 @@
         $output = trim($output,',');
 
         $output .= ']';
+    }
+    else {
+        $output = trim($output,',');
     }
     
     $output .= "}";
