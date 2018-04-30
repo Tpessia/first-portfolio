@@ -59,7 +59,7 @@
     
     if (mysqli_num_rows($hourly) > 0) {
 
-        $output = ',[';
+        $output = ',' . '"hourly":' . '[';
 
         // output data of each row
         while($row = mysqli_fetch_assoc($hourly)) {
