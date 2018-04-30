@@ -80,7 +80,7 @@
 
         wspdi FLOAT,
 
-        wspdm FLOAT,
+        wspdm FLOAT
 
     );
 
@@ -100,7 +100,7 @@
             VALUES ('".$json["date"]."','".$json["datetime"]."','".$json["conds"]."','".$json["dewpti"]."','".$json["dewptm"]."','".$json["fog"]."','".$json["hail"]."','".$json["heatindexi"]."','".$json["heatindexm"]."','".$json["hum"]."','".$json["icon"]."','".$json["metar"]."','".$json["precipi"]."','".$json["precipm"]."','".$json["pressurei"]."','".$json["pressurem"]."','".$json["rain"]."','".$json["snow"]."','".$json["tempi"]."','".$json["tempm"]."','".$json["thunder"]."','".$json["tornado"]."','".$json["visi"]."','".$json["vism"]."','".$json["wdird"]."','".$json["wdire"]."','".$json["wgusti"]."','".$json["wgustm"]."','".$json["windchilli"]."','".$json["windchillm"]."','".$json["wspdi"]."','".$json["wspdm"]."')
 
         ";
-        
+
     }
         
     if (!mysqli_query($conn, $sql)) {
