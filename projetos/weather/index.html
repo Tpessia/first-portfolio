@@ -52,7 +52,7 @@
 
                             hoursHTML += `                                
                                 <tr>                                
-                                    <td>` + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + `</td>
+                                    <td>` + dateFix(date.getHours()) + ":" + dateFix(date.getMinutes()) + ":" + dateFix(date.getSeconds()) + `</td>
                                     <td>` + hour.conds + `</td>
                                     <td>` + hour.tempm + `</td>
                                     <td>` + hour.hum + `</td>
@@ -69,6 +69,10 @@
                     }
                 });
             });
+
+            function dateFix(num) {
+                return num < 10 ? "0" + num : num.toString();
+            }
         });
     </script>
 </body>
