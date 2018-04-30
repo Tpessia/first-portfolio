@@ -92,6 +92,8 @@
         
     //insert
 
+    echo var_dump($_POST["json"]) . "\n\n\n\n\n\n";
+
     foreach ($_POST["json"] as $json) {
 
         $sql = "
