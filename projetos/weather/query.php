@@ -20,14 +20,14 @@
 
     ";
 
-    $result = mysqli_query($conn, $sql);
+    $hourly = mysqli_query($conn, $sql);
     
-    if (mysqli_num_rows($result) > 0) {
+    if (mysqli_num_rows($hourly) > 0) {
 
         $output = '[';
 
         // output data of each row
-        while($row = mysqli_fetch_assoc($result)) {
+        while($row = mysqli_fetch_assoc($hourly)) {
             $output .= '{';
 
             foreach ($row as $key => $value) {
@@ -37,6 +37,30 @@
             $output = trim($output,',');
 
             $output .= '},';
+        }
+
+        $sql = "
+
+            SELECT *
+            FROM `sao_paulo`
+            WHERE sao_paulo.date = '" . $_GET["date"] . "'
+
+        ";
+
+        $summary = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($summary) > 0) {
+            while($row = mysqli_fetch_assoc($summary)) {
+                $output .= '{';
+
+                foreach ($row as $key => $value) {
+                    $output .= '"' . $key . '": ' . '"' . $value . '",';
+                }
+
+                $output = trim($output,',');
+
+                $output .= '},';
+            }
         }
 
         $output = trim($output,',');
