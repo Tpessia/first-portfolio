@@ -46,6 +46,7 @@
                         $.ajax({
                             method: "POST",
                             url: "insert-daily.php",
+                            async: false,
                             data: summaryData(data),
                             success: function (response) {
                                 console.log("Ok summary!\n\n" + response)
@@ -59,6 +60,7 @@
                     $.ajax({
                         method: "POST",
                         url: "insert-hours.php",
+                        async: false,
                         data: hourlyData(data),
                         success: function (response) {
                             console.log("Ok hours!\n\n" + response)
