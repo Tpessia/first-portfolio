@@ -33,6 +33,8 @@
     <script>
 
         $("#form").on("submit", function () {
+            $("#message").append("<div>INÍCIO DO PROCESSO</div>");
+
             var date = new Date($("#date").val());
             date.setHours(date.getHours() + (date.getTimezoneOffset() / 60));
             var qnt = $("#qnt").val();
