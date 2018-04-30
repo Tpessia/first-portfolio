@@ -9,7 +9,7 @@
     <script src="/lib/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-    <form onsubmit="return false;">
+    <form id="form" onsubmit="return false;">
         <div>Data inicial: <input type="date" id="date" required></div>
         <div>Quantidade de Dias: <input type="number" id="qnt" min="1" max="500" required></div>
         <div><input type="submit" value="Submit" id="submit"></div>
@@ -17,7 +17,7 @@
 
     <script>
 
-        $("#submit").on("click", function () {
+        $("#form").on("submit", function () {
             var date = new Date($("#date").val());
             date.setHours(date.getHours() + (date.getTimezoneOffset() / 60));
             var qnt = $("#qnt").val();
