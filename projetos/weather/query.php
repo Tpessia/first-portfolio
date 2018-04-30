@@ -39,6 +39,8 @@
 
             $output = trim($output,',');
 
+            $output .= '},';
+
         }
 
         // $output -> {"summary":{"a":"1"}}
@@ -46,8 +48,6 @@
     else {
         $output .= 'null';
     }
-
-    $output .= '},';
 
     // HOURLY
     
