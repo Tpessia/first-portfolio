@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Insert</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="/lib/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <input type="button" value="Submit" id="submit">
+
+    <script>
+        var YYYYMMDD = 19960630;
+        
+        $("#submit").on("click", function () {
+            $.ajax({
+                url: "//api.wunderground.com/api/863a1b76beeb23bd/history_" + YYYYMMDD + "/q/zmw:00000.100.83779.json",
+                success: function (data) {
+                    $.ajax({
+                        method: "POST",
+                        url: "insert-daily.php",
+                        data: summaryData(data),
+                        success: function (data) {
+                            alert("Ok summary!")
+                        },
+                        error: function () {
+                            alert("Error summary")
+                        }
+                    });
+
+                    $.ajax({
+                        method: "POST",
+                        url: "insert-hours.php",
+                        data: hourlyData(data),
+                        success: function (data) {
+                            alert("Ok hours!")
+                        },
+                        error: function () {
+                            alert("Error hours")
+                        }
+                    });
+                }
+            });
+        });
+        
+        function summaryData(data) {
+            var json = {};
+
+            var resumo = data.history.dailysummary[0];
+
+            var date = resumo.date;
+            var dateStr = date.year + "-" + date.mon + "-" + date.mday;
+
+            json["0"] = {};
+
+            json["0"]["date"] = dateStr;
+
+            //     console.log("------------------------------");
+            //     console.log(dateStr);
+            //     console.log("------------------------------");
+            for (var label in resumo) {
+                var dado = resumo[label];
+                if (typeof dado != "object") {
+                    //             console.log(label + " | " + dado);
+                    json["0"][label] = dado;
+                }
+            }
+
+            return json;
+        }
+
+        function hourlyData(data) {
+            var json = {};
+
+            var horas = data.history.observations;
+
+            for (var i in horas) {
+                var dados = horas[i];
+                var date = dados.date;
+                var dateStr = date.year + "-" + date.mon + "-" + date.mday;
+                var dateTimeStr = date.year + "-" + date.mon + "-" + date.mday + " " + date.hour + ":" + date.min;
+
+                json['"' + i + '"'] = {};
+
+                json['"' + i + '"']["date"] = dateStr;
+                json['"' + i + '"']["datetime"] = dateTimeStr;
+
+                //         console.log("------------------------------");
+                //         console.log(dateStr);
+                //         console.log("------------------------------");
+                for (var label in dados) {
+                    var dado = dados[label];
+                    if (typeof dado != "object") {
+                        //                 console.log(label + " | " + dado);
+                        json['"' + i + '"'][label] = dado;
+                    }
+                }
+            }
+
+            return json;
+        }
+    </script>
+</body>
+</html>
