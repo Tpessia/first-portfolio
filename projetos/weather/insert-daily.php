@@ -168,7 +168,7 @@
         
     //insert
 
-    foreach ($_POST["json"] as $json) {
+    foreach ($_POST as $json) {
 
         $sql = "
 
