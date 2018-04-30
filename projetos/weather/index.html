@@ -7,12 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="/lib/jquery-3.2.1.min.js"></script>
+
+    <style>
+        form>div {
+            padding: 10px 0;
+        }
+        
+        #message {
+            font-weight: bold;
+        }
+
+        #message div {
+            padding: 5px 0;
+        }
+    </style>
 </head>
 <body>
     <form id="form" onsubmit="return false;">
-        <div>Data inicial: <input type="date" id="date" required></div>
-        <div>Quantidade de Dias: <input type="number" id="qnt" min="1" max="500" required></div>
-        <div><input type="submit" value="Submit" id="submit"></div>
+        <div id="dateDiv">Data inicial: <input type="date" id="date" required></div>
+        <div id="qntDiv">Quantidade de Dias: <input type="number" id="qnt" min="1" max="500" required></div>
+        <div id="submitDiv"><input type="submit" value="Submit" id="submit"></div>
+        <div id="message"></div>
     </form>
 
     <script>
@@ -26,7 +41,7 @@
             
             while (i < qnt) {
                 setTimeout(function() {
-                    submitDay(date.getFullYear() + dateFix(date.getMonth() + 1) + dateFix(date.getDate()));
+                    submitDay(date.getFullYear() + dateFix(date.getMonth() + 1) + dateFix(date.getDate()), (i == qnt - 1 ? true : false));
                     date.setDate(date.getDate() + 1);
                 }, 6 * qnt);
                 i++;
@@ -37,11 +52,13 @@
             return num < 10 ? "0" + num : num.toString();
         }
 
-        function submitDay(YYYYMMDD) {
+        function submitDay(YYYYMMDD, isLast) {
             $.ajax({
                 url: "//api.wunderground.com/api/863a1b76beeb23bd/history_" + YYYYMMDD + "/q/zmw:00000.100.83779.json",
                 async: false,
                 success: function (data) {
+                    $("#message").append("<div>Processando - " + YYYYMMDD + "</div>");
+
                     if (typeof data.history.dailysummary[0] !== "undefined") {
                         $.ajax({
                             method: "POST",
@@ -49,9 +66,11 @@
                             async: false,
                             data: summaryData(data),
                             success: function (response) {
+                                $("#message").append("<div>Sucesso Resumo - " + YYYYMMDD + "</div>");
                                 console.log("Ok summary!\n\n" + response)
                             },
                             error: function () {
+                                $("#message").append("<div>Erro Resumo - " + YYYYMMDD + "</div>");
                                 console.log("Error summary!\n\n" + response)
                             }
                         });
@@ -63,12 +82,21 @@
                         async: false,
                         data: hourlyData(data),
                         success: function (response) {
+                            $("#message").append("<div>Sucesso Horário - " + YYYYMMDD + "</div>");
                             console.log("Ok hours!\n\n" + response)
                         },
                         error: function () {
+                            $("#message").append("<div>Erro Horário - " + YYYYMMDD + "</div>");
                             console.log("Error hours!\n\n" + response)
                         }
                     });
+
+                    if (isLast) {
+                        $("#message").append("<div>PROCESSO FINALIZADO</div>");
+                    }
+                },
+                error: function() {
+                    $("#message").append("<div>ERRO DE CONEXÃO</div>");
                 }
             });
         }
