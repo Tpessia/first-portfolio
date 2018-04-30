@@ -14,7 +14,7 @@
 
     $sql = "
 
-    CREATE TABLE IF NOT EXISTS sao_paulo (
+    CREATE TABLE IF NOT EXISTS sao_paulo_summary (
 
         ID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 

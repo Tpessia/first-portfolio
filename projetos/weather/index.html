@@ -40,6 +40,7 @@
         function submitDay(YYYYMMDD) {
             $.ajax({
                 url: "//api.wunderground.com/api/863a1b76beeb23bd/history_" + YYYYMMDD + "/q/zmw:00000.100.83779.json",
+                async: false,
                 success: function (data) {
                     if (typeof data.history.dailysummary[0] !== "undefined") {
                         $.ajax({
