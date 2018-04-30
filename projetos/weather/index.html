@@ -9,12 +9,34 @@
     <script src="/lib/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-    <input type="button" value="Submit" id="submit">
+    <form onsubmit="return false;">
+        <div>Data inicial: <input type="date" id="date"></div>
+        <div>Quantidade de Dias: <input type="number" id="qnt" min="1" max="500"></div>
+        <div><input type="submit" value="Submit" id="submit"></div>
+    </form>
 
     <script>
-        var YYYYMMDD = 19960630;
-        
+
         $("#submit").on("click", function () {
+            var date = new Date($("#date").val());
+            date.setHours(date.getHours() + (date.getTimezoneOffset() / 60));
+            var qnt = $("#qnt").val();
+
+            var i = 0;
+            
+            while (i < qnt) {
+                setTimeout(function() {
+                    submitDay(date.getFullYear() + dateFix(date.getMonth() + 1) + dateFix(date.getDate()));
+                    date.setDate(date.getDate() + 1);
+                }, 6 * qnt);
+            }
+        });
+
+        function dateFix(num) {
+            return num < 10 ? "0" + num : num.toString();
+        }
+
+        function submitDay(YYYYMMDD) {
             $.ajax({
                 url: "//api.wunderground.com/api/863a1b76beeb23bd/history_" + YYYYMMDD + "/q/zmw:00000.100.83779.json",
                 success: function (data) {
@@ -45,7 +67,7 @@
                     });
                 }
             });
-        });
+        }
         
         function summaryData(data) {
             var json = {};
@@ -103,6 +125,7 @@
 
             return json;
         }
+
     </script>
 </body>
 </html>
