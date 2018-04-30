@@ -24,6 +24,7 @@
 </head>
 <body>
     <form id="form" onsubmit="return false;">
+        <div id="last">Último dado: </div>
         <div id="dateDiv">Data inicial: <input type="date" id="date" required></div>
         <div id="qntDiv">Quantidade de Dias: <input type="number" id="qnt" min="1" max="500" required></div>
         <div id="submitDiv"><input type="submit" value="Submit" id="submit"></div>
@@ -44,8 +45,9 @@
             qnt = $("#qnt").val();
             index = 0;
 
-            var i = 0;
-            
+            $("#date, #qnt").val(''); // evita que o programa rode novamente sozinho
+
+            var i = 0;            
             while (i < qnt) {
                 var isLast = (i == qnt - 1 ? true : false);
                 setTimeout(function() {
