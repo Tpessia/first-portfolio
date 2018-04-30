@@ -12,6 +12,41 @@
         die("Connection failed: " . mysqli_connect_error());
     }
     
+    // SUMMARY
+
+    $sql = "
+
+        SELECT *
+        FROM `sao_paulo_summary`
+        WHERE sao_paulo_summary.date = '" . $_GET["date"] . "'
+
+    ";
+
+    $summary = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($summary) > 0) {
+
+        $output = '{' . '"summary":';
+
+        while($row = mysqli_fetch_assoc($summary)) {
+            $output .= '{';
+
+            foreach ($row as $key => $value) {
+                $output .= '"' . $key . '":' . '"' . $value . '",';
+            }
+
+            $output = trim($output,',');
+
+            $output .= '},';
+        }
+
+        $output = trim($output,',');
+
+        // $output -> {"summary":{"a":"1"}}
+    }
+
+    // HOURLY
+    
     $sql = "
 
         SELECT *
@@ -24,14 +59,14 @@
     
     if (mysqli_num_rows($hourly) > 0) {
 
-        $output = '[';
+        $output = ',[';
 
         // output data of each row
         while($row = mysqli_fetch_assoc($hourly)) {
             $output .= '{';
 
             foreach ($row as $key => $value) {
-                $output .= '"' . $key . '": ' . '"' . $value . '",';
+                $output .= '"' . $key . '":' . '"' . $value . '",';
             }
 
             $output = trim($output,',');
@@ -39,38 +74,14 @@
             $output .= '},';
         }
 
-        $sql = "
-
-            SELECT *
-            FROM `sao_paulo_summary`
-            WHERE sao_paulo_summary.date = '" . $_GET["date"] . "'
-
-        ";
-
-        $summary = mysqli_query($conn, $sql);
-
-        if (mysqli_num_rows($summary) > 0) {
-            while($row = mysqli_fetch_assoc($summary)) {
-                $output .= '{';
-
-                foreach ($row as $key => $value) {
-                    $output .= '"' . $key . '": ' . '"' . $value . '",';
-                }
-
-                $output = trim($output,',');
-
-                $output .= '},';
-            }
-        }
-
         $output = trim($output,',');
 
         $output .= ']';
-
-        echo $output;
-    } else {
-        echo "0";
     }
+    
+    $output .= "}";
+
+    echo $output;
     
     mysqli_close($conn);
 ?>
