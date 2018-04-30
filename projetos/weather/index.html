@@ -34,7 +34,7 @@
     <script>
 
         $("#form").on("submit", function () {
-            $("#message").html('');
+            $("#message, #progress").html('');
             $("#submit").css('background-color','#ff000054');
             $("#submit").css('pointer-events','none');
             $("#message").append("<div>INÍCIO DO PROCESSO</div>");
@@ -105,6 +105,7 @@
                     if (index == qnt) {
                         $("#submit").css('background-color','#00800054');
                         $("#message").append("<div>PROCESSO FINALIZADO</div>");
+                        $("#submit").css('pointer-events','all');
                     }
                 },
                 error: function() {
