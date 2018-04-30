@@ -32,7 +32,7 @@
 </head>
 <body>
     <form id="form" onsubmit="return false;">
-        <div id="last">Último dado: </div>
+        <div id="last">Último dado: <span>Carregando...</span></div>
         <div id="dateDiv">Data inicial: <input type="date" id="date" required></div>
         <div id="qntDiv">Quantidade de Dias: <input type="number" id="qnt" min="1" max="500" required></div>
         <div id="submitDiv"><input type="submit" value="Submit" id="submit"></div>
@@ -46,7 +46,7 @@
             $.ajax({
                 url: "get-last.php",
                 success: function (data) {
-                    $("#last").append(data);
+                    $("#last span").html(data);
                 }
             });
 
@@ -127,6 +127,13 @@
                             $("#submit").css('background-color', '#00800054');
                             $("#message").append("<div>PROCESSO FINALIZADO</div>");
                             $("#submit").css('pointer-events', 'all');
+
+                            $.ajax({
+                                url: "get-last.php",
+                                success: function (data) {
+                                    $("#last span").html(data);
+                                }
+                            });
                         }
                     },
                     error: function () {
