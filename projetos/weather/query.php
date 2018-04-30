@@ -42,6 +42,8 @@
         $output = trim($output,',');
 
         $output .= ']';
+
+        echo $output;
     } else {
         echo "0";
     }
