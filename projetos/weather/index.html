@@ -24,10 +24,10 @@
                             url: "insert-daily.php",
                             data: summaryData(data),
                             success: function (response) {
-                                alert("Ok summary!\n\n" + response)
+                                console.log("Ok summary!\n\n" + response)
                             },
                             error: function () {
-                                alert("Error summary!\n\n" + response)
+                                console.log("Error summary!\n\n" + response)
                             }
                         });
                     }
@@ -37,10 +37,10 @@
                         url: "insert-hours.php",
                         data: hourlyData(data),
                         success: function (response) {
-                            alert("Ok hours!\n\n" + response)
+                            console.log("Ok hours!\n\n" + response)
                         },
                         error: function () {
-                            alert("Error hours!\n\n" + response)
+                            console.log("Error hours!\n\n" + response)
                         }
                     });
                 }

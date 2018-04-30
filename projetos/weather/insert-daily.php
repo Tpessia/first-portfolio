@@ -177,6 +177,8 @@
 
         ";
 
+        echo var_dump($json) . "\n\n";
+
     }
         
     if (!mysqli_query($conn, $sql)) {
