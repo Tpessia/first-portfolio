@@ -24,10 +24,11 @@
     ";
 
     $summary = mysqli_query($conn, $sql);
+        
+    $output = '{' . '"summary":';
 
     if (mysqli_num_rows($summary) > 0) {
 
-        $output = '{' . '"summary":';
 
         while($row = mysqli_fetch_assoc($summary)) {
             $output .= '{';
@@ -38,14 +39,15 @@
 
             $output = trim($output,',');
 
-            $output .= '},';
         }
 
         // $output -> {"summary":{"a":"1"}}
     }
     else {
-        $output = '{';
+        $output .= 'null';
     }
+
+    $output .= '},';
 
     // HOURLY
     
@@ -58,11 +60,10 @@
     ";
 
     $hourly = mysqli_query($conn, $sql);
+
+    $output .= '"hourly":' . '[';
     
     if (mysqli_num_rows($hourly) > 0) {
-
-        $output .= '"hourly":' . '[';
-
         // output data of each row
         while($row = mysqli_fetch_assoc($hourly)) {
             $output .= '{';
@@ -78,11 +79,9 @@
 
         $output = trim($output,',');
 
-        $output .= ']';
     }
-    else {
-        $output = trim($output,',');
-    }
+
+    $output .= ']';
     
     $output .= "}";
 
