@@ -34,147 +34,156 @@
 
     <script>
 
-        $("#form").on("submit", function () {
-            $("#message, #progress").html('');
-            $("#submit").css('background-color','#ff000054');
-            $("#submit").css('pointer-events','none');
-            $("#message").append("<div>INÍCIO DO PROCESSO</div>");
-
-            var date = new Date($("#date").val());
-            date.setHours(date.getHours() + (date.getTimezoneOffset() / 60));
-            qnt = $("#qnt").val();
-            index = 0;
-
-            $("#date, #qnt").val(''); // evita que o programa rode novamente sozinho
-
-            var i = 0;            
-            while (i < qnt) {
-                var isLast = (i == qnt - 1 ? true : false);
-                setTimeout(function() {
-                    submitDay(date.getFullYear() + dateFix(date.getMonth() + 1) + dateFix(date.getDate()));
-                    date.setDate(date.getDate() + 1);
-                }, 6000 * i + 3000);
-                i++;
-            }
-        });
-
-        function dateFix(num) {
-            return num < 10 ? "0" + num : num.toString();
-        }
-
-        function submitDay(YYYYMMDD) {
-            index++;
-            $("#progress").html(index + " / " + qnt);
-
+        $(function() {
             $.ajax({
-                url: "//api.wunderground.com/api/863a1b76beeb23bd/history_" + YYYYMMDD + "/q/zmw:00000.100.83779.json",
-                async: false,
+                url: "show-last.php",
                 success: function (data) {
-                    $("#message").append("<div>Processando - " + YYYYMMDD + "</div>");
-
-                    if (typeof data.history.dailysummary[0] !== "undefined") {
-                        $.ajax({
-                            method: "POST",
-                            url: "insert-daily.php",
-                            async: false,
-                            data: summaryData(data),
-                            success: function (response) {
-                                $("#message").append("<div>Sucesso Resumo - " + YYYYMMDD + "</div>");
-                                console.log("Ok summary!\n\n" + response)
-                            },
-                            error: function () {
-                                $("#message").append("<div>Erro Resumo - " + YYYYMMDD + "</div>");
-                                console.log("Error summary!\n\n" + response)
-                            }
-                        });
-                    }
-                    else {
-                        $("#message").append("<div>Sem Resumo - " + YYYYMMDD + "</div>");
-                    }
-
-                    $.ajax({
-                        method: "POST",
-                        url: "insert-hours.php",
-                        async: false,
-                        data: hourlyData(data),
-                        success: function (response) {
-                            $("#message").append("<div>Sucesso Horário - " + YYYYMMDD + "</div>");
-                            console.log("Ok hours!\n\n" + response)
-                        },
-                        error: function () {
-                            $("#message").append("<div>Erro Horário - " + YYYYMMDD + "</div>");
-                            console.log("Error hours!\n\n" + response)
-                        }
-                    });
-
-                    if (index == qnt) {
-                        $("#submit").css('background-color','#00800054');
-                        $("#message").append("<div>PROCESSO FINALIZADO</div>");
-                        $("#submit").css('pointer-events','all');
-                    }
-                },
-                error: function() {
-                    $("#message").append("<div>ERRO DE CONEXÃO</div>");
+                    $("#last").append(data);
                 }
             });
-        }
-        
-        function summaryData(data) {
-            var json = {};
 
-            var resumo = data.history.dailysummary[0];
+            $("#form").on("submit", function () {
+                $("#message, #progress").html('');
+                $("#submit").css('background-color', '#ff000054');
+                $("#submit").css('pointer-events', 'none');
+                $("#message").append("<div>INÍCIO DO PROCESSO</div>");
 
-            var date = resumo.date;
-            var dateStr = date.year + "-" + date.mon + "-" + date.mday;
+                var date = new Date($("#date").val());
+                date.setHours(date.getHours() + (date.getTimezoneOffset() / 60));
+                qnt = $("#qnt").val();
+                index = 0;
 
-            json["0"] = {};
+                $("#date, #qnt").val(''); // evita que o programa rode novamente sozinho
 
-            json["0"]["date"] = dateStr;
-
-            //     console.log("------------------------------");
-            //     console.log(dateStr);
-            //     console.log("------------------------------");
-            for (var label in resumo) {
-                var dado = resumo[label];
-                if (typeof dado != "object") {
-                    //             console.log(label + " | " + dado);
-                    json["0"][label] = dado;
+                var i = 0;
+                while (i < qnt) {
+                    var isLast = (i == qnt - 1 ? true : false);
+                    setTimeout(function () {
+                        submitDay(date.getFullYear() + dateFix(date.getMonth() + 1) + dateFix(date.getDate()));
+                        date.setDate(date.getDate() + 1);
+                    }, 6000 * i + 3000);
+                    i++;
                 }
+            });
+
+            function dateFix(num) {
+                return num < 10 ? "0" + num : num.toString();
             }
 
-            return json;
-        }
+            function submitDay(YYYYMMDD) {
+                index++;
+                $("#progress").html(index + " / " + qnt);
 
-        function hourlyData(data) {
-            var json = {};
+                $.ajax({
+                    url: "//api.wunderground.com/api/863a1b76beeb23bd/history_" + YYYYMMDD + "/q/zmw:00000.100.83779.json",
+                    async: false,
+                    success: function (data) {
+                        $("#message").append("<div>Processando - " + YYYYMMDD + "</div>");
 
-            var horas = data.history.observations;
+                        if (typeof data.history.dailysummary[0] !== "undefined") {
+                            $.ajax({
+                                method: "POST",
+                                url: "insert-daily.php",
+                                async: false,
+                                data: summaryData(data),
+                                success: function (response) {
+                                    $("#message").append("<div>Sucesso Resumo - " + YYYYMMDD + "</div>");
+                                    console.log("Ok summary!\n\n" + response)
+                                },
+                                error: function () {
+                                    $("#message").append("<div>Erro Resumo - " + YYYYMMDD + "</div>");
+                                    console.log("Error summary!\n\n" + response)
+                                }
+                            });
+                        }
+                        else {
+                            $("#message").append("<div>Sem Resumo - " + YYYYMMDD + "</div>");
+                        }
 
-            for (var i in horas) {
-                var dados = horas[i];
-                var date = dados.date;
+                        $.ajax({
+                            method: "POST",
+                            url: "insert-hours.php",
+                            async: false,
+                            data: hourlyData(data),
+                            success: function (response) {
+                                $("#message").append("<div>Sucesso Horário - " + YYYYMMDD + "</div>");
+                                console.log("Ok hours!\n\n" + response)
+                            },
+                            error: function () {
+                                $("#message").append("<div>Erro Horário - " + YYYYMMDD + "</div>");
+                                console.log("Error hours!\n\n" + response)
+                            }
+                        });
+
+                        if (index == qnt) {
+                            $("#submit").css('background-color', '#00800054');
+                            $("#message").append("<div>PROCESSO FINALIZADO</div>");
+                            $("#submit").css('pointer-events', 'all');
+                        }
+                    },
+                    error: function () {
+                        $("#message").append("<div>ERRO DE CONEXÃO</div>");
+                    }
+                });
+            }
+
+            function summaryData(data) {
+                var json = {};
+
+                var resumo = data.history.dailysummary[0];
+
+                var date = resumo.date;
                 var dateStr = date.year + "-" + date.mon + "-" + date.mday;
-                var dateTimeStr = date.year + "-" + date.mon + "-" + date.mday + " " + date.hour + ":" + date.min;
 
-                json['"' + i + '"'] = {};
+                json["0"] = {};
 
-                json['"' + i + '"']["date"] = dateStr;
-                json['"' + i + '"']["datetime"] = dateTimeStr;
+                json["0"]["date"] = dateStr;
 
-                //         console.log("------------------------------");
-                //         console.log(dateStr);
-                //         console.log("------------------------------");
-                for (var label in dados) {
-                    var dado = dados[label];
+                //     console.log("------------------------------");
+                //     console.log(dateStr);
+                //     console.log("------------------------------");
+                for (var label in resumo) {
+                    var dado = resumo[label];
                     if (typeof dado != "object") {
-                        //                 console.log(label + " | " + dado);
-                        json['"' + i + '"'][label] = dado;
+                        //             console.log(label + " | " + dado);
+                        json["0"][label] = dado;
                     }
                 }
+
+                return json;
             }
 
-            return json;
-        }
+            function hourlyData(data) {
+                var json = {};
+
+                var horas = data.history.observations;
+
+                for (var i in horas) {
+                    var dados = horas[i];
+                    var date = dados.date;
+                    var dateStr = date.year + "-" + date.mon + "-" + date.mday;
+                    var dateTimeStr = date.year + "-" + date.mon + "-" + date.mday + " " + date.hour + ":" + date.min;
+
+                    json['"' + i + '"'] = {};
+
+                    json['"' + i + '"']["date"] = dateStr;
+                    json['"' + i + '"']["datetime"] = dateTimeStr;
+
+                    //         console.log("------------------------------");
+                    //         console.log(dateStr);
+                    //         console.log("------------------------------");
+                    for (var label in dados) {
+                        var dado = dados[label];
+                        if (typeof dado != "object") {
+                            //                 console.log(label + " | " + dado);
+                            json['"' + i + '"'][label] = dado;
+                        }
+                    }
+                }
+
+                return json;
+            }
+        });
 
     </script>
 </body>
