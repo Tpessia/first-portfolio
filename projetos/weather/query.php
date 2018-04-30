@@ -46,7 +46,7 @@
         // $output -> {"summary":{"a":"1"}}
     }
     else {
-        $output .= 'null';
+        $output .= 'null,';
     }
 
     // HOURLY
