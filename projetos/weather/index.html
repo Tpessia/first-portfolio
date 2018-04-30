@@ -48,7 +48,7 @@
                 setTimeout(function() {
                     submitDay(date.getFullYear() + dateFix(date.getMonth() + 1) + dateFix(date.getDate()), (i == qnt - 1 ? true : false));
                     date.setDate(date.getDate() + 1);
-                }, 6000 * i);
+                }, 6000 * i + 3000);
                 i++;
             }
         });
