@@ -30,9 +30,9 @@
 
         hail BIT,
 
-        heatingdegreedays BIT,
+        heatingdegreedays FLOAT,
 
-        heatingdegreedaysnormal BIT,
+        heatingdegreedaysnormal FLOAT,
 
         humidity FLOAT,
 
@@ -100,9 +100,9 @@
 
         minvism FLOAT,
 
-        minwspdi BIT,
+        minwspdi FLOAT,
 
-        minwspdm BIT,
+        minwspdm FLOAT,
 
         monthtodatecoolingdegreedays VARCHAR(255),
 
@@ -173,7 +173,7 @@
         $sql = "
 
             INSERT INTO sao_paulo (date, coolingdegreedays, coolingdegreedaysnormal, fog, gdegreedays, hail, heatingdegreedays, heatingdegreedaysnormal, humidity, maxdewpti, maxdewptm, maxhumidity, maxpressurei, maxpressurem, maxtempi, maxtempm, maxvisi, maxvism, maxwspdi, maxwspdm, meandewpti, meandewptm, meanpressurei, meanpressurem, meantempi, meantempm, meanvisi, meanvism, meanwdird, meanwdire, meanwindspdi, meanwindspdm, mindewpti, mindewptm, minhumidity, minpressurei, minpressurem, mintempi, mintempm, minvisi, minvism, minwspdi, minwspdm, monthtodatecoolingdegreedays, monthtodatecoolingdegreedaysnormal, monthtodateheatingdegreedays, monthtodateheatingdegreedaysnormal, monthtodatesnowfalli, monthtodatesnowfallm, precipi, precipm, precipsource, rain, since1jancoolingdegreedays, since1jancoolingdegreedaysnormal, since1julheatingdegreedays, since1julheatingdegreedaysnormal, since1julsnowfalli, since1julsnowfallm, since1sepcoolingdegreedays, since1sepcoolingdegreedaysnormal, since1sepheatingdegreedays, since1sepheatingdegreedaysnormal, snow, snowdepthi, snowdepthm, snowfalli, snowfallm, thunder, tornado)
-            VALUES ('".$json["date"]."','".$json["coolingdegreedays"]."','".$json["coolingdegreedaysnormal"]."','".$json["fog"]."','".$json["gdegreedays"]."','".$json["hail"]."','".$json["heatingdegreedays"]."','".$json["heatingdegreedaysnormal"]."','".$json["humidity"]."','".$json["maxdewpti"]."','".$json["maxdewptm"]."','".$json["maxhumidity"]."','".$json["maxpressurei"]."','".$json["maxpressurem"]."','".$json["maxtempi"]."','".$json["maxtempm"]."','".$json["maxvisi"]."','".$json["maxvism"]."','".$json["maxwspdi"]."','".$json["maxwspdm"]."','".$json["meandewpti"]."','".$json["meandewptm"]."','".$json["meanpressurei"]."','".$json["meanpressurem"]."','".$json["meantempi"]."','".$json["meantempm"]."','".$json["meanvisi"]."','".$json["meanvism"]."','".$json["meanwdird"]."','".$json["meanwdire"]."','".$json["meanwindspdi"]."','".$json["meanwindspdm"]."','".$json["mindewpti"]."','".$json["mindewptm"]."','".$json["minhumidity"]."','".$json["minpressurei"]."','".$json["minpressurem"]."','".$json["mintempi"]."','".$json["mintempm"]."','".$json["minvisi"]."','".$json["minvism"]."','".$json["minwspdi"]."','".$json["minwspdm"]."','".$json["monthtodatecoolingdegreedays"]."','".$json["monthtodatecoolingdegreedaysnormal"]."','".$json["monthtodateheatingdegreedays"]."','".$json["monthtodateheatingdegreedaysnormal"]."','".$json["monthtodatesnowfalli"]."','".$json["monthtodatesnowfallm"]."','".$json["precipi"]."','".$json["precipm"]."','".$json["precipsource"]."','".$json["rain"]."','".$json["since1jancoolingdegreedays"]."','".$json["since1jancoolingdegreedaysnormal"]."','".$json["since1julheatingdegreedays"]."','".$json["since1julheatingdegreedaysnormal"]."','".$json["since1julsnowfalli"]."','".$json["since1julsnowfallm"]."','".$json["since1sepcoolingdegreedays"]."','".$json["since1sepcoolingdegreedaysnormal"]."','".$json["since1sepheatingdegreedays"]."','".$json["since1sepheatingdegreedaysnormal"]."','".$json["snow"]."','".$json["snowdepthi"]."','".$json["snowdepthm"]."','".$json["snowfalli"]."','".$json["snowfallm"]."','".$json["thunder"]."','".$json["tornado"]."')
+            VALUES ('".$json["date"]."','".$json["coolingdegreedays"]."','".$json["coolingdegreedaysnormal"]."',".$json["fog"].",'".$json["gdegreedays"]."',".$json["hail"].",'".$json["heatingdegreedays"]."','".$json["heatingdegreedaysnormal"]."','".$json["humidity"]."','".$json["maxdewpti"]."','".$json["maxdewptm"]."','".$json["maxhumidity"]."','".$json["maxpressurei"]."','".$json["maxpressurem"]."','".$json["maxtempi"]."','".$json["maxtempm"]."','".$json["maxvisi"]."','".$json["maxvism"]."','".$json["maxwspdi"]."','".$json["maxwspdm"]."','".$json["meandewpti"]."','".$json["meandewptm"]."','".$json["meanpressurei"]."','".$json["meanpressurem"]."','".$json["meantempi"]."','".$json["meantempm"]."','".$json["meanvisi"]."','".$json["meanvism"]."','".$json["meanwdird"]."','".$json["meanwdire"]."','".$json["meanwindspdi"]."','".$json["meanwindspdm"]."','".$json["mindewpti"]."','".$json["mindewptm"]."','".$json["minhumidity"]."','".$json["minpressurei"]."','".$json["minpressurem"]."','".$json["mintempi"]."','".$json["mintempm"]."','".$json["minvisi"]."','".$json["minvism"]."','".$json["minwspdi"]."','".$json["minwspdm"]."','".$json["monthtodatecoolingdegreedays"]."','".$json["monthtodatecoolingdegreedaysnormal"]."','".$json["monthtodateheatingdegreedays"]."','".$json["monthtodateheatingdegreedaysnormal"]."','".$json["monthtodatesnowfalli"]."','".$json["monthtodatesnowfallm"]."','".$json["precipi"]."','".$json["precipm"]."','".$json["precipsource"]."',".$json["rain"].",'".$json["since1jancoolingdegreedays"]."','".$json["since1jancoolingdegreedaysnormal"]."','".$json["since1julheatingdegreedays"]."','".$json["since1julheatingdegreedaysnormal"]."','".$json["since1julsnowfalli"]."','".$json["since1julsnowfallm"]."','".$json["since1sepcoolingdegreedays"]."','".$json["since1sepcoolingdegreedaysnormal"]."','".$json["since1sepheatingdegreedays"]."','".$json["since1sepheatingdegreedaysnormal"]."',".$json["snow"].",'".$json["snowdepthi"]."','".$json["snowdepthm"]."','".$json["snowfalli"]."','".$json["snowfallm"]."',".$json["thunder"].",".$json["tornado"].")
 
         ";        
         
