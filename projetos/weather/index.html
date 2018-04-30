@@ -27,6 +27,7 @@
         <div id="dateDiv">Data inicial: <input type="date" id="date" required></div>
         <div id="qntDiv">Quantidade de Dias: <input type="number" id="qnt" min="1" max="500" required></div>
         <div id="submitDiv"><input type="submit" value="Submit" id="submit"></div>
+        <div id="progress"></div>
         <div id="message"></div>
     </form>
 
@@ -40,13 +41,15 @@
 
             var date = new Date($("#date").val());
             date.setHours(date.getHours() + (date.getTimezoneOffset() / 60));
-            var qnt = $("#qnt").val();
+            qnt = $("#qnt").val();
+            index = 0;
 
             var i = 0;
             
             while (i < qnt) {
+                var isLast = (i == qnt - 1 ? true : false);
                 setTimeout(function() {
-                    submitDay(date.getFullYear() + dateFix(date.getMonth() + 1) + dateFix(date.getDate()), (i == qnt - 1 ? true : false));
+                    submitDay(date.getFullYear() + dateFix(date.getMonth() + 1) + dateFix(date.getDate()));
                     date.setDate(date.getDate() + 1);
                 }, 6000 * i + 3000);
                 i++;
@@ -57,7 +60,10 @@
             return num < 10 ? "0" + num : num.toString();
         }
 
-        function submitDay(YYYYMMDD, isLast) {
+        function submitDay(YYYYMMDD) {
+            index++;
+            $("#progress").html(index + " / " + qnt);
+
             $.ajax({
                 url: "//api.wunderground.com/api/863a1b76beeb23bd/history_" + YYYYMMDD + "/q/zmw:00000.100.83779.json",
                 async: false,
@@ -96,7 +102,7 @@
                         }
                     });
 
-                    if (isLast) {
+                    if (index == qnt) {
                         $("#submit").css('background-color','#00800054');
                         $("#message").append("<div>PROCESSO FINALIZADO</div>");
                     }
