@@ -43,6 +43,11 @@ if (isset($_GET["qnt"])) {
 
             date_add($init_date, new DateInterval('P1D'));
         }
+        else {
+            
+            break;
+
+        }
 
     }
 
