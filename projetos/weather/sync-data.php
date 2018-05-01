@@ -42,6 +42,8 @@ if (isset($_GET["qnt"])) {
             echo $init_date->format('Y-m-d') . " (" . ($qnt - $i + 1) . " / " . $qnt . ")" . "<br><br>";
 
             date_add($init_date, new DateInterval('P1D'));
+
+            sleep(6);
         }
         else {
             
