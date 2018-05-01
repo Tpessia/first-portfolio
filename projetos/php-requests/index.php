@@ -1,11 +1,10 @@
 <?php
-    $testePost = $_POST["testePost"];
-    $testeGet = $_GET["testeGet"];
-
-    if (isset($testePost)) {
-        echo "Post:" . $testePost;
+    if (isset($_POST)) {
+        echo "Post: ";
+        var_dump($_POST);
     }
-    else if (isset($testeGet)) {
-        echo "Get:" . $testeGet;
+    else if (isset($_GET)) {
+        echo "Get:";
+        var_dump($_GET);
     }
 ?>
