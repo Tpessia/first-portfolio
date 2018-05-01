@@ -1,29 +1,54 @@
 <?php
 
-if (isset($_GET["date"]) && isset($_GET["qnt"])) {
+if (isset($_GET["qnt"])) {
 
-    $init_date = new DateTime($_GET["date"] . "Z");
+    if (isset($_GET["date"])) {
+        $init_date = new DateTime($_GET["date"] . "Z");
+    }
+    else {
+        $last = file_get_contents("https://www.pessia.xyz/projetos/weather/get-last.php");
+        
+        if($last != "0") {
+            $init_date = new DateTime($last . "Z");
+        }
+        else {
+            die("Failed to create initial date!");
+        }
+    }
+
     $qnt = intval($_GET["qnt"]);
+    
+    $today = new DateTime();
 
     for ($i = $qnt; $i > 0; $i--) {
+        
+        $interval = date_diff($init_date, $today);
+        $dif = intval($interval->format('%R%a'));
 
-        $json = file_get_contents("http://api.wunderground.com/api/863a1b76beeb23bd/history_" . $init_date->format('Ymd') . "/q/zmw:00000.100.83779.json");
+        if ($dif > 0) {
+            $json = file_get_contents("http://api.wunderground.com/api/863a1b76beeb23bd/history_" . $init_date->format('Ymd') . "/q/zmw:00000.100.83779.json");
 
-        $data = json_decode($json, true);
+            $data = json_decode($json, true);
 
-        if (isset($data["history"]["dailysummary"][0])) {
-            do_post_request("https://www.pessia.xyz/projetos/weather/insert-daily.php", http_build_query(summaryData($data)));
+            if (isset($data["history"]["dailysummary"][0])) {
+                do_post_request("https://www.pessia.xyz/projetos/weather/insert-daily.php", http_build_query(summaryData($data)));
+            }
+
+            if (isset($data["history"]["observations"][0])) {
+                do_post_request("https://www.pessia.xyz/projetos/weather/insert-hours.php", http_build_query(hourlyData($data)));
+            }
+
+            echo $init_date->format('Y-m-d') . " (" . ($qnt - $i + 1) . " / " . $qnt . ")" . "<br><br>";
+
+            date_add($init_date, new DateInterval('P1D'));
         }
-
-        if (isset($data["history"]["observations"][0])) {
-            do_post_request("https://www.pessia.xyz/projetos/weather/insert-hours.php", http_build_query(hourlyData($data)));
-        }
-
-        echo $init_date->format('Y-m-d') . " (" . ($qnt - $i + 1) . " / " . $qnt . ")" . "<br><br>";
-
-        date_add($init_date, new DateInterval('P1D'));
 
     }
+
+}
+else {
+    
+    echo '"date" parameter is undefined!';
 
 }
 
