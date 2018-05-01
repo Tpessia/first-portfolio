@@ -10,6 +10,7 @@ if (isset($_GET["qnt"])) {
         
         if($last != "0") {
             $init_date = new DateTime($last . "Z");
+            date_add($init_date, new DateInterval('P1D'));
         }
         else {
             die("Failed to create initial date!");
