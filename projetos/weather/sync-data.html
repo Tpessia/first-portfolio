@@ -105,7 +105,20 @@
                             });
                         }
                         else {
-                            $("#message").append("<div>Sem Resumo - " + YYYYMMDD + "</div>");
+                            $.ajax({
+                                method: "POST",
+                                url: "insert-daily.php",
+                                async: false,
+                                data: { "null": { "date": YYYYMMDD } },
+                                success: function (response) {
+                                    $("#message").append("<div>Sucesso Resumo - " + YYYYMMDD + "</div>");
+                                    console.log("Null summary!\n\n" + response)
+                                },
+                                error: function () {
+                                    $("#message").append("<div>Erro Resumo - " + YYYYMMDD + "</div>");
+                                    console.log("Error summary!\n\n" + response)
+                                }
+                            });
                         }
 
                         if (typeof data.history.observations[0] !== "undefined") {
@@ -125,7 +138,20 @@
                             });
                         }
                         else {
-                            $("#message").append("<div>Sem Horário - " + YYYYMMDD + "</div>");
+                            $.ajax({
+                                method: "POST",
+                                url: "insert-hours.php",
+                                async: false,
+                                data: { "null": { "date": YYYYMMDD, "datetime": YYYYMMDD + " 00:00" } },
+                                success: function (response) {
+                                    $("#message").append("<div>Sucesso Horário - " + YYYYMMDD + "</div>");
+                                    console.log("Null hours!\n\n" + response)
+                                },
+                                error: function () {
+                                    $("#message").append("<div>Erro Horário - " + YYYYMMDD + "</div>");
+                                    console.log("Error hours!\n\n" + response)
+                                }
+                            });
                         }
 
                         if (index == qnt) {
