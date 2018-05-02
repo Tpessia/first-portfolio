@@ -94,7 +94,7 @@
         
     //insert
 
-    if (!isset($_POST["null_date"]) && !isset($_POST["null_datetime"])) {
+    if (!isset($_POST["null"])) {
 
         foreach ($_POST as $json) {
 
