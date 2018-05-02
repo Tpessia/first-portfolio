@@ -13,7 +13,7 @@ if (isset($_GET["qnt"])) {
             date_add($init_date, new DateInterval('P1D'));
         }
         else {
-            die("Failed to create initial date!");
+            $init_date = new DateTime("1996-06-30");
         }
     }
 

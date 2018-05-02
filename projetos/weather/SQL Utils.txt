@@ -1,0 +1,22 @@
+// SELECT DUPLICATE DATETIMES (SAO_PAULO)
+
+SELECT
+    datetime, COUNT(*)
+FROM
+    sao_paulo
+GROUP BY
+    datetime
+HAVING 
+    COUNT(*) > 1
+
+
+
+// DELETE DUPLICATE DATETIMES, KEEP FIRST (SAO_PAULO)
+
+DELETE a
+  FROM sao_paulo a
+  JOIN (SELECT MIN(t.ID) AS min_ID, t.datetime
+          FROM sao_paulo t
+      GROUP BY t.datetime
+        HAVING COUNT(*) > 1) b ON b.datetime = a.datetime
+                              AND b.min_ID != a.ID

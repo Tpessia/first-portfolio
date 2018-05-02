@@ -80,7 +80,9 @@
 
         windchillm FLOAT,
 
-        metar VARCHAR(255)
+        metar VARCHAR(255),
+
+        UNIQUE (datetime)
 
     );
 
@@ -100,6 +102,7 @@
 
             INSERT INTO sao_paulo (date, datetime, conds, icon, tempi, tempm, heatindexi, heatindexm, dewpti, dewptm, precipi, precipm, pressurei, pressurem, visi, vism, hum, fog, rain, thunder, hail, snow, tornado, wdird, wdire, wspdi, wspdm, wgusti, wgustm, windchilli, windchillm, metar)
             VALUES ('".$json["date"]."','".$json["datetime"]."','".$json["conds"]."','".$json["icon"]."','".$json["tempi"]."','".$json["tempm"]."','".$json["heatindexi"]."','".$json["heatindexm"]."','".$json["dewpti"]."','".$json["dewptm"]."','".$json["precipi"]."','".$json["precipm"]."','".$json["pressurei"]."','".$json["pressurem"]."','".$json["visi"]."','".$json["vism"]."','".$json["hum"]."',".$json["fog"].",".$json["rain"].",".$json["thunder"].",".$json["hail"].",".$json["snow"].",".$json["tornado"].",'".$json["wdird"]."','".$json["wdire"]."','".$json["wspdi"]."','".$json["wspdm"]."','".$json["wgusti"]."','".$json["wgustm"]."','".$json["windchilli"]."','".$json["windchillm"]."','".$json["metar"]."')
+            ON DUPLICATE KEY UPDATE conds=VALUES(conds),icon=VALUES(icon),tempi=VALUES(tempi),tempm=VALUES(tempm),heatindexi=VALUES(heatindexi),heatindexm=VALUES(heatindexm),dewpti=VALUES(dewpti),dewptm=VALUES(dewptm),precipi=VALUES(precipi),precipm=VALUES(precipm),pressurei=VALUES(pressurei),pressurem=VALUES(pressurem),visi=VALUES(visi),vism=VALUES(vism),hum=VALUES(hum),fog=VALUES(fog),rain=VALUES(rain),thunder=VALUES(thunder),hail=VALUES(hail),snow=VALUES(snow),tornado=VALUES(tornado),wdird=VALUES(wdird),wdire=VALUES(wdire),wspdi=VALUES(wspdi),wspdm=VALUES(wspdm),wgusti=VALUES(wgusti),wgustm=VALUES(wgustm),windchilli=VALUES(windchilli),windchillm=VALUES(windchillm),metar=VALUES(metar)
 
         ";
         
