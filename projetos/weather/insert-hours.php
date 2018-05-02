@@ -121,7 +121,7 @@
 
             INSERT INTO sao_paulo (date, datetime)
             VALUES ('".$json["null"]["date"]."','".$json["null"]["datetime"]."')
-            ON DUPLICATE KEY UPDATE conds=conds,icon=icon,tempi=tempi,tempm=tempm,heatindexi=heatindexi,heatindexm=heatindexm,dewpti=dewpti,dewptm=dewptm,precipi=precipi,precipm=precipm,pressurei=pressurei,pressurem=pressurem,visi=visi,vism=vism,hum=hum,fog=fog,rain=rain,thunder=thunder,hail=hail,snow=snow,tornado=tornado,wdird=wdird,wdire=wdire,wspdi=wspdi,wspdm=wspdm,wgusti=wgusti,wgustm=wgustm,windchilli=windchilli,windchillm=windchillm,metar=metar
+            ON DUPLICATE KEY UPDATE date=date, datetime=datetime
 
         ";
         
