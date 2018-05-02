@@ -196,7 +196,7 @@
         $sql = "
 
             INSERT INTO sao_paulo_summary (date)
-            VALUES ('".$json["null"]["date"]."')
+            VALUES ('".$_POST["null"]["date"]."')
             ON DUPLICATE KEY UPDATE date=date
 
         ";

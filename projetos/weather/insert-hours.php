@@ -120,7 +120,7 @@
         $sql = "
 
             INSERT INTO sao_paulo (date, datetime)
-            VALUES ('".$json["null"]["date"]."','".$json["null"]["datetime"]."')
+            VALUES ('".$_POST["null"]["date"]."','".$_POST["null"]["datetime"]."')
             ON DUPLICATE KEY UPDATE date=date, datetime=datetime
 
         ";
