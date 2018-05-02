@@ -47,7 +47,12 @@
                 url: "get-last.php",
                 success: function (data) {
                     $("#last span").html(data);
-                    $("#dateDiv input[type=date]").val(data);
+
+                    var date = new Date(data);
+                    date.setHours(date.getHours() + (date.getTimezoneOffset() / 60));
+                    date.setDate(date.getDate() + 1)
+                    
+                    $("#dateDiv input[type=date]").val(date.getFullYear() + "-" + dateFix(date.getMonth()) + "-" + dateFix(date.getDate()));
                 }
             });
 
