@@ -31,7 +31,7 @@ if (isset($_GET["qnt"])) {
 
             $data = json_decode($json, true);
 
-            if (isset($data["history"]["dailysummary"][0])) {
+            if (isset($data["history"]["dailysummary"][0]) && !(intval($data["history"]["dailysummary"][0]["date"]["year"]) == 1969 && intval($data["history"]["dailysummary"][0]["date"]["mon"]) == 12 && intval($data["history"]["dailysummary"][0]["date"]["mday"]) == 31)) {
                 do_post_request("https://www.pessia.xyz/projetos/weather/insert-daily.php", http_build_query(summaryData($data)));
             }
 
