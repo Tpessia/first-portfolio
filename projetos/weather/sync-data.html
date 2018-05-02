@@ -47,6 +47,7 @@
                 url: "get-last.php",
                 success: function (data) {
                     $("#last span").html(data);
+                    $("#dateDiv input[type=date]").val(data);
                 }
             });
 
