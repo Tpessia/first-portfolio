@@ -52,7 +52,7 @@
                     date.setHours(date.getHours() + (date.getTimezoneOffset() / 60));
                     date.setDate(date.getDate() + 1)
                     
-                    $("#dateDiv input[type=date]").val(date.getFullYear() + "-" + dateFix(date.getMonth()) + "-" + dateFix(date.getDate()));
+                    $("#dateDiv input[type=date]").val(date.getFullYear() + "-" + (dateFix(date.getMonth()) + 1) + "-" + dateFix(date.getDate()));
                 }
             });
 
