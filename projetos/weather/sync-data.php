@@ -36,8 +36,12 @@ if (isset($_GET["qnt"])) {
             }
             else {
                 do_post_request("https://www.pessia.xyz/projetos/weather/insert-daily.php", http_build_query(array(
-                    
-                    "null_date" => $init_date->format('Y-m-d')
+
+                    "null" => array(
+
+                        "date" => $init_date->format('Y-m-d')
+                        
+                    )
 
                 )));
             }
@@ -48,8 +52,12 @@ if (isset($_GET["qnt"])) {
             else {
                 do_post_request("https://www.pessia.xyz/projetos/weather/insert-hours.php", http_build_query(array(
 
-                    "null_date" => $init_date->format('Y-m-d'),
-                    "null_datetime" => $init_date->format('Y-m-d') . " 00:00"
+                    "null" => array(
+
+                        "date" => $init_date->format('Y-m-d'),
+                        "datetime" => $init_date->format('Y-m-d') . " 00:00"
+
+                    )
 
                 )));
             }

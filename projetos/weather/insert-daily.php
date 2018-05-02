@@ -170,7 +170,7 @@
         
     //insert
 
-    if (!isset($_POST["null_date"]))
+    if (!isset($_POST["null"])) {
 
         foreach ($_POST as $json) {
 
@@ -196,7 +196,7 @@
         $sql = "
 
             INSERT INTO sao_paulo (date)
-            VALUES ('".$json["null_date"]."')
+            VALUES ('".$json["null"]["date"]."')
             ON DUPLICATE KEY UPDATE maxtempi=maxtempi,maxtempm=maxtempm,meantempi=meantempi,meantempm=meantempm,mintempi=mintempi,mintempm=mintempm,maxdewpti=maxdewpti,maxdewptm=maxdewptm,meandewpti=meandewpti,meandewptm=meandewptm,mindewpti=mindewpti,mindewptm=mindewptm,maxvisi=maxvisi,maxvism=maxvism,meanvisi=meanvisi,meanvism=meanvism,minvisi=minvisi,minvism=minvism,maxpressurei=maxpressurei,maxpressurem=maxpressurem,meanpressurei=meanpressurei,meanpressurem=meanpressurem,minpressurei=minpressurei,minpressurem=minpressurem,maxwspdi=maxwspdi,maxwspdm=maxwspdm,meanwindspdi=meanwindspdi,meanwindspdm=meanwindspdm,minwspdi=minwspdi,minwspdm=minwspdm,meanwdird=meanwdird,meanwdire=meanwdire,humidity=humidity,maxhumidity=maxhumidity,minhumidity=minhumidity,precipi=precipi,precipm=precipm,precipsource=precipsource,fog=fog,hail=hail,rain=rain,snow=snow,thunder=thunder,tornado=tornado,snowdepthi=snowdepthi,snowdepthm=snowdepthm,snowfalli=snowfalli,snowfallm=snowfallm,coolingdegreedays=coolingdegreedays,coolingdegreedaysnormal=coolingdegreedaysnormal,heatingdegreedays=heatingdegreedays,heatingdegreedaysnormal=heatingdegreedaysnormal,gdegreedays=gdegreedays,monthtodatecoolingdegreedays=monthtodatecoolingdegreedays,monthtodatecoolingdegreedaysnormal=monthtodatecoolingdegreedaysnormal,monthtodateheatingdegreedays=monthtodateheatingdegreedays,monthtodateheatingdegreedaysnormal=monthtodateheatingdegreedaysnormal,monthtodatesnowfalli=monthtodatesnowfalli,monthtodatesnowfallm=monthtodatesnowfallm,since1jancoolingdegreedays=since1jancoolingdegreedays,since1jancoolingdegreedaysnormal=since1jancoolingdegreedaysnormal,since1julheatingdegreedays=since1julheatingdegreedays,since1julheatingdegreedaysnormal=since1julheatingdegreedaysnormal,since1julsnowfalli=since1julsnowfalli,since1julsnowfallm=since1julsnowfallm,since1sepcoolingdegreedays=since1sepcoolingdegreedays,since1sepcoolingdegreedaysnormal=since1sepcoolingdegreedaysnormal,since1sepheatingdegreedays=since1sepheatingdegreedays,since1sepheatingdegreedaysnormal=since1sepheatingdegreedaysnormal
 
         ";
