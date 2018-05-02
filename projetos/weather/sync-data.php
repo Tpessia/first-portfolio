@@ -34,9 +34,28 @@ if (isset($_GET["qnt"])) {
             if (isset($data["history"]["dailysummary"][0]) && !(intval($data["history"]["dailysummary"][0]["date"]["year"]) == 1969 && intval($data["history"]["dailysummary"][0]["date"]["mon"]) == 12 && intval($data["history"]["dailysummary"][0]["date"]["mday"]) == 31)) {
                 do_post_request("https://www.pessia.xyz/projetos/weather/insert-daily.php", http_build_query(summaryData($data)));
             }
+            else {
+                do_post_request("https://www.pessia.xyz/projetos/weather/insert-daily.php", http_build_query(array(
+
+                    "null" => array(
+                        "date" => $init_date->format('Y-m-d')
+                    )
+
+                )));
+            }
 
             if (isset($data["history"]["observations"][0])) {
                 do_post_request("https://www.pessia.xyz/projetos/weather/insert-hours.php", http_build_query(hourlyData($data)));
+            }
+            else {
+                do_post_request("https://www.pessia.xyz/projetos/weather/insert-hours.php", http_build_query(array(
+
+                    "null" => array(
+                        "date" => $init_date->format('Y-m-d'),
+                        "datetime" => $init_date->format('Y-m-d') . " 00:00"
+                    )
+
+                )));
             }
 
             echo $init_date->format('Y-m-d') . " (" . ($qnt - $i + 1) . " / " . $qnt . ")" . "<br><br>";
