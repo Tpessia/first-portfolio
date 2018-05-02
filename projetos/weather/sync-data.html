@@ -33,7 +33,7 @@
 <body>
     <form id="form" onsubmit="return false;">
         <div id="last">Último dado: <span>Carregando...</span></div>
-        <div id="dateDiv">Data inicial: <input type="date" id="date" required></div>
+        <div id="dateDiv">Data inicial: <input type="date" id="date" min="1996-06-30" required></div>
         <div id="qntDiv">Quantidade de Dias: <input type="number" id="qnt" min="1" max="500" required></div>
         <div id="submitDiv"><input type="submit" value="Submit" id="submit"></div>
         <div id="progress"></div>
@@ -43,18 +43,24 @@
     <script>
 
         $(function() {
-            $.ajax({
-                url: "get-last.php",
-                success: function (data) {
-                    $("#last span").html(data);
+            refreshLast();
+            function refreshLast() {
+                $.ajax({
+                    url: "get-last.php",
+                    async: false,
+                    success: function (data) {
+                        $("#last span").html(data);
 
-                    var date = new Date(data);
-                    date.setHours(date.getHours() + (date.getTimezoneOffset() / 60));
-                    date.setDate(date.getDate() + 1)
-                    
-                    $("#dateDiv input[type=date]").val(date.getFullYear() + "-" + (dateFix(date.getMonth() + 1)) + "-" + dateFix(date.getDate()));
-                }
-            });
+                        var date = new Date(data);
+                        date.setHours(date.getHours() + (date.getTimezoneOffset() / 60));
+                        date.setDate(date.getDate() + 1)
+                        
+                        $("#dateDiv input[type=date]")
+                            .val(date.getFullYear() + "-" + (dateFix(date.getMonth() + 1)) + "-" + dateFix(date.getDate()))
+                            .attr("max",date.getFullYear() + "-" + (dateFix(date.getMonth() + 1)) + "-" + dateFix(date.getDate()));
+                    }
+                });
+            }
 
             $("#form").on("submit", function () {
                 $("#message, #progress").html('');
@@ -165,12 +171,7 @@
                             $("#message").append("<div>PROCESSO FINALIZADO</div>");
                             $("#submit").css('pointer-events', 'all');
 
-                            $.ajax({
-                                url: "get-last.php",
-                                success: function (data) {
-                                    $("#last span").html(data);
-                                }
-                            });
+                            refreshLast();
                         }
                     },
                     error: function () {
