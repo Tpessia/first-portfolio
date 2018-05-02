@@ -186,7 +186,7 @@
                 die("Error: " . $sql . "<br>" . mysqli_error($conn));
             }
 
-            echo var_dump($json) . "\n\n";
+            // echo var_dump($json) . "\n\n";
 
         }
 

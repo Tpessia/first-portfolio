@@ -31,11 +31,13 @@ if (isset($_GET["qnt"])) {
 
             $data = json_decode($json, true);
 
+            echo $init_date->format('Y-m-d') . " (" . ($qnt - $i + 1) . " / " . $qnt . ")" . "<br><br>";
+
             if (isset($data["history"]["dailysummary"][0]) && !(intval($data["history"]["dailysummary"][0]["date"]["year"]) == 1969 && intval($data["history"]["dailysummary"][0]["date"]["mon"]) == 12 && intval($data["history"]["dailysummary"][0]["date"]["mday"]) == 31)) {
-                do_post_request("https://www.pessia.xyz/projetos/weather/insert-daily.php", http_build_query(summaryData($data)));
+                echo do_post_request("https://www.pessia.xyz/projetos/weather/insert-daily.php", http_build_query(summaryData($data))) . "<br><br>";
             }
             else {
-                do_post_request("https://www.pessia.xyz/projetos/weather/insert-daily.php", http_build_query(array(
+                echo do_post_request("https://www.pessia.xyz/projetos/weather/insert-daily.php", http_build_query(array(
 
                     "null" => array(
 
@@ -43,11 +45,11 @@ if (isset($_GET["qnt"])) {
                         
                     )
 
-                )));
+                ))) . "<br><br>";
             }
 
             if (isset($data["history"]["observations"][0])) {
-                do_post_request("https://www.pessia.xyz/projetos/weather/insert-hours.php", http_build_query(hourlyData($data)));
+                do_post_request("https://www.pessia.xyz/projetos/weather/insert-hours.php", http_build_query(hourlyData($data))) . "<br><br>";
             }
             else {
                 do_post_request("https://www.pessia.xyz/projetos/weather/insert-hours.php", http_build_query(array(
@@ -59,10 +61,8 @@ if (isset($_GET["qnt"])) {
 
                     )
 
-                )));
+                ))) . "<br><br>";
             }
-
-            echo $init_date->format('Y-m-d') . " (" . ($qnt - $i + 1) . " / " . $qnt . ")" . "<br><br>";
 
             date_add($init_date, new DateInterval('P1D'));
 
