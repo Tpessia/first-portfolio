@@ -94,7 +94,7 @@
                     success: function (data) {
                         $("#message").append("<div>Processando - " + YYYYMMDD + "</div>");
 
-                        if (typeof data.history.dailysummary[0] !== "undefined" && !($data.history.dailysummary[0].date.year == 1969 && $data.history.dailysummary[0].date.mon == 12 && $data.history.dailysummary[0].date.mday == 31)) {
+                        if (typeof data.history.dailysummary[0] !== "undefined" && !(data.history.dailysummary[0].date.year == 1969 && data.history.dailysummary[0].date.mon == 12 && data.history.dailysummary[0].date.mday == 31)) {
                             $.ajax({
                                 method: "POST",
                                 url: "insert-daily.php",
@@ -117,7 +117,7 @@
                                 async: false,
                                 data: { "null": { "date": YYYYMMDD } },
                                 success: function (response) {
-                                    $("#message").append("<div>Sucesso Resumo - " + YYYYMMDD + "</div>");
+                                    $("#message").append("<div>Null Resumo - " + YYYYMMDD + "</div>");
                                     console.log("Null summary!\n\n" + response)
                                 },
                                 error: function () {
@@ -150,7 +150,7 @@
                                 async: false,
                                 data: { "null": { "date": YYYYMMDD, "datetime": YYYYMMDD + " 00:00" } },
                                 success: function (response) {
-                                    $("#message").append("<div>Sucesso Horário - " + YYYYMMDD + "</div>");
+                                    $("#message").append("<div>Null Horário - " + YYYYMMDD + "</div>");
                                     console.log("Null hours!\n\n" + response)
                                 },
                                 error: function () {
