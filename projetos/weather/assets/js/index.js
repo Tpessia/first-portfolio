@@ -12,9 +12,12 @@ function initializers() {
         'autoClose': true,
         'format': 'mmm dd, yyyy',
         'minDate': new Date('1996-06-30 00:00'),
-        'setDefaultDate': true,
+        // 'setDefaultDate': true,
         'onOpen': function() {
             this.setDate(new Date(this.options.defaultDate));
+        },
+        'onSelect': function(d) {
+            date = d; // Global date value
         },
         'i18n': { // Internacionalização
             'cancel': 'Cancelar',
@@ -90,7 +93,6 @@ function initializers() {
         $("#submit button").addClass("disabled")
         $("#submit .progress").removeClass("hide");
 
-        var date = new Date(datepickers[0].toString());
         var dateStr = date.getFullYear() + "" + dateFix(date.getMonth() + 1) + "" + dateFix(date.getDate());
         $.ajax({
             url: "query.php?date=" + dateStr,
