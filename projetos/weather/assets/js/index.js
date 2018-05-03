@@ -71,6 +71,7 @@ function initializers() {
         success: function (data) {
             datepickers[0].options.maxDate = new Date(data + " 00:00");
             datepickers[0].options.yearRange = [1996, new Date(data + " 00:00").getFullYear()];
+            datepickers[0].options.defaultDate = new Date(data + " 00:00").getFullYear();
         }
     });
 
