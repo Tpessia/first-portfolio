@@ -87,7 +87,7 @@ function initializers() {
 
                 if (!isNull(data.summary, 2)) {
                     var summary = data.summary
-
+console.log(data);
                     summaryHTML += `                                
                     <tr>
                         <td>` + summary.maxtempm + `</td>
