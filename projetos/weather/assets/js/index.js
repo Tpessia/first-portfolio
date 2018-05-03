@@ -12,7 +12,7 @@ function initializers() {
         'autoClose': true,
         'format': 'mmm dd, yyyy',
         'minDate': new Date('1996-06-30 00:00'),
-        'setDefaultDate': true,
+        // 'setDefaultDate': true,
         'i18n': { // Internacionalização
             'cancel': 'Cancelar',
             'clear': 'Limpar',
@@ -71,8 +71,7 @@ function initializers() {
         success: function (data) {
             datepickers[0].options.maxDate = new Date(data + " 00:00");
             datepickers[0].options.yearRange = [1996, new Date(data + " 00:00").getFullYear()];
-            datepickers[0].options.setDefaultDate = true
-            datepickers[0].options.defaultDate = new Date(data + " 00:00");
+            // datepickers[0].options.defaultDate = new Date(data + " 00:00");
         }
     });
 
@@ -91,15 +90,15 @@ function initializers() {
 
                     summaryHTML += `                                
                     <tr>
-                        <td>` + hour.maxtempm + `</td>
-                        <td>` + hour.meantempm + `</td>
-                        <td>` + hour.mintempm + `</td>
-                        <td>` + hour.humidity + `</td>
-                        <td>` + hour.precipm + `</td>
-                        <td>` + bitToStr(hour.fog) + `</td>
-                        <td>` + bitToStr(hour.rain) + `</td>
-                        <td>` + bitToStr(hour.hail) + `</td>
-                        <td>` + bitToStr(hour.thunder) + `</td>
+                        <td>` + summary.maxtempm + `</td>
+                        <td>` + summary.meantempm + `</td>
+                        <td>` + summary.mintempm + `</td>
+                        <td>` + summary.humidity + `</td>
+                        <td>` + summary.precipm + `</td>
+                        <td>` + bitToStr(summary.fog) + `</td>
+                        <td>` + bitToStr(summary.rain) + `</td>
+                        <td>` + bitToStr(summary.hail) + `</td>
+                        <td>` + bitToStr(summary.thunder) + `</td>
                     </tr>
                     `;
 
