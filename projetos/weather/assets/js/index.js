@@ -13,6 +13,9 @@ function initializers() {
         'format': 'mmm dd, yyyy',
         'minDate': new Date('1996-06-30 00:00'),
         'setDefaultDate': true,
+        'onOpen': function() {
+            this.setDate(new Date(this.options.defaultDate));
+        },
         'i18n': { // Internacionalização
             'cancel': 'Cancelar',
             'clear': 'Limpar',
@@ -84,9 +87,8 @@ function initializers() {
     });
 
     $("#date-form").on("submit", function () {
-        $("#submit")
-            .find("button").addClass("disabled")
-            .find(".progress").removeClass("hide");
+        $("#submit button").addClass("disabled")
+        $("#submit .progress").removeClass("hide");
 
         var date = new Date(datepickers[0].toString());
         var dateStr = date.getFullYear() + "" + dateFix(date.getMonth() + 1) + "" + dateFix(date.getDate());
@@ -160,9 +162,8 @@ function initializers() {
                 $("main").removeClass("hide");
             },
             complete: function() {
-                $("#submit")
-                    .find("button").removeClass("disabled")
-                    .find(".progress").addClass("hide");
+                $("#submit button").removeClass("disabled")
+                $("#submit .progress").addClass("hide");
             }
         });
     });
