@@ -12,7 +12,7 @@ function initializers() {
         'autoClose': true,
         'format': 'mmm dd, yyyy',
         'minDate': new Date('1996-06-30 00:00'),
-        // 'setDefaultDate': true,
+        'setDefaultDate': true,
         'i18n': { // Internacionalização
             'cancel': 'Cancelar',
             'clear': 'Limpar',
@@ -68,14 +68,26 @@ function initializers() {
     
     $.ajax({
         url: "get-last.php",
-        success: function (data) {
-            datepickers[0].options.maxDate = new Date(data + " 00:00");
-            datepickers[0].options.yearRange = [1996, new Date(data + " 00:00").getFullYear()];
-            // datepickers[0].options.defaultDate = new Date(data + " 00:00");
+        success: function (date) {
+            datepickers[0].options.maxDate = new Date(date + " 00:00");
+            datepickers[0].options.yearRange = [1996, new Date(date + " 00:00").getFullYear()];
+            datepickers[0].options.defaultDate = new Date(date + " 00:00");
+        },
+        error: function() {
+            var yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+
+            datepickers[0].options.maxDate = new Date(yesterday);
+            datepickers[0].options.yearRange = [1996, new Date(yesterday).getFullYear()];
+            datepickers[0].options.defaultDate = new Date(yesterday);
         }
     });
 
     $("#date-form").on("submit", function () {
+        $("#submit")
+            .find("button").addClass("disabled")
+            .find(".progress").removeClass("hide");
+
         var date = new Date(datepickers[0].toString());
         var dateStr = date.getFullYear() + "" + dateFix(date.getMonth() + 1) + "" + dateFix(date.getDate());
         $.ajax({
@@ -85,11 +97,9 @@ function initializers() {
                     hoursHTML = "",
                     summaryHTML = "";
 
-                $(".data-table tbody tr").remove();
-
                 if (!isNull(data.summary, 2)) {
-                    var summary = data.summary
-console.log(data);
+                    var summary = data.summary;
+                    
                     summaryHTML += `                                
                     <tr>
                         <td>` + summary.maxtempm + `</td>
@@ -144,10 +154,15 @@ console.log(data);
                     `;
                 }
 
-                $("#summary").removeClass("hide")
-                    .find("table tbody").append(summaryHTML);
-                $("#results").removeClass("hide")
-                    .find("table tbody").append(hoursHTML);
+                $("#date-title h3").html(dateStr);
+                $("#summary tbody").html(summaryHTML);
+                $("#hourly tbody").html(hoursHTML);
+                $("main").removeClass("hide");
+            },
+            complete: function() {
+                $("#submit")
+                    .find("button").removeClass("disabled")
+                    .find(".progress").addClass("hide");
             }
         });
     });
