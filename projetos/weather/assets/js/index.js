@@ -69,7 +69,7 @@ function initializers() {
     $.ajax({
         url: "get-last.php",
         success: function (data) {
-            datepickers[0].options.maxDate = data;
+            datepickers[0].options.maxDate = new Date(data + " 00:00");
         }
     });
 
