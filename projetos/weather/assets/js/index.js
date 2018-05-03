@@ -76,8 +76,10 @@ function initializers() {
     });
 
     $("#date-form").on("submit", function () {
+        var date = new Date(datepickers[0].toString());
+        var dateStr = date.getFullYear() + "" + dateFix(date.getMonth() + 1) + "" + dateFix(date.getDate());
         $.ajax({
-            url: "query.php?date=" + $("#date-selector input").val(),
+            url: "query.php?date=" + dateStr,
             success: function (json) {
                 var data = JSON.parse(json),
                     hoursHTML = "",
