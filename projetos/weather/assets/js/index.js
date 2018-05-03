@@ -18,6 +18,7 @@ function initializers() {
         },
         'onSelect': function(d) {
             date = d; // Global date value
+            datepickers[0].options.defaultDate = date;
         },
         'i18n': { // Internacionalização
             'cancel': 'Cancelar',

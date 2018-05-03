@@ -52,6 +52,11 @@ table {
                 }
             }
             .datepicker-controls {
+                .select-month {
+                    .select-dropdown {
+                        width: 75px;
+                    }
+                }
                 button {
                     &:focus {
                         background-color: rgba($secondary-color, .25);
