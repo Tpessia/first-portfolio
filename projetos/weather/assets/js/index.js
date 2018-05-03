@@ -12,7 +12,7 @@ function initializers() {
         'autoClose': true,
         'format': 'mmm dd, yyyy',
         'minDate': new Date('1996-06-30 00:00'),
-        'yearRange': [1996, new Date().getFullYear()],
+        'setDefaultDate': true,
         'i18n': { // Internacionalização
             'cancel': 'Cancelar',
             'clear': 'Limpar',
@@ -71,6 +71,7 @@ function initializers() {
         success: function (data) {
             datepickers[0].options.maxDate = new Date(data + " 00:00");
             datepickers[0].options.yearRange = [1996, new Date(data + " 00:00").getFullYear()];
+            datepickers[0].options.setDefaultDate = true
             datepickers[0].options.defaultDate = new Date(data + " 00:00");
         }
     });
