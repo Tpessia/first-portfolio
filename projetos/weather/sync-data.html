@@ -75,9 +75,14 @@
 
                 $("#date, #qnt").val(''); // evita que o programa rode novamente sozinho
 
+                window.onbeforeunload = function (e) {
+                    var dialogText = 'Deseja sair enquanto o processo ainda não terminou?';
+                    e.returnValue = dialogText;
+                    return dialogText;
+                };
+
                 var i = 0;
                 while (i < qnt) {
-                    var isLast = (i == qnt - 1 ? true : false);
                     setTimeout(function () {
                         submitDay(date.getFullYear() + dateFix(date.getMonth() + 1) + dateFix(date.getDate()));
                         date.setDate(date.getDate() + 1);
@@ -172,6 +177,8 @@
                             $("#submit").css('pointer-events', 'all');
 
                             refreshLast();
+
+                            window.onbeforeunload = null;
                         }
                     },
                     error: function () {
@@ -192,13 +199,9 @@
 
                 json["0"]["date"] = dateStr;
 
-                //     console.log("------------------------------");
-                //     console.log(dateStr);
-                //     console.log("------------------------------");
                 for (var label in resumo) {
                     var dado = resumo[label];
                     if (typeof dado != "object") {
-                        //             console.log(label + " | " + dado);
                         json["0"][label] = dado;
                     }
                 }
@@ -222,13 +225,9 @@
                     json['"' + i + '"']["date"] = dateStr;
                     json['"' + i + '"']["datetime"] = dateTimeStr;
 
-                    //         console.log("------------------------------");
-                    //         console.log(dateStr);
-                    //         console.log("------------------------------");
                     for (var label in dados) {
                         var dado = dados[label];
                         if (typeof dado != "object") {
-                            //                 console.log(label + " | " + dado);
                             json['"' + i + '"'][label] = dado;
                         }
                     }
