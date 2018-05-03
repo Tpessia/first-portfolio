@@ -1,0 +1,112 @@
+$primary-color: #2196f3; // Materialize blue
+$secondary-color: #1a237e; // Materialize indigo darken-4
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    main {
+        flex: 1 0 auto;
+    }
+}
+
+table {
+    &.highlight {
+        tbody {
+            tr {
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.07);
+                }
+            }
+        }
+    }
+}
+
+.datepicker-container {
+    .datepicker-date-display {
+        background-color: $secondary-color;
+        @media (min-width: 601px) {
+            width: 35%;
+        }
+    }
+    .datepicker-calendar-container {
+        .pika-single {
+            .datepicker-table-wrapper {
+                table {
+                    tr {
+                        td {
+                            &.is-today {
+                                color: $secondary-color;
+                            }
+                            &.is-selected {
+                                background-color: $secondary-color;
+                                color: #fff;
+                            }
+                            button {
+                                &:focus {
+                                    background-color: rgba($secondary-color, .25);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .datepicker-controls {
+                button {
+                    &:focus {
+                        background-color: rgba($secondary-color, .25);
+                    }
+                }
+            }
+        }
+        .datepicker-footer {
+            .confirmation-btns {
+                button {
+                    color: $secondary-color;
+                }
+            }
+        }
+    }
+}
+
+.datepicker-modal,
+.datepicker-container,
+.datepicker-date-display {
+    &:focus {
+        outline: 0;
+    }
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+input[type=time]:not(.browser-default):focus:not([readonly]),
+input[type=date]:not(.browser-default):focus:not([readonly]),
+input[type=datetime]:not(.browser-default):focus:not([readonly]),
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+input[type=tel]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid $primary-color;
+    -webkit-box-shadow: 0 1px 0 0 $primary-color;
+    box-shadow: 0 1px 0 0 $primary-color;
+}
+
+input:not([type]):focus:not([readonly])+label,
+input[type=text]:not(.browser-default):focus:not([readonly])+label,
+input[type=password]:not(.browser-default):focus:not([readonly])+label,
+input[type=email]:not(.browser-default):focus:not([readonly])+label,
+input[type=url]:not(.browser-default):focus:not([readonly])+label,
+input[type=time]:not(.browser-default):focus:not([readonly])+label,
+input[type=date]:not(.browser-default):focus:not([readonly])+label,
+input[type=datetime]:not(.browser-default):focus:not([readonly])+label,
+input[type=datetime-local]:not(.browser-default):focus:not([readonly])+label,
+input[type=tel]:not(.browser-default):focus:not([readonly])+label,
+input[type=number]:not(.browser-default):focus:not([readonly])+label,
+input[type=search]:not(.browser-default):focus:not([readonly])+label,
+textarea.materialize-textarea:focus:not([readonly])+label {
+    color: $primary-color;
+}

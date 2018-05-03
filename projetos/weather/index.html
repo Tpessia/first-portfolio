@@ -1,95 +1,256 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Clima São Paulo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="/lib/jquery-3.2.1.min.js"></script>
+    <title>Clima São Paulo</title>
+    <meta name="description" content="Dados climáticos da cidade de São Paulo a partir de 30/06/1996.">
+    <link rel="icon" type="image/png" href="./favicon.png">
+    
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:url" content="https://www.pessia.xyz/projetos/weather/">
+    <meta property="og:title" content="Clima São Paulo">
+    <meta property="og:site_name" content="Clima São Paulo">
+    <meta property="og:description" content="Dados climáticos da cidade de São Paulo a partir de 30/06/1996.">
+    <meta property="og:image" content="./favicon.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="300">
+    <meta property="og:type" content="website">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="./lib/materialize/materialize.min.css" rel="stylesheet">
+    <link href="./assets/styles/css/index.css" rel="stylesheet">
+
+    <script src="./lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="./lib/materialize/materialize.min.js"></script>
+    <script src="./assets/js/utils.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/index.js"></script>
 </head>
 <body>
-    <form id="date-form" onsubmit="return false;" style="margin-bottom: 15px">
-        <input type="date" id="date-selector" min="1996-06-30" required>
-        <input type="submit" value="submit">
-    </form>
+    <main class="container">
 
-    <table id="results-table">
-        <tr>
-            <th>Hora</th>
-            <th>Condição</th>
-            <th>Temperatura</th>
-            <th>Humidade</th>
-            <th>Pressão</th>
-            <th>Visibilidade</th>
-            <th>Direção do Vento A</th>
-            <th>Direção do Vento B</th>
-            <th>Velocidade do Vento</th>
-        </tr>
-    </table>
+        <h2>Clima São Paulo</h2>
 
-    <script>
-        $(function() {
-            $.ajax({
-                url: "get-last.php",
-                success: function (data) {
-                    $("#date-selector").attr("max", data)
-                }
-            });
+        <form id="date-form" onsubmit="return false;">
+            <div id="date-selector" class="input-field">
+                <input class="datepicker" type="text" required>
+                <label for="date-selector">Data</label>
+            </div>
+            <button id="submit" class="btn blue waves-effect waves-light" type="submit" name="action">Submit</button>
+        </form>
 
-            $("#date-form").on("submit", function() {
-                $.ajax({
-                    url: "query.php?date=" + $("#date-selector").val(),
-                    success: function(json) {
-                        var data = JSON.parse(json),
-                            hoursHTML = "";
+        <div id="summary" class="hide">
+            <h3>Resumo do Dia</h3>
+            <table class="data-table highlight">
+                <thead>
+                    <tr>
+                        <th>Temp. Max.</th>
+                        <th>Temp. Média</th>
+                        <th>Temp. Min.</th>
+                        <th>Umidade</th>
+                        <th>Precipitação</th>
+                        <th>Neblina</th>
+                        <th>Chuva</th>
+                        <th>Chuva de Granizo</th>
+                        <th>Trovoadas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>30</td>
+                        <td>20</td>
+                        <td>10</td>
+                        <td>75</td>
+                        <td>99</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="results" class="hide">
+            <h3>Dados por Hora</h3>
+            <table class="data-table highlight responsive-table">
+                <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Condição</th>
+                        <th>Temperatura</th>
+                        <th>Umidade</th>
+                        <th>Pressão</th>
+                        <th>Visibilidade</th>
+                        <th>Direção do Vento A</th>
+                        <th>Direção do Vento B</th>
+                        <th>Velocidade do Vento</th>
+                    </tr>
+                </thead>
+                <tbody>
+            <tr>
+                <td>06:00:00</td>
+                <td>Scattered Clouds</td>
+                <td>24</td>
+                <td>78</td>
+                <td>1017</td>
+                <td>8</td>
+                <td>East</td>
+                <td>100</td>
+                <td>7.4</td>
+            </tr>
+            
+            <tr>
+                <td>07:00:00</td>
+                <td>Scattered Clouds</td>
+                <td>23</td>
+                <td>83</td>
+                <td>1017</td>
+                <td>6</td>
+                <td>North</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            
+            <tr>
+                <td>08:00:00</td>
+                <td>Scattered Clouds</td>
+                <td>25</td>
+                <td>74</td>
+                <td>1018</td>
+                <td>6</td>
+                <td>East</td>
+                <td>100</td>
+                <td>3.7</td>
+            </tr>
+            
+            <tr>
+                <td>11:00:00</td>
+                <td>Partly Cloudy</td>
+                <td>30</td>
+                <td>58</td>
+                <td>1017</td>
+                <td>10</td>
+                <td>ENE</td>
+                <td>70</td>
+                <td>5.6</td>
+            </tr>
+            
+            <tr>
+                <td>14:00:00</td>
+                <td>Scattered Clouds</td>
+                <td>34</td>
+                <td>44</td>
+                <td>1016</td>
+                <td>10</td>
+                <td>West</td>
+                <td>270</td>
+                <td>14.8</td>
+            </tr>
+            
+            <tr>
+                <td>15:00:00</td>
+                <td>Scattered Clouds</td>
+                <td>33</td>
+                <td>52</td>
+                <td>1015</td>
+                <td>10</td>
+                <td>SSE</td>
+                <td>150</td>
+                <td>14.8</td>
+            </tr>
+            
+            <tr>
+                <td>16:00:00</td>
+                <td>Mostly Cloudy</td>
+                <td>29</td>
+                <td>66</td>
+                <td>1015</td>
+                <td>10</td>
+                <td>South</td>
+                <td>180</td>
+                <td>11.1</td>
+            </tr>
+            
+            <tr>
+                <td>17:00:00</td>
+                <td>Mostly Cloudy</td>
+                <td>30</td>
+                <td>62</td>
+                <td>1016</td>
+                <td>10</td>
+                <td>ESE</td>
+                <td>110</td>
+                <td>7.4</td>
+            </tr>
+            
+            <tr>
+                <td>18:00:00</td>
+                <td>Mostly Cloudy</td>
+                <td>30</td>
+                <td>66</td>
+                <td>1015</td>
+                <td>10</td>
+                <td>North</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            
+            <tr>
+                <td>19:00:00</td>
+                <td>Mostly Cloudy</td>
+                <td>30</td>
+                <td>58</td>
+                <td>1015</td>
+                <td>8</td>
+                <td>East</td>
+                <td>80</td>
+                <td>11.1</td>
+            </tr>
+            
+            <tr>
+                <td>20:00:00</td>
+                <td>Mostly Cloudy</td>
+                <td>28</td>
+                <td>66</td>
+                <td>1016</td>
+                <td>9</td>
+                <td>East</td>
+                <td>100</td>
+                <td>3.7</td>
+            </tr>
+            
+            <tr>
+                <td>21:00:00</td>
+                <td>Clear</td>
+                <td>27</td>
+                <td>70</td>
+                <td>1017</td>
+                <td>-9999</td>
+                <td>East</td>
+                <td>100</td>
+                <td>3.7</td>
+            </tr>
+            
+            <tr>
+                <td>22:00:00</td>
+                <td>Clear</td>
+                <td>26</td>
+                <td>74</td>
+                <td>1017</td>
+                <td>-9999</td>
+                <td>SE</td>
+                <td>140</td>
+                <td>7.4</td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
 
-                        $("#results-table tr:not(:first-child)").remove();
-
-                        for (var i in data.hourly) {
-                            var hour = data.hourly[i],
-                                date = new Date(hour.datetime);
-
-                            hoursHTML += `                                
-                                <tr>                                
-                                    <td>` + dateFix(date.getHours()) + ":" + dateFix(date.getMinutes()) + ":" + dateFix(date.getSeconds()) + `</td>
-                                    <td>` + hour.conds + `</td>
-                                    <td>` + hour.tempm + `</td>
-                                    <td>` + hour.hum + `</td>
-                                    <td>` + hour.pressurem + `</td>
-                                    <td>` + hour.vism + `</td>
-                                    <td>` + hour.wdire + `</td>
-                                    <td>` + hour.wdird + `</td>
-                                    <td>` + hour.wspdm + `</td>                                
-                                </tr>                                
-                            `;
-                        }
-
-                        $("#results-table").append(hoursHTML);                        
-                    }
-                });
-            });
-
-            function dateFix(num) {
-                return num < 10 ? "0" + num : num.toString();
-            }
-
-            function isNull(data, notNullQnt) {
-                var notNull = 0;
-
-                for (var i in data) {
-                    if (data[i] != "") {
-                        notNull++;
-                    }
-                }
-
-                if (notNull == notNullQnt) {
-                    return true;
-                }
-
-                return false;
-            }
-        });
-    </script>
+    </main>
 </body>
 </html>

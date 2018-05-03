@@ -29,7 +29,7 @@
             echo $row["date"];
         }
     } else {
-        echo "0";
+        echo "1996-06-30";
     }
     
     mysqli_close($conn);
