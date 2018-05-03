@@ -20,6 +20,8 @@ table.highlight tbody tr:hover {
   color: #fff; }
 .datepicker-container .datepicker-calendar-container .pika-single .datepicker-table-wrapper table tr td button:focus {
   background-color: rgba(26, 35, 126, 0.25); }
+.datepicker-container .datepicker-calendar-container .pika-single .datepicker-controls .select-month .select-dropdown {
+  width: 75px; }
 .datepicker-container .datepicker-calendar-container .pika-single .datepicker-controls button:focus {
   background-color: rgba(26, 35, 126, 0.25); }
 .datepicker-container .datepicker-calendar-container .datepicker-footer .confirmation-btns button {
