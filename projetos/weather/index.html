@@ -9,8 +9,8 @@
     <script src="/lib/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-    <form id="date-form" onsubmit="return false;">
-        <input type="date" id="date-selector" min="1996-30-06" required>
+    <form id="date-form" onsubmit="return false;" style="margin-bottom: 15px">
+        <input type="date" id="date-selector" min="1996-06-30" required>
         <input type="submit" value="submit">
     </form>
 
@@ -72,6 +72,22 @@
 
             function dateFix(num) {
                 return num < 10 ? "0" + num : num.toString();
+            }
+
+            function isNull(data, notNullQnt) {
+                var notNull = 0;
+
+                for (var i in data) {
+                    if (data[i] != "") {
+                        notNull++;
+                    }
+                }
+
+                if (notNull == notNullQnt) {
+                    return true;
+                }
+
+                return false;
             }
         });
     </script>
