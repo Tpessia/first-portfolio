@@ -17,8 +17,7 @@ function initializers() {
             this.setDate(new Date(this.options.defaultDate));
         },
         'onSelect': function(d) {
-            date = d; // Global date value
-            datepickers[0].options.defaultDate = date;
+            datepickers[0].options.defaultDate = d;
         },
         'i18n': { // Internacionalização
             'cancel': 'Cancelar',
@@ -94,6 +93,8 @@ function initializers() {
         $("#submit button").addClass("disabled")
         $("#submit .progress").removeClass("hide");
 
+        var date = datepickers[0].options.defaultDate;
+
         var dateStr = date.getFullYear() + "" + dateFix(date.getMonth() + 1) + "" + dateFix(date.getDate());
         $.ajax({
             url: "query.php?date=" + dateStr,
@@ -134,11 +135,11 @@ function initializers() {
                 if (!isNull(data.hourly[0], 3)) {
                     for (var i in data.hourly) {
                         var hour = data.hourly[i],
-                            date = new Date(hour.datetime);
+                            datetime = new Date(hour.datetime);
 
                         hoursHTML += `                                
                         <tr>
-                            <td>` + dateFix(date.getHours()) + ":" + dateFix(date.getMinutes()) + ":" + dateFix(date.getSeconds()) + `</td>
+                            <td>` + dateFix(datetime.getHours()) + ":" + dateFix(datetime.getMinutes()) + ":" + dateFix(datetime.getSeconds()) + `</td>
                             <td>` + hour.conds + `</td>
                             <td>` + hour.tempm + `</td>
                             <td>` + hour.hum + `</td>
