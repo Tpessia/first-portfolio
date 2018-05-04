@@ -12,6 +12,9 @@ body {
             #date-selector {
                 display: inline-block;
                 margin-right: 15px;
+                @media (max-width: 360px) {
+                    width: 100%;
+                }
                 .datepicker {
                     color: white;
                     border-color: white;
