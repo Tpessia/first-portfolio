@@ -2,17 +2,24 @@ $(function () {
 
     initializers();
 
+    post_initialization();
+
     animations();
 
 });
 
 function initializers() {
 
+    var yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
     datepickers = M.Datepicker.init($$('.datepicker'), {
         'autoClose': true,
         'format': 'mmm dd, yyyy',
         'minDate': new Date('1996-06-30 00:00'),
-        // 'setDefaultDate': true,
+        'maxDate': yesterday,
+        'yearRange': [1996, yesterday.getFullYear()],
+        'defaultDate': yesterday,
         'onOpen': function() {
             this.setDate(new Date(this.options.defaultDate));
         },
@@ -75,17 +82,11 @@ function initializers() {
     $.ajax({
         url: "get-last.php",
         success: function (date) {
-            datepickers[0].options.maxDate = new Date(date + " 00:00");
-            datepickers[0].options.yearRange = [1996, new Date(date + " 00:00").getFullYear()];
-            datepickers[0].options.defaultDate = new Date(date + " 00:00");
-        },
-        error: function() {
-            var yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
-
-            datepickers[0].options.maxDate = new Date(yesterday);
-            datepickers[0].options.yearRange = [1996, new Date(yesterday).getFullYear()];
-            datepickers[0].options.defaultDate = new Date(yesterday);
+            if (date.match(/^(\d){4}[- \/.]?(0[1-9]|1[012])[- \/.]?(0[1-9]|[12][0-9]|3[01])$/)) { // Match date [0000-9999][0-12][0-31]
+                datepickers[0].options.maxDate = new Date(date + " 00:00");
+                datepickers[0].options.yearRange = [1996, new Date(date + " 00:00").getFullYear()];
+                datepickers[0].options.defaultDate = new Date(date + " 00:00");
+            }
         }
     });
 
@@ -165,6 +166,26 @@ function initializers() {
                 $("#hourly tbody").html(hoursHTML);
                 $("main .row").removeClass("hide");
                 $("main h5").addClass("hide");
+
+                function isNull(data, notNullQnt) {
+                    if (data === null || typeof data === "undefined" || (data.hasOwnProperty("length") ? data.length == 0 : false)) {
+                        return true;
+                    }
+
+                    var notNull = 0;
+
+                    for (var i in data) {
+                        if (data[i] != "") {
+                            notNull++;
+                        }
+                    }
+
+                    if (notNull == notNullQnt) {
+                        return true;
+                    }
+
+                    return false;
+                }
             },
             complete: function() {
                 $("#submit button").removeClass("disabled")
@@ -173,25 +194,13 @@ function initializers() {
         });
     });
 
-    function isNull(data, notNullQnt) {
-        if (data === null || typeof data === "undefined" || (data.hasOwnProperty("length") ? data.length == 0 : false)) {
-            return true;
-        }
+}
 
-        var notNull = 0;
+function post_initialization() {
 
-        for (var i in data) {
-            if (data[i] != "") {
-                notNull++;
-            }
-        }
+    $("#date-selector .datepicker").removeAttr("disabled");
 
-        if (notNull == notNullQnt) {
-            return true;
-        }
-
-        return false;
-    }
+    $("#submit button").removeClass("disabled");
 
 }
 
