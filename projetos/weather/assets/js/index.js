@@ -131,7 +131,7 @@ function initializers() {
                     `;
                 }
 
-                if (!isNull(data.hourly, 3)) {
+                if (!isNull(data.hourly[0], 3)) {
                     for (var i in data.hourly) {
                         var hour = data.hourly[i],
                             date = new Date(hour.datetime);
