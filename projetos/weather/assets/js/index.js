@@ -172,6 +172,10 @@ function initializers() {
     });
 
     function isNull(data, notNullQnt) {
+        if (data === null || typeof data === "undefined" || (a.hasOwnProperty("length") ? a.length == 0 : true)) {
+            return true;
+        }
+
         var notNull = 0;
 
         for (var i in data) {
