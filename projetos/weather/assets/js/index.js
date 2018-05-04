@@ -163,7 +163,8 @@ function initializers() {
                 $("#date-title h3").html("Clima em " + dateFix(date.getDate()) + "/" + dateFix(date.getMonth() + 1) + "/" + date.getFullYear());
                 $("#summary tbody").html(summaryHTML);
                 $("#hourly tbody").html(hoursHTML);
-                $("main").removeClass("hide");
+                $("main row").removeClass("hide");
+                $("main h5").addClass("hide");
             },
             complete: function() {
                 $("#submit button").removeClass("disabled")
