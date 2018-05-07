@@ -31,25 +31,23 @@
     <script src="./assets/js/index.js"></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <h2>Clima São Paulo</h2>
-                    
-                    <form id="date-form" onsubmit="return false;">
-                        <div id="date-selector" class="input-field">
-                            <input class="datepicker" type="text" required disabled>
-                            <label for="date-selector">Data</label>
+    <header class="container">
+        <div class="row">
+            <div class="col s12">
+                <h2>Clima São Paulo</h2>
+                
+                <form id="date-form" onsubmit="return false;">
+                    <div id="date-selector" class="input-field">
+                        <input class="datepicker" type="text" required disabled>
+                        <label for="date-selector">Data</label>
+                    </div>
+                    <div id="submit">
+                        <button class="btn white blue-text waves-effect disabled" type="submit" name="action">Procurar</button>
+                        <div class="progress hide">
+                            <div class="indeterminate"></div>
                         </div>
-                        <div id="submit">
-                            <button class="btn white blue-text waves-effect disabled" type="submit" name="action">Procurar</button>
-                            <div class="progress hide">
-                                <div class="indeterminate"></div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </header>
