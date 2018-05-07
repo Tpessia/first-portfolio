@@ -6,7 +6,7 @@ if (isset($_GET["qnt"])) {
         $init_date = new DateTime($_GET["date"]);
     }
     else {
-        $last = file_get_contents("https://www.pessia.xyz/projetos/weather/get-last.php");
+        $last = file_get_contents("https://www.pessia.xyz/projetos/clima/get-last.php");
         
         if($last != "0") {
             $init_date = new DateTime($last);
@@ -34,10 +34,10 @@ if (isset($_GET["qnt"])) {
             echo $init_date->format('Y-m-d') . " (" . ($qnt - $i + 1) . " / " . $qnt . ")" . "<br><br>";
 
             if (isset($data["history"]["dailysummary"][0]) && !(intval($data["history"]["dailysummary"][0]["date"]["year"]) == 1969 && intval($data["history"]["dailysummary"][0]["date"]["mon"]) == 12 && intval($data["history"]["dailysummary"][0]["date"]["mday"]) == 31)) {
-                echo do_post_request("https://www.pessia.xyz/projetos/weather/insert-daily.php", http_build_query(summaryData($data)));
+                echo do_post_request("https://www.pessia.xyz/projetos/clima/insert-daily.php", http_build_query(summaryData($data)));
             }
             else {
-                echo do_post_request("https://www.pessia.xyz/projetos/weather/insert-daily.php", http_build_query(array(
+                echo do_post_request("https://www.pessia.xyz/projetos/clima/insert-daily.php", http_build_query(array(
 
                     "null" => array(
 
@@ -49,10 +49,10 @@ if (isset($_GET["qnt"])) {
             }
 
             if (isset($data["history"]["observations"][0])) {
-                do_post_request("https://www.pessia.xyz/projetos/weather/insert-hours.php", http_build_query(hourlyData($data)));
+                do_post_request("https://www.pessia.xyz/projetos/clima/insert-hours.php", http_build_query(hourlyData($data)));
             }
             else {
-                do_post_request("https://www.pessia.xyz/projetos/weather/insert-hours.php", http_build_query(array(
+                do_post_request("https://www.pessia.xyz/projetos/clima/insert-hours.php", http_build_query(array(
 
                     "null" => array(
 
