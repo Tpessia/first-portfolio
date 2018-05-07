@@ -119,6 +119,7 @@
                                     console.log("Ok summary!\n\n" + response)
                                 },
                                 error: function () {
+                                    stopAll();
                                     $("#message").append("<div style='color: red;'>Erro Resumo - " + YYYYMMDD + "</div>");
                                     console.log("Error summary!\n\n" + response)
                                 }
@@ -135,6 +136,7 @@
                                     console.log("Null summary!\n\n" + response)
                                 },
                                 error: function () {
+                                    stopAll();
                                     $("#message").append("<div style='color: red;'>Erro Resumo - " + YYYYMMDD + "</div>");
                                     console.log("Error summary!\n\n" + response)
                                 }
@@ -152,6 +154,7 @@
                                     console.log("Ok hours!\n\n" + response)
                                 },
                                 error: function () {
+                                    stopAll();
                                     $("#message").append("<div style='color: red;'>Erro Horário - " + YYYYMMDD + "</div>");
                                     console.log("Error hours!\n\n" + response)
                                 }
@@ -168,6 +171,7 @@
                                     console.log("Null hours!\n\n" + response)
                                 },
                                 error: function () {
+                                    stopAll();
                                     $("#message").append("<div style='color: red;'>Erro Horário - " + YYYYMMDD + "</div>");
                                     console.log("Error hours!\n\n" + response)
                                 }
@@ -185,11 +189,15 @@
                         }
                     },
                     error: function () {
-                        timeouts.forEach(clearTimeout);
-                        ajaxes.forEach(function (ajax) { ajax.abort(); });
-                        $("#message").append("<div style='color: red; font-weight: bold;'>ERRO DE CONEXÃO</div>");
+                        stopAll();
+                        $("#message").append("<div style='color: red;'>ERRO DE CONEXÃO</div>");
                     }
                 }));
+
+                function stopAll() {
+                    timeouts.forEach(clearTimeout);
+                    ajaxes.forEach(function (ajax) { ajax.abort(); });
+                }
             }
 
             function summaryData(data) {
