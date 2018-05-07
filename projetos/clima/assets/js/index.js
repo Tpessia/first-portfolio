@@ -83,9 +83,9 @@ function initializers() {
         url: "get-last.php",
         success: function (date) {
             if (date.match(/^(\d){4}[- \/.]?(0[1-9]|1[012])[- \/.]?(0[1-9]|[12][0-9]|3[01])$/)) { // Match date [0000-9999][0-12][0-31]
-                datepickers[0].options.maxDate = new Date(date + " 00:00");
-                datepickers[0].options.yearRange = [1996, new Date(date + " 00:00").getFullYear()];
-                datepickers[0].options.defaultDate = new Date(date + " 00:00");
+                datepickers[0].options.maxDate = new Date(date + "T00:00:00");
+                datepickers[0].options.yearRange = [1996, new Date(date + "T00:00:00").getFullYear()];
+                datepickers[0].options.defaultDate = new Date(date + "T00:00:00");
             }
             else {
                 console.log("Valor inválido de get-last.php: " + date);
