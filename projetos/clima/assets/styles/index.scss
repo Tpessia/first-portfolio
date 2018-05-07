@@ -49,11 +49,16 @@ body {
     }
     main {
         padding-bottom: 35px;
-        #date-title {
-            margin-bottom: 0;
-        }
-        .data-table {
-            overflow-x: auto;
+        .row {
+            &:not(#date-title) {
+                margin-bottom: 50px;
+            }
+            &#date-title {
+                margin-bottom: 0;
+            }
+            .data-table {
+                overflow-x: auto;
+            }
         }
     }
 }

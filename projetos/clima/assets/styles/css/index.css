@@ -72,9 +72,11 @@ body header {
             background-color: #636363; }
 body main {
   padding-bottom: 35px; }
-  body main #date-title {
+  body main .row:not(#date-title) {
+    margin-bottom: 50px; }
+  body main .row#date-title {
     margin-bottom: 0; }
-  body main .data-table {
+  body main .row .data-table {
     overflow-x: auto; }
 
 /*# sourceMappingURL=index.css.map */

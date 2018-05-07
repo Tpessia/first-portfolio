@@ -111,7 +111,8 @@ function initializers() {
                 }
                 
                 var hoursHTML = "",
-                    summaryHTML = "";
+                    summaryHTML = "",
+                    almanacHTML = "";
 
                 if (!isNull(data.summary, 2)) {
                     var summary = data.summary;
@@ -170,13 +171,40 @@ function initializers() {
                     `;
                 }
 
+                if (!isNull(data.almanac, 2)) {
+                    var almanac = data.almanac;
+
+                    almanacHTML += `                                
+                    <tr>
+                        <td>` + almanac.temp_high_normal_m + `</td>
+                        <td>` + almanac.temp_high_record_m + `</td>
+                        <td>` + almanac.temp_high_record_year + `</td>
+                        <td>` + almanac.temp_low_normal_m + `</td>
+                        <td>` + almanac.temp_low_record_m + `</td>
+                        <td>` + almanac.temp_low_record_year + `</td>
+                    </tr>
+                    `;
+
+                    function bitToStr(bit) {
+                        return bit == 0 ? "Não" : "Sim";
+                    }
+                }
+                else {
+                    almanacHTML = `
+                        <tr>
+                            <td colspan="9">Recordes Indisponíveis</td>
+                        </tr>
+                    `;
+                }
+
                 $("#date-title h3").html("Clima em " + dateFix(date.getDate()) + "/" + dateFix(date.getMonth() + 1) + "/" + date.getFullYear());
                 $("#summary tbody").html(summaryHTML);
                 $("#hourly tbody").html(hoursHTML);
+                $("#almanac tbody").html(almanacHTML);
                 $("main .row").removeClass("hide");
                 $("main h5").addClass("hide");
 
-                function isNull(data, notNullQnt) {
+                function isNull(data, notNullQnt) { // é nulo ou tem menos (<=) que x ("notNullQnt") propriedades
                     if (data === null || typeof data === "undefined" || (data.hasOwnProperty("length") ? data.length == 0 : false) || (typeof date === "object" ? Object.keys(data).length == 0 : false)) {
                         return true;
                     }
@@ -189,7 +217,7 @@ function initializers() {
                         }
                     }
 
-                    if (notNull == notNullQnt) {
+                    if (notNull <= notNullQnt) {
                         return true;
                     }
 
