@@ -121,37 +121,30 @@ function initializers() {
                 if (!isNull(data.summary, 2)) {
                     var summary = checkNotAvailable(data.summary);
                     
-                    summaryHTML += `                                
-                    <tr>
-                        <td>` + summary.maxtempm + `</td>
-                        <td>` + summary.meantempm + `</td>
-                        <td>` + summary.mintempm + `</td>
-                        <td>` + summary.maxpressurem + `</td>
-                        <td>` + summary.meanpressurem + `</td>
-                        <td>` + summary.minpressurem + `</td>
-                        <td>` + summary.humidity + `</td>
-                        <td>` + summary.precipm + `</td>
-                        <td>` + summary.meanvism + `</td>
-                        <td>` + translate(summary.meanwdire) + `</td>
-                        <td>` + summary.meanwdird + `</td>
-                        <td>` + summary.meanwindspdm + `</td>
-                        <td>` + bitToStr(summary.fog) + `</td>
-                        <td>` + bitToStr(summary.rain) + `</td>
-                        <td>` + bitToStr(summary.hail) + `</td>
-                        <td>` + bitToStr(summary.thunder) + `</td>
-                    </tr>
-                    `;
+                    summaryHTML += '<tr><td>'
+                    + summary.maxtempm + '</td><td>' 
+                    + summary.meantempm + '</td><td>' 
+                    + summary.mintempm + '</td><td>' 
+                    + summary.maxpressurem + '</td><td>' 
+                    + summary.meanpressurem + '</td><td>' 
+                    + summary.minpressurem + '</td><td>' 
+                    + summary.humidity + '</td><td>' 
+                    + summary.precipm + '</td><td>' 
+                    + summary.meanvism + '</td><td>' 
+                    + translate(summary.meanwdire) + '</td><td>' 
+                    + summary.meanwdird + '</td><td>' 
+                    + summary.meanwindspdm + '</td><td>' 
+                    + bitToStr(summary.fog) + '</td><td>' 
+                    + bitToStr(summary.rain) + '</td><td>' 
+                    + bitToStr(summary.hail) + '</td><td>' 
+                    + bitToStr(summary.thunder) + '</td></tr>';
 
                     function bitToStr(bit) {
                         return bit == 0 ? "Não" : "Sim";
                     }
                 }
                 else {
-                    summaryHTML = `
-                        <tr>
-                            <td colspan="9">Resumo do Dia Indisponível</td>
-                        </tr>
-                    `;
+                    summaryHTML = '<tr><td colspan="9">Resumo do Dia Indisponível</td></tr>';
                 }
 
                 if (!isNull(data.hourly[0], 3)) {
@@ -159,51 +152,37 @@ function initializers() {
                         var hour = checkNotAvailable(data.hourly[i]),
                             datetime = new Date(hour.datetime);
 
-                        hoursHTML += `                                
-                        <tr>
-                            <td>` + dateFix(datetime.getHours()) + ":" + dateFix(datetime.getMinutes()) + ":" + dateFix(datetime.getSeconds()) + `</td>
-                            <td>` + translate(hour.conds) + `</td>
-                            <td>` + hour.tempm + `</td>
-                            <td>` + hour.pressurem + `</td>
-                            <td>` + hour.hum + `</td>
-                            <td>` + hour.precipm + `</td>
-                            <td>` + hour.vism + `</td>
-                            <td>` + translate(hour.wdire) + `</td>
-                            <td>` + hour.wdird + `</td>
-                            <td>` + hour.wspdm + `</td>
-                            <td>` + hour.wgustm + `</td>
-                        </tr>
-                    `;
+                        hoursHTML += '<tr><td>' 
+                        + dateFix(datetime.getHours()) + ":" + dateFix(datetime.getMinutes()) + ":" + dateFix(datetime.getSeconds()) + '</td><td>' 
+                        + translate(hour.conds) + '</td><td>' 
+                        + hour.tempm + '</td><td>' 
+                        + hour.pressurem + '</td><td>' 
+                        + hour.hum + '</td><td>' 
+                        + hour.precipm + '</td><td>' 
+                        + hour.vism + '</td><td>' 
+                        + translate(hour.wdire) + '</td><td>' 
+                        + hour.wdird + '</td><td>' 
+                        + hour.wspdm + '</td><td>' 
+                        + hour.wgustm + '</td></tr>';
                     }
                 }
                 else {
-                    hoursHTML = `
-                        <tr>
-                            <td colspan="9">Dados Indisponíveis</td>
-                        </tr>
-                    `;
+                    hoursHTML = '<tr><td colspan="9">Dados Indisponíveis</td></tr>';
                 }
 
                 if (!isNull(data.almanac, 2)) {
                     var almanac = checkNotAvailable(data.almanac);
 
-                    almanacHTML += `                                
-                    <tr>
-                        <td>` + almanac.temp_high_normal_m + `</td>
-                        <td>` + almanac.temp_high_record_m + `</td>
-                        <td>` + almanac.temp_high_record_year + `</td>
-                        <td>` + almanac.temp_low_normal_m + `</td>
-                        <td>` + almanac.temp_low_record_m + `</td>
-                        <td>` + almanac.temp_low_record_year + `</td>
-                    </tr>
-                    `;
+                    almanacHTML += '<tr><td>' 
+                    + almanac.temp_high_normal_m + '</td><td>' 
+                    + almanac.temp_high_record_m + '</td><td>' 
+                    + almanac.temp_high_record_year + '</td><td>' 
+                    + almanac.temp_low_normal_m + '</td><td>' 
+                    + almanac.temp_low_record_m + '</td><td>' 
+                    + almanac.temp_low_record_year + '</td></tr>';
                 }
                 else {
-                    almanacHTML = `
-                        <tr>
-                            <td colspan="9">Recordes Indisponíveis</td>
-                        </tr>
-                    `;
+                    almanacHTML = '<tr><td colspan="9">Recordes Indisponíveis</td></tr>';
                 }
 
                 $("#date-title h3").html("Clima em " + dateFix(date.getDate()) + "/" + dateFix(date.getMonth() + 1) + "/" + date.getFullYear());
