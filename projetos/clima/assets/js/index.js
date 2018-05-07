@@ -119,6 +119,12 @@ function initializers() {
 
                 if (!isNull(data.summary, 2)) {
                     var summary = data.summary;
+
+                    for (var p in summary) {
+                        if (summary[p] == "-999" || summary[p] == "-9999") {
+                            summary[p] = "n/a";
+                        }
+                    }
                     
                     summaryHTML += `                                
                     <tr>
@@ -158,6 +164,14 @@ function initializers() {
                         var hour = data.hourly[i],
                             datetime = new Date(hour.datetime);
 
+                        for (var i in hour) {
+                            for (var p in hour[i]) {
+                                if (hour[i][p] == "-999" || hour[i][p] == "-9999") {
+                                    hour[i][p] = "n/a";
+                                }
+                            }
+                        }
+
                         hoursHTML += `                                
                         <tr>
                             <td>` + dateFix(datetime.getHours()) + ":" + dateFix(datetime.getMinutes()) + ":" + dateFix(datetime.getSeconds()) + `</td>
@@ -185,6 +199,12 @@ function initializers() {
 
                 if (!isNull(data.almanac, 2)) {
                     var almanac = data.almanac;
+
+                    for (var p in almanac) {
+                        if (almanac[p] == "-999" || almanac[p] == "-9999") {
+                            almanac[p] = "n/a";
+                        }
+                    }
 
                     almanacHTML += `                                
                     <tr>
