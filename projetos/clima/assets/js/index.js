@@ -125,11 +125,11 @@ function initializers() {
                         <td>` + summary.maxtempm + `</td>
                         <td>` + summary.meantempm + `</td>
                         <td>` + summary.mintempm + `</td>
-                        <td>` + summary.humidity + `</td>
-                        <td>` + summary.precipm + `</td>
                         <td>` + summary.maxpressurem + `</td>
                         <td>` + summary.meanpressurem + `</td>
                         <td>` + summary.minpressurem + `</td>
+                        <td>` + summary.humidity + `</td>
+                        <td>` + summary.precipm + `</td>
                         <td>` + summary.meanvism + `</td>
                         <td>` + summary.meanwdire + `</td>
                         <td>` + summary.meanwdird + `</td>
@@ -163,9 +163,9 @@ function initializers() {
                             <td>` + dateFix(datetime.getHours()) + ":" + dateFix(datetime.getMinutes()) + ":" + dateFix(datetime.getSeconds()) + `</td>
                             <td>` + hour.conds + `</td>
                             <td>` + hour.tempm + `</td>
+                            <td>` + hour.pressurem + `</td>
                             <td>` + hour.hum + `</td>
                             <td>` + hour.precipm + `</td>
-                            <td>` + hour.pressurem + `</td>
                             <td>` + hour.vism + `</td>
                             <td>` + hour.wdire + `</td>
                             <td>` + hour.wdird + `</td>
