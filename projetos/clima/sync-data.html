@@ -82,11 +82,12 @@
                 };
 
                 var i = 0;
+                timeouts = [];
                 while (i < qnt) {
-                    setTimeout(function () {
+                    timeouts.push(setTimeout(function () {
                         submitDay(date.getFullYear() + dateFix(date.getMonth() + 1) + dateFix(date.getDate()));
                         date.setDate(date.getDate() + 1);
-                    }, 6000 * i + 3000);
+                    }, 6000 * i + 3000));
                     i++;
                 }
             });
@@ -99,7 +100,9 @@
                 index++;
                 $("#progress").html(index + " / " + qnt);
 
-                $.ajax({
+                ajaxes = [];
+
+                ajaxes.push($.ajax({
                     url: "//api.wunderground.com/api/863a1b76beeb23bd/history_" + YYYYMMDD + "/q/zmw:00000.100.83779.json",
                     async: false,
                     success: function (data) {
@@ -182,9 +185,11 @@
                         }
                     },
                     error: function () {
+                        timeouts.forEach(clearTimeout);
+                        ajaxes.forEach(function (ajax) { ajax.abort(); });
                         $("#message").append("<div>ERRO DE CONEXÃO</div>");
                     }
-                });
+                }));
             }
 
             function summaryData(data) {
