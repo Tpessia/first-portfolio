@@ -119,7 +119,7 @@
                                     console.log("Ok summary!\n\n" + response)
                                 },
                                 error: function () {
-                                    $("#message").append("<div>Erro Resumo - " + YYYYMMDD + "</div>");
+                                    $("#message").append("<div style='color: red;'>Erro Resumo - " + YYYYMMDD + "</div>");
                                     console.log("Error summary!\n\n" + response)
                                 }
                             });
@@ -135,7 +135,7 @@
                                     console.log("Null summary!\n\n" + response)
                                 },
                                 error: function () {
-                                    $("#message").append("<div>Erro Resumo - " + YYYYMMDD + "</div>");
+                                    $("#message").append("<div style='color: red;'>Erro Resumo - " + YYYYMMDD + "</div>");
                                     console.log("Error summary!\n\n" + response)
                                 }
                             });
@@ -152,7 +152,7 @@
                                     console.log("Ok hours!\n\n" + response)
                                 },
                                 error: function () {
-                                    $("#message").append("<div>Erro Horário - " + YYYYMMDD + "</div>");
+                                    $("#message").append("<div style='color: red;'>Erro Horário - " + YYYYMMDD + "</div>");
                                     console.log("Error hours!\n\n" + response)
                                 }
                             });
@@ -168,7 +168,7 @@
                                     console.log("Null hours!\n\n" + response)
                                 },
                                 error: function () {
-                                    $("#message").append("<div>Erro Horário - " + YYYYMMDD + "</div>");
+                                    $("#message").append("<div style='color: red;'>Erro Horário - " + YYYYMMDD + "</div>");
                                     console.log("Error hours!\n\n" + response)
                                 }
                             });
@@ -187,7 +187,7 @@
                     error: function () {
                         timeouts.forEach(clearTimeout);
                         ajaxes.forEach(function (ajax) { ajax.abort(); });
-                        $("#message").append("<div>ERRO DE CONEXÃO</div>");
+                        $("#message").append("<div style='color: red; font-weight: bold;'>ERRO DE CONEXÃO</div>");
                     }
                 }));
             }
