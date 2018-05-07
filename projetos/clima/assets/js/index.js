@@ -144,7 +144,7 @@ function initializers() {
                     }
                 }
                 else {
-                    summaryHTML = '<tr><td colspan="9">Resumo do Dia Indisponível</td></tr>';
+                    summaryHTML = '<tr><td colspan="16">Resumo do Dia Indisponível</td></tr>';
                 }
 
                 if (!isNull(data.hourly[0], 3)) {
@@ -167,7 +167,7 @@ function initializers() {
                     }
                 }
                 else {
-                    hoursHTML = '<tr><td colspan="9">Dados Indisponíveis</td></tr>';
+                    hoursHTML = '<tr><td colspan="11">Dados Indisponíveis</td></tr>';
                 }
 
                 if (!isNull(data.almanac, 2)) {
@@ -182,7 +182,7 @@ function initializers() {
                     + almanac.temp_low_record_year + '</td></tr>';
                 }
                 else {
-                    almanacHTML = '<tr><td colspan="9">Recordes Indisponíveis</td></tr>';
+                    almanacHTML = '<tr><td colspan="6">Recordes Indisponíveis</td></tr>';
                 }
 
                 $("#date-title h3").html("Clima em " + dateFix(date.getDate()) + "/" + dateFix(date.getMonth() + 1) + "/" + date.getFullYear());
