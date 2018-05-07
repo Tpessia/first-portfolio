@@ -2,14 +2,13 @@
 
 body {
     header {
+        background: $primary-color;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
         .row {
             margin-bottom: 0;
-            background: $primary-color;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
             h2 {
                 color: white;
             }
-
             #date-form {
                 padding: 15px 0;
                 #date-selector {

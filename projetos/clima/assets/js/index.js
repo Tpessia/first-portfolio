@@ -187,6 +187,9 @@ function initializers() {
                     return false;
                 }
             },
+            error: function() {
+                alert("Erro de conexão. Tente novamente!");
+            },
             complete: function() {
                 $("#submit button").removeClass("disabled")
                 $("#submit .progress").addClass("hide");
