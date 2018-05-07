@@ -11,6 +11,10 @@
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
+
+
+    $output = '{';
+
     
     // SUMMARY
 
@@ -25,13 +29,11 @@
 
     $summary = mysqli_query($conn, $sql);
         
-    $output = '{' . '"summary":';
+    $output .= '"summary":' . '{';
 
     if (mysqli_num_rows($summary) > 0) {
 
-
         while($row = mysqli_fetch_assoc($summary)) {
-            $output .= '{';
 
             foreach ($row as $key => $value) {
                 $output .= '"' . $key . '":' . '"' . $value . '",';
@@ -39,17 +41,15 @@
 
             $output = trim($output,',');
 
-            $output .= '},';
-
         }
 
         // $output -> {"summary":{"a":"1"}}
     }
-    else {
-        $output .= 'null,';
-    }
 
-    // HOURLY
+    $output .= '},';
+
+
+    // HOURLY    
     
     $sql = "
 
@@ -64,7 +64,7 @@
     $output .= '"hourly":' . '[';
     
     if (mysqli_num_rows($hourly) > 0) {
-        // output data of each row
+
         while($row = mysqli_fetch_assoc($hourly)) {
             $output .= '{';
 
@@ -79,10 +79,47 @@
 
         $output = trim($output,',');
 
+        // $output = {"hourly": [{"a":1}]}
+
     }
 
-    $output .= ']';
+    $output .= '],';
+
+
+    // ALMANAC
+
+    $sql = "
+
+        SELECT *
+        FROM `almanac`
+        WHERE almanac.date = '" . $_GET["date"] . "'
+        LIMIT 1
+
+    ";
+
+    $summary = mysqli_query($conn, $sql);
+        
+    $output .= '"almanac":' . '{';
+
+    if (mysqli_num_rows($summary) > 0) {
+
+        while($row = mysqli_fetch_assoc($summary)) {
+
+            foreach ($row as $key => $value) {
+                $output .= '"' . $key . '":' . '"' . $value . '",';
+            }
+
+            $output = trim($output,',');
+
+        }
+
+        // $output -> {"almanac":{"a":"1"}}
+    }
+
+    $output .= '},';
+
     
+    $output = trim($output,',');
     $output .= "}";
 
     echo $output;

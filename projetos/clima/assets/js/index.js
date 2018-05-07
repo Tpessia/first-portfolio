@@ -100,8 +100,17 @@ function initializers() {
         $.ajax({
             url: "query.php?date=" + dateStr,
             success: function (json) {
-                var data = JSON.parse(json),
-                    hoursHTML = "",
+                try {
+                    var data = JSON.parse(json);
+                }
+                catch (e) {
+                    $("#submit button").removeClass("disabled")
+                    $("#submit .progress").addClass("hide");
+                    alert("Erro de conexão com o servidor (valor inesperado)");
+                    throw "JSON inválido!";
+                }
+                
+                var hoursHTML = "",
                     summaryHTML = "";
 
                 if (!isNull(data.summary, 2)) {
@@ -168,7 +177,7 @@ function initializers() {
                 $("main h5").addClass("hide");
 
                 function isNull(data, notNullQnt) {
-                    if (data === null || typeof data === "undefined" || (data.hasOwnProperty("length") ? data.length == 0 : false)) {
+                    if (data === null || typeof data === "undefined" || (data.hasOwnProperty("length") ? data.length == 0 : false) || (typeof date === "object" ? Object.keys(data).length == 0 : false)) {
                         return true;
                     }
 
