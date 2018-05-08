@@ -292,7 +292,7 @@ body {
         #habilidades {
             .col {
                 margin-bottom: 2.5vw;
-                a {
+                div {
                     text-align: center;
                     @media (min-width: 601px) {
                         &:nth-child(3n+2) {
@@ -318,6 +318,7 @@ body {
                 font-size: 5rem;
                 text-transform: uppercase;
                 letter-spacing: 5px;
+                padding: 1rem 0;
                 @media (max-width: 992px) {
                     font-size: 11vw;
                 }

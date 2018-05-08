@@ -92,7 +92,7 @@ function createContent() {
     }
 
     function gridHabilidades() {
-        var habilidadesGrid = '<a href="%%URL%%" target="_blank"><div class="col s6 m4"><img src="%%IMG%%" title="%%NAME%%" alt="%%NAME%%"></div></a>';
+        var habilidadesGrid = '<div class="col s6 m4"><img src="%%IMG%%" alt="%%NAME%%" class="tooltipped" data-position="bottom" data-tooltip="%%LEVEL%%"></div>';
 
         var habilidadesT = new TemplateManager(habilidadesGrid);
 
@@ -108,6 +108,8 @@ function initializers() {
         fullWidth: true,
         indicators: true
     });
+
+    $('.tooltipped').tooltip();
 }
 
 function bindAnimations() {

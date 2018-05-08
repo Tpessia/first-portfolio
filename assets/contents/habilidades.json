@@ -2,47 +2,45 @@
     "HTML": 
     { 
         "name": "HTML",
-        "img": "/assets/img/habilidades/html.png", 
-        "url": "https://pt.wikipedia.org/wiki/HTML" 
+        "img": "/assets/img/habilidades/html.png",
+        "level": "85"
     },
     "CSS": 
     { 
         "name": "CSS",
-        "img": "/assets/img/habilidades/css.png", 
-        "url": "https://pt.wikipedia.org/wiki/Cascading_Style_Sheets" 
+        "img": "/assets/img/habilidades/css.png",
+        "level": "75"
     },
     "JavaScript": 
     { 
         "name": "JavaScript",
-        "img": "/assets/img/habilidades/javascript.png", 
-        "url": "https://pt.wikipedia.org/wiki/JavaScript" 
+        "img": "/assets/img/habilidades/javascript.png",
+        "level": "75"
+    },
+    "JQuery": {
+        "name": "JQuery",
+        "img": "/assets/img/habilidades/jquery.png",
+        "level": "70"
+    },
+    "Materialize": {
+        "name": "Materialize",
+        "img": "/assets/img/habilidades/materialize.png",
+        "level": "60"
     },
     "Bootstrap": 
     { 
         "name": "Bootstrap",
-        "img": "/assets/img/habilidades/bootstrap.png", 
-        "url": "http://getbootstrap.com/" 
-    },
-    "Materialize": 
-    { 
-        "name": "Materialize",
-        "img": "/assets/img/habilidades/materialize.png", 
-        "url": "http://materializecss.com/" 
-    },
-    "JQuery": 
-    { 
-        "name": "JQuery",
-        "img": "/assets/img/habilidades/jquery.png", 
-        "url": "https://jquery.com/" 
-    },
-    "Photoshop": {
-        "name": "Photoshop",
-        "img": "/assets/img/habilidades/photoshop.jpg",
-        "url": "https://pt.wikipedia.org/wiki/Adobe_Photoshop"
+        "img": "/assets/img/habilidades/bootstrap.png",
+        "level": "50"
     },
     "C#": {
         "name": "C#",
         "img": "/assets/img/habilidades/csharp.png",
-        "url": "https://pt.wikipedia.org/wiki/C_Sharp"
+        "level": "40"
+    },
+    "Photoshop": {
+        "name": "Photoshop",
+        "img": "/assets/img/habilidades/photoshop.jpg",
+        "level": "30"
     }
 }
