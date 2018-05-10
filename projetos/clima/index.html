@@ -22,16 +22,17 @@
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="./lib/materialize/materialize.min.css" rel="stylesheet">
+    <link href="./lib/chartist/chartist.min.css" rel="stylesheet"></link>
     <link href="./assets/styles/css/index.css" rel="stylesheet">
 
     <script src="./lib/jquery/jquery-3.2.1.min.js"></script>
     <script src="./lib/materialize/materialize.min.js"></script>
+    <script src="./lib/chartist/chartist.min.js"></script>
     <script src="./assets/js/utils.js"></script>
-    <script src="./assets/js/main.js"></script>
     <script src="./assets/js/index.js"></script>
 </head>
 <body>
-    <header>
+    <header class="z-depth-2">
         <div class="container">
             <div class="row">
                 <div class="col s12">
@@ -43,7 +44,7 @@
                             <label for="date-selector">Data</label>
                         </div>
                         <div id="submit">
-                            <button class="btn white blue-text waves-effect disabled" type="submit" name="action">Procurar</button>
+                            <button class="btn waves-effect disabled" type="submit" name="action">Procurar</button>
                             <div class="progress hide">
                                 <div class="indeterminate"></div>
                             </div>
@@ -111,18 +112,29 @@
             <div class="data-table col s12">
                 <table class="highlight responsive-table centered">
                     <thead>
-                        <tr>
+                        <tr class="mobile-tr">
                             <th>Hora</th>
+                            <th class="mobile-th">Hora</th>
                             <th>Condição</th>
+                            <th class="mobile-th">Condição</th>
                             <th>Temperatura (ºC)</th>
+                            <th class="mobile-th unit">Temp.<br><small>(ºC)</small></th>
                             <th>Pressão (mBar)</th>
+                            <th class="mobile-th unit">Pressão<br><small>(mBar)</small></th>
                             <th>Umidade (%)</th>
+                            <th class="mobile-th unit">Umidade<br><small>(%)</small></th>
                             <th>Precipitação (mm)</th>
+                            <th class="mobile-th unit">Precipit.<br><small>(mm)</small></th>
                             <th>Visibilidade (km)</th>
+                            <th class="mobile-th unit">Visib.<br><small>(km)</small></th>
                             <th>Dir. do Vento</th>
+                            <th class="mobile-th">Dir. Vento</th>
                             <th>Dir. do Vento (º)</th>
+                            <th class="mobile-th unit">Dir. Vento<br><small>(º)</small></th>
                             <th>Vel. do Vento (km/h)</th>
+                            <th class="mobile-th unit">Vel. Vento<br><small>(km/h)</small></th>
                             <th>Rajada de Vento (km/h)</th>
+                            <th class="mobile-th unit">Raj. Vento<br><small>(km/h)</small></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -164,8 +176,24 @@
                     </tbody>
                 </table>
             </div>
-        </div>
 
+            <div class="data-chart col s12 z-depth-2">
+                <ul class="tabs tabs-fixed-width">
+                    <li class="tab">
+                        <a class="active">Test 1</a>
+                    </li>
+                    <li class="tab">
+                        <a>Test 2</a>
+                    </li>
+                    <li class="tab">
+                        <a>Test 4</a>
+                    </li>
+                </ul>
+                <div class="custom-label"></div>
+                <div class="ct-chart ct-major-tenth" id="chart-hourly"></div>
+            </div>
+        </div>
+        
         <div id="almanac" class="row hide">
             <div class="title col s12">
                 <h4>Recordes</h4>
