@@ -92,7 +92,7 @@
 
         SELECT *
         FROM `almanac`
-        WHERE almanac.date = '" . $_GET["date"] . "'
+        WHERE almanac.mon_day = " . substr($_GET["date"], -4) . "
         LIMIT 1
 
     ";
