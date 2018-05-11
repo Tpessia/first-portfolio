@@ -91,46 +91,44 @@ body main {
     @media (max-width: 600px) {
       body main .row .data-table thead tr.mobile-tr th:not(.mobile-th) {
         display: none; } }
-  body main .row .data-chart {
-    margin-top: 50px; }
-    body main .row .data-chart .tabs {
-      margin-bottom: 10px; }
-      body main .row .data-chart .tabs .tab {
-        cursor: pointer; }
-        body main .row .data-chart .tabs .tab a {
-          color: #5c6bc0; }
-      body main .row .data-chart .tabs .indicator {
-        background-color: #5c6bc0; }
-    body main .row .data-chart .custom-label {
-      margin: 0 5% 15px 5%; }
-      body main .row .data-chart .custom-label .label-data {
-        float: left; }
-        body main .row .data-chart .custom-label .label-data:not(:first-child) {
-          margin-left: 15px; }
-        body main .row .data-chart .custom-label .label-data .label-color {
-          width: .9rem;
-          height: .9rem;
-          display: inline-block;
-          transform: translateY(15%);
-          margin-right: 6px; }
-      body main .row .data-chart .custom-label:after {
-        content: "";
-        clear: both;
-        display: table; }
-    body main .row .data-chart .ct-chart .ct-series-a .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-a .ct-point {
-      stroke: #3f51b5; }
-    body main .row .data-chart .ct-chart .ct-series-b .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-b .ct-point {
-      stroke: #7986cb; }
-    body main .row .data-chart .ct-chart .ct-series-c .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-c .ct-point {
-      stroke: #303f9f; }
-    body main .row .data-chart .ct-chart .ct-series-d .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-d .ct-point {
-      stroke: #c5cae9; }
-    body main .row .data-chart .ct-chart .ct-series-e .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-e .ct-point {
-      stroke: #1a237e; }
+  body main .row .data-chart .tabs {
+    margin-bottom: 10px; }
+    body main .row .data-chart .tabs .tab {
+      cursor: pointer; }
+      body main .row .data-chart .tabs .tab a {
+        color: #5c6bc0; }
+    body main .row .data-chart .tabs .indicator {
+      background-color: #5c6bc0; }
+  body main .row .data-chart .custom-label {
+    margin: 0 5% 15px 5%; }
+    body main .row .data-chart .custom-label .label-data {
+      float: left; }
+      body main .row .data-chart .custom-label .label-data:not(:first-child) {
+        margin-left: 15px; }
+      body main .row .data-chart .custom-label .label-data .label-color {
+        width: .9rem;
+        height: .9rem;
+        display: inline-block;
+        transform: translateY(15%);
+        margin-right: 6px; }
+    body main .row .data-chart .custom-label:after {
+      content: "";
+      clear: both;
+      display: table; }
+  body main .row .data-chart .ct-chart .ct-series-a .ct-line,
+  body main .row .data-chart .ct-chart .ct-series-a .ct-point {
+    stroke: #3f51b5; }
+  body main .row .data-chart .ct-chart .ct-series-b .ct-line,
+  body main .row .data-chart .ct-chart .ct-series-b .ct-point {
+    stroke: #7986cb; }
+  body main .row .data-chart .ct-chart .ct-series-c .ct-line,
+  body main .row .data-chart .ct-chart .ct-series-c .ct-point {
+    stroke: #303f9f; }
+  body main .row .data-chart .ct-chart .ct-series-d .ct-line,
+  body main .row .data-chart .ct-chart .ct-series-d .ct-point {
+    stroke: #c5cae9; }
+  body main .row .data-chart .ct-chart .ct-series-e .ct-line,
+  body main .row .data-chart .ct-chart .ct-series-e .ct-point {
+    stroke: #1a237e; }
 
 /*# sourceMappingURL=index.css.map */
