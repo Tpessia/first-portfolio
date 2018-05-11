@@ -204,8 +204,7 @@ function events() {
                 $("main .row").removeClass("hide");
                 $("main h5").addClass("hide");
 
-                var init = {
-
+                init = {
                     all: function () {
                         this.tabs();
                         this.charts.build("#chart-hourly", "hourly", [{"label": "Temperatura", "data": "temp"}, {"label": "Umidade", "data": "hum"}]);
@@ -226,11 +225,39 @@ function events() {
                                 dataLabel.push(content[i].label);
                             }
 
-                            new Chartist.Line(el, {
-                                labels: this[chart].label(),
-                                series: chartData
+                            var chart = new Chartist.Line(el, {
+                                    labels: this[chart].label(),
+                                    series: chartData
+                                },
+                                null,
+                                [
+                                    ['(max-width: 992px)', {
+                                        showLine: false,
+                                        axisX: {
+                                            labelInterpolationFnc: function (value) {
+                                                return value.slice(0, 2);
+                                            }
+                                        }
+                                    }]
+                                ]
+                            );
+
+                            chart.on('draw', function (data) {
+                                if (data.type === 'line' || data.type === 'area') {
+                                    data.element.animate({
+                                        d: {
+                                            // begin: 2000 * data.index,
+                                            begin: 0,
+                                            dur: 2000,
+                                            from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                                            to: data.path.clone().stringify(),
+                                            easing: Chartist.Svg.Easing.easeOutQuint
+                                        }
+                                    });
+                                }
                             });
 
+                            $(".custom-label").html('');
                             for (var i in dataLabel) {
                                 $(".custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + labelColor[i] + '"></span>' + dataLabel[i] + '</div>');
                             }
@@ -401,6 +428,18 @@ function events() {
                 $("#submit .progress").addClass("hide");
             }
         });
+    });
+
+    $(".t1").on("click", function() {
+        init.charts.build("#chart-hourly", "hourly", [{"label": "Temperatura", "data": "temp"}, {"label": "Umidade", "data": "hum"}]);
+    });
+
+    $(".t2").on("click", function() {
+        init.charts.build("#chart-hourly", "hourly", [{"label": "Temperatura", "data": "temp"}]);
+    });
+
+    $(".t3").on("click", function() {
+        init.charts.build("#chart-hourly", "hourly", [{"label": "Umidade", "data": "hum"}]);
     });
 }
 
