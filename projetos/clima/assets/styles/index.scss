@@ -55,9 +55,15 @@ body {
         .row {
             &:not(#date-title) {
                 margin-bottom: 50px;
+                h4 {
+                    padding: 5px 15px;
+                }
             }
             &#date-title {
                 margin-bottom: 0;
+                h3 {
+                    padding: 5px 0 20px 10px;
+                }
             }
             .data-table {
                 overflow-x: auto;
@@ -86,13 +92,23 @@ body {
                         }                            
                     }
                 }
+                tbody {
+                    tr {
+                        &:last-child {
+                            border-bottom: 0;
+                        }
+                    }
+                }
             }
             .data-chart {
+                border-top: 2px solid rgba(#5c6bc0, 0.3333333333333333);
+                padding-top: 3px;
                 .tabs {
                     margin-bottom: 10px;
                     .tab {
                         cursor: pointer;
                         a {
+                            background-color: white !important;
                             color: $primary-color-l1;
                         }
                     }
@@ -124,32 +140,30 @@ body {
                 .ct-chart {
                     .ct-series-a {
                         .ct-line,
-                        .ct-point {
+                        .ct-point,
+                        .ct-bar {
                             stroke: $primary-color;
                         }
                     }
                     .ct-series-b {
                         .ct-line,
-                        .ct-point {
+                        .ct-point,
+                        .ct-bar {
                             stroke: $primary-color-l2;
                         }
                     }
                     .ct-series-c {
                         .ct-line,
-                        .ct-point {
-                            stroke: $primary-color-d2;
+                        .ct-point,
+                        .ct-bar {
+                            stroke: $primary-color-d4;
                         }
                     }
                     .ct-series-d {
                         .ct-line,
-                        .ct-point {
+                        .ct-point,
+                        .ct-bar {
                             stroke: $primary-color-l4;
-                        }
-                    }
-                    .ct-series-e {
-                        .ct-line,
-                        .ct-point {
-                            stroke: $primary-color-d4;
                         }
                     }
                 }

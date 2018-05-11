@@ -103,6 +103,18 @@
                     </tbody>
                 </table>
             </div>
+            <div class="data-chart col s12">
+                <ul class="tabs tabs-fixed-width">
+                    <li class="tab t1">
+                        <a href="#first-tab-summary" class="active">TEMPERATURA</a>
+                    </li>
+                    <li class="tab t2">
+                        <a href="#second-tab-summary">PRESSÃO</a>
+                    </li>
+                </ul>
+                <div class="custom-label"></div>
+                <div class="ct-chart ct-major-tenth" id="chart-summary"></div>
+            </div>
         </div>
         
         <div id="hourly" class="row hide z-depth-2">
@@ -176,17 +188,19 @@
                     </tbody>
                 </table>
             </div>
-
             <div class="data-chart col s12">
                 <ul class="tabs tabs-fixed-width">
                     <li class="tab t1">
-                        <a class="active">GERAL</a>
+                        <a href="#first-tab-hourly" class="active">GERAL</a>
                     </li>
                     <li class="tab t2">
-                        <a>TEMPERATURA</a>
+                        <a href="#second-tab-hourly">TEMPERATURA</a>
                     </li>
                     <li class="tab t3">
-                        <a>UMIDADE</a>
+                        <a href="#third-tab-hourly">UMIDADE</a>
+                    </li>
+                    <li class="tab t4">
+                        <a href="#forth-tab-hourly">PRESSÃO</a>
                     </li>
                 </ul>
                 <div class="custom-label"></div>
