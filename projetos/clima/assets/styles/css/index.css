@@ -35,6 +35,17 @@ table.highlight tbody tr:hover {
 .select-dropdown li span {
   color: #5c6bc0; }
 
+body.nav-fixed header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999; }
+  body.nav-fixed header h2 {
+    display: none; }
+  body.nav-fixed header #date-form {
+    transition: .5s padding;
+    padding: 10px 0px 0px !important; }
 body header {
   background: #3f51b5; }
   body header .row {
@@ -99,7 +110,14 @@ body main {
       border-bottom: 0; }
   body main .row .data-chart {
     border-top: 2px solid rgba(92, 107, 192, 0.3333333333);
-    padding-top: 3px; }
+    padding-top: 3px;
+    margin-bottom: 25px; }
+    @media (max-width: 992px) {
+      body main .row .data-chart {
+        margin-bottom: 15px; } }
+    @media (max-width: 600px) {
+      body main .row .data-chart {
+        margin-bottom: 5px; } }
     body main .row .data-chart .tabs {
       margin-bottom: 10px; }
       body main .row .data-chart .tabs .tab {
@@ -129,17 +147,76 @@ body main {
     body main .row .data-chart .ct-chart .ct-series-a .ct-point,
     body main .row .data-chart .ct-chart .ct-series-a .ct-bar {
       stroke: #3f51b5; }
+    body main .row .data-chart .ct-chart .ct-series-a .ct-slice-pie {
+      fill: #3f51b5; }
     body main .row .data-chart .ct-chart .ct-series-b .ct-line,
     body main .row .data-chart .ct-chart .ct-series-b .ct-point,
     body main .row .data-chart .ct-chart .ct-series-b .ct-bar {
       stroke: #7986cb; }
+    body main .row .data-chart .ct-chart .ct-series-b .ct-slice-pie {
+      fill: #7986cb; }
     body main .row .data-chart .ct-chart .ct-series-c .ct-line,
     body main .row .data-chart .ct-chart .ct-series-c .ct-point,
     body main .row .data-chart .ct-chart .ct-series-c .ct-bar {
-      stroke: #1a237e; }
+      stroke: #0d47a1; }
+    body main .row .data-chart .ct-chart .ct-series-c .ct-slice-pie {
+      fill: #0d47a1; }
     body main .row .data-chart .ct-chart .ct-series-d .ct-line,
     body main .row .data-chart .ct-chart .ct-series-d .ct-point,
     body main .row .data-chart .ct-chart .ct-series-d .ct-bar {
+      stroke: #2962ff; }
+    body main .row .data-chart .ct-chart .ct-series-d .ct-slice-pie {
+      fill: #2962ff; }
+    body main .row .data-chart .ct-chart .ct-series-e .ct-line,
+    body main .row .data-chart .ct-chart .ct-series-e .ct-point,
+    body main .row .data-chart .ct-chart .ct-series-e .ct-bar {
+      stroke: #1a237e; }
+    body main .row .data-chart .ct-chart .ct-series-e .ct-slice-pie {
+      fill: #1a237e; }
+    body main .row .data-chart .ct-chart .ct-series-f .ct-line,
+    body main .row .data-chart .ct-chart .ct-series-f .ct-point,
+    body main .row .data-chart .ct-chart .ct-series-f .ct-bar {
       stroke: #c5cae9; }
+    body main .row .data-chart .ct-chart .ct-series-f .ct-slice-pie {
+      fill: #c5cae9; }
+    body main .row .data-chart .ct-chart .ct-series-g .ct-line,
+    body main .row .data-chart .ct-chart .ct-series-g .ct-point,
+    body main .row .data-chart .ct-chart .ct-series-g .ct-bar {
+      stroke: #2196f3; }
+    body main .row .data-chart .ct-chart .ct-series-g .ct-slice-pie {
+      fill: #2196f3; }
+    body main .row .data-chart .ct-chart .ct-series-h .ct-line,
+    body main .row .data-chart .ct-chart .ct-series-h .ct-point,
+    body main .row .data-chart .ct-chart .ct-series-h .ct-bar {
+      stroke: #bbdefb; }
+    body main .row .data-chart .ct-chart .ct-series-h .ct-slice-pie {
+      fill: #bbdefb; }
+    body main .row .data-chart .ct-chart .ct-series-i .ct-line,
+    body main .row .data-chart .ct-chart .ct-series-i .ct-point,
+    body main .row .data-chart .ct-chart .ct-series-i .ct-bar {
+      stroke: #536dfe; }
+    body main .row .data-chart .ct-chart .ct-series-i .ct-slice-pie {
+      fill: #536dfe; }
+    body main .row .data-chart .ct-chart .ct-series-j .ct-line,
+    body main .row .data-chart .ct-chart .ct-series-j .ct-point,
+    body main .row .data-chart .ct-chart .ct-series-j .ct-bar {
+      stroke: #304ffe; }
+    body main .row .data-chart .ct-chart .ct-series-j .ct-slice-pie {
+      fill: #304ffe; }
+    body main .row .data-chart .ct-chart .ct-series-k .ct-line,
+    body main .row .data-chart .ct-chart .ct-series-k .ct-point,
+    body main .row .data-chart .ct-chart .ct-series-k .ct-bar {
+      stroke: #448aff; }
+    body main .row .data-chart .ct-chart .ct-series-k .ct-slice-pie {
+      fill: #448aff; }
+    body main .row .data-chart .ct-chart .ct-series-l .ct-line,
+    body main .row .data-chart .ct-chart .ct-series-l .ct-point,
+    body main .row .data-chart .ct-chart .ct-series-l .ct-bar {
+      stroke: #64b5f6; }
+    body main .row .data-chart .ct-chart .ct-series-l .ct-slice-pie {
+      fill: #64b5f6; }
+    body main .row .data-chart .ct-chart .ct-chart-pie .ct-label {
+      font-size: .9rem;
+      font-weight: bold; }
 
 /*# sourceMappingURL=index.css.map */

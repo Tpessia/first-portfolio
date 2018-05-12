@@ -208,47 +208,53 @@ function events() {
                     all: function () {
                         this.tabs();
 
-                        // HOURLY
-
-                        this.charts.buildLine("#chart-hourly", "hourly", [{ "label": "Temperatura", "data": "temp" }, { "label": "Umidade", "data": "hum" }]);
-
-                        $("#hourly .t1").off().on("click", function () {
-                            if (!$(this).find("a").hasClass("active")) {
-                                init.charts.buildLine("#chart-hourly", "hourly", [{ "label": "Temperatura", "data": "temp" }, { "label": "Umidade", "data": "hum" }]);
-                            }
-                        });
-
-                        $("#hourly .t2").off().on("click", function () {
-                            if (!$(this).find("a").hasClass("active")) {
-                                init.charts.buildLine("#chart-hourly", "hourly", [{ "label": "Temperatura", "data": "temp" }], 0);
-                            }
-                        });
-
-                        $("#hourly .t3").off().on("click", function () {
-                            if (!$(this).find("a").hasClass("active")) {
-                                init.charts.buildLine("#chart-hourly", "hourly", [{ "label": "Umidade", "data": "hum" }], 1);
-                            }
-                        });
-
-                        $("#hourly .t4").off().on("click", function () {
-                            if (!$(this).find("a").hasClass("active")) {
-                                init.charts.buildLine("#chart-hourly", "hourly", [{ "label": "Pressão", "data": "pres" }], 2);
-                            }
-                        });
-
                         // SUMMARY
 
-                        this.charts.buildBar("#chart-summary", "summary", [{ "label": "Temperatura", "data": "temp" }, ], 0);
+                        this.charts.buildBar("#chart-summary", "summary", [{ "label": "Temperatura (ºC)", "data": "temp" },], 0);
 
                         $("#summary .t1").off().on("click", function () {
                             if (!$(this).find("a").hasClass("active")) {
-                                init.charts.buildBar("#chart-summary", "summary", [{ "label": "Temperatura", "data": "temp" }], 0);
+                                init.charts.buildBar("#chart-summary", "summary", [{ "label": "Temperatura (ºC)", "data": "temp" }], 0);
                             }
                         });
 
                         $("#summary .t2").off().on("click", function () {
                             if (!$(this).find("a").hasClass("active")) {
-                                init.charts.buildLine("#chart-summary", "summary", [{ "label": "Pressão (Bar)", "data": "pres" }], 1);
+                                init.charts.buildLine("#chart-summary", "summary", [{ "label": "Pressão (mBar)", "data": "pres" }], 1);
+                            }
+                        });
+
+                        $("#summary .t3").off().on("click", function () {
+                            if (!$(this).find("a").hasClass("active")) {
+                                init.charts.buildPie("#chart-summary", "summary", [{ "label": "Humidade (%),Precipitação (mm),Visibilidade (km), Dir. do Vento (º),Vel. do Vento (km/h)", "data": "misc" }], 2);
+                            }
+                        });
+
+                        // HOURLY
+
+                        this.charts.buildLine("#chart-hourly", "hourly", [{ "label": "Temperatura (ºC)", "data": "temp" }, { "label": "Umidade (%)", "data": "hum" }]);
+
+                        $("#hourly .t1").off().on("click", function () {
+                            if (!$(this).find("a").hasClass("active")) {
+                                init.charts.buildLine("#chart-hourly", "hourly", [{ "label": "Temperatura (ºC)", "data": "temp" }, { "label": "Umidade (%)", "data": "hum" }]);
+                            }
+                        });
+
+                        $("#hourly .t2").off().on("click", function () {
+                            if (!$(this).find("a").hasClass("active")) {
+                                init.charts.buildLine("#chart-hourly", "hourly", [{ "label": "Temperatura (ºC)", "data": "temp" }], 0);
+                            }
+                        });
+
+                        $("#hourly .t3").off().on("click", function () {
+                            if (!$(this).find("a").hasClass("active")) {
+                                init.charts.buildLine("#chart-hourly", "hourly", [{ "label": "Umidade (%)", "data": "hum" }], 1);
+                            }
+                        });
+
+                        $("#hourly .t4").off().on("click", function () {
+                            if (!$(this).find("a").hasClass("active")) {
+                                init.charts.buildLine("#chart-hourly", "hourly", [{ "label": "Pressão (mBar)", "data": "pres" }], 2);
                             }
                         });
                     },
@@ -263,7 +269,6 @@ function events() {
                         buildLine: function (el, chart, content, index) { // elem selector, charts[chart] content & chart parent id, {MyLabel, charts["chart"][data]}, index for right color, animate?
                             var chartData = [];
                             var dataLabel = [];
-                            var labelColor = ["#3f51b5", "#7986cb", "#1a237e", "#c5cae9"];
 
                             if (typeof index !== "undefined") {
                                 for (var i = index; i > 0; i--) {
@@ -279,7 +284,7 @@ function events() {
                             var options = {
                                 fullWidth: true
                             };
-                            // DEFINE MAX & MIN
+                            // DEFINE MAX & MIN BY DATA SET
                             // if (typeof this[chart].low !== "undefined") {
                             //     options.low = this[chart].low;
                             // }
@@ -300,6 +305,19 @@ function events() {
                             //     }
                             // }
 
+                            for (var i in chartData) {
+                                var value = chartData[i];
+                                var low = Math.min.apply(null, value);
+                                var high = Math.max.apply(null, value);
+                                var delta = high - low;
+                                if (typeof options.low === "undefined" || low < options.low) {
+                                    options.low = low - (delta * 0.1);
+                                }
+                                if (typeof options.high === "undefined" || high > options.high) {
+                                    options.high = high + (delta * 0.1);
+                                }
+                            }
+
                             var chartLine = new Chartist.Line(
                                 el,
                                 {
@@ -318,7 +336,7 @@ function events() {
                                     }]
                                 ]
                             );
-                            
+
                             chartLine.on('draw', function (data) {
                                 if ((data.type === 'line' || data.type === 'area') && !/Mobi/i.test(navigator.userAgent) && !/Android/i.test(navigator.userAgent)) {
                                     data.element.animate({
@@ -335,18 +353,17 @@ function events() {
 
                             $("#" + chart + " .custom-label").html('');
                             for (var i in dataLabel) {
-                                $("#" + chart + " .custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + (typeof index === "undefined" ? labelColor[i] : labelColor[index]) + '"></span>' + dataLabel[i] + '</div>');
+                                $("#" + chart + " .custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + (typeof index === "undefined" ? this.labelColors[i] : this.labelColors[index]) + '"></span>' + dataLabel[i] + '</div>');
                             }
                         },
 
                         buildBar: function (el, chart, content, index) {
                             var chartData = [];
                             var dataLabel = [];
-                            var labelColor = ["#3f51b5", "#7986cb", "#1a237e", "#c5cae9"];
 
                             if (typeof index !== "undefined") {
                                 for (var i = index; i > 0; i--) {
-                                    chartData.push([]); //adiciona espaços vazios na frente do dado para colorir corretamente
+                                    chartData.push([]);
                                 }
                             }
 
@@ -385,15 +402,52 @@ function events() {
                                             to: data.y2,
                                             easing: Chartist.Svg.Easing.easeOutQuint
                                         }
+                                    }).attr({
+                                        style: 'stroke-width:8%'
                                     });
                                 }
                             });                            
 
                             $("#" + chart + " .custom-label").html('');
                             for (var i in dataLabel) {
-                                $("#" + chart + " .custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + (typeof index === "undefined" ? labelColor[i] : labelColor[index]) + '"></span>' + dataLabel[i] + '</div>');
+                                $("#" + chart + " .custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + (typeof index === "undefined" ? this.labelColors[i] : this.labelColors[index]) + '"></span>' + dataLabel[i] + '</div>');
                             }
                         },
+
+                        buildPie: function (el, chart, content, index) {
+                            var chartData = [];
+                            var dataLabel = [];
+
+                            for (var i in content) {
+                                chartData = this[chart][content[i].data]();
+                                dataLabel = content[i].label.split(",");
+                            }
+                            
+                            if (typeof index !== "undefined") {
+                                for (var i = index; i > 0; i--) {
+                                    chartData.unshift(-1);
+                                }
+                            }
+                            
+                            var chartPie = new Chartist.Pie(
+                                el,
+                                { 
+                                    series: chartData
+                                },
+                                {
+                                    labelInterpolationFnc: function (value) {
+                                        return value < 0 ? "" : value;
+                                    }
+                                }
+                            );
+
+                            $("#" + chart + " .custom-label").html('');
+                            for (var i in dataLabel) {
+                                $("#" + chart + " .custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + (typeof index === "undefined" ? this.labelColors[i] : this.labelColors[parseInt(i) + parseInt(index)]) + '"></span>' + dataLabel[i] + '</div>');
+                            }
+                        },
+
+                        labelColors: ["#3f51b5","#7986cb","#0d47a1","#2962ff","#1a237e","#c5cae9","#2196f3","#bbdefb","#536dfe","#304ffe","#448aff","#64b5f6"],
 
                         hourly: {
                             label: function() {
@@ -459,23 +513,30 @@ function events() {
 
                         summary: {
                             label: function () {
-                                return ["Máxima", "Média", "Mínima"];
+                                return ["Mínima", "Média", "Máxima"];
                             },
 
                             temp: function () {
                                 var summary = checkNotAvailable(data.summary),
-                                    temp = [summary.maxtempm, summary.meantempm, summary.mintempm];
+                                    temp = [summary.mintempm, summary.meantempm, summary.maxtempm];
 
                                 return temp;
                             },
 
                             pres: function () {
                                 var summary = checkNotAvailable(data.summary),
-                                    hum = [summary.maxpressurem, summary.meanpressurem, summary.minpressurem];
+                                    hum = [summary.minpressurem, summary.meanpressurem, summary.maxpressurem];
 
                                 return hum;
+                            },
+
+                            misc: function() {
+                                var summary = checkNotAvailable(data.summary),
+                                    misc = [summary.humidity, summary.precipm, summary.meanvism, summary.meanwdird, summary.meanwindspdm];
+
+                                return misc;
                             }
-                        }
+                        },
                     },
                 };
                 init.all();
@@ -599,5 +660,50 @@ function events() {
 }
 
 function animations() {
+
+    scrollFire("header h2", parseInt($("header h2").css("margin-bottom").replace("px", "")), function () {
+        if (!$("body").hasClass("nav-fixed")) {
+            $("body").css("margin-top", $("header").height());
+        } else {
+            $("body").css("margin-top", 0);
+        }
+        $("body").toggleClass("nav-fixed");
+    });
+
+    function scrollFire(selector, offset, foo) {
+        //SCROLL FIRE TOP TOGGLE
+        //útil para sidebars com estados visível e não visível
+
+        //seletor -> "#meuElemento"
+        //foo -> function foo() { fazerAlgo(); }
+
+        if (typeof scrollId === "undefined") {
+            scrollId = [];
+            scrollId[0] = 0;
+        } else {
+            scrollId[scrollId.length] = 0;
+        }
+        var id = scrollId.length - 1;
+
+        $(window).scroll(function () {
+            var sT = $(selector).offset().top,
+                sH = $(selector).outerHeight(),
+                wH = $(window).height(),
+                wS = $(window).scrollTop();
+
+            if (scrollId[id] == 0) {
+                if (wS > sT + sH + offset) {
+                    foo();
+                    scrollId[id] ^= 1;
+                }
+            } else {
+                if (wS < sT + sH + offset) {
+                    foo();
+                    console.log(wS + " < " + sT + " + " + sH);
+                    scrollId[id] ^= 1;
+                }
+            }
+        });
+    }
 
 }
