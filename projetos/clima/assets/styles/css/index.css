@@ -98,7 +98,7 @@ body main {
     body main .row .data-table tbody tr:last-child {
       border-bottom: 0; }
   body main .row .data-chart {
-    border-top: 2px solid rgba(92, 107, 192, 0.33333);
+    border-top: 2px solid rgba(92, 107, 192, 0.3333333333);
     padding-top: 3px; }
     body main .row .data-chart .tabs {
       margin-bottom: 10px; }
