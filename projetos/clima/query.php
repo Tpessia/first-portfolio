@@ -1,4 +1,8 @@
 <?php
+    if (!isset($_GET["date"])) {
+        die("Insira o parâmetro \"date\" na URL para fazer uma pesquisa.");
+    }
+
     $servername = "mysql.hostinger.com.br";
     $dbname = "u330258262_clima";
     $username = "u330258262_admin";

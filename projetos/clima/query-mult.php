@@ -1,4 +1,53 @@
 <?php
+    if (!isset($_GET["select"])) {
+        die("Insira o parâmetro \"select\" na URL para fazer uma pesquisa.");
+    }
+    else if (!isset($_GET["min"]) && !isset($_GET["max"])) {
+        die("Insira o parâmetro \"min\" e/ou \"max\" na URL para fazer uma pesquisa.");
+    }
+    else if (!isset($_GET["min"])) {
+        $_GET["min"] = "1996-06-30";
+    }
+    else if (!isset($_GET["max"])) {
+        $_GET["max"] = date('Y-m-d');
+    }
+
+    switch ($_GET["select"]) {
+        case "temp":
+            $select = "maxtempm,meantempm,mintempm";
+            break;
+        case "dewpt":
+            $select = "maxdewptm,meandewptm,mindewptm";
+            break;
+        case "vis":
+            $select = "maxvism,meanvism,minvism";
+            break;
+        case "pressure":
+            $select = "maxpressurem,meanpressurem,minpressurem";
+            break;
+        case "wspd":
+            $select = "maxwspdm,meanwindspdm,minwspdm";
+            break;
+        case "wdird":
+            $select = "meanwdird";
+            break;
+        case "wdire":
+            $select = "meanwdire";
+            break;
+        case "humity":
+            $select = "maxhumidity,humidity,minhumidity";
+            break;
+        case "precip":
+            $select = "precipm";
+            break;
+        case "state":
+            $select = "fog,hail,rain,snow,thunder";
+            break;
+        default:
+            die("Valor de \"select\" é inválido!");
+            break;
+    }
+
     $servername = "mysql.hostinger.com.br";
     $dbname = "u330258262_clima";
     $username = "u330258262_admin";
@@ -16,7 +65,7 @@
 
     $sql = "
     
-        SELECT s.date, s.maxtempm, s.meantempm, s.mintempm
+        SELECT " . $select . "
         FROM `sao_paulo_summary` as s
         WHERE date BETWEEN '" . $_GET["min"] . "' AND '" . $_GET["max"] . "'
 
