@@ -29,16 +29,16 @@
             $select = "s.date,s.maxwspdm,s.meanwindspdm,s.minwspdm";
             break;
         case "wdird":
-            $select = "s.meanwdird";
+            $select = "s.date,s.meanwdird";
             break;
         case "wdire":
-            $select = "s.meanwdire";
+            $select = "s.date,s.meanwdire";
             break;
         case "humity":
             $select = "s.date,s.maxhumidity,s.humidity,s.minhumidity";
             break;
         case "precip":
-            $select = "s.precipm";
+            $select = "s.date,s.precipm";
             break;
         case "state":
             $select = "s.date,s.fog,s.hail,s.rain,s.snow,s.thunder";
