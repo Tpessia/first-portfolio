@@ -14,34 +14,34 @@
 
     switch ($_GET["select"]) {
         case "temp":
-            $select = "maxtempm,meantempm,mintempm";
+            $select = "s.date,s.maxtempm,s.meantempm,s.mintempm";
             break;
         case "dewpt":
-            $select = "maxdewptm,meandewptm,mindewptm";
+            $select = "s.date,s.maxdewptm,s.meandewptm,s.mindewptm";
             break;
         case "vis":
-            $select = "maxvism,meanvism,minvism";
+            $select = "s.date,s.maxvism,s.meanvism,s.minvism";
             break;
         case "pressure":
-            $select = "maxpressurem,meanpressurem,minpressurem";
+            $select = "s.date,s.maxpressurem,s.meanpressurem,s.minpressurem";
             break;
         case "wspd":
-            $select = "maxwspdm,meanwindspdm,minwspdm";
+            $select = "s.date,s.maxwspdm,s.meanwindspdm,s.minwspdm";
             break;
         case "wdird":
-            $select = "meanwdird";
+            $select = "s.meanwdird";
             break;
         case "wdire":
-            $select = "meanwdire";
+            $select = "s.meanwdire";
             break;
         case "humity":
-            $select = "maxhumidity,humidity,minhumidity";
+            $select = "s.date,s.maxhumidity,s.humidity,s.minhumidity";
             break;
         case "precip":
-            $select = "precipm";
+            $select = "s.precipm";
             break;
         case "state":
-            $select = "fog,hail,rain,snow,thunder";
+            $select = "s.date,s.fog,s.hail,s.rain,s.snow,s.thunder";
             break;
         default:
             die("Valor de \"select\" é inválido!");
