@@ -37,7 +37,6 @@ function initializers() {
             },
             'onSelect': function (d) {
                 this.options.defaultDate = d;
-                $(".datepicker-done").trigger("click");
             },
             'i18n': { // Internacionalização
                 'cancel': 'Cancelar',
@@ -108,7 +107,7 @@ function initializers() {
             }
         });
     }
-
+    $(".datepicker-cancel").css("display: none;");
 }
 
 function events() {
