@@ -486,7 +486,7 @@ function events() {
 
             range: {
                 label: function() {
-                    return data[0];
+                    return this.temp[0];
                 },
 
                 general: function() {
@@ -497,9 +497,9 @@ function events() {
                     for (var i in dataRange) {
                         var day = dataRange[i];
 
-                        var data = [];
+                        var data = [[]];
 
-                        data[0] = i;
+                        data[0].push(i);
 
                         for (var j in day) {
                             if (day[j] == "-999" || day[j] == "-9999" || day[j] == "") {
