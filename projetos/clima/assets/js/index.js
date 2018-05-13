@@ -512,7 +512,7 @@ a = this[chart]
                         if (data == null) {
                             break;
                         }
-console.log("data: " + data)
+console.log(data)
                         var i = 0;
                         for (var j in data) {                            
                             (typeof this.temporary[i] === "undefined") ? this.temporary[i] = [data[j]] : this.temporary[i].push(data[j]);
