@@ -691,6 +691,11 @@ function events() {
         var dateStr1 = range1.getFullYear() + "" + dateFix(range1.getMonth() + 1) + "" + dateFix(range1.getDate());
         var dateStr2 = range2.getFullYear() + "" + dateFix(range2.getMonth() + 1) + "" + dateFix(range2.getDate());
 
+        if (range1 >= range2) {
+            alert("Data de Início não pode ser maior ou igual à data de Fim!");
+            return false;
+        }
+
         $.ajax({
             url: "query-mult.php?min=" + dateStr1 + "&max=" + dateStr2 + "&select=" + selected.val(),
             success: function (json) {
