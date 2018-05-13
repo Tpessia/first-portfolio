@@ -36,7 +36,11 @@ function initializers() {
                 this.setDate(new Date(this.options.defaultDate));
             },
             'onSelect': function (d) {
+                this.options.prev = this.options.defaultDate;
                 this.options.defaultDate = d;
+            },
+            'onClose': function() {
+                this.options.defaultDate = this.options.prev;
             },
             'i18n': { // Internacionalização
                 'cancel': 'Cancelar',
