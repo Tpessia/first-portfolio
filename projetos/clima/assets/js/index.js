@@ -201,12 +201,12 @@ function events() {
 
         allRange: function(labels) {
             this.charts.range.general();
-a = this.charts.range
+
             var data = [];
             for (var i in labels) {
                 data.push({
                     "label": labels[i],
-                    "data": i
+                    "data": parseInt(i) + 1
                 });
             }
             this.charts.buildLine("#chart-range", "range", data);
@@ -485,13 +485,21 @@ a = this.charts.range
             },
 
             range: {
+                label: function() {
+                    return data[0];
+                },
+
                 general: function() {
-                    var general = [];
+                    if (typeof this.temp === "undefined") {
+                        this.temp = [];
+                    }
 
                     for (var i in dataRange) {
                         var day = dataRange[i];
 
                         var data = [];
+
+                        data[0] = i;
 
                         for (var j in day) {
                             if (day[j] == "-999" || day[j] == "-9999" || day[j] == "") {
@@ -506,14 +514,17 @@ a = this.charts.range
                             break;
                         }
 
+                        var i = 0;
                         for (var j in data) {
-                            (typeof general[j] === "undefined") ? general[j] = [data[j]] : general[j].push(data[j]);
+                            
+                            (typeof this.temp[i] === "undefined") ? this.temp[i] = [data[j]] : this.temp[i].push(data[j]);
+                            i++;
                         }
                     }
 
-                    for (var i in general) {
+                    for (var i = 0; i < this.temp.length; i++) {
                         this[i] = function() {
-                            return general[i];
+                            return this.temp[i];
                         }
                     }
                 }
