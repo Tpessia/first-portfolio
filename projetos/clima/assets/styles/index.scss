@@ -1,65 +1,92 @@
 @import '_main.scss';
 
 body {
-    &.nav-fixed {
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 9999;
-            h2 {
-                display: none;
+    .tabs {
+        .tab {
+            cursor: pointer;
+            a {
+                background-color: transparent !important;
+                color: $primary-color-l1 !important;
             }
-            #date-form {
-                transition: .5s padding;
-                padding: 10px 0px 0px !important;
-            }
+        }
+        .indicator {
+            background-color: $primary-color-l1 !important;
         }
     }
     header {
         background: $primary-color;
-        .row {
-            margin-bottom: 0;
+        .container {
             h2 {
                 color: white;
             }
-            #date-form {
-                padding: 15px 0;
-                #date-selector {
-                    display: inline-block;
-                    margin-right: 15px;
-                    @media (max-width: 360px) {
-                        width: 100%;
-                    }
-                    .datepicker {
-                        color: white;
-                        border-color: white;
-                        &:focus {
-                            border-bottom: 1px solid white;
-                            -webkit-box-shadow: 0 1px 0 0 white;
-                            box-shadow: 0 1px 0 0 white;
+            .tabs {
+                padding: 0 .75rem;
+                background-color: transparent;
+                .tab {
+                    background-color: white;
+                }
+            }
+            .tab-content {
+                .date-form {
+                    padding-top: 15px;
+                    padding-bottom: 15px;
+                    .date-input {
+                        display: inline-block;
+                        margin-right: 15px;
+                        @media (max-width: 600px) {
+                            width: 100%;
+                        }
+                        .datepicker {
+                            color: white;
+                            border-color: white;
+                            &:focus {
+                                border-bottom: 1px solid white;
+                                -webkit-box-shadow: 0 1px 0 0 white;
+                                box-shadow: 0 1px 0 0 white;
+                            }
+                        }
+                        label {
+                            color: white;
                         }
                     }
-                    label {
-                        color: white;
+                    .select-input {
+                        margin-right: 15px;
+                        display: inline-block;
+                        @media (max-width: 600px) {
+                            width: 100%;
+                        }
+                        .select-dropdown {
+                            color: white;
+                            border-bottom: 1px solid white;
+                            li:not(.disabled) {
+                                span {
+                                    color: $primary-color-l1;
+                                }
+                            }
+                        }
+                        .caret {
+                            fill: white;
+                        }
+                        label {
+                            color: white;
+                        }
                     }
-                }
-                #submit {
-                    display: inline-block;
-                    position: relative;
-                    button {
-                        color: $primary-color;
-                        background-color: white;
-                    }
-                    .progress {
-                        position: absolute;
-                        bottom: 0;
-                        margin: 0;
-                        z-index: 2;
-                        background-color: transparent;
-                        .indeterminate {
-                            background-color: #636363;
+                    .submit {
+                        display: inline-block;
+                        position: relative;
+                        button {
+                            color: $primary-color;
+                            background-color: white;
+                        }
+                        .progress {
+                            position: absolute;
+                            bottom: 0;
+                            margin: 0;
+                            z-index: 2;
+                            background-color: transparent;
+                            .indeterminate {
+                                background-color: #636363;
+                            }
                         }
                     }
                 }
@@ -68,14 +95,14 @@ body {
     }
     main {
         padding-bottom: 35px;
-        .row {
-            &:not(#date-title) {
+        .data-row {
+            &:not(.search-title) {
                 margin-bottom: 50px;
                 h4 {
                     padding: 5px 15px;
                 }
             }
-            &#date-title {
+            &.search-title {
                 margin-bottom: 0;
                 h3 {
                     padding: 5px 0 20px 10px;
@@ -105,7 +132,7 @@ body {
                                     }
                                 }
                             }
-                        }                            
+                        }
                     }
                 }
                 tbody {
@@ -116,6 +143,7 @@ body {
                     }
                 }
             }
+
             .data-chart {
                 border-top: 2px solid rgba(#5c6bc0, 0.3333333333333333);
                 padding-top: 3px;
@@ -128,16 +156,6 @@ body {
                 }
                 .tabs {
                     margin-bottom: 10px;
-                    .tab {
-                        cursor: pointer;
-                        a {
-                            background-color: white !important;
-                            color: $primary-color-l1;
-                        }
-                    }
-                    .indicator {
-                        background-color: $primary-color-l1;
-                    }
                 }
                 .custom-label {
                     margin: 0 5% 15px 5%;
@@ -161,7 +179,7 @@ body {
                     }
                 }
                 .ct-chart {
-                    $colors-list:(
+                    $colors-list: (
                         ct-series-a: $primary-color, //#3f51b5
                         ct-series-b: $primary-color-l2, //#7986cb
                         ct-series-c: $secondary-color-d4, //#0d47a1
@@ -175,7 +193,8 @@ body {
                         ct-series-k: $secondary-color-a2, //#448aff
                         ct-series-l: $secondary-color-l2, //#64b5f6
                     );
-                    @each $key, $val in $colors-list {
+                    @each $key,
+                    $val in $colors-list {
                         .#{$key} {
                             .ct-line,
                             .ct-point,

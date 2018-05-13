@@ -31,9 +31,6 @@
         case "wdird":
             $select = "s.date,s.meanwdird";
             break;
-        case "wdire":
-            $select = "s.date,s.meanwdire";
-            break;
         case "humity":
             $select = "s.date,s.maxhumidity,s.humidity,s.minhumidity";
             break;

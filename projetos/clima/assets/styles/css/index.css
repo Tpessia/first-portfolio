@@ -32,190 +32,195 @@ table.highlight tbody tr:hover {
 .datepicker-date-display:focus {
   outline: 0; }
 
-.select-dropdown li span {
-  color: #5c6bc0; }
-
-body.nav-fixed header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999; }
-  body.nav-fixed header h2 {
-    display: none; }
-  body.nav-fixed header #date-form {
-    transition: .5s padding;
-    padding: 10px 0px 0px !important; }
+body .tabs .tab {
+  cursor: pointer; }
+  body .tabs .tab a {
+    background-color: transparent !important;
+    color: #5c6bc0 !important; }
+body .tabs .indicator {
+  background-color: #5c6bc0 !important; }
 body header {
   background: #3f51b5; }
-  body header .row {
-    margin-bottom: 0; }
-    body header .row h2 {
-      color: white; }
-    body header .row #date-form {
-      padding: 15px 0; }
-      body header .row #date-form #date-selector {
-        display: inline-block;
-        margin-right: 15px; }
-        @media (max-width: 360px) {
-          body header .row #date-form #date-selector {
-            width: 100%; } }
-        body header .row #date-form #date-selector .datepicker {
-          color: white;
-          border-color: white; }
-          body header .row #date-form #date-selector .datepicker:focus {
-            border-bottom: 1px solid white;
-            -webkit-box-shadow: 0 1px 0 0 white;
-            box-shadow: 0 1px 0 0 white; }
-        body header .row #date-form #date-selector label {
-          color: white; }
-      body header .row #date-form #submit {
-        display: inline-block;
-        position: relative; }
-        body header .row #date-form #submit button {
-          color: #3f51b5;
-          background-color: white; }
-        body header .row #date-form #submit .progress {
-          position: absolute;
-          bottom: 0;
-          margin: 0;
-          z-index: 2;
-          background-color: transparent; }
-          body header .row #date-form #submit .progress .indeterminate {
-            background-color: #636363; }
+  body header .container h2 {
+    color: white; }
+  body header .container .tabs {
+    padding: 0 .75rem;
+    background-color: transparent; }
+    body header .container .tabs .tab {
+      background-color: white; }
+  body header .container .tab-content .date-form {
+    padding-top: 15px;
+    padding-bottom: 15px; }
+    body header .container .tab-content .date-form .date-input {
+      display: inline-block;
+      margin-right: 15px; }
+      @media (max-width: 600px) {
+        body header .container .tab-content .date-form .date-input {
+          width: 100%; } }
+      body header .container .tab-content .date-form .date-input .datepicker {
+        color: white;
+        border-color: white; }
+        body header .container .tab-content .date-form .date-input .datepicker:focus {
+          border-bottom: 1px solid white;
+          -webkit-box-shadow: 0 1px 0 0 white;
+          box-shadow: 0 1px 0 0 white; }
+      body header .container .tab-content .date-form .date-input label {
+        color: white; }
+    body header .container .tab-content .date-form .select-input {
+      margin-right: 15px;
+      display: inline-block; }
+      @media (max-width: 600px) {
+        body header .container .tab-content .date-form .select-input {
+          width: 100%; } }
+      body header .container .tab-content .date-form .select-input .select-dropdown {
+        color: white;
+        border-bottom: 1px solid white; }
+        body header .container .tab-content .date-form .select-input .select-dropdown li:not(.disabled) span {
+          color: #5c6bc0; }
+      body header .container .tab-content .date-form .select-input .caret {
+        fill: white; }
+      body header .container .tab-content .date-form .select-input label {
+        color: white; }
+    body header .container .tab-content .date-form .submit {
+      display: inline-block;
+      position: relative; }
+      body header .container .tab-content .date-form .submit button {
+        color: #3f51b5;
+        background-color: white; }
+      body header .container .tab-content .date-form .submit .progress {
+        position: absolute;
+        bottom: 0;
+        margin: 0;
+        z-index: 2;
+        background-color: transparent; }
+        body header .container .tab-content .date-form .submit .progress .indeterminate {
+          background-color: #636363; }
 body main {
   padding-bottom: 35px; }
-  body main .row:not(#date-title) {
+  body main .data-row:not(.search-title) {
     margin-bottom: 50px; }
-    body main .row:not(#date-title) h4 {
+    body main .data-row:not(.search-title) h4 {
       padding: 5px 15px; }
-  body main .row#date-title {
+  body main .data-row.search-title {
     margin-bottom: 0; }
-    body main .row#date-title h3 {
+    body main .data-row.search-title h3 {
       padding: 5px 0 20px 10px; }
-  body main .row .data-table {
+  body main .data-row .data-table {
     overflow-x: auto; }
     @media (min-width: 601px) {
-      body main .row .data-table thead tr.mobile-tr th.mobile-th {
+      body main .data-row .data-table thead tr.mobile-tr th.mobile-th {
         display: none; } }
-    body main .row .data-table thead tr.mobile-tr th.mobile-th.unit {
+    body main .data-row .data-table thead tr.mobile-tr th.mobile-th.unit {
       transform: translateY(-15%); }
-      body main .row .data-table thead tr.mobile-tr th.mobile-th.unit small {
+      body main .data-row .data-table thead tr.mobile-tr th.mobile-th.unit small {
         position: absolute;
         transform: translateX(-50%); }
     @media (max-width: 600px) {
-      body main .row .data-table thead tr.mobile-tr th:not(.mobile-th) {
+      body main .data-row .data-table thead tr.mobile-tr th:not(.mobile-th) {
         display: none; } }
-    body main .row .data-table tbody tr:last-child {
+    body main .data-row .data-table tbody tr:last-child {
       border-bottom: 0; }
-  body main .row .data-chart {
+  body main .data-row .data-chart {
     border-top: 2px solid rgba(92, 107, 192, 0.3333333333);
     padding-top: 3px;
     margin-bottom: 25px; }
     @media (max-width: 992px) {
-      body main .row .data-chart {
+      body main .data-row .data-chart {
         margin-bottom: 15px; } }
     @media (max-width: 600px) {
-      body main .row .data-chart {
+      body main .data-row .data-chart {
         margin-bottom: 5px; } }
-    body main .row .data-chart .tabs {
+    body main .data-row .data-chart .tabs {
       margin-bottom: 10px; }
-      body main .row .data-chart .tabs .tab {
-        cursor: pointer; }
-        body main .row .data-chart .tabs .tab a {
-          background-color: white !important;
-          color: #5c6bc0; }
-      body main .row .data-chart .tabs .indicator {
-        background-color: #5c6bc0; }
-    body main .row .data-chart .custom-label {
+    body main .data-row .data-chart .custom-label {
       margin: 0 5% 15px 5%; }
-      body main .row .data-chart .custom-label .label-data {
+      body main .data-row .data-chart .custom-label .label-data {
         float: left; }
-        body main .row .data-chart .custom-label .label-data:not(:first-child) {
+        body main .data-row .data-chart .custom-label .label-data:not(:first-child) {
           margin-left: 15px; }
-        body main .row .data-chart .custom-label .label-data .label-color {
+        body main .data-row .data-chart .custom-label .label-data .label-color {
           width: .9rem;
           height: .9rem;
           display: inline-block;
           transform: translateY(15%);
           margin-right: 6px; }
-      body main .row .data-chart .custom-label:after {
+      body main .data-row .data-chart .custom-label:after {
         content: "";
         clear: both;
         display: table; }
-    body main .row .data-chart .ct-chart .ct-series-a .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-a .ct-point,
-    body main .row .data-chart .ct-chart .ct-series-a .ct-bar {
+    body main .data-row .data-chart .ct-chart .ct-series-a .ct-line,
+    body main .data-row .data-chart .ct-chart .ct-series-a .ct-point,
+    body main .data-row .data-chart .ct-chart .ct-series-a .ct-bar {
       stroke: #3f51b5; }
-    body main .row .data-chart .ct-chart .ct-series-a .ct-slice-pie {
+    body main .data-row .data-chart .ct-chart .ct-series-a .ct-slice-pie {
       fill: #3f51b5; }
-    body main .row .data-chart .ct-chart .ct-series-b .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-b .ct-point,
-    body main .row .data-chart .ct-chart .ct-series-b .ct-bar {
+    body main .data-row .data-chart .ct-chart .ct-series-b .ct-line,
+    body main .data-row .data-chart .ct-chart .ct-series-b .ct-point,
+    body main .data-row .data-chart .ct-chart .ct-series-b .ct-bar {
       stroke: #7986cb; }
-    body main .row .data-chart .ct-chart .ct-series-b .ct-slice-pie {
+    body main .data-row .data-chart .ct-chart .ct-series-b .ct-slice-pie {
       fill: #7986cb; }
-    body main .row .data-chart .ct-chart .ct-series-c .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-c .ct-point,
-    body main .row .data-chart .ct-chart .ct-series-c .ct-bar {
+    body main .data-row .data-chart .ct-chart .ct-series-c .ct-line,
+    body main .data-row .data-chart .ct-chart .ct-series-c .ct-point,
+    body main .data-row .data-chart .ct-chart .ct-series-c .ct-bar {
       stroke: #0d47a1; }
-    body main .row .data-chart .ct-chart .ct-series-c .ct-slice-pie {
+    body main .data-row .data-chart .ct-chart .ct-series-c .ct-slice-pie {
       fill: #0d47a1; }
-    body main .row .data-chart .ct-chart .ct-series-d .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-d .ct-point,
-    body main .row .data-chart .ct-chart .ct-series-d .ct-bar {
+    body main .data-row .data-chart .ct-chart .ct-series-d .ct-line,
+    body main .data-row .data-chart .ct-chart .ct-series-d .ct-point,
+    body main .data-row .data-chart .ct-chart .ct-series-d .ct-bar {
       stroke: #2962ff; }
-    body main .row .data-chart .ct-chart .ct-series-d .ct-slice-pie {
+    body main .data-row .data-chart .ct-chart .ct-series-d .ct-slice-pie {
       fill: #2962ff; }
-    body main .row .data-chart .ct-chart .ct-series-e .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-e .ct-point,
-    body main .row .data-chart .ct-chart .ct-series-e .ct-bar {
+    body main .data-row .data-chart .ct-chart .ct-series-e .ct-line,
+    body main .data-row .data-chart .ct-chart .ct-series-e .ct-point,
+    body main .data-row .data-chart .ct-chart .ct-series-e .ct-bar {
       stroke: #1a237e; }
-    body main .row .data-chart .ct-chart .ct-series-e .ct-slice-pie {
+    body main .data-row .data-chart .ct-chart .ct-series-e .ct-slice-pie {
       fill: #1a237e; }
-    body main .row .data-chart .ct-chart .ct-series-f .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-f .ct-point,
-    body main .row .data-chart .ct-chart .ct-series-f .ct-bar {
+    body main .data-row .data-chart .ct-chart .ct-series-f .ct-line,
+    body main .data-row .data-chart .ct-chart .ct-series-f .ct-point,
+    body main .data-row .data-chart .ct-chart .ct-series-f .ct-bar {
       stroke: #c5cae9; }
-    body main .row .data-chart .ct-chart .ct-series-f .ct-slice-pie {
+    body main .data-row .data-chart .ct-chart .ct-series-f .ct-slice-pie {
       fill: #c5cae9; }
-    body main .row .data-chart .ct-chart .ct-series-g .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-g .ct-point,
-    body main .row .data-chart .ct-chart .ct-series-g .ct-bar {
+    body main .data-row .data-chart .ct-chart .ct-series-g .ct-line,
+    body main .data-row .data-chart .ct-chart .ct-series-g .ct-point,
+    body main .data-row .data-chart .ct-chart .ct-series-g .ct-bar {
       stroke: #2196f3; }
-    body main .row .data-chart .ct-chart .ct-series-g .ct-slice-pie {
+    body main .data-row .data-chart .ct-chart .ct-series-g .ct-slice-pie {
       fill: #2196f3; }
-    body main .row .data-chart .ct-chart .ct-series-h .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-h .ct-point,
-    body main .row .data-chart .ct-chart .ct-series-h .ct-bar {
+    body main .data-row .data-chart .ct-chart .ct-series-h .ct-line,
+    body main .data-row .data-chart .ct-chart .ct-series-h .ct-point,
+    body main .data-row .data-chart .ct-chart .ct-series-h .ct-bar {
       stroke: #bbdefb; }
-    body main .row .data-chart .ct-chart .ct-series-h .ct-slice-pie {
+    body main .data-row .data-chart .ct-chart .ct-series-h .ct-slice-pie {
       fill: #bbdefb; }
-    body main .row .data-chart .ct-chart .ct-series-i .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-i .ct-point,
-    body main .row .data-chart .ct-chart .ct-series-i .ct-bar {
+    body main .data-row .data-chart .ct-chart .ct-series-i .ct-line,
+    body main .data-row .data-chart .ct-chart .ct-series-i .ct-point,
+    body main .data-row .data-chart .ct-chart .ct-series-i .ct-bar {
       stroke: #536dfe; }
-    body main .row .data-chart .ct-chart .ct-series-i .ct-slice-pie {
+    body main .data-row .data-chart .ct-chart .ct-series-i .ct-slice-pie {
       fill: #536dfe; }
-    body main .row .data-chart .ct-chart .ct-series-j .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-j .ct-point,
-    body main .row .data-chart .ct-chart .ct-series-j .ct-bar {
+    body main .data-row .data-chart .ct-chart .ct-series-j .ct-line,
+    body main .data-row .data-chart .ct-chart .ct-series-j .ct-point,
+    body main .data-row .data-chart .ct-chart .ct-series-j .ct-bar {
       stroke: #304ffe; }
-    body main .row .data-chart .ct-chart .ct-series-j .ct-slice-pie {
+    body main .data-row .data-chart .ct-chart .ct-series-j .ct-slice-pie {
       fill: #304ffe; }
-    body main .row .data-chart .ct-chart .ct-series-k .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-k .ct-point,
-    body main .row .data-chart .ct-chart .ct-series-k .ct-bar {
+    body main .data-row .data-chart .ct-chart .ct-series-k .ct-line,
+    body main .data-row .data-chart .ct-chart .ct-series-k .ct-point,
+    body main .data-row .data-chart .ct-chart .ct-series-k .ct-bar {
       stroke: #448aff; }
-    body main .row .data-chart .ct-chart .ct-series-k .ct-slice-pie {
+    body main .data-row .data-chart .ct-chart .ct-series-k .ct-slice-pie {
       fill: #448aff; }
-    body main .row .data-chart .ct-chart .ct-series-l .ct-line,
-    body main .row .data-chart .ct-chart .ct-series-l .ct-point,
-    body main .row .data-chart .ct-chart .ct-series-l .ct-bar {
+    body main .data-row .data-chart .ct-chart .ct-series-l .ct-line,
+    body main .data-row .data-chart .ct-chart .ct-series-l .ct-point,
+    body main .data-row .data-chart .ct-chart .ct-series-l .ct-bar {
       stroke: #64b5f6; }
-    body main .row .data-chart .ct-chart .ct-series-l .ct-slice-pie {
+    body main .data-row .data-chart .ct-chart .ct-series-l .ct-slice-pie {
       fill: #64b5f6; }
-    body main .row .data-chart .ct-chart .ct-chart-pie .ct-label {
+    body main .data-row .data-chart .ct-chart .ct-chart-pie .ct-label {
       font-size: .9rem;
       font-weight: bold; }
 
