@@ -95,9 +95,11 @@ function initializers() {
             url: "get-last.php",
             success: function (date) {
                 if (date.match(/^(\d){4}[- \/.]?(0[1-9]|1[012])[- \/.]?(0[1-9]|[12][0-9]|3[01])$/)) { // Match date [0000-9999][0-12][0-31]
-                    datepickers[0].options.maxDate = new Date(date + "T00:00:00");
-                    datepickers[0].options.yearRange = [1996, new Date(date + "T00:00:00").getFullYear()];
-                    datepickers[0].options.defaultDate = new Date(date + "T00:00:00");
+                    for (var i in datepickers) {
+                        datepickers[i].options.maxDate = new Date(date + "T00:00:00");
+                        datepickers[i].options.yearRange = [1996, new Date(date + "T00:00:00").getFullYear()];
+                        datepickers[i].options.defaultDate = new Date(date + "T00:00:00");
+                    }
                 }
                 else {
                     console.log("Valor inválido de get-last.php: " + date);
@@ -644,7 +646,7 @@ function events() {
         var selected = $('header .select-input select option:selected');
 
         $.ajax({
-            url: "query-mult.php?min=" + dateStr1 + "&max=" + dateStr2 + "&selected=" + selected.val(),
+            url: "query-mult.php?min=" + dateStr1 + "&max=" + dateStr2 + "&select=" + selected.val(),
             success: function (json) {
                 try {
                     dataRange = JSON.parse(json);

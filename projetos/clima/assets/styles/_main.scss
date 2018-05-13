@@ -114,3 +114,11 @@ table {
         outline: 0;
     }
 }
+
+.select-dropdown {
+    li {
+        span {
+            color: $primary-color-l1;
+        }
+    }
+}

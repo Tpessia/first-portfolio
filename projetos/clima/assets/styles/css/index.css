@@ -32,6 +32,9 @@ table.highlight tbody tr:hover {
 .datepicker-date-display:focus {
   outline: 0; }
 
+.select-dropdown li span {
+  color: #5c6bc0; }
+
 body .tabs .tab {
   cursor: pointer; }
   body .tabs .tab a {
