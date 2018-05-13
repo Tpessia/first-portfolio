@@ -36,7 +36,7 @@ function initializers() {
                 this.setDate(new Date(this.options.defaultDate));
             },
             'onSelect': function (d) {
-                datepickers[0].options.defaultDate = d;
+                this.options.defaultDate = d;
             },
             'i18n': { // Internacionalização
                 'cancel': 'Cancelar',
