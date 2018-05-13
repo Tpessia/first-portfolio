@@ -107,7 +107,7 @@ function initializers() {
             }
         });
     }
-    $(".datepicker-cancel").css("display: none;");
+    $(".datepicker-cancel").css("display", "none");
 }
 
 function events() {
