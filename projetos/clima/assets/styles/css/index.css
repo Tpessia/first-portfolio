@@ -166,63 +166,39 @@ body main {
     body main .data-row .data-chart .ct-chart .ct-series-c .ct-line,
     body main .data-row .data-chart .ct-chart .ct-series-c .ct-point,
     body main .data-row .data-chart .ct-chart .ct-series-c .ct-bar {
-      stroke: #0d47a1; }
+      stroke: #9c27b0; }
     body main .data-row .data-chart .ct-chart .ct-series-c .ct-slice-pie {
-      fill: #0d47a1; }
+      fill: #9c27b0; }
     body main .data-row .data-chart .ct-chart .ct-series-d .ct-line,
     body main .data-row .data-chart .ct-chart .ct-series-d .ct-point,
     body main .data-row .data-chart .ct-chart .ct-series-d .ct-bar {
-      stroke: #2962ff; }
+      stroke: #00796b; }
     body main .data-row .data-chart .ct-chart .ct-series-d .ct-slice-pie {
-      fill: #2962ff; }
+      fill: #00796b; }
     body main .data-row .data-chart .ct-chart .ct-series-e .ct-line,
     body main .data-row .data-chart .ct-chart .ct-series-e .ct-point,
     body main .data-row .data-chart .ct-chart .ct-series-e .ct-bar {
-      stroke: #1a237e; }
+      stroke: #d32f2f; }
     body main .data-row .data-chart .ct-chart .ct-series-e .ct-slice-pie {
-      fill: #1a237e; }
+      fill: #d32f2f; }
     body main .data-row .data-chart .ct-chart .ct-series-f .ct-line,
     body main .data-row .data-chart .ct-chart .ct-series-f .ct-point,
     body main .data-row .data-chart .ct-chart .ct-series-f .ct-bar {
-      stroke: #c5cae9; }
+      stroke: #5e35b1; }
     body main .data-row .data-chart .ct-chart .ct-series-f .ct-slice-pie {
-      fill: #c5cae9; }
+      fill: #5e35b1; }
     body main .data-row .data-chart .ct-chart .ct-series-g .ct-line,
     body main .data-row .data-chart .ct-chart .ct-series-g .ct-point,
     body main .data-row .data-chart .ct-chart .ct-series-g .ct-bar {
-      stroke: #2196f3; }
+      stroke: #388e3c; }
     body main .data-row .data-chart .ct-chart .ct-series-g .ct-slice-pie {
-      fill: #2196f3; }
+      fill: #388e3c; }
     body main .data-row .data-chart .ct-chart .ct-series-h .ct-line,
     body main .data-row .data-chart .ct-chart .ct-series-h .ct-point,
     body main .data-row .data-chart .ct-chart .ct-series-h .ct-bar {
-      stroke: #bbdefb; }
+      stroke: #ef6c00; }
     body main .data-row .data-chart .ct-chart .ct-series-h .ct-slice-pie {
-      fill: #bbdefb; }
-    body main .data-row .data-chart .ct-chart .ct-series-i .ct-line,
-    body main .data-row .data-chart .ct-chart .ct-series-i .ct-point,
-    body main .data-row .data-chart .ct-chart .ct-series-i .ct-bar {
-      stroke: #536dfe; }
-    body main .data-row .data-chart .ct-chart .ct-series-i .ct-slice-pie {
-      fill: #536dfe; }
-    body main .data-row .data-chart .ct-chart .ct-series-j .ct-line,
-    body main .data-row .data-chart .ct-chart .ct-series-j .ct-point,
-    body main .data-row .data-chart .ct-chart .ct-series-j .ct-bar {
-      stroke: #304ffe; }
-    body main .data-row .data-chart .ct-chart .ct-series-j .ct-slice-pie {
-      fill: #304ffe; }
-    body main .data-row .data-chart .ct-chart .ct-series-k .ct-line,
-    body main .data-row .data-chart .ct-chart .ct-series-k .ct-point,
-    body main .data-row .data-chart .ct-chart .ct-series-k .ct-bar {
-      stroke: #448aff; }
-    body main .data-row .data-chart .ct-chart .ct-series-k .ct-slice-pie {
-      fill: #448aff; }
-    body main .data-row .data-chart .ct-chart .ct-series-l .ct-line,
-    body main .data-row .data-chart .ct-chart .ct-series-l .ct-point,
-    body main .data-row .data-chart .ct-chart .ct-series-l .ct-bar {
-      stroke: #64b5f6; }
-    body main .data-row .data-chart .ct-chart .ct-series-l .ct-slice-pie {
-      fill: #64b5f6; }
+      fill: #ef6c00; }
     body main .data-row .data-chart .ct-chart .ct-chart-pie .ct-label {
       font-size: .9rem;
       font-weight: bold; }

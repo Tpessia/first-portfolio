@@ -182,16 +182,22 @@ body {
                     $colors-list: (
                         ct-series-a: $primary-color, //#3f51b5
                         ct-series-b: $primary-color-l2, //#7986cb
-                        ct-series-c: $secondary-color-d4, //#0d47a1
-                        ct-series-d: $secondary-color-a4, //#2962ff
-                        ct-series-e: $primary-color-d4, //#1a237e
-                        ct-series-f: $primary-color-l4, //#c5cae9
-                        ct-series-g: $secondary-color, //#2196f3
-                        ct-series-h: $secondary-color-l4, //#bbdefb
-                        ct-series-i: $primary-color-a2, //#536dfe
-                        ct-series-j: $primary-color-a4, //#304ffe
-                        ct-series-k: $secondary-color-a2, //#448aff
-                        ct-series-l: $secondary-color-l2, //#64b5f6
+                        // ct-series-c: $secondary-color-d4, //#0d47a1
+                        // ct-series-d: $secondary-color-a4, //#2962ff
+                        // ct-series-e: $primary-color-d4, //#1a237e
+                        // ct-series-f: $primary-color-l4, //#c5cae9
+                        // ct-series-g: $secondary-color, //#2196f3
+                        // ct-series-h: $secondary-color-l4, //#bbdefb
+                        // ct-series-i: $primary-color-a2, //#536dfe
+                        // ct-series-j: $primary-color-a4, //#304ffe
+                        // ct-series-k: $secondary-color-a2, //#448aff
+                        // ct-series-l: $secondary-color-l2, //#64b5f6
+                        ct-series-c: #9c27b0,
+                        ct-series-d: #00796b,
+                        ct-series-e: #d32f2f,
+                        ct-series-f: #5e35b1,
+                        ct-series-g: #388e3c,
+                        ct-series-h: #ef6c00
                     );
                     @each $key,
                     $val in $colors-list {
