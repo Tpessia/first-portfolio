@@ -200,6 +200,8 @@ function events() {
         },
 
         allRange: function(labels) {
+            this.charts.range.general();
+            
             var data = [];
             for (var i in labels) {
                 data.push({
