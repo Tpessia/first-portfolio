@@ -663,14 +663,19 @@ function events() {
     });
 
     $("#range-tab .date-form").on("submit", function() {
+        var selected = $('header .select-input select option:selected');
+
+        if (selected.prop("disabled")) {
+            alert("Selecione uma opção de dado para concluir a pesquisa!");
+            return false;
+        }
+
         submitBtn.disable();
 
         var range1 = datepickers[1].options.defaultDate;
         var range2 = datepickers[2].options.defaultDate;
         var dateStr1 = range1.getFullYear() + "" + dateFix(range1.getMonth() + 1) + "" + dateFix(range1.getDate());
         var dateStr2 = range2.getFullYear() + "" + dateFix(range2.getMonth() + 1) + "" + dateFix(range2.getDate());
-
-        var selected = $('header .select-input select option:selected');
 
         $.ajax({
             url: "query-mult.php?min=" + dateStr1 + "&max=" + dateStr2 + "&select=" + selected.val(),
