@@ -210,7 +210,7 @@ function events() {
                 });
             }
             
-            this.charts.buildLine("#chart-range", "range", data);
+            this.charts.buildLine("#chart-range", "range", data, undefined, false);
         },
 
         tabs: function () {
@@ -220,7 +220,7 @@ function events() {
         },
 
         charts: {
-            buildLine: function (el, chart, content, index) { // elem selector, charts[chart] content & chart parent id, {MyLabel, charts["chart"][data]}, index for right color, animate?
+            buildLine: function (el, chart, content, index, points) { // elem selector, charts[chart] content & chart parent id, {MyLabel, charts["chart"][data]}, index for right color, animate?
                 var chartData = [];
                 var dataLabel = [];
 
@@ -236,8 +236,10 @@ function events() {
                 }
 
                 var options = {
-                    fullWidth: true
+                    fullWidth: true,
+                    showPoint: (typeof points === "undefined") ? true : points
                 };
+                
                 // DEFINE MAX & MIN BY DATA SET
                 // if (typeof this[chart].low !== "undefined") {
                 //     options.low = this[chart].low;
@@ -260,6 +262,7 @@ function events() {
                 // }
 
                 var low, high;
+                a = chartData;
                 for (var i in chartData) {
                     var value = Array.from(chartData[i]);
                     if (value.length > 0) {
@@ -512,11 +515,11 @@ function events() {
 
                         for (var j in day) {
                             if (typeof day[j] === "undefined" || day[j] == "-999" || day[j] == "-9999" || day[j] == "") {
-                                data = null;
-                                break;
+                                data[j] = null;
                             }
-
-                            data[j] = day[j];
+                            else {
+                                data[j] = day[j];
+                            }
                         }
 
                         if (data == null) {
