@@ -505,12 +505,12 @@ function events() {
                         compactLabel[i] = null;
                     }
                     compactLabel[0] = prettyDate(new Date(this.temporary[0][0] + "T00:00:00"));
-                    if (compactLabel.length > 2) {
-                        compactLabel[parseInt(compactLabel.length * 0.93) - 1] = prettyDate(new Date(this.temporary[0][this.temporary[0].length - 1] + "T00:00:00"));
-                    }
-                    else if (compactLabel.length > 1) {
-                        compactLabel[compactLabel.length - 1] = prettyDate(new Date(this.temporary[0][this.temporary[0].length - 1] + "T00:00:00"));
-                    }
+                    // if (compactLabel.length > 2) {
+                    //     compactLabel[parseInt(compactLabel.length * 0.93) - 1] = prettyDate(new Date(this.temporary[0][this.temporary[0].length - 1] + "T00:00:00"));
+                    // }
+                    // else if (compactLabel.length > 1) {
+                    //     compactLabel[compactLabel.length - 1] = prettyDate(new Date(this.temporary[0][this.temporary[0].length - 1] + "T00:00:00"));
+                    // }
                     return compactLabel; //this.temporary[0];
                 },
 
