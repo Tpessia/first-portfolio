@@ -500,7 +500,14 @@ function events() {
 
             range: {
                 label: function() {
-                    return this.temporary[0];
+                    var teste = Array.from(this.temporary);
+                    for (var i in teste) {
+                        teste[i] = null;
+                    }
+                    teste[0] = this.temporary[0];
+                    teste[teste.length - 1] = this.temporary[this.temporary.length - 1];
+                    console.log(teste)
+                    return teste; //this.temporary[0];
                 },
 
                 general: function() {
