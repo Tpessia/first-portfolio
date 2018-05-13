@@ -207,6 +207,7 @@ function events() {
                     "data": i
                 });
             }
+            console.log(data);
             this.charts.buildLine("#chart-range", "range", data);
         },
 
