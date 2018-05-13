@@ -201,7 +201,7 @@ function events() {
 
         allRange: function(labels) {
             this.charts.range.general();
-            
+
             var data = [];
             for (var i in labels) {
                 data.push({
@@ -507,7 +507,7 @@ function events() {
                         }
 
                         for (var j in data) {
-                            general[j].push(data[j]);
+                            (typeof general[j] === "undefined") ? general[j] = [data[j]] : general[j].push(data[j]);
                         }
                     }
 
