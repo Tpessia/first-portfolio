@@ -511,7 +511,7 @@ function events() {
                         data[0] = i;
 
                         for (var j in day) {
-                            if (day[j] == "-999" || day[j] == "-9999" || day[j] == "") {
+                            if (typeof day[j] === "undefined" || day[j] == "-999" || day[j] == "-9999" || day[j] == "") {
                                 data = null;
                                 break;
                             }
