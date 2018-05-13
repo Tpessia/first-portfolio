@@ -206,7 +206,7 @@ function events() {
             for (var i in labels) {
                 data.push({
                     "label": labels[i],
-                    "data": parseInt(i) + 1
+                    "data": "shift"
                 });
             }
             this.charts.buildLine("#chart-range", "range", data);
@@ -270,8 +270,7 @@ function events() {
                         options.high = high + (delta * 0.1);
                     }
                 }
-console.log(this[chart])
-a = this[chart]
+                
                 var chartLine = new Chartist.Line(
                     el, {
                         labels: this[chart].label(),
@@ -512,7 +511,7 @@ a = this[chart]
                         if (data == null) {
                             break;
                         }
-console.log(data)
+                        
                         var i = 0;
                         for (var j in data) {                            
                             (typeof this.temporary[i] === "undefined") ? this.temporary[i] = [data[j]] : this.temporary[i].push(data[j]);
@@ -521,8 +520,8 @@ console.log(data)
                     }
 
                     for (var i = 0; i < this.temporary.length; i++) {
-                        this[i] = function() {
-                            return this.temporary[i];
+                        this.shift = function() {
+                            return this.temporary.shift();
                         }
                     }
                 }
