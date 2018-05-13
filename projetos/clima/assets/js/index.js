@@ -209,6 +209,7 @@ function events() {
                     "data": "shift"
                 });
             }
+            
             this.charts.buildLine("#chart-range", "range", data);
         },
 
@@ -258,17 +259,27 @@ function events() {
                 //     }
                 // }
 
+                var low, high;
                 for (var i in chartData) {
-                    var value = chartData[i];
-                    var low = Math.min.apply(null, value);
-                    var high = Math.max.apply(null, value);
-                    var delta = high - low;
-                    if (typeof options.low === "undefined" || low < options.low) {
-                        options.low = low - (delta * 0.1);
+                    var value = Array.from(chartData[i]);
+                    if (value.length > 0) {
+                        if (typeof low !== "undefined") {
+                            value.push(low);
+                        }
+                        if (typeof high !== "undefined") {
+                            value.push(high);
+                        }
+                        low = Math.min.apply(null, value);
+                        high = Math.max.apply(null, value);
                     }
-                    if (typeof options.high === "undefined" || high > options.high) {
-                        options.high = high + (delta * 0.1);
-                    }
+                }
+
+                var delta = high - low;
+                if (typeof options.low === "undefined" || low < options.low) {
+                    options.low = low - (delta * 0.1);
+                }
+                if (typeof options.high === "undefined" || high > options.high) {
+                    options.high = high + (delta * 0.1);
                 }
                 
                 var chartLine = new Chartist.Line(
@@ -521,7 +532,9 @@ function events() {
 
                     for (var i = 0; i < this.temporary.length; i++) {
                         this.shift = function() {
-                            return this.temporary.shift();
+                            var a = this.temporary.splice(1, 1)[0];
+                            
+                            return a;
                         }
                     }
                 }
@@ -670,7 +683,8 @@ function events() {
                     throw "JSON inválido!";
                 }
 
-                $(".range .search-title h3").html(selected.html() + " entre " + prettyDate(range1) + " e " + prettyDate(range2));
+                $(".range .search-title h3").html("Clima entre " + prettyDate(range1) + " e " + prettyDate(range2));
+                $("#range .t1 a").html(selected.html().toUpperCase());
                 $("main.range .row").removeClass("hide");
                 $("section h5, main.day .row").addClass("hide");
 
