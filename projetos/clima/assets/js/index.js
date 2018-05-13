@@ -207,7 +207,6 @@ function events() {
                     "data": i
                 });
             }
-            console.log(data);
             this.charts.buildLine("#chart-range", "range", data);
         },
 
@@ -506,11 +505,15 @@ function events() {
                         }
 
                         for (var j in data) {
-                            (typeof this[j] === "undefined") ? this[j] = [data[j]] : this[j].push(data[j]);
+                            general[j].push(data[j]);
                         }
                     }
 
-                    return general;
+                    for (var i in general) {
+                        this[i] = function() {
+                            return general[i];
+                        }
+                    }
                 }
             }
         },
