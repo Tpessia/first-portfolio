@@ -202,6 +202,8 @@ function events() {
         allRange: function(labels) {
             this.charts.range.general();
 
+            labels = labels.reverse();
+
             var data = [];
             for (var i in labels) {
                 data.push({
