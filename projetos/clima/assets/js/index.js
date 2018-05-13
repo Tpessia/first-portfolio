@@ -270,7 +270,8 @@ function events() {
                         options.high = high + (delta * 0.1);
                     }
                 }
-
+console.log(this[chart])
+a = this[chart]
                 var chartLine = new Chartist.Line(
                     el, {
                         labels: this[chart].label(),
@@ -486,20 +487,18 @@ function events() {
 
             range: {
                 label: function() {
-                    return this.temp[0];
+                    return this.temporary[0];
                 },
 
                 general: function() {
-                    if (typeof this.temp === "undefined") {
-                        this.temp = [];
-                    }
+                    this.temporary = [];
 
                     for (var i in dataRange) {
                         var day = dataRange[i];
 
-                        var data = [[]];
+                        var data = [];
 
-                        data[0].push(i);
+                        data[0] = i;
 
                         for (var j in day) {
                             if (day[j] == "-999" || day[j] == "-9999" || day[j] == "") {
@@ -513,18 +512,17 @@ function events() {
                         if (data == null) {
                             break;
                         }
-
+console.log("data: " + data)
                         var i = 0;
-                        for (var j in data) {
-                            
-                            (typeof this.temp[i] === "undefined") ? this.temp[i] = [data[j]] : this.temp[i].push(data[j]);
+                        for (var j in data) {                            
+                            (typeof this.temporary[i] === "undefined") ? this.temporary[i] = [data[j]] : this.temporary[i].push(data[j]);
                             i++;
                         }
                     }
 
-                    for (var i = 0; i < this.temp.length; i++) {
+                    for (var i = 0; i < this.temporary.length; i++) {
                         this[i] = function() {
-                            return this.temp[i];
+                            return this.temporary[i];
                         }
                     }
                 }
@@ -639,7 +637,7 @@ function events() {
                 $("#hourly tbody").html(hoursHTML);
                 $("#almanac tbody").html(almanacHTML);
                 $("main.day .row").removeClass("hide");
-                $("section h5").addClass("hide");
+                $("section h5, main.range .row").addClass("hide");
 
                 init.allDay();
             },
@@ -675,7 +673,7 @@ function events() {
 
                 $(".range .search-title h3").html(selected.html() + " entre " + prettyDate(range1) + " e " + prettyDate(range2));
                 $("main.range .row").removeClass("hide");
-                $("section h5").addClass("hide");
+                $("section h5, main.day .row").addClass("hide");
 
                 init.allRange(selected.attr("labels").split(","));
             },
