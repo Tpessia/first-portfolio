@@ -295,7 +295,7 @@ function events() {
                             showPoint: false,
                             axisX: {
                                 labelInterpolationFnc: function (value) {
-                                    return value.slice(0, 2);
+                                    return value ? value.slice(0, 2) : value;
                                 }
                             }
                         }]
@@ -500,14 +500,18 @@ function events() {
 
             range: {
                 label: function() {
-                    var teste = Array.from(this.temporary);
-                    for (var i in teste) {
-                        teste[i] = null;
+                    var compactLabel = Array.from(this.temporary[0]);
+                    for (var i in compactLabel) {
+                        compactLabel[i] = null;
                     }
-                    teste[0] = this.temporary[0];
-                    teste[teste.length - 1] = this.temporary[this.temporary.length - 1];
-                    console.log(teste)
-                    return teste; //this.temporary[0];
+                    compactLabel[0] = prettyDate(new Date(this.temporary[0][0] + "T00:00:00"));
+                    if (compactLabel.length > 2) {
+                        compactLabel[parseInt(compactLabel.length * 0.93)] = prettyDate(new Date(this.temporary[0][this.temporary[0].length - 1] + "T00:00:00"));
+                    }
+                    else if (compactLabel.length > 1) {
+                        compactLabel[compactLabel.length - 1] = prettyDate(new Date(this.temporary[0][this.temporary[0].length - 1] + "T00:00:00"));
+                    }
+                    return compactLabel; //this.temporary[0];
                 },
 
                 general: function() {
