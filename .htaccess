@@ -49,15 +49,16 @@ Header unset X-UA-Compatible
 </IfModule>
 
 #text.xyz -> http://www.test.xyz
-RewriteEngine On
-RewriteCond %{HTTP_HOST} !^www\.pessia\.xyz$ [NC]
-RewriteRule ^(.*)$ http://www.pessia.xyz/$1 [L,R=301]
+# RewriteEngine On
+# RewriteCond %{HTTP_HOST} !^www\.pessia\.xyz$ [NC]
+# RewriteRule ^(.*)$ http://www.pessia.xyz/$1 [L,R=301]
 
 #Redirect
 RewriteEngine On
 RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP_HOST} !^www\.pessia\.xyz$ [NC]
-RewriteRule ^(.*)$ https://www.pessia.xyz/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} !=localhost
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
 
 ErrorDocument 404 /404/
 

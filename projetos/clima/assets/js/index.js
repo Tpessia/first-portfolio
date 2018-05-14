@@ -32,12 +32,6 @@ function initializers() {
             'maxDate': yesterday,
             'yearRange': [1996, yesterday.getFullYear()],
             'defaultDate': yesterday,
-            'onOpen': function () {
-                this.setDate(new Date(this.options.defaultDate));
-            },
-            'onSelect': function (d) {
-                this.options.defaultDate = d;
-            },
             'i18n': { // Internacionalização
                 'cancel': 'Cancelar',
                 'clear': 'Limpar',
@@ -107,7 +101,6 @@ function initializers() {
             }
         });
     }
-    $(".datepicker-cancel").css("display", "none");
 }
 
 function events() {
@@ -573,7 +566,7 @@ function events() {
     $("#day-tab .date-form").on("submit", function () {
         submitBtn.disable();
 
-        var date = datepickers[0].options.defaultDate;
+        var date = datepickers[0].date;
         var dateStr = date.getFullYear() + "" + dateFix(date.getMonth() + 1) + "" + dateFix(date.getDate());
 
         $.ajax({
@@ -688,8 +681,8 @@ function events() {
 
         submitBtn.disable();
 
-        var range1 = datepickers[1].options.defaultDate;
-        var range2 = datepickers[2].options.defaultDate;
+        var range1 = datepickers[1].date;
+        var range2 = datepickers[2].date;
         var dateStr1 = range1.getFullYear() + "" + dateFix(range1.getMonth() + 1) + "" + dateFix(range1.getDate());
         var dateStr2 = range2.getFullYear() + "" + dateFix(range2.getMonth() + 1) + "" + dateFix(range2.getDate());
 
