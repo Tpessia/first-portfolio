@@ -24,6 +24,12 @@ body {
                 background-color: transparent;
                 .tab {
                     background-color: white;
+                    &.disabled {
+                        pointer-events: none;
+                    }
+                }
+                .indicator {
+                    height: 8px;
                 }
             }
             .tab-content {
@@ -93,20 +99,22 @@ body {
             }
         }
     }
+    section {
+        margin-top: 25px !important;
+    }
     main {
         padding-bottom: 35px;
-        .data-row {
-            &:not(.search-title) {
-                margin-bottom: 50px;
-                h4 {
-                    padding: 5px 15px;
-                }
+        .search-title {
+            margin-bottom: 0;
+            h3 {
+                margin-top: 0;
+                padding: 5px 0 20px 10px;
             }
-            &.search-title {
-                margin-bottom: 0;
-                h3 {
-                    padding: 5px 0 20px 10px;
-                }
+        }
+        .data-row {
+            margin-bottom: 50px;
+            h4 {
+                padding: 5px 15px;
             }
             .data-table {
                 overflow-x: auto;
@@ -155,14 +163,17 @@ body {
                     margin-bottom: 5px;
                 }
                 .tabs {
-                    margin-bottom: 10px;
+                    margin-bottom: 15px;
                 }
                 .custom-label {
                     margin: 0 5% 15px 5%;
                     .label-data {
                         float: left;
                         &:not(:first-child) {
-                            margin-left: 15px;
+                            padding-left: 7px;
+                        }
+                        &:not(:last-child) {
+                            padding-right: 7px;
                         }
                         .label-color {
                             width: .9rem;
@@ -212,11 +223,33 @@ body {
                             }
                         }
                     }
+                    .ct-chart-line {
+                        .ct-line {
+                            stroke-width: 3px;
+                        }
+                    }
                     .ct-chart-pie {
                         .ct-label {
                             font-size: .9rem;
                             font-weight: bold;
                         }
+                    }
+                }
+            }
+        }
+        &.range {
+            .ct-chart {
+                .ct-line {
+                    stroke-width: 1px;
+                }
+                .ct-label.ct-horizontal {
+                    @media (max-width: 480px) {
+                        -webkit-transform: rotate(-30deg);
+                        -moz-transform: rotate(-30deg);
+                        -ms-transform: rotate(-30deg);
+                        -o-transform: rotate(-30deg);
+                        transform: rotate(-30deg);
+                        margin-top: 10px;
                     }
                 }
             }

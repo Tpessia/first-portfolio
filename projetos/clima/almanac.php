@@ -8,7 +8,7 @@ $temp_high_record_year = new DateTime($data["almanac"]["temp_high"]["recordyear"
 $temp_low_record_year = new DateTime($data["almanac"]["temp_low"]["recordyear"] . $today->format("md"));
 
 
-$servername = "mysql.hostinger.com.br";
+$servername = preg_match('/localhost/' ,$_SERVER["SERVER_NAME"]) ? "br-hdi-sql50.main-hosting.eu" : "mysql.hostinger.com.br";
 $dbname = "u330258262_clima";
 $username = "u330258262_admin";
 $password = "PoZvHuYgMtIp&314159";

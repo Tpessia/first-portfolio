@@ -18,6 +18,7 @@ function initializers() {
     function startDisabled() {
         $(".date-input .datepicker").removeAttr("disabled");
         $(".tab-content .submit button").removeClass("disabled");
+        $("header .tab").removeClass("disabled");
     }
 
     datepickerInit();
@@ -31,7 +32,6 @@ function initializers() {
             'minDate': new Date('1996-06-30T00:00:00'),
             'maxDate': yesterday,
             'yearRange': [1996, yesterday.getFullYear()],
-            'defaultDate': yesterday,
             'i18n': { // Internacionalização
                 'cancel': 'Cancelar',
                 'clear': 'Limpar',
@@ -89,10 +89,12 @@ function initializers() {
             url: "get-last.php",
             success: function (date) {
                 if (date.match(/^(\d){4}[- \/.]?(0[1-9]|1[012])[- \/.]?(0[1-9]|[12][0-9]|3[01])$/)) { // Match date [0000-9999][0-12][0-31]
+                    var newDate = new Date(date + "T00:00:00");
                     for (var i in datepickers) {
-                        datepickers[i].options.maxDate = new Date(date + "T00:00:00");
-                        datepickers[i].options.yearRange = [1996, new Date(date + "T00:00:00").getFullYear()];
-                        datepickers[i].options.defaultDate = new Date(date + "T00:00:00");
+                        datepickers[i].options.maxDate = newDate;
+                        datepickers[i].options.yearRange = [1996, newDate.getFullYear()];
+                        datepickers[i].options.defaultDate = newDate;
+                        datepickers[i].setDate(newDate);
                     }
                 }
                 else {
@@ -135,10 +137,10 @@ function events() {
 
             $("#summary .t3").off().on("click", function () {
                 if (!$(this).find("a").hasClass("active")) {
-                    init.charts.buildPie("#chart-summary", "summary", [{
+                    init.charts.buildBar("#chart-summary", "summary", [{
                         "label": "Humidade (%),Precipitação (mm),Visibilidade (km), Dir. do Vento (º),Vel. do Vento (km/h)",
                         "data": "misc"
-                    }], 2);
+                    }], 0, true); // index não funciona
                 }
             });
 
@@ -193,6 +195,7 @@ function events() {
         },
 
         allRange: function(labels) {
+            this.tabs();
             this.charts.range.general();
 
             labels = labels.reverse();
@@ -205,7 +208,21 @@ function events() {
                 });
             }
             
-            this.charts.buildLine("#chart-range", "range", data, undefined, false);
+            this.charts.buildLine("#chart-range", "range", data, undefined, false, function(value) {
+                return value ? value.slice(0, 6) + value.slice(8, 10) : value;
+            });
+
+            $(".custom-label .label-data").off()
+                .on("mouseenter", function () {
+                    var letter = String.fromCharCode(97 + $(this).index());
+                    var ctLines = $(".ct-line").parent().not(".ct-series-" + letter).find(".ct-line");
+                    ctLines.css("display","none");
+                })
+                .on("mouseleave", function () {
+                    var letter = String.fromCharCode(97 + $(this).index());
+                    var ctLines = $(".ct-line").parent().not(".ct-series-" + letter).find(".ct-line");
+                    ctLines.css("display","inline");
+                });
         },
 
         tabs: function () {
@@ -215,7 +232,7 @@ function events() {
         },
 
         charts: {
-            buildLine: function (el, chart, content, index, points) { // elem selector, charts[chart] content & chart parent id, {MyLabel, charts["chart"][data]}, index for right color, animate?
+            buildLine: function (el, chartSet, content, index, points, respLabel) { // elem selector, charts[chart] content & chart parent id, {MyLabel, charts["chart"][data]}, index for right color, animate?
                 var chartData = [];
                 var dataLabel = [];
 
@@ -226,38 +243,16 @@ function events() {
                 }
 
                 for (var i in content) {
-                    chartData.push(this[chart][content[i].data]());
+                    chartData.push(this[chartSet][content[i].data]());
                     dataLabel.push(content[i].label);
                 }
 
                 var options = {
-                    fullWidth: true,
+                    // fullWidth: true,
                     showPoint: (typeof points === "undefined") ? true : points
                 };
-                
-                // DEFINE MAX & MIN BY DATA SET
-                // if (typeof this[chart].low !== "undefined") {
-                //     options.low = this[chart].low;
-                // }
-                // if (typeof this[chart].high !== "undefined") {
-                //     options.high = this[chart].high;
-                // }
-                // for (var i in chartData) {
-                //     var value = chartData[i];
-                //     var low = Math.min.apply(null, value);
-                //     var high = Math.max.apply(null, value);
-                //     if (typeof options.low === "undefined" || low < options.low) {
-                //         options.low = low;
-                //         this[chart].low = low;
-                //     }
-                //     if (typeof options.high === "undefined" || high > options.high) {
-                //         options.high = high;
-                //         this[chart].high = high;
-                //     }
-                // }
 
                 var low, high;
-                a = chartData;
                 for (var i in chartData) {
                     var value = Array.from(chartData[i]);
                     if (value.length > 0) {
@@ -282,7 +277,7 @@ function events() {
                 
                 var chartLine = new Chartist.Line(
                     el, {
-                        labels: this[chart].label(),
+                        labels: this[chartSet].label(),
                         series: chartData
                     },
                     options, [
@@ -290,7 +285,12 @@ function events() {
                             showPoint: false,
                             axisX: {
                                 labelInterpolationFnc: function (value) {
-                                    return value ? value.slice(0, 2) : value;
+                                    if (typeof respLabel !== "undefined") {
+                                        return respLabel(value);
+                                    }
+                                    else {
+                                        return value ? value.slice(0, 2) : value;
+                                    }
                                 }
                             }
                         }]
@@ -311,33 +311,40 @@ function events() {
                     }
                 });
 
-                $("#" + chart + " .custom-label").html('');
+                $("#" + chartSet + " .custom-label").html('');
                 for (var i in dataLabel) {
-                    $("#" + chart + " .custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + (typeof index === "undefined" ? this.labelColors[i] : this.labelColors[index]) + '"></span>' + dataLabel[i] + '</div>');
+                    $("#" + chartSet + " .custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + (typeof index === "undefined" ? this.labelColors[i] : this.labelColors[parseInt(i) + parseInt(index)]) + '"></span>' + dataLabel[i] + '</div>');
                 }
             },
 
-            buildBar: function (el, chart, content, index) {
+            buildBar: function (el, chartSet, content, index, distribute) {
                 var chartData = [];
                 var dataLabel = [];
+                var distribute = (typeof distribute !== "undefined" && distribute);
 
-                if (typeof index !== "undefined") {
+                if (typeof index !== "undefined" && !distribute) {
                     for (var i = index; i > 0; i--) {
                         chartData.push([]);
                     }
                 }
 
                 for (var i in content) {
-                    chartData.push(this[chart][content[i].data]());
+                    chartData.push(this[chartSet][content[i].data]());
                     dataLabel.push(content[i].label);
+                }
+
+                if (distribute) {
+                    dataLabel = content[i].label.split(",");
+                    chartData = chartData[0];
                 }
 
                 var chartBar = new Chartist.Bar(
                     el, {
-                        labels: this[chart].label(),
+                        labels: this[chartSet].label(dataLabel),
                         series: chartData
                     }, {
-                        seriesBarDistance: 10
+                        seriesBarDistance: 10,
+                        distributeSeries: distribute
                     }, [
                         ['screen and (max-width: 600px)', {
                             seriesBarDistance: 5,
@@ -365,18 +372,18 @@ function events() {
                     }
                 });
 
-                $("#" + chart + " .custom-label").html('');
+                $("#" + chartSet + " .custom-label").html('');
                 for (var i in dataLabel) {
-                    $("#" + chart + " .custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + (typeof index === "undefined" ? this.labelColors[i] : this.labelColors[index]) + '"></span>' + dataLabel[i] + '</div>');
+                    $("#" + chartSet + " .custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + (typeof index === "undefined" ? this.labelColors[i] : this.labelColors[parseInt(i) + parseInt(index)]) + '"></span>' + dataLabel[i] + '</div>');
                 }
             },
 
-            buildPie: function (el, chart, content, index) {
+            buildPie: function (el, chartSet, content, index) {
                 var chartData = [];
                 var dataLabel = [];
 
                 for (var i in content) {
-                    chartData = this[chart][content[i].data]();
+                    chartData = this[chartSet][content[i].data]();
                     dataLabel = content[i].label.split(",");
                 }
 
@@ -396,9 +403,9 @@ function events() {
                     }
                 );
 
-                $("#" + chart + " .custom-label").html('');
+                $("#" + chartSet + " .custom-label").html('');
                 for (var i in dataLabel) {
-                    $("#" + chart + " .custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + (typeof index === "undefined" ? this.labelColors[i] : this.labelColors[parseInt(i) + parseInt(index)]) + '"></span>' + dataLabel[i] + '</div>');
+                    $("#" + chartSet + " .custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + (typeof index === "undefined" ? this.labelColors[i] : this.labelColors[parseInt(i) + parseInt(index)]) + '"></span>' + dataLabel[i] + '</div>');
                 }
             },
 
@@ -467,8 +474,8 @@ function events() {
             },
 
             summary: {
-                label: function () {
-                    return ["Mínima", "Média", "Máxima"];
+                label: function (labels) {
+                    return typeof labels === "undefined" || labels.length == 1 ? ["Mínima", "Média", "Máxima"] : labels;
                 },
 
                 temp: function () {
@@ -496,17 +503,25 @@ function events() {
             range: {
                 label: function() {
                     var compactLabel = Array.from(this.temporary[0]);
+
+                    var maxQnt = 10;
+                    var pattern = compactLabel.length < 10 ? 1 : Math.round(compactLabel.length / maxQnt);
+                    var progress = 0;
+                    var inserted = 0;
+
                     for (var i in compactLabel) {
-                        compactLabel[i] = null;
+                        if (i%pattern == 0 && inserted < maxQnt) {
+                            compactLabel[i] = prettyDate(new Date(this.temporary[0][i] + "T00:00:00"));
+                            inserted++;
+                        }
+                        else {
+                            compactLabel[i] = null;
+                        }
+
+                        progress += pattern;
                     }
-                    compactLabel[0] = prettyDate(new Date(this.temporary[0][0] + "T00:00:00"));
-                    // if (compactLabel.length > 2) {
-                    //     compactLabel[parseInt(compactLabel.length * 0.93) - 1] = prettyDate(new Date(this.temporary[0][this.temporary[0].length - 1] + "T00:00:00"));
-                    // }
-                    // else if (compactLabel.length > 1) {
-                    //     compactLabel[compactLabel.length - 1] = prettyDate(new Date(this.temporary[0][this.temporary[0].length - 1] + "T00:00:00"));
-                    // }
-                    return compactLabel; //this.temporary[0];
+
+                    return compactLabel;
                 },
 
                 general: function() {
@@ -553,13 +568,13 @@ function events() {
 
     var submitBtn = {
         disable: function() {
-            $("#day-tab .submit button").addClass("disabled")
-            $("#day-tab .submit .progress").removeClass("hide");
+            $(".submit button").addClass("disabled")
+            $(".submit .progress").removeClass("hide");
         },
         
         enable: function() {
-            $("#day-tab .submit button").removeClass("disabled")
-            $("#day-tab .submit .progress").addClass("hide");
+            $(".submit button").removeClass("disabled")
+            $(".submit .progress").addClass("hide");
         }
     }
 
@@ -574,7 +589,6 @@ function events() {
             success: function (json) {
                 try {
                     dataDay = JSON.parse(json);
-                    // dataDay = JSON.parse(`{"summary":{"ID":"2425","date":"2003-02-07","maxtempi":"91","maxtempm":"33","meantempi":"81","meantempm":"28","mintempi":"71","mintempm":"22","maxdewpti":"72","maxdewptm":"22","meandewpti":"69","meandewptm":"20","mindewpti":"61","mindewptm":"16","maxvisi":"6.2","maxvism":"10","meanvisi":"4.9","meanvism":"7.9","minvisi":"1.6","minvism":"2.5","maxpressurei":"30.09","maxpressurem":"1019","meanpressurei":"30.06","meanpressurem":"1017.92","minpressurei":"30.04","minpressurem":"1017","maxwspdi":"17","maxwspdm":"28","meanwindspdi":"6","meanwindspdm":"10","minwspdi":"0","minwspdm":"0","meanwdird":"12","meanwdire":"NNE","humidity":"73","maxhumidity":"89","minhumidity":"46","precipi":"0","precipm":"0","precipsource":"3Or6HourObs","fog":"0","hail":"0","rain":"1","snow":"0","thunder":"1","tornado":"0","snowdepthi":"","snowdepthm":"","snowfalli":"","snowfallm":"","coolingdegreedays":"16","coolingdegreedaysnormal":"0","heatingdegreedays":"0","heatingdegreedaysnormal":"0","gdegreedays":"31","monthtodatecoolingdegreedays":"","monthtodatecoolingdegreedaysnormal":"","monthtodateheatingdegreedays":"","monthtodateheatingdegreedaysnormal":"","monthtodatesnowfalli":"","monthtodatesnowfallm":"","since1jancoolingdegreedays":"","since1jancoolingdegreedaysnormal":"","since1julheatingdegreedays":"","since1julheatingdegreedaysnormal":"","since1julsnowfalli":"","since1julsnowfallm":"","since1sepcoolingdegreedays":"","since1sepcoolingdegreedaysnormal":"","since1sepheatingdegreedays":"","since1sepheatingdegreedaysnormal":""},"hourly":[{"ID":"29061","date":"2003-02-07","datetime":"2003-02-07 00:00:00","conds":"Clear","icon":"clear","tempi":"77","tempm":"25","heatindexi":"-9999","heatindexm":"-9999","dewpti":"68","dewptm":"20","precipi":"-9999","precipm":"-9999","pressurei":"30.09","pressurem":"1019","visi":"-9999","vism":"-9999","hum":"74","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"80","wdire":"East","wspdi":"11.5","wspdm":"18.5","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 070200Z 08010KT CAVOK 25/20 Q1019"},{"ID":"29062","date":"2003-02-07","datetime":"2003-02-07 01:00:00","conds":"Clear","icon":"clear","tempi":"75.2","tempm":"24","heatindexi":"-9999","heatindexm":"-9999","dewpti":"68","dewptm":"20","precipi":"-9999","precipm":"-9999","pressurei":"30.06","pressurem":"1018","visi":"-9999","vism":"-9999","hum":"78","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"70","wdire":"ENE","wspdi":"9.2","wspdm":"14.8","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 070300Z 07008KT CAVOK 24/20 Q1018"},{"ID":"29063","date":"2003-02-07","datetime":"2003-02-07 02:00:00","conds":"Clear","icon":"clear","tempi":"75.2","tempm":"24","heatindexi":"-9999","heatindexm":"-9999","dewpti":"68","dewptm":"20","precipi":"-9999","precipm":"-9999","pressurei":"30.06","pressurem":"1018","visi":"-9999","vism":"-9999","hum":"78","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"0","wdire":"North","wspdi":"0","wspdm":"0","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 070400Z 00000KT CAVOK 24/20 Q1018"},{"ID":"29064","date":"2003-02-07","datetime":"2003-02-07 03:00:00","conds":"Clear","icon":"clear","tempi":"75.2","tempm":"24","heatindexi":"-9999","heatindexm":"-9999","dewpti":"68","dewptm":"20","precipi":"-9999","precipm":"-9999","pressurei":"30.04","pressurem":"1017","visi":"-9999","vism":"-9999","hum":"78","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"70","wdire":"ENE","wspdi":"6.9","wspdm":"11.1","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 070500Z 07006KT CAVOK 24/20 Q1017"},{"ID":"29065","date":"2003-02-07","datetime":"2003-02-07 04:00:00","conds":"Clear","icon":"clear","tempi":"75.2","tempm":"24","heatindexi":"-9999","heatindexm":"-9999","dewpti":"66.2","dewptm":"19","precipi":"-9999","precipm":"-9999","pressurei":"30.04","pressurem":"1017","visi":"-9999","vism":"-9999","hum":"73","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"900","wdire":"North","wspdi":"5.8","wspdm":"9.3","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 070600Z 90005KT CAVOK 24/19 Q1017"},{"ID":"29066","date":"2003-02-07","datetime":"2003-02-07 05:00:00","conds":"Clear","icon":"clear","tempi":"73.4","tempm":"23","heatindexi":"-9999","heatindexm":"-9999","dewpti":"68","dewptm":"20","precipi":"-9999","precipm":"-9999","pressurei":"30.04","pressurem":"1017","visi":"-9999","vism":"-9999","hum":"83","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"80","wdire":"East","wspdi":"6.9","wspdm":"11.1","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 070700Z 08006KT CAVOK 23/20 Q1017"},{"ID":"29067","date":"2003-02-07","datetime":"2003-02-07 06:00:00","conds":"Clear","icon":"clear","tempi":"73.4","tempm":"23","heatindexi":"-9999","heatindexm":"-9999","dewpti":"68","dewptm":"20","precipi":"-9999","precipm":"-9999","pressurei":"30.04","pressurem":"1017","visi":"5","vism":"8","hum":"83","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"90","wdire":"East","wspdi":"4.6","wspdm":"7.4","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 070800Z 09004KT 8000 SKC 23/20 Q1017"},{"ID":"29068","date":"2003-02-07","datetime":"2003-02-07 07:00:00","conds":"Clear","icon":"clear","tempi":"73.4","tempm":"23","heatindexi":"-9999","heatindexm":"-9999","dewpti":"68","dewptm":"20","precipi":"-9999","precipm":"-9999","pressurei":"30.06","pressurem":"1018","visi":"-9999","vism":"-9999","hum":"83","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"40","wdire":"NE","wspdi":"4.6","wspdm":"7.4","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 070900Z 04004KT CAVOK 23/20 Q1018"},{"ID":"29069","date":"2003-02-07","datetime":"2003-02-07 08:00:00","conds":"Unknown","icon":"unknown","tempi":"77","tempm":"25","heatindexi":"-9999","heatindexm":"-9999","dewpti":"68","dewptm":"20","precipi":"-9999","precipm":"-9999","pressurei":"30.06","pressurem":"1018","visi":"5","vism":"8","hum":"74","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"70","wdire":"ENE","wspdi":"4.6","wspdm":"7.4","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 071000Z 07004KT 8000 NSC 25/20 Q1018"},{"ID":"29070","date":"2003-02-07","datetime":"2003-02-07 09:00:00","conds":"Unknown","icon":"unknown","tempi":"80.6","tempm":"27","heatindexi":"83.9","heatindexm":"28.9","dewpti":"69.8","dewptm":"21","precipi":"-9999","precipm":"-9999","pressurei":"30.09","pressurem":"1019","visi":"5","vism":"8","hum":"70","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"70","wdire":"ENE","wspdi":"4.6","wspdm":"7.4","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 071100Z 07004KT 8000 NSC 27/21 Q1019"},{"ID":"29071","date":"2003-02-07","datetime":"2003-02-07 10:00:00","conds":"Clear","icon":"clear","tempi":"82.4","tempm":"28","heatindexi":"87.2","heatindexm":"30.7","dewpti":"71.6","dewptm":"22","precipi":"-9999","precipm":"-9999","pressurei":"30.09","pressurem":"1019","visi":"-9999","vism":"-9999","hum":"70","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"360","wdire":"North","wspdi":"5.8","wspdm":"9.3","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 071200Z 36005KT CAVOK 28/22 Q1019"},{"ID":"29072","date":"2003-02-07","datetime":"2003-02-07 11:00:00","conds":"Scattered Clouds","icon":"partlycloudy","tempi":"86","tempm":"30","heatindexi":"89.4","heatindexm":"31.9","dewpti":"68","dewptm":"20","precipi":"-9999","precipm":"-9999","pressurei":"30.09","pressurem":"1019","visi":"6.2","vism":"10","hum":"55","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"330","wdire":"NNW","wspdi":"9.2","wspdm":"14.8","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 071300Z 33008KT 9999 FEW025 SCT300 30/20 Q1019"},{"ID":"29073","date":"2003-02-07","datetime":"2003-02-07 12:00:00","conds":"Scattered Clouds","icon":"partlycloudy","tempi":"87.8","tempm":"31","heatindexi":"92.6","heatindexm":"33.7","dewpti":"69.8","dewptm":"21","precipi":"-9999","precipm":"-9999","pressurei":"30.09","pressurem":"1019","visi":"6.2","vism":"10","hum":"55","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"330","wdire":"NNW","wspdi":"11.5","wspdm":"18.5","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 071400Z 33010KT 9999 SCT025 31/21 Q1019"},{"ID":"29074","date":"2003-02-07","datetime":"2003-02-07 13:00:00","conds":"Scattered Clouds","icon":"partlycloudy","tempi":"89.6","tempm":"32","heatindexi":"96.2","heatindexm":"35.6","dewpti":"71.6","dewptm":"22","precipi":"-9999","precipm":"-9999","pressurei":"30.06","pressurem":"1018","visi":"6.2","vism":"10","hum":"55","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"360","wdire":"North","wspdi":"9.2","wspdm":"14.8","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 071500Z 36008KT 9999 SCT025 SCT300 32/22 Q1018"},{"ID":"29075","date":"2003-02-07","datetime":"2003-02-07 14:00:00","conds":"Scattered Clouds","icon":"partlycloudy","tempi":"89.6","tempm":"32","heatindexi":"94.7","heatindexm":"34.9","dewpti":"69.8","dewptm":"21","precipi":"-9999","precipm":"-9999","pressurei":"30.06","pressurem":"1018","visi":"6.2","vism":"10","hum":"52","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"350","wdire":"North","wspdi":"9.2","wspdm":"14.8","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 071600Z 35008KT 9999 BKN030 SCT300 32/21 Q1018"},{"ID":"29076","date":"2003-02-07","datetime":"2003-02-07 15:00:00","conds":"Scattered Clouds","icon":"partlycloudy","tempi":"91.4","tempm":"33","heatindexi":"95.4","heatindexm":"35.2","dewpti":"68","dewptm":"20","precipi":"-9999","precipm":"-9999","pressurei":"30.04","pressurem":"1017","visi":"6.2","vism":"10","hum":"46","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"360","wdire":"North","wspdi":"8.1","wspdm":"13","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 071700Z 36007KT 9999 BKN030 SCT300 33/20 Q1017"},{"ID":"29077","date":"2003-02-07","datetime":"2003-02-07 16:00:00","conds":"Light Thunderstorms and Rain","icon":"tstorms","tempi":"77","tempm":"25","heatindexi":"-9999","heatindexm":"-9999","dewpti":"60.8","dewptm":"16","precipi":"-9999","precipm":"-9999","pressurei":"30.04","pressurem":"1017","visi":"2.5","vism":"4","hum":"57","fog":"0","rain":"1","thunder":"1","hail":"0","snow":"0","tornado":"0","wdird":"160","wdire":"SSE","wspdi":"17.3","wspdm":"27.8","wgusti":"34.5","wgustm":"55.6","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 071800Z 16015G30KT 4000 -TSRA SCT010 BKN030 FEW040CB BKN100 25/16 Q1017"},{"ID":"29078","date":"2003-02-07","datetime":"2003-02-07 17:00:00","conds":"Thunderstorms and Rain","icon":"tstorms","tempi":"71.6","tempm":"22","heatindexi":"-9999","heatindexm":"-9999","dewpti":"68","dewptm":"20","precipi":"-9999","precipm":"-9999","pressurei":"30.06","pressurem":"1018","visi":"1.6","vism":"2.5","hum":"88","fog":"0","rain":"1","thunder":"1","hail":"0","snow":"0","tornado":"0","wdird":"340","wdire":"NNW","wspdi":"9.2","wspdm":"14.8","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 071900Z 34008KT 2500 TSRA BKN007 BKN030 FEW040CB BKN100 22/20 Q1018"},{"ID":"29079","date":"2003-02-07","datetime":"2003-02-07 18:00:00","conds":"Mostly Cloudy","icon":"mostlycloudy","tempi":"75.2","tempm":"24","heatindexi":"-9999","heatindexm":"-9999","dewpti":"71.6","dewptm":"22","precipi":"-9999","precipm":"-9999","pressurei":"30.04","pressurem":"1017","visi":"6.2","vism":"10","hum":"89","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"200","wdire":"SSW","wspdi":"5.8","wspdm":"9.3","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 072000Z 20005KT 9999 FEW030 BKN100 24/22 Q1017 RETS"},{"ID":"29080","date":"2003-02-07","datetime":"2003-02-07 19:00:00","conds":"Mostly Cloudy","icon":"mostlycloudy","tempi":"75.2","tempm":"24","heatindexi":"-9999","heatindexm":"-9999","dewpti":"69.8","dewptm":"21","precipi":"-9999","precipm":"-9999","pressurei":"30.04","pressurem":"1017","visi":"5","vism":"8","hum":"83","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"330","wdire":"NNW","wspdi":"4.6","wspdm":"7.4","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 072100Z 33004KT 8000 FEW040 BKN100 24/21 Q1017"},{"ID":"29081","date":"2003-02-07","datetime":"2003-02-07 20:00:00","conds":"Unknown","icon":"unknown","tempi":"75.2","tempm":"24","heatindexi":"-9999","heatindexm":"-9999","dewpti":"69.8","dewptm":"21","precipi":"-9999","precipm":"-9999","pressurei":"30.06","pressurem":"1018","visi":"4.3","vism":"7","hum":"83","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"300","wdire":"WNW","wspdi":"4.6","wspdm":"7.4","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 072200Z 30004KT 7000 NSC 24/21 Q1018"},{"ID":"29082","date":"2003-02-07","datetime":"2003-02-07 21:00:00","conds":"Unknown","icon":"unknown","tempi":"75.2","tempm":"24","heatindexi":"-9999","heatindexm":"-9999","dewpti":"69.8","dewptm":"21","precipi":"-9999","precipm":"-9999","pressurei":"30.06","pressurem":"1018","visi":"4.3","vism":"7","hum":"83","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"300","wdire":"WNW","wspdi":"4.6","wspdm":"7.4","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 072300Z 30004KT 7000 NSC 24/21 Q1018"},{"ID":"29083","date":"2003-02-07","datetime":"2003-02-07 22:00:00","conds":"Unknown","icon":"unknown","tempi":"75.2","tempm":"24","heatindexi":"-9999","heatindexm":"-9999","dewpti":"71.6","dewptm":"22","precipi":"-9999","precipm":"-9999","pressurei":"30.06","pressurem":"1018","visi":"4.3","vism":"7","hum":"89","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"310","wdire":"NW","wspdi":"4.6","wspdm":"7.4","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 080000Z 31004KT 7000 NSC 24/22 Q1018"},{"ID":"29084","date":"2003-02-07","datetime":"2003-02-07 23:00:00","conds":"Unknown","icon":"unknown","tempi":"77","tempm":"25","heatindexi":"-9999","heatindexm":"-9999","dewpti":"69.8","dewptm":"21","precipi":"-9999","precipm":"-9999","pressurei":"30.09","pressurem":"1019","visi":"4.3","vism":"7","hum":"78","fog":"0","rain":"0","thunder":"0","hail":"0","snow":"0","tornado":"0","wdird":"300","wdire":"WNW","wspdi":"4.6","wspdm":"7.4","wgusti":"-9999","wgustm":"-9999","windchilli":"-999","windchillm":"-999","metar":"METAR SBSP 080100Z 30004KT 7000 NSC 25/21 Q1019"}],"almanac":{}}`);
                 }
                 catch (e) {
                     submitBtn.enable();
@@ -657,8 +671,8 @@ function events() {
                 $("#summary tbody").html(summaryHTML);
                 $("#hourly tbody").html(hoursHTML);
                 $("#almanac tbody").html(almanacHTML);
-                $("main.day .row").removeClass("hide");
-                $("section h5, main.range .row").addClass("hide");
+                $("main.day").removeClass("hide");
+                $("section h5, main.range").addClass("hide");
 
                 init.allDay();
             },
@@ -688,6 +702,7 @@ function events() {
 
         if (range1 >= range2) {
             alert("Data de Início não pode ser maior ou igual à data de Fim!");
+            submitBtn.enable();
             return false;
         }
 
@@ -704,8 +719,59 @@ function events() {
 
                 $(".range .search-title h3").html("Clima entre " + prettyDate(range1) + " e " + prettyDate(range2));
                 $("#range .t1 a").html(selected.html().toUpperCase());
-                $("main.range .row").removeClass("hide");
-                $("section h5, main.day .row").addClass("hide");
+                $("main.range").removeClass("hide");
+                $("section h5, main.day").addClass("hide");
+
+                var mathData = {}
+                var i = 0;
+                for (var n in dataRange[Object.keys(dataRange)[0]]) {
+                    arr = Object.keys(dataRange).map(function (key) {
+                        return Object.keys(dataRange[key]).map(function (key2) {
+                            return dataRange[key][key2];
+                        })[i];
+                    });
+
+                    var average = 0;
+                    for (var j in arr) {
+                        average += parseFloat(arr[j]);
+                    }
+                    average /= arr.length;
+
+                    mathData[n] = {};
+                    mathData[n].min = Math.min.apply(null, arr);
+                    mathData[n].max = Math.max.apply(null, arr);
+                    mathData[n].avr = average.toFixed(3);
+
+                    i++;
+                }
+
+                var rangeHeadHTML = "<tr style='border-bottom: 0;'>",
+                    rangeSubHeadHTML = "<tr>",
+                    rangeBodyHTML = "<tr>";
+
+                var i = 0;
+                var labels = selected.attr("labels").split(",").length > 1 ? selected.attr("labels").split(",").reverse() : [""];
+                var name = selected.html();
+                for (var j in mathData) {
+                    rangeHeadHTML += '<th colspan="3">' + name + " " + labels[i] + '</th>';
+
+                    rangeSubHeadHTML += "<th>Min</th><th>Med</th><th>Max</th>";
+
+                    rangeBodyHTML += '<td>' +
+                        mathData[j].min + '</td><td>' +
+                        mathData[j].avr + '</td><td>' +
+                        mathData[j].max + '</td>';
+                    
+                    i++;
+                }
+
+                rangeHeadHTML += "</tr>";
+                rangeBodyHTML += "</tr>";
+                rangeSubHeadHTML += "</tr>";
+
+                $("#range thead").html(rangeHeadHTML);
+                $("#range thead").append(rangeSubHeadHTML);
+                $("#range tbody").html(rangeBodyHTML);
 
                 init.allRange(selected.attr("labels").split(","));
             },

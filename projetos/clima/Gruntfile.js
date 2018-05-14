@@ -3,15 +3,15 @@ module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
 
-        connect: {
-            preview: {
-                options: {
-                    port: 9000,
-                    hostname: '*',
-                    base: './'
-                }
-            }
-        },
+        // connect: {
+        //     preview: {
+        //         options: {
+        //             port: 9000,
+        //             hostname: '*',
+        //             base: './'
+        //         }
+        //     }
+        // },
 
         sass: {
             dist: {
@@ -45,6 +45,10 @@ module.exports = function (grunt) {
     // Default task(s).
     grunt.registerTask('default', ['encapsulator']);
 
-    grunt.registerTask('encapsulator', ['sass', 'connect', 'watch']);
+    grunt.registerTask('encapsulator', [
+        'sass',
+        // 'connect',
+        'watch'
+    ]);
 
 };
