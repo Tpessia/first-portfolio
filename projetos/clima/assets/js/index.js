@@ -131,7 +131,10 @@ function events() {
                     init.charts.buildLine("#chart-summary", "summary", [{
                         "label": "Pressão (mBar)",
                         "data": "pres"
-                    }], 1);
+                    }], 1, false,
+                    function (value) {
+                        return value ? value.slice(0, 3) : value;
+                    });
                 }
             });
 
@@ -192,6 +195,13 @@ function events() {
                     }], 2);
                 }
             });
+
+            // ALMANAC
+
+            this.charts.buildBar("#chart-almanac", "almanac", [{
+                "label": "Max. Média,Max. Recorde,Mín. Média,Mín. Recorde",
+                "data": "rec"
+            }], 0, true);
         },
 
         allRange: function(labels) {
@@ -208,27 +218,52 @@ function events() {
                 });
             }
             
-            this.charts.buildLine("#chart-range", "range", data, undefined, false, function(value) {
+            this.charts.buildLine("#chart-range", "range", data, 0, false, function(value) {
                 return value ? value.slice(0, 6) + value.slice(8, 10) : value;
             });
-
-            $(".custom-label .label-data").off()
-                .on("mouseenter", function () {
-                    var letter = String.fromCharCode(97 + $(this).index());
-                    var ctLines = $(".ct-line").parent().not(".ct-series-" + letter).find(".ct-line");
-                    ctLines.css("display","none");
-                })
-                .on("mouseleave", function () {
-                    var letter = String.fromCharCode(97 + $(this).index());
-                    var ctLines = $(".ct-line").parent().not(".ct-series-" + letter).find(".ct-line");
-                    ctLines.css("display","inline");
-                });
         },
 
         tabs: function () {
             var instance = M.Tabs.init($$(".tabs"), {});
             $('#hourly .tabs').tabs('select', 'first-tab-hourly');
             $('#summary .tabs').tabs('select', 'first-tab-summary');
+            $('#almanac .tabs').tabs('select', 'first-tab-almanac');
+        },
+
+        hideHover: function(el) {
+            $(el).find(".custom-label .label-data").off()
+                .on("mouseenter", function () {
+                    var firstLine = $(el).find(".ct-series path[d][d!='']:first").parents(".ct-series").index();
+                    var letter = String.fromCharCode(97 + $(this).index() + firstLine);
+                    var parentChart = $(this).closest(".data-chart");
+                    var ctLines = parentChart.find(".ct-series").not(".ct-series-" + letter).find(".ct-line, .ct-bar, .ct-point, .ct-slice-donut");
+                    ctLines.css("display", "none");
+                })
+                .on("mouseleave", function () {
+                    var firstLine = $(el).find(".ct-series path[d]:first").parents(".ct-series").index();
+                    var letter = String.fromCharCode(97 + $(this).index() + firstLine);
+                    var parentChart = $(this).closest(".data-chart");
+                    var ctLines = parentChart.find(".ct-series").not(".ct-series-" + letter).find(".ct-line, .ct-bar, .ct-point, .ct-slice-donut");
+                    ctLines.css("display", "inline");
+                });
+        },
+
+        hideNullChart: function(el, chartData) {
+            if (chartData.join("").replace(/,/g, "") == "") {
+                var $query = $(el + ", " + el + "~.custom-label");
+                if ($(el).parents(".data-chart").find(".tabs .tab").length < 2) {
+                    $query = $(el).parents(".data-chart");
+                }
+                $query.addClass("hide");
+                return true;
+            } else {
+                var $query = $(el + ", " + el + "~.custom-label");
+                if ($(el).parents(".data-chart").find(".tabs .tab").length < 2) {
+                    $query = $(el).parents(".data-chart");
+                }
+                $query.removeClass("hide");
+                return false;
+            }
         },
 
         charts: {
@@ -246,6 +281,10 @@ function events() {
                     chartData.push(this[chartSet][content[i].data]());
                     dataLabel.push(content[i].label);
                 }
+
+                if (init.hideNullChart(el, chartData)) {
+                    return false;   
+                };
 
                 var options = {
                     // fullWidth: true,
@@ -315,6 +354,8 @@ function events() {
                 for (var i in dataLabel) {
                     $("#" + chartSet + " .custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + (typeof index === "undefined" ? this.labelColors[i] : this.labelColors[parseInt(i) + parseInt(index)]) + '"></span>' + dataLabel[i] + '</div>');
                 }
+
+                init.hideHover($(el).closest("main")[0]);
             },
 
             buildBar: function (el, chartSet, content, index, distribute) {
@@ -332,9 +373,14 @@ function events() {
                     chartData.push(this[chartSet][content[i].data]());
                     dataLabel.push(content[i].label);
                 }
+            
 
+                if (init.hideNullChart(el, chartData)) {
+                    return false;   
+                };
+                
                 if (distribute) {
-                    dataLabel = content[i].label.split(",");
+                    dataLabel = content[0].label.split(",");
                     chartData = chartData[0];
                 }
 
@@ -346,7 +392,7 @@ function events() {
                         seriesBarDistance: 10,
                         distributeSeries: distribute
                     }, [
-                        ['screen and (max-width: 600px)', {
+                        ['screen and (max-width: 992px)', {
                             seriesBarDistance: 5,
                             axisX: {
                                 labelInterpolationFnc: function (value) {
@@ -366,8 +412,6 @@ function events() {
                                 to: data.y2,
                                 easing: Chartist.Svg.Easing.easeOutQuint
                             }
-                        }).attr({
-                            style: 'stroke-width:8%'
                         });
                     }
                 });
@@ -376,6 +420,8 @@ function events() {
                 for (var i in dataLabel) {
                     $("#" + chartSet + " .custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + (typeof index === "undefined" ? this.labelColors[i] : this.labelColors[parseInt(i) + parseInt(index)]) + '"></span>' + dataLabel[i] + '</div>');
                 }
+
+                init.hideHover($(el).closest("main")[0]);
             },
 
             buildPie: function (el, chartSet, content, index) {
@@ -386,6 +432,10 @@ function events() {
                     chartData = this[chartSet][content[i].data]();
                     dataLabel = content[i].label.split(",");
                 }
+
+                if (init.hideNullChart(el, chartData)) {
+                    return false;   
+                };
 
                 if (typeof index !== "undefined") {
                     for (var i = index; i > 0; i--) {
@@ -407,6 +457,8 @@ function events() {
                 for (var i in dataLabel) {
                     $("#" + chartSet + " .custom-label").append('<div class="label-data"><span class="label-color" style="background-color: ' + (typeof index === "undefined" ? this.labelColors[i] : this.labelColors[parseInt(i) + parseInt(index)]) + '"></span>' + dataLabel[i] + '</div>');
                 }
+
+                init.hideHover($(el).closest("main")[0]);
             },
 
             labelColors: ["#3f51b5", "#7986cb", "#9c27b0", "#00796b", "#d32f2f", "#5e35b1", "#388e3c", "#ef6c00"],
@@ -500,6 +552,19 @@ function events() {
                 }
             },
 
+            almanac: {
+                label: function() {
+                    return ["Max. Média","Max. Recorde","Mín. Média","Mín. Recorde"];
+                },
+
+                rec: function() {
+                    var almanac = checkNotAvailable(dataDay.almanac),
+                        temp = [almanac.temp_high_normal_m, almanac.temp_high_record_m/*, almanac.temp_high_record_year*/, almanac.temp_low_normal_m, almanac.temp_low_record_m/*, almanac.temp_low_record_year*/];
+                        
+                    return temp;
+                }
+            },
+
             range: {
                 label: function() {
                     var compactLabel = Array.from(this.temporary[0]);
@@ -536,19 +601,33 @@ function events() {
 
                         for (var j in day) {
                             if (typeof day[j] === "undefined" || day[j] == "-999" || day[j] == "-9999" || day[j] == "") {
-                                data[j] = null;
+                                data.push(null);
                             }
                             else {
-                                data[j] = day[j];
+                                data.push(day[j]);
                             }
                         }
 
-                        if (data == null) {
-                            break;
-                        }
-                        
+                        // Remove wrong data (e.g. max 0, med 0, min 0)
+                        // var keys = Object.keys(data);
+                        // var isInvalid = true;
+                        // for (var j in keys) {
+                        //     if (j > 1) {
+                        //         if (data[j - 1] != data[j]) {
+                        //             isInvalid = false;
+                        //         }
+                        //     }
+                        // }
+                        // if (isInvalid && data.length > 2) {
+                        //     for (var j in keys) {
+                        //         if (j > 0) {
+                        //             data[j] = null;
+                        //         }
+                        //     }
+                        // }
+
                         var i = 0;
-                        for (var j in data) {                            
+                        for (var j in data) {
                             (typeof this.temporary[i] === "undefined") ? this.temporary[i] = [data[j]] : this.temporary[i].push(data[j]);
                             i++;
                         }
@@ -725,7 +804,7 @@ function events() {
                 var mathData = {}
                 var i = 0;
                 for (var n in dataRange[Object.keys(dataRange)[0]]) {
-                    arr = Object.keys(dataRange).map(function (key) {
+                    var arr = Object.keys(dataRange).map(function (key) {
                         return Object.keys(dataRange[key]).map(function (key2) {
                             return dataRange[key][key2];
                         })[i];
@@ -733,7 +812,8 @@ function events() {
 
                     var average = 0;
                     for (var j in arr) {
-                        average += parseFloat(arr[j]);
+                        var num = parseFloat(arr[j]) ? parseFloat(arr[j]) : 0;
+                        average += num;
                     }
                     average /= arr.length;
 

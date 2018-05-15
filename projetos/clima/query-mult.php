@@ -63,8 +63,9 @@
     $sql = "
     
         SELECT " . $select . "
-        FROM `sao_paulo_summary` as s
-        WHERE date BETWEEN '" . $_GET["min"] . "' AND '" . $_GET["max"] . "'
+        FROM sao_paulo_summary as s
+        WHERE s.date BETWEEN '" . $_GET["min"] . "' AND '" . $_GET["max"] . "'
+        ORDER BY s.date
 
     ";
 

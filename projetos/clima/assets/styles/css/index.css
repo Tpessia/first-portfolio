@@ -131,12 +131,13 @@ body main {
       body main .data-row .data-table tbody tr:last-child {
         border-bottom: 0; }
     body main .data-row .data-chart {
-      border-top: 2px solid rgba(92, 107, 192, 0.33333);
+      border-top: 5px solid rgba(92, 107, 192, 0.33333);
       padding-top: 3px;
       margin-bottom: 25px; }
       @media (max-width: 992px) {
         body main .data-row .data-chart {
-          margin-bottom: 15px; } }
+          margin-bottom: 15px;
+          border-top: 3px solid rgba(92, 107, 192, 0.33333); } }
       @media (max-width: 600px) {
         body main .data-row .data-chart {
           margin-bottom: 5px; } }
@@ -145,11 +146,8 @@ body main {
       body main .data-row .data-chart .custom-label {
         margin: 0 5% 15px 5%; }
         body main .data-row .data-chart .custom-label .label-data {
-          float: left; }
-          body main .data-row .data-chart .custom-label .label-data:not(:first-child) {
-            padding-left: 7px; }
-          body main .data-row .data-chart .custom-label .label-data:not(:last-child) {
-            padding-right: 7px; }
+          float: left;
+          padding-right: 15px; }
           body main .data-row .data-chart .custom-label .label-data .label-color {
             width: .9rem;
             height: .9rem;
@@ -208,15 +206,22 @@ body main {
         stroke: #ef6c00; }
       body main .data-row .data-chart .ct-chart .ct-series-h .ct-slice-pie {
         fill: #ef6c00; }
-      body main .data-row .data-chart .ct-chart .ct-chart-line .ct-line {
-        stroke-width: 3px; }
+      body main .data-row .data-chart .ct-chart svg {
+        overflow: visible; }
+      body main .data-row .data-chart .ct-chart .ct-chart-bar .ct-bar {
+        stroke-width: 8%; }
+        @media (max-width: 600px) {
+          body main .data-row .data-chart .ct-chart .ct-chart-bar .ct-bar {
+            stroke-width: 4%; } }
       body main .data-row .data-chart .ct-chart .ct-chart-pie .ct-label {
         font-size: .9rem;
         font-weight: bold; }
-  body main.range .ct-chart .ct-line {
+  body main.day .ct-chart-line .ct-line {
+    stroke-width: 3px; }
+  body main.range .ct-chart-line .ct-line {
     stroke-width: 1px; }
-  @media (max-width: 480px) {
-    body main.range .ct-chart .ct-label.ct-horizontal {
+  @media (max-width: 992px) {
+    body main.range .ct-label.ct-horizontal {
       -webkit-transform: rotate(-30deg);
       -moz-transform: rotate(-30deg);
       -ms-transform: rotate(-30deg);

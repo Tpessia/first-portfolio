@@ -25,8 +25,9 @@
     $sql = "
 
         SELECT *
-        FROM `sao_paulo_summary`
-        WHERE sao_paulo_summary.date = '" . $_GET["date"] . "'
+        FROM sao_paulo_summary as s
+        WHERE s.date = '" . $_GET["date"] . "'
+        ORDER BY s.date
         LIMIT 1
 
     ";
@@ -58,8 +59,9 @@
     $sql = "
 
         SELECT *
-        FROM `sao_paulo`
-        WHERE sao_paulo.date = '" . $_GET["date"] . "'
+        FROM sao_paulo as s
+        WHERE s.date = '" . $_GET["date"] . "'
+        ORDER BY s.date
 
     ";
 

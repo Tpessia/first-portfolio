@@ -15,8 +15,8 @@
     $sql = "
 
         SELECT date
-        FROM `sao_paulo`
-        ORDER BY `ID` DESC
+        FROM sao_paulo as s
+        ORDER BY s.date DESC
         LIMIT 1
 
     ";
