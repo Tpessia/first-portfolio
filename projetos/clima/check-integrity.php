@@ -36,6 +36,32 @@
     ';
 
     $clear = mysqli_query($conn, $sql);
+
+    // if ($clear) {
+    //     echo mysqli_num_rows($clear) . " rows returned" . "<br>";
+    // } else {
+    //     die("Error: " . $sql . "<br>" . mysqli_error($conn));
+    // }
+
+    // Pré verificação max,mean,min temp = 0
+    // SELECT * FROM sao_paulo_summary AS s WHERE s.maxtempm = 0 AND s.meantempm = 0 AND s.mintempm = 0 ORDER BY s.ID
+
+    // Verifica se as temperaturas max, mean e min = 0
+    $sql2 = '
+    
+        UPDATE sao_paulo_summary as s
+        SET s.maxtempm = NULL, s.meantempm = NULL, s.mintempm = NULL
+        WHERE s.maxtempm = 0 AND s.meantempm = 0 AND s.mintempm = 0
+
+    ';
+
+    $clear2 = mysqli_query($conn, $sql2);
+
+    // if ($clear2) {
+    //     echo mysqli_num_rows($clear2) . " rows returned" . "<br>";
+    // } else {
+    //     die("Error: " . $sql2 . "<br>" . mysqli_error($conn));
+    // }
     
     mysqli_close($conn);
 ?>

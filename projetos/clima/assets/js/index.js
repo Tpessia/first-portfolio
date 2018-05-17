@@ -808,7 +808,7 @@ function events() {
                         return Object.keys(dataRange[key]).map(function (key2) {
                             return dataRange[key][key2];
                         })[i];
-                    });
+                    }).filter(function (value) { return value });
 
                     var average = 0;
                     for (var j in arr) {

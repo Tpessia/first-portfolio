@@ -51,7 +51,7 @@ body {
                                 box-shadow: 0 1px 0 0 white;
                             }
                         }
-                        label {
+                        &>label {
                             color: white;
                         }
                     }
@@ -264,4 +264,16 @@ body {
             }
         }
     }
+}
+
+@-webkit-keyframes autofill {
+    to {
+        color: inherit;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
 }

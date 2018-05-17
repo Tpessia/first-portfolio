@@ -1,0 +1,14 @@
+-- SIMPLE FUNCTION
+
+-- DELIMITER $$
+-- 
+-- CREATE FUNCTION func(num INT) RETURNS VARCHAR(255)
+-- BEGIN
+-- 	RETURN CONCAT("hello from func ", 10);
+-- END $$
+-- 
+-- DELIMITER ;
+-- 
+-- SELECT func(10);
+-- 
+-- DROP FUNCTION func;

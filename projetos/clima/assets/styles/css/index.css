@@ -71,7 +71,7 @@ body header {
           border-bottom: 1px solid white;
           -webkit-box-shadow: 0 1px 0 0 white;
           box-shadow: 0 1px 0 0 white; }
-      body header .container .tab-content .date-form .date-input label {
+      body header .container .tab-content .date-form .date-input > label {
         color: white; }
     body header .container .tab-content .date-form .select-input {
       margin-right: 15px;
@@ -228,5 +228,13 @@ body main {
       -o-transform: rotate(-30deg);
       transform: rotate(-30deg);
       margin-top: 10px; } }
+
+@-webkit-keyframes autofill {
+  to {
+    color: inherit;
+    background: transparent; } }
+input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both; }
 
 /*# sourceMappingURL=index.css.map */
