@@ -112,18 +112,19 @@
                 <table class="highlight centered">
                     <thead>
                         <tr>
-                            <th>Temp. Max. (ºC)</th>
-                            <th>Temp. Média (ºC)</th>
                             <th>Temp. Min. (ºC)</th>
-                            <th>Pressão Max. (mBar)</th>
-                            <th>Pressão Média (mBar)</th>
+                            <th>Temp. Méd. (ºC)</th>
+                            <th>Temp. Max. (ºC)</th>
                             <th>Pressão Min. (mBar)</th>
-                            <th>Umidade (%)</th>
+                            <th>Pressão Méd. (mBar)</th>
+                            <th>Pressão Max. (mBar)</th>
+                            <th>Umidade Méd. (%)</th>
                             <th>Precipitação (mm)</th>
-                            <th>Visibilidade (km)</th>
+                            <th>Visibilidade Méd. (km)</th>
+                            <th>Ponto de Orvalho Méd. (ºC)</th>
                             <th>Dir. do Vento</th>
                             <th>Dir. do Vento (º)</th>
-                            <th>Vel. do Vento (km/h)</th>
+                            <th>Vel. Méd. do Vento (km/h)</th>
                             <th>Neblina</th>
                             <th>Chuva</th>
                             <th>Chuva de Granizo</th>
@@ -160,7 +161,14 @@
                 <table class="highlight responsive-table centered">
                     <thead>
                         <tr class="mobile-tr">
-                            <th>Hora</th>
+                            <th>Hora
+                                <!-- <svg height="10" width="10" style="
+                                position:  absolute;
+                                transform: translate(35%,50%);
+                            ">
+                                    <polygon points="0,0 10,0 5,10" style="fill:black"></polygon>
+                                </svg> -->
+                            </th>
                             <th class="mobile-th">Hora</th>
                             <th>Condição</th>
                             <th class="mobile-th">Condição</th>
@@ -202,6 +210,15 @@
                     </li>
                     <li class="tab t4">
                         <a href="#forth-tab-hourly">PRESSÃO</a>
+                    </li>
+                    <li class="tab t5">
+                        <a href="#forth-tab-hourly">VISIBILIDADE</a>
+                    </li>
+                    <li class="tab t6">
+                        <a href="#forth-tab-hourly">DIR. DO VENTO</a>
+                    </li>
+                    <li class="tab t7">
+                        <a href="#forth-tab-hourly">VEL. DO VENTO</a>
                     </li>
                 </ul>
                 <div class="custom-label"></div>

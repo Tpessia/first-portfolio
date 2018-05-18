@@ -141,7 +141,7 @@ function events() {
             $("#summary .t3").off().on("click", function () {
                 if (!$(this).find("a").hasClass("active")) {
                     init.charts.buildBar("#chart-summary", "summary", [{
-                        "label": "Humidade (%),Precipitação (mm),Visibilidade (km), Dir. do Vento (º),Vel. do Vento (km/h)",
+                        "label": "Umidade (%),Precipitação (mm),Visibilidade (km),Ponto de Orvalho (ºC), Dir. do Vento (º),Vel. do Vento (km/h)",
                         "data": "misc"
                     }], 0, true); // index não funciona
                 }
@@ -193,6 +193,33 @@ function events() {
                         "label": "Pressão (mBar)",
                         "data": "pres"
                     }], 2);
+                }
+            });
+
+            $("#hourly .t5").off().on("click", function () {
+                if (!$(this).find("a").hasClass("active")) {
+                    init.charts.buildLine("#chart-hourly", "hourly", [{
+                        "label": "Visibilidade (km)",
+                        "data": "vis"
+                    }], 3);
+                }
+            });
+
+            $("#hourly .t6").off().on("click", function () {
+                if (!$(this).find("a").hasClass("active")) {
+                    init.charts.buildLine("#chart-hourly", "hourly", [{
+                        "label": "Dir. do Vento (º)",
+                        "data": "wdir"
+                    }], 4);
+                }
+            });
+
+            $("#hourly .t7").off().on("click", function () {
+                if (!$(this).find("a").hasClass("active")) {
+                    init.charts.buildLine("#chart-hourly", "hourly", [{
+                        "label": "Vel. do Vento (km/h)",
+                        "data": "wspd"
+                    }], 5);
                 }
             });
 
@@ -484,8 +511,7 @@ function events() {
 
                     if (!isNull(dataDay.hourly[0], 3)) {
                         for (var i in dataDay.hourly) {
-                            var hour = checkNotAvailable(dataDay.hourly[i]),
-                                datetime = new Date(hour.datetime.replace(" ", "T"));
+                            var hour = checkNotAvailable(dataDay.hourly[i]);
 
                             temp.push(hour.tempm);
                         }
@@ -499,8 +525,7 @@ function events() {
 
                     if (!isNull(dataDay.hourly[0], 3)) {
                         for (var i in dataDay.hourly) {
-                            var hour = checkNotAvailable(dataDay.hourly[i]),
-                                datetime = new Date(hour.datetime.replace(" ", "T"));
+                            var hour = checkNotAvailable(dataDay.hourly[i]);
 
                             hum.push(hour.hum);
                         }
@@ -514,14 +539,55 @@ function events() {
 
                     if (!isNull(dataDay.hourly[0], 3)) {
                         for (var i in dataDay.hourly) {
-                            var hour = dataDay.hourly[i],
-                                datetime = new Date(hour.datetime.replace(" ", "T"));
+                            var hour = checkNotAvailable(dataDay.hourly[i]);
 
                             pres.push(hour.pressurem);
                         }
                     }
 
                     return pres;
+                },
+
+                vis: function () {
+                    var vis = [];
+
+                    if (!isNull(dataDay.hourly[0], 3)) {
+                        for (var i in dataDay.hourly) {
+                            var hour = checkNotAvailable(dataDay.hourly[i]);
+
+                            vis.push(hour.vism);
+                        }
+                    }
+
+                    return vis;
+                },
+                
+                wdir: function () {
+                    var wdir = [];
+
+                    if (!isNull(dataDay.hourly[0], 3)) {
+                        for (var i in dataDay.hourly) {
+                            var hour = checkNotAvailable(dataDay.hourly[i]);
+
+                            wdir.push(hour.wdird);
+                        }
+                    }
+
+                    return wdir;
+                },
+                
+                wspd: function () {
+                    var wspd = [];
+
+                    if (!isNull(dataDay.hourly[0], 3)) {
+                        for (var i in dataDay.hourly) {
+                            var hour = checkNotAvailable(dataDay.hourly[i]);
+
+                            wspd.push(hour.wspdm);
+                        }
+                    }
+
+                    return wspd;
                 }
             },
 
@@ -546,7 +612,7 @@ function events() {
 
                 misc: function () {
                     var summary = checkNotAvailable(dataDay.summary),
-                        misc = [summary.humidity, summary.precipm, summary.meanvism, summary.meanwdird, summary.meanwindspdm];
+                        misc = [summary.humidity, summary.precipm, summary.meanvism, summary.meandewptm, summary.meanwdird, summary.meanwindspdm];
 
                     return misc;
                 }
@@ -682,22 +748,23 @@ function events() {
                 if (!isNull(dataDay.summary, 2)) {
                     var summary = checkNotAvailable(dataDay.summary);
 
-                    summaryHTML += '<tr><td>'
-                        + summary.maxtempm + '</td><td>'
-                        + summary.meantempm + '</td><td>'
-                        + summary.mintempm + '</td><td>'
-                        + summary.maxpressurem + '</td><td>'
-                        + summary.meanpressurem + '</td><td>'
-                        + summary.minpressurem + '</td><td>'
-                        + summary.humidity + '</td><td>'
-                        + summary.precipm + '</td><td>'
-                        + summary.meanvism + '</td><td>'
-                        + translate(summary.meanwdire) + '</td><td>'
-                        + summary.meanwdird + '</td><td>'
-                        + summary.meanwindspdm + '</td><td>'
-                        + bitToStr(summary.fog) + '</td><td>'
-                        + bitToStr(summary.rain) + '</td><td>'
-                        + bitToStr(summary.hail) + '</td><td>'
+                    summaryHTML += '<tr><td class="mintempm">'
+                        + summary.mintempm + '</td><td class="meantempm">'
+                        + summary.meantempm + '</td><td class="maxtempm">'
+                        + summary.maxtempm + '</td><td class="minpressurem">'
+                        + summary.minpressurem + '</td><td class="meanpressurem">'
+                        + summary.meanpressurem + '</td><td class="maxpressurem">'
+                        + summary.maxpressurem + '</td><td class="humidity">'
+                        + summary.humidity + '</td><td class="precipm">'
+                        + summary.precipm + '</td><td class="meanvism">'
+                        + summary.meanvism + '</td><td class="meandewptm">'
+                        + summary.meandewptm + '</td><td class="meanwdire">'
+                        + translate(summary.meanwdire) + '</td><td class="meanwdird">'
+                        + summary.meanwdird + '</td><td class="meanwindspdm">'
+                        + summary.meanwindspdm + '</td><td class="fog">'
+                        + bitToStr(summary.fog) + '</td><td class="rain">'
+                        + bitToStr(summary.rain) + '</td><td class="hail">'
+                        + bitToStr(summary.hail) + '</td><td class="thunder">'
                         + bitToStr(summary.thunder) + '</td></tr>';
 
                     function bitToStr(bit) {
@@ -713,17 +780,17 @@ function events() {
                         var hour = checkNotAvailable(dataDay.hourly[i]),
                             datetime = new Date(hour.datetime.replace(" ", "T"));
 
-                        hoursHTML += '<tr><td>'
-                            + dateFix(datetime.getHours()) + ":" + dateFix(datetime.getMinutes()) + /*":" + dateFix(datetime.getSeconds()) +*/ '</td><td>'
-                            + translate(hour.conds) + '</td><td>'
-                            + hour.tempm + '</td><td>'
-                            + hour.pressurem + '</td><td>'
-                            + hour.hum + '</td><td>'
-                            + hour.precipm + '</td><td>'
-                            + hour.vism + '</td><td>'
-                            + translate(hour.wdire) + '</td><td>'
-                            + hour.wdird + '</td><td>'
-                            + hour.wspdm + '</td><td>'
+                        hoursHTML += '<tr><td class="time">'
+                            + dateFix(datetime.getHours()) + ":" + dateFix(datetime.getMinutes()) + /*":" + dateFix(datetime.getSeconds()) +*/ '</td><td class="conds">'
+                            + translate(hour.conds) + '</td><td class="tempm">'
+                            + hour.tempm + '</td><td class="pressurem">'
+                            + hour.pressurem + '</td><td class="hum">'
+                            + hour.hum + '</td><td class="precipm">'
+                            + hour.precipm + '</td><td class="vism">'
+                            + hour.vism + '</td><td class="wdire">'
+                            + translate(hour.wdire) + '</td><td class="wdird">'
+                            + hour.wdird + '</td><td class="wspdm">'
+                            + hour.wspdm + '</td><td class="wgustm">'
                             + hour.wgustm + '</td></tr>';
                     }
                 }
@@ -734,12 +801,12 @@ function events() {
                 if (!isNull(dataDay.almanac, 2)) {
                     var almanac = checkNotAvailable(dataDay.almanac);
 
-                    almanacHTML += '<tr><td>'
-                        + almanac.temp_high_normal_m + '</td><td>'
-                        + almanac.temp_high_record_m + '</td><td>'
-                        + almanac.temp_high_record_year + '</td><td>'
-                        + almanac.temp_low_normal_m + '</td><td>'
-                        + almanac.temp_low_record_m + '</td><td>'
+                    almanacHTML += '<tr><td class="temp_high_normal_m">'
+                        + almanac.temp_high_normal_m + '</td><td class="temp_high_record_m">'
+                        + almanac.temp_high_record_m + '</td><td class="temp_high_record_year">'
+                        + almanac.temp_high_record_year + '</td><td class="temp_low_normal_m">'
+                        + almanac.temp_low_normal_m + '</td><td class="temp_low_record_m">'
+                        + almanac.temp_low_record_m + '</td><td class="temp_low_record_year">'
                         + almanac.temp_low_record_year + '</td></tr>';
                 }
                 else {
@@ -866,6 +933,78 @@ function events() {
 
     function prettyDate(date) {
         return dateFix(date.getDate()) + "/" + dateFix(date.getMonth() + 1) + "/" + date.getFullYear();
+    }
+
+    sortTable();
+    function sortTable() {
+        $("#hourly table thead th:not(.mobile-th)").off().on("click", function () {
+
+            var $tbody = $("#hourly table tbody");
+            typeof $tbody.attr("asc") === "undefined" || $tbody.attr("asc") == "false" ? $tbody.attr("asc", "true") : $tbody.attr("asc", "false");
+
+            values = [];
+
+            $("#hourly table tbody tr td:nth-child(" + ($(this).index("#hourly table thead th:not(.mobile-th)") + 1) + ")").each(function (index) {
+
+                values.push($(this).html() + "{[" + index + "]}[{" + $(this).siblings("td:first-child").html() + "}]"); // fix td first child to class
+
+            });
+
+            var alphabetically = function (ascending) {
+
+                return function (a, b) {
+                    var a2 = a.split("{[")[0];
+                    var b2 = b.split("{[")[0];
+
+                    a2 = parseFloat(a2) ? parseFloat(a2) : a2;
+                    b2 = parseFloat(b2) ? parseFloat(b2) : b2;
+
+                    if (a2 === b2) {
+                        // value{[index]}[{hour}] to hour
+                        var a3 = parseInt(a.substring(a.lastIndexOf("[{") + "[{".length, a.lastIndexOf("}]")).replace(":", ""));
+                        var b3 = parseInt(b.substring(b.lastIndexOf("[{") + "[{".length, b.lastIndexOf("}]")).replace(":", ""));
+
+                        // 			if(ascending) {
+                        return a3 < b3 ? -1 : 1;
+                        //             }
+                        //             else if(!ascending) {
+                        //               return a3 < b3 ? 1 : -1;
+                        //             }
+                    }
+                    else if (a2 === "n/a") {
+                        return 1;
+                    }
+                    else if (b2 === "n/a") {
+                        return -1;
+                    }
+                    else if (ascending) {
+                        return a2 < b2 ? -1 : 1;
+                    }
+                    else if (!ascending) {
+                        return a2 < b2 ? 1 : -1;
+                    }
+                };
+            }
+
+            values = values.sort(alphabetically($tbody.attr("asc") == "true"));
+
+            indexes = [];
+
+            for (var i in values) {
+                var str = values[i];
+                indexes.push(parseInt(str.substring(str.lastIndexOf("{[") + "{[".length, str.lastIndexOf("]}"))));
+            }
+
+            elements = [];
+
+            $tbody.find("tr").each(function (index) {
+                var newIndex = indexes.indexOf(index);
+                elements[newIndex] = this;
+            });
+
+            $("#hourly table tbody").html(elements);
+
+        });
     }
 }
 
