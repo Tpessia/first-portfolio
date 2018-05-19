@@ -937,14 +937,23 @@ function events() {
 
     sortTable();
     function sortTable() {
-        $("#hourly table thead th:not(.mobile-th)").off().on("click", function () {
+        $("#hourly table thead th:not(.mobile-th)")
+        .append('<svg height="8" width="8" class="up"><polygon points="0,8 4,0 8,8"></polygon></svg><svg height="8" width="8" class="down"><polygon points="0,0 8,0 4,8"></polygon></svg>')
+        .find("svg")
+        .off()
+        .on("click", function () {
 
             var $tbody = $("#hourly table tbody");
-            typeof $tbody.attr("asc") === "undefined" || $tbody.attr("asc") == "false" ? $tbody.attr("asc", "true") : $tbody.attr("asc", "false");
+            var $thead = $("#hourly table thead");
+            var $th = $(this).parent("th");
+            var asc = $(this).hasClass("down") ? "true" : "false";
+
+            $thead.find("svg polygon").css("fill","#000000")
+                .not($(this).find("polygon")).css("fill","#c3c3c3");
 
             values = [];
 
-            $("#hourly table tbody tr td:nth-child(" + ($(this).index("#hourly table thead th:not(.mobile-th)") + 1) + ")").each(function (index) {
+            $("#hourly table tbody tr td:nth-child(" + ($th.index("#hourly table thead th:not(.mobile-th)") + 1) + ")").each(function (index) {
 
                 values.push($(this).html() + "{[" + index + "]}[{" + $(this).siblings("td:first-child").html() + "}]"); // fix td first child to class
 
@@ -986,7 +995,7 @@ function events() {
                 };
             }
 
-            values = values.sort(alphabetically($tbody.attr("asc") == "true"));
+            values = values.sort(alphabetically(asc == "true"));
 
             indexes = [];
 

@@ -117,27 +117,42 @@ body main {
       padding: 5px 15px; }
     body main .data-row .data-table {
       overflow-x: auto; }
-      @media (min-width: 601px) {
-        body main .data-row .data-table thead tr.mobile-tr th.mobile-th {
-          display: none; } }
-      body main .data-row .data-table thead tr.mobile-tr th.mobile-th.unit {
-        transform: translateY(-15%); }
-        body main .data-row .data-table thead tr.mobile-tr th.mobile-th.unit small {
+      body main .data-row .data-table thead tr.mobile-tr th {
+        position: relative; }
+        @media (min-width: 601px) {
+          body main .data-row .data-table thead tr.mobile-tr th.mobile-th {
+            display: none; } }
+        body main .data-row .data-table thead tr.mobile-tr th.mobile-th.unit {
+          transform: translateY(-15%); }
+          body main .data-row .data-table thead tr.mobile-tr th.mobile-th.unit small {
+            position: absolute;
+            transform: translateX(-50%); }
+        @media (max-width: 992px) {
+          body main .data-row .data-table thead tr.mobile-tr th:not(.mobile-th) {
+            display: none; } }
+        body main .data-row .data-table thead tr.mobile-tr th svg {
           position: absolute;
-          transform: translateX(-50%); }
-      @media (max-width: 600px) {
-        body main .data-row .data-table thead tr.mobile-tr th:not(.mobile-th) {
-          display: none; } }
+          cursor: pointer; }
+          body main .data-row .data-table thead tr.mobile-tr th svg.up {
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, -25%); }
+          body main .data-row .data-table thead tr.mobile-tr th svg.down {
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, calc(125% + 1px)); }
+          body main .data-row .data-table thead tr.mobile-tr th svg polygon {
+            fill: #c3c3c3; }
       body main .data-row .data-table tbody tr:last-child {
         border-bottom: 0; }
     body main .data-row .data-chart {
-      border-top: 5px solid rgba(92, 107, 192, 0.33333);
+      border-top: 5px solid rgba(92, 107, 192, 0.3333333333);
       padding-top: 3px;
       margin-bottom: 25px; }
       @media (max-width: 992px) {
         body main .data-row .data-chart {
           margin-bottom: 15px;
-          border-top: 3px solid rgba(92, 107, 192, 0.33333); } }
+          border-top: 3px solid rgba(92, 107, 192, 0.3333333333); } }
       @media (max-width: 600px) {
         body main .data-row .data-chart {
           margin-bottom: 5px; } }
