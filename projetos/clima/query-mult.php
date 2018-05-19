@@ -46,8 +46,8 @@
     }
 
     $servername = preg_match('/localhost/' ,$_SERVER["SERVER_NAME"]) ? "br-hdi-sql50.main-hosting.eu" : "mysql.hostinger.com.br";
-    $dbname = "u330258262_clima";
-    $username = "u330258262_admin";
+    $dbname = "u312806541_clima";
+    $username = "u312806541_admin";
     $password = "PoZvHuYgMtIp&314159";
     
     // SELECT maxtempm, meantempm, mintempm FROM `sao_paulo_summary` WHERE date BETWEEN "1996-06-30" AND "1996-07-30"
