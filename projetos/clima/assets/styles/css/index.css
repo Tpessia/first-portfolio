@@ -71,6 +71,26 @@ body header {
           border-bottom: 1px solid white;
           -webkit-box-shadow: 0 1px 0 0 white;
           box-shadow: 0 1px 0 0 white; }
+      body header .container .tab-content .date-form .date-input .datepicker-modal .datepicker-date-display {
+        position: relative; }
+        body header .container .tab-content .date-form .date-input .datepicker-modal .datepicker-date-display .manual-date {
+          position: absolute;
+          bottom: 0; }
+          @media (max-width: 600px) {
+            body header .container .tab-content .date-form .date-input .datepicker-modal .datepicker-date-display .manual-date {
+              display: none; } }
+          body header .container .tab-content .date-form .date-input .datepicker-modal .datepicker-date-display .manual-date input {
+            color: white; }
+            body header .container .tab-content .date-form .date-input .datepicker-modal .datepicker-date-display .manual-date input:not(.valid) {
+              border-bottom: 1px solid rgba(255, 255, 255, 0.7); }
+              body header .container .tab-content .date-form .date-input .datepicker-modal .datepicker-date-display .manual-date input:not(.valid) ~ label {
+                color: rgba(255, 255, 255, 0.7); }
+              body header .container .tab-content .date-form .date-input .datepicker-modal .datepicker-date-display .manual-date input:not(.valid):focus {
+                border-bottom: 1px solid white;
+                -webkit-box-shadow: 0 1px 0 0 white;
+                box-shadow: 0 1px 0 0 white; }
+                body header .container .tab-content .date-form .date-input .datepicker-modal .datepicker-date-display .manual-date input:not(.valid):focus ~ label {
+                  color: white; }
       body header .container .tab-content .date-form .date-input > label {
         color: white; }
     body header .container .tab-content .date-form .select-input {

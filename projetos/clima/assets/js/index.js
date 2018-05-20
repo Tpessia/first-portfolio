@@ -10,9 +10,9 @@ $(function () {
 
 function initializers() {
 
-    M.Tabs.init($$("header .tabs"), {});
+    M.Tabs.init($("header .tabs"), {});
 
-    M.FormSelect.init($$("header #select"), {});
+    M.FormSelect.init($("header #select"), {});
 
     startDisabled();
     function startDisabled() {
@@ -26,7 +26,7 @@ function initializers() {
         var yesterday = new Date();
         yesterday.setDate(yesterday.getDate() - 1);
 
-        datepickers = M.Datepicker.init($$('.datepicker'), {
+        datepickers = M.Datepicker.init($('.datepicker'), {
             'autoClose': true,
             'format': 'mmm dd, yyyy',
             'minDate': new Date('1996-06-30T00:00:00'),
@@ -101,6 +101,24 @@ function initializers() {
                     console.log("Valor inválido de get-last.php: " + date);
                 }
             }
+        });
+
+        $(".datepicker-date-display").each(function(index) {
+            $(this).append('<div class="input-field manual-date"><input placeholder="DD/MM/AAAA" id="manual-date-input-' + index + '" type="text"><label for="manual-date-input-' + index + '" class="active">Data</label></div>');
+            $(this).find('#manual-date-input-' + index).on("input", function() {
+                var dateVal = $(this).val();
+                
+                if (dateVal.match(/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/[0-9]{4}$/)) {
+                    var instance = M.Datepicker.getInstance($(this).closest(".datepicker-modal").siblings(".datepicker"));
+
+                    var formatedDate = dateVal.split("/");
+                    formatedDate = new Date(formatedDate[2] + "-" + formatedDate[1] + "-" + formatedDate[0] + "T00:00:00");
+
+                    instance.setDate(formatedDate);
+
+                    $(this).trigger("blur");
+                }
+            });
         });
     }
 }
@@ -251,7 +269,7 @@ function events() {
         },
 
         tabs: function () {
-            var instance = M.Tabs.init($$(".tabs"), {});
+            var instance = M.Tabs.init($(".tabs"), {});
             $('#hourly .tabs').tabs('select', 'first-tab-hourly');
             $('#summary .tabs').tabs('select', 'first-tab-summary');
             $('#almanac .tabs').tabs('select', 'first-tab-almanac');

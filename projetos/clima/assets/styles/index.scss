@@ -51,6 +51,37 @@ body {
                                 box-shadow: 0 1px 0 0 white;
                             }
                         }
+                        .datepicker-modal {
+                            .datepicker-date-display {
+                                position: relative;
+                                .manual-date {
+                                    position: absolute;
+                                    bottom: 0;
+                                    @media (max-width: 600px) {
+                                        display: none;
+                                    }
+                                    input {
+                                        color: white;
+                                        &:not(.valid) {
+                                            $focusColor: rgba(255, 255, 255, 0.7);
+                                            border-bottom: 1px solid $focusColor;
+                                            &~label {
+                                                color: $focusColor;
+                                            }
+                                            &:focus {
+                                                $focusColor: white;
+                                                border-bottom: 1px solid $focusColor;
+                                                -webkit-box-shadow: 0 1px 0 0 $focusColor;
+                                                box-shadow: 0 1px 0 0 $focusColor;
+                                                &~label {
+                                                    color: $focusColor;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         &>label {
                             color: white;
                         }
