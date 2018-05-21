@@ -1,0 +1,26 @@
+<div>
+    <h4>View 1</h4>
+    <div>
+        <div>
+            Name: <input type="text" ng-model="filter.nameView1">
+        </div>
+        <div>
+            <p>Nomes:</p>
+            <ul>
+                <li ng-repeat="user in users | filter:filter.nameView1 | orderBy:'city'">{{ user.name | uppercase }} - {{ user.city | lowercase }}</li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div>
+            User Name: <input type="text" ng-model="newUser.name">
+        </div>
+        <div>
+            User City: <input type="text" ng-model="newUser.city">
+        </div>
+        <div><button ng-click="addUser()">Add User</button></div>
+    </div>
+    <div>
+        <a href="#!/view2">View 2</a>
+    </div>
+</div>

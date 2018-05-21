@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html ng-app="demoApp"> <!-- ng-app na tag html inicializa o Angular -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Angular</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <!-- Directives -> attributos do tipo "ng-" que auxiliam o hmtl -->
+
+    <!-- Data Binding -->
+
+    <h3>Data Binding</h3>
+
+    <div>
+        <div>
+            Name: <input type="text" ng-model="name"> <!-- ng-model cria uma conexão com o "Model", criando uma propriedade/variável e definindo seu valor -->
+        </div>
+        <div>
+            Your name is <span>{{ name }}</span>
+        </div>
+    </div>
+
+    <!-- Iterating -->
+
+    <h3>Iteration</h3>
+
+    <div ng-init="names=['Thiago','Vinicius','Pessia']">
+        <p>Nomes:</p>
+        <ul>
+            <li ng-repeat="name in names">{{ name }}</li>
+        </ul>
+    </div>
+
+    <!-- Filtering -->
+
+    <h3>Filtering</h3>
+    
+    <div ng-init="users=[{name:'Thiago',city:'São Paulo'},{name:'Vinicius',city:'São Carlos'},{name:'Pessia',city:'São Luiz'}]">
+        <div>
+            Name: <input type="text" ng-model="filter.name">
+        </div>
+        <div>
+            <p>Nomes:</p>
+            <ul>
+                <li ng-repeat="user in users | filter:filter.name | orderBy:'city'">{{ user.name | uppercase }} - {{ user.city | lowercase }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Controller -->
+    <!-- Está maneira de chamar controllers diretamente foi desabilitada desde o AngularJS 1.3, agora devemos sempre criar módolos para encapsular as controllers -->
+
+    <!-- <h3>Controller</h3>
+    
+    <div>
+        <div>
+            Name: <input type="text" ng-model="nameFilter">
+        </div>
+        <div ng-controller="SimpleController">
+            <p>Nomes:</p>
+            <ul>
+                <li ng-repeat="user in users | filter:nameFilter | orderBy:'city'">{{ user.name | uppercase }} - {{ user.city | lowercase }}</li>
+            </ul>
+        </div>
+
+        <script>
+            function SimpleController($scope) {
+                $scope.users =  [
+                    { name:'Thiago', city:'São Paulo' },
+                    { name:'Vinicius', city:'São Carlos'},
+                    { name:'Pessia',city:'São Luiz' }
+                ];
+            }
+        </script>
+    </div> -->
+
+    <!-- Modules / Controllers -->
+
+    <h3>Modules / Controllers</h3>
+    
+    <div>
+        <div>
+            Name: <input type="text" ng-model="filter.nameModule">
+        </div>
+        <div ng-controller="SimpleController">
+            <p>Nomes:</p>
+            <ul>
+                <li ng-repeat="user in users | filter:filter.nameModule | orderBy:'city'">{{ user.name | uppercase }} - {{ user.city | lowercase }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Routes / Views / Factory --> <!-- além de factory, temos service, provider e value -->
+
+    <h3>Routes / Views / Factory</h3>
+
+    <div>
+        <!-- Placeholder for views -->
+        <div ng-view>
+
+        </div>
+    </div>
+
+    <script src="angular.min.js"></script>
+    <script src="angular-route.min.js"></script>
+
+    <script>
+        // var demoApp = angular.module('demoApp', []);
+
+        // demoApp.controller('SimpleController', function($scope) {
+        //     $scope.users =  [
+        //         { name:'Thiago', city:'São Paulo' },
+        //         { name:'Vinicius', city:'São Carlos'},
+        //         { name:'Pessia',city:'São Luiz' }
+        //     ];
+        // });
+
+        // Other syntax (add multiple controllers):
+
+        var demoApp = angular.module('demoApp', ['ngRoute']);
+
+        var factories = {};
+
+        factories.simpleFactory = function() {
+            var factory = {};
+            var users = [
+                { name: 'Thiago', city: 'São Paulo' },
+                { name: 'Vinicius', city: 'São Carlos'},
+                { name: 'Pessia', city: 'São Luiz' }
+            ];
+            factory.getUsers = function() {
+                return users;
+            };
+            // factory.postUsers = function() {
+            //     // Send new users to db
+            // }
+            return factory;
+        };
+
+        var controllers = {};
+
+        controllers.SimpleController = function ($scope, simpleFactory) {
+            // $scope.users =  [
+            //     { name: 'Thiago', city: 'São Paulo' },
+            //     { name: 'Vinicius', city: 'São Carlos'},
+            //     { name: 'Pessia', city: 'São Luiz' }
+            // ];
+
+            $scope.users = simpleFactory.getUsers();
+
+            $scope.addUser = function() {
+                $scope.users.push({ name: $scope.newUser.name, city:  $scope.newUser.city});
+            };
+        };
+
+        demoApp
+            .config(function ($routeProvider, $locationProvider) {
+                $routeProvider
+                    .when('/view1',
+                        {
+                            controller: 'SimpleController',
+                            templateUrl: 'partials/View1.html'
+                        })
+                    .when('/view2',
+                        {
+                            controller: 'SimpleController',
+                            templateUrl: 'partials/View2.html'
+                        })
+                    .otherwise({ redirectTo: '/view1' });
+            })
+            .factory(factories)
+            .controller(controllers);
+    </script>
+</body>
+</html>
