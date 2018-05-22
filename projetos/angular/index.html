@@ -13,6 +13,7 @@
     <script src="./lib/angular/angular.min.js"></script>
     <script src="./lib/angular/angular-route.min.js"></script>
     <script src="./app/app.js"></script>
+    <script src="./app/controllers/header.controller.js"></script>
     <script src="./app/controllers/home.controller.js"></script>
     <script src="./app/services/artists.service.js"></script>
     <script src="./app/controllers/artists.controller.js"></script>
@@ -25,23 +26,22 @@
 </head>
 <body>
     
-    <header>
+    <header ng-controller="HeaderController">
         <nav class=" light-blue darken-3">
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo">Noise Polution</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li class="active">
-                        <a href="#!/">Home</a>
-                    </li>
-                    <li>
-                        <a href="#!/artists">Artists</a>
-                    </li>
-                    <li>
-                        <a href="#!/albuns">Albuns</a>
+                    <li ng-repeat="item in navItens" ng-class="{'active': isActive(item.url)}">
+                        <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
                     </li>
                 </ul>
             </div>
         </nav>
+        <ul class="sidenav" id="mobile-demo">
+            <li ng-repeat="item in navItens" ng-class="{'active': isActive(item.url)}">
+                <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
+            </li>
+        </ul>
     </header>
 
     <main class="container">
