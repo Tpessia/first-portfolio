@@ -5,17 +5,22 @@ app.config(function ($routeProvider) {
         .when('/',
             {
                 controller: 'HomeController',
-                templateUrl: '/app/partials/home.partial.html'
+                templateUrl: '/app/home/home.partial.html'
+            })
+        .when('/tracks',
+            {
+                controller: 'TracksController',
+                templateUrl: '/app/tracks/tracks.partial.html'
             })
         .when('/artists',
             {
                 controller: 'ArtistsController',
-                templateUrl: '/app/partials/artists.partial.html'
+                templateUrl: '/app/artists/artists.partial.html'
             })
         .when('/albuns',
             {
                 controller: 'AlbunsController',
-                templateUrl: '/app/partials/albuns.partial.html'
+                templateUrl: '/app/albuns/albuns.partial.html'
             })
         .otherwise({ redirectTo: '/' });
 });
