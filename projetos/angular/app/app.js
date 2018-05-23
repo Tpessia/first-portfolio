@@ -1,4 +1,4 @@
-var app = angular.module('noisePolution', ['ngRoute','ngAnimate']);
+var app = angular.module('noisePolution', ['ngRoute']);
 
 app.config(function ($routeProvider) {
     $routeProvider

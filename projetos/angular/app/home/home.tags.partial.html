@@ -1,6 +1,11 @@
 <h3>Top Tags</h3>
-<ul id="top-tags">
-    <li ng-repeat="tag in tags">
-        {{ tag.name }}
+<ul id="top-tags" class="collection">
+    <li ng-repeat="tag in tags" class="collection-item">
+        <div>
+            <span class="tag-name">{{ tag.name }}</span> | <span class="tag-reach">{{ tag.reach }}</span> | <span class="tag-taggings">{{ tag.taggings }}</span>
+            <a href="{{ tag.url }}" target="_blank" class="secondary-content">
+                <i class="material-icons">arrow_forward</i>
+            </a>
+        </div>
     </li>
 </ul>
