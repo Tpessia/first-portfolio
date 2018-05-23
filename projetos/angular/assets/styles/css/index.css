@@ -1,13 +1,21 @@
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; }
+  body header nav .nav-wrapper {
+    padding-left: 15px; }
+  body main {
+    flex: 1 0 auto; }
+  body .clearfix::after {
+    content: "";
+    clear: both;
+    display: table; }
 
-.nav-wrapper {
-    padding-left: 15px;
-}
+body main .tops .collection#top-tracks .collection-item .artist-name {
+  display: block;
+  margin-bottom: 5px;
+  line-height: 1; }
+  body main .tops .collection#top-tracks .collection-item .artist-name small {
+    display: block; }
 
-main {
-    flex: 1 0 auto;
-}
+/*# sourceMappingURL=index.css.map */

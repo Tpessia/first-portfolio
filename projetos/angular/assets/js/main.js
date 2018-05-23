@@ -1,0 +1,1 @@
+var $$ = document.querySelectorAll.bind(document);

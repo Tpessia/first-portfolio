@@ -1,8 +1,16 @@
 <h3>Top Tracks</h3>
-<div id="top-tracks">
-    <ul>
-        <li ng-repeat="track in tracks">
-            {{ track.name }}
-        </li>
-    </ul>
-</div>
+<ul id="top-tracks" class="collection">
+    <li ng-repeat="track in tracks" class="collection-item avatar">
+        <img ng-src="{{ track.image[1]['#text'] }}" alt="{{ track.name }}" class="circle">
+        <div class="title track-name">{{ track.name }}</div>
+        <a href="{{ track.artist.url }}" class="artist-name"><small>{{ track.artist.name }}</small></a>
+        <p>
+            Play Count: {{ track.playcount }}
+            <br>
+            Listeners: {{ track.listeners }}
+        </p>
+        <a href="{{ track.url }}" target="_blank" class="secondary-content">
+            <i class="material-icons" ng-class="{'grey-text': !isOver, 'grey-text text-lighten-1': isOver}" ng-mouseenter="isOver = true" ng-mouseleave="isOver = false">more_vert</i>
+        </a>
+    </li>
+</ul>

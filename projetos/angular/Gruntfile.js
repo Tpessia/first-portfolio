@@ -16,7 +16,8 @@ module.exports = function (grunt) {
 
         uglify: {
             options: {
-                mangle: false // angular fix
+                mangle: false, // angular fix
+                sourceMap: true
             },
             my_target: {
                 files: {
@@ -27,13 +28,13 @@ module.exports = function (grunt) {
 
         watch: {
             sass: {
-                files: 'assets/styles/*.scss',
-                tasks: 'sass'
+                files: ['assets/styles/*.scss'],
+                tasks: ['sass']
             },
 
             uglify: {
                 files: ['app/{,*/}*.js', '!app/app.min.js'],
-                tasks: 'uglify'
+                tasks: ['uglify']
             }
         },
     });
