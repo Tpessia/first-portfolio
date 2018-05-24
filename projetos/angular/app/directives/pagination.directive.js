@@ -1,9 +1,10 @@
 app.directive('materializePag', function () {
     return {
         scope: {
-            page: '=page',
-            pages: '=pages'
+            maxPage: '=maxPage',
+            pageChangeFunc: '&pageChangeFunc'
         },
-        templateUrl: 'app/directives/pagination.directive.html'
+        templateUrl: 'app/directives/pagination.directive.html',
+        transclude: true
     };
 });

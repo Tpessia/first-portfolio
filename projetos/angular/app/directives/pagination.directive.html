@@ -1,4 +1,4 @@
-<ul class="pagination">
+<!-- <ul class="pagination">
     <li class="disabled">
         <a href="#!">
             <i class="material-icons">chevron_left</i>
@@ -21,6 +21,22 @@
     </li>
     <li class="waves-effect">
         <a href="#!">
+            <i class="material-icons">chevron_right</i>
+        </a>
+    </li>
+</ul> -->
+
+<ul ng-controller="PaginationController" class="pagination" style="display: flex;justify-content: center;min-width: min-content;margin-left: 50%;transform: translateX(-50%);">
+    <li ng-class="{ 'disabled': currentPage == 1 }">
+        <a ng-click="prevPage()">
+            <i class="material-icons">chevron_left</i>
+        </a>
+    </li>
+    <li ng-repeat="i in getNumber(maxPage) track by $index" ng-class="{ 'active': currentPage == $index + 1 + offsetPage }">
+        <a ng-click="goToPage($index + 1 + offsetPage)">{{ $index + 1 + offsetPage }}</a>
+    </li>
+    <li class="waves-effect">
+        <a ng-click="nextPage()">
             <i class="material-icons">chevron_right</i>
         </a>
     </li>
