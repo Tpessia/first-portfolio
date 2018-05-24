@@ -1,32 +1,70 @@
+@font-face {
+  font-family: Fondamento;
+  src: url("../../fonts/Fondamento-Regular.ttf"); }
 body {
   display: flex;
   min-height: 100vh;
   flex-direction: column; }
-  body header nav .nav-wrapper {
-    padding-left: 15px; }
+  body header nav {
+    background-color: #101010 !important; }
+    body header nav .nav-wrapper {
+      padding-left: 15px; }
+      body header nav .nav-wrapper .brand-logo {
+        font-family: 'Fondamento', cursive;
+        color: #ff5722;
+        height: 100%; }
+        body header nav .nav-wrapper .brand-logo img {
+          vertical-align: top;
+          height: 100%;
+          padding: 10px; }
   body main {
     flex: 1 0 auto; }
+  body footer {
+    background-color: #101010 !important; }
   body .clearfix::after {
     content: "";
     clear: both;
     display: table; }
 
-body main .tops .collection .collection-item .secondary-content i {
-  transition: all 0.2s linear;
-  color: #9e9e9e; }
-  body main .tops .collection .collection-item .secondary-content i:hover {
-    color: #bdbdbd; }
-body main .tops .collection#top-tracks .collection-item .artist-name {
-  display: block;
-  margin-bottom: 5px;
-  line-height: 1; }
-  body main .tops .collection#top-tracks .collection-item .artist-name small {
-    display: block; }
-body main .tops .collection#top-tags .collection-item .tag-name {
-  text-transform: capitalize; }
-body .pagination {
-  text-align: center; }
-  body .pagination .active {
-    background-color: #ff7043; }
+body header nav ul li.active {
+  background-color: rgba(255, 87, 34, 0.8); }
+body header nav ul li a:hover {
+  background-color: rgba(255, 87, 34, 0.25); }
+body main .tops {
+  margin-bottom: 40px; }
+  body main .tops .panel-wrapper {
+    padding: 0 15px; }
+    body main .tops .panel-wrapper h3 {
+      margin: 0;
+      padding: 1.3rem 0 1rem 0; }
+    body main .tops .panel-wrapper .collection {
+      border: 0; }
+      body main .tops .panel-wrapper .collection .collection-item {
+        padding-right: 40px; }
+        body main .tops .panel-wrapper .collection .collection-item .secondary-content i {
+          transition: all 0.2s linear;
+          color: #9e9e9e; }
+          body main .tops .panel-wrapper .collection .collection-item .secondary-content i:hover {
+            color: #bdbdbd; }
+      body main .tops .panel-wrapper .collection#top-tracks .collection-item .artist-name {
+        display: block;
+        margin-bottom: 5px;
+        line-height: 1; }
+        body main .tops .panel-wrapper .collection#top-tracks .collection-item .artist-name small {
+          display: block; }
+      body main .tops .panel-wrapper .collection#top-tags .collection-item .tag-name {
+        text-transform: capitalize; }
+    body main .tops .panel-wrapper div[materialize-pag] {
+      overflow-x: auto; }
+      body main .tops .panel-wrapper div[materialize-pag] .pagination {
+        text-align: center; }
+        body main .tops .panel-wrapper div[materialize-pag] .pagination .active {
+          background-color: #ff7043; }
+  body main .tops .progress {
+    margin: 0;
+    margin-top: -4px;
+    background-color: #ffccbc; }
+    body main .tops .progress .indeterminate {
+      background-color: #ff5722; }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,6 +1,27 @@
 <h2>Search for tracks, artists or albuns!</h2>
 <div class="row">
-    <div ng-include="'/app/home/home.tracks.partial.html'" id="tracks-wrapper" class="tops col s12 l4"></div>
-    <div ng-include="'/app/home/home.artists.partial.html'" id="artists-wrapper" class="tops col s12 l4"></div>
-    <div ng-include="'/app/home/home.tags.partial.html'" id="albuns-wrapper" class="tops col s12 l4"></div>
+    <div id="tracks-wrapper" class="tops col s12 l4">
+        <div ng-include="'/app/home/home.tracks.partial.html'"  class="panel-wrapper z-depth-1">
+            <!-- Tracks -->
+        </div>
+    <div class="progress hide">
+        <div class="indeterminate"></div>
+    </div>
+    </div>
+    <div id="artists-wrapper" class="tops col s12 l4">
+        <div ng-include="'/app/home/home.artists.partial.html'" class="panel-wrapper z-depth-1">
+            <!-- Artists -->
+        </div>
+        <div class="progress hide">
+            <div class="indeterminate"></div>
+        </div>
+    </div>
+    <div id="albuns-wrapper" class="tops col s12 l4">
+        <div ng-include="'/app/home/home.tags.partial.html'" class="panel-wrapper z-depth-1">
+            <!-- Tags -->
+        </div>
+        <div class="progress hide">
+            <div class="indeterminate"></div>
+        </div>
+    </div>
 </div>

@@ -1,3 +1,13 @@
+@font-face {
+    font-family: Fondamento;
+    src: url('../../fonts/Fondamento-Regular.ttf');
+}
+
+$nav-footer-color: #101010;
+$primary-color: #ff5722; // Materialize deep-orange
+$primary-color-l: #ff7043; // Materialize deep-orange lighten-1
+$primary-color-xl: #ffccbc; // Materialize deep-orange lighten-4
+
 body {
     display: flex;
     min-height: 100vh;
@@ -5,14 +15,29 @@ body {
 
     header {
         nav {
+            background-color: $nav-footer-color !important;
             .nav-wrapper {
                 padding-left: 15px;
+                .brand-logo {
+                    font-family: 'Fondamento', cursive;
+                    color: $primary-color;
+                    height: 100%;
+                    img {
+                        vertical-align: top;
+                        height: 100%;
+                        padding: 10px;
+                    }
+                }
             }
         }
     }
 
     main {
         flex: 1 0 auto;
+    }
+
+    footer {
+        background-color: $nav-footer-color !important;
     }
 
     .clearfix::after {
