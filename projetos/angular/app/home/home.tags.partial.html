@@ -1,12 +1,16 @@
 <h3>Top Tags</h3>
 <ul id="top-tags" class="collection">
-    <li ng-repeat="tag in tags" class="collection-item">
-        <div>
-            <span class="tag-name">{{ tag.name }}</span> | <span class="tag-reach">{{ tag.reach }}</span> | <span class="tag-taggings">{{ tag.taggings }}</span>
-            <a href="{{ tag.url }}" target="_blank" class="secondary-content">
-                <i class="material-icons">arrow_forward</i>
-            </a>
-        </div>
+    <li ng-repeat="tag in tags" class="collection-item avatar">
+        <img ng-src="{{ tag.image[1]['#text'] }}" alt="{{ tag.name }}" class="circle">
+        <div class="title tag-name">{{ tag.name }}</div>
+        <p class="description">
+            Reach: {{ tag.reach }}
+            <br>
+            Taggings: {{ tag.taggings }}
+        </p>
+        <a href="{{ tag.url }}" target="_blank" class="secondary-content">
+            <i class="material-icons">more_vert</i>
+        </a>
     </li>
 </ul>
 <div materialize-pag max-page="5" page-change-func="getTopTags(page)"></div>

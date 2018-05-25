@@ -47,6 +47,18 @@ app.controller("HomeController", function ($scope, topsService) {
 
             $scope.tags = response.data.tags.tag.slice(-5);
 
+            for (var i in $scope.tags) {
+                (function(j) {
+                    topsService.getTopArtistsByTag($scope.tags[j].name, page).then(function (response) {
+                        $scope.tags[j].image = response.data.topartists.artist[0].image;
+                    }, function (errResponse) {
+                        $scope.tags.image = [{'#text': '../assets/img/logo-simple-256x256.png'}, {'#text': '../assets/img/logo-simple-256x256.png'}, {'#text': '../assets/img/logo-simple-256x256.png'}, {'#text': '../assets/img/logo-simple-256x256.png'}, {'#text': '../assets/img/logo-simple-256x256.png'}];;
+
+                        console.log(errResponse);
+                    });
+                })(i)
+            }
+
             console.log(response.data);
         }, function(errResponse) {
             angular.element(progressBar).addClass('hide');

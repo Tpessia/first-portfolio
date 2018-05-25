@@ -12,6 +12,20 @@ Tpessia
 
 
 
+Application name	Noise Pollution 2
+API key	61b502648995e8805c36d0996d41b879
+Shared secret	85ea238eef2a90073dc1777b3871f3aa
+Registered to	Tpessia
+
+
+
+Application name	Noise Pollution 3
+API key	e443ac025fea43b249a36e29b0f12a91
+Shared secret	937e9002d2eb5aecfa2bd94c9bc7aa94
+Registered to	Tpessia
+
+
+
 API Doc
 https://www.last.fm/api/show/album.search
 

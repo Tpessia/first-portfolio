@@ -3,7 +3,7 @@
     <li ng-repeat="artist in artists" class="collection-item avatar">
         <img ng-src="{{ artist.image[1]['#text'] }}" alt="{{ artist.name }}" class="circle">
         <div class="title artist-name">{{ artist.name }}</div>
-        <p>
+        <p class="description">
             Play Count: {{ artist.playcount }}
             <br>
             Listeners: {{ artist.listeners }}

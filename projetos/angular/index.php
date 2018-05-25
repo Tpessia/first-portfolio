@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Noise Polution{{ title !== undefined && title != '' ? ' - ' + title : '' }}</title>
+    <title>Noise Pollution{{ title !== undefined && title != '' ? ' - ' + title : '' }}</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <base href="<?php echo $_SERVER['REQUEST_URI']; ?>">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="./lib/materialize/materialize.min.css" rel="stylesheet">
@@ -42,6 +44,14 @@
                 <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
             </li>
         </ul>
+        <div id="banner">
+            <div class="img-wrapper" ng-repeat="imgSrc in topsImg">
+                <img ng-src="{{ imgSrc }}">
+            </div>
+            <div id="bannerOverlay">
+                <div id="bannerText">Your Tracks, Artists and Albuns in a single place</div>
+            </div>
+        </div>
     </header>
 
     <main class="container">
