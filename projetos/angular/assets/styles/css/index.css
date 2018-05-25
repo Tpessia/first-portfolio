@@ -27,30 +27,41 @@ body {
     display: table; }
 
 body header {
-  margin-bottom: 30px; }
-  body header nav ul li.active {
-    background-color: rgba(255, 87, 34, 0.8); }
-  body header nav ul li a:hover {
-    background-color: rgba(255, 87, 34, 0.25); }
+  margin-bottom: 30px;
+  padding-top: 64px; }
+  @media (max-width: 600px) {
+    body header {
+      padding-top: 56px; } }
+  body header nav {
+    position: fixed;
+    top: 0;
+    z-index: 10; }
+    body header nav ul li.active {
+      background-color: rgba(255, 87, 34, 0.8); }
+    body header nav ul li a:hover {
+      background-color: rgba(255, 87, 34, 0.25); }
   body header #banner {
-    height: 300px;
+    height: 400px;
     overflow: hidden;
     position: relative; }
     body header #banner .img-wrapper {
       width: calc(100% / 3);
-      float: left; }
-      body header #banner .img-wrapper img {
-        width: 100%; }
+      float: left;
+      overflow: hidden;
+      min-height: 400px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover; }
     body header #banner #bannerOverlay {
       width: 100%;
       height: 100%;
       position: absolute;
-      background-color: rgba(0, 0, 0, 0.75);
+      background-color: rgba(0, 0, 0, 0.65);
       z-index: 1;
       color: white; }
       body header #banner #bannerOverlay #bannerText {
-        width: 45%;
-        font-size: 3rem;
+        width: 58%;
+        font-size: 4vw;
         text-align: center;
         position: absolute;
         margin: 0 auto;
@@ -61,12 +72,15 @@ body header {
       body header #banner .img-wrapper {
         width: calc(100% / 2); }
       body header #banner #bannerOverlay #bannerText {
-        width: 80%;
-        font-size: 2rem; } }
+        width: 70%;
+        font-size: 5vw; } }
     @media (max-width: 600px) {
       body header #banner .img-wrapper {
         width: 100%;
-        height: calc(100% / 3); } }
+        height: calc(100% / 2); }
+      body header #banner #bannerOverlay #bannerText {
+        width: 80%;
+        font-size: 8vw; } }
 body main .tops {
   margin-bottom: 40px; }
   body main .tops .panel-wrapper {

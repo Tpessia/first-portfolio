@@ -18,24 +18,24 @@ app.controller("HeaderController", function ($scope, $location, topsService) {
         return url == $location.path();
     };
 
-    $scope.topsImg = [];
+    $scope.topsImg = {};
 
     getTopTracks();
     function getTopTracks() {
         var fallbackImg = '../assets/img/logo-simple-256x256.png';
 
         topsService.getTheTopTrack().then(function (response) {
-            $scope.topsImg.push(response.data.tracks.track[0].image.pop()['#text']);
+            $scope.topsImg.img1 = response.data.tracks.track[0].image.pop()['#text'];
         }, function (errResponse) {
-            $scope.topsImg.push(fallbackImg);
+            $scope.topsImg.img1 = fallbackImg;
 
             console.log("Error while fetching tops (header) images: " + errResponse);
         });
 
         topsService.getTheTopArtist().then(function (response) {
-            $scope.topsImg.push(response.data.artists.artist[0].image.pop()['#text']);
+            $scope.topsImg.img2 = response.data.artists.artist[0].image.pop()['#text'];
         }, function (errResponse) {
-            $scope.topsImg.push(fallbackImg);
+            $scope.topsImg.img2 = fallbackImg;
 
             console.log("Error while fetching tops (header) images: " + errResponse);
         });
@@ -43,9 +43,9 @@ app.controller("HeaderController", function ($scope, $location, topsService) {
         topsService.getTheTopTag().then(function (response) {
             var tag = response.data.tags.tag[0].name;
             topsService.getTopArtistsByTag(tag).then(function (response) {
-                $scope.topsImg.push(response.data.topartists.artist[0].image.pop()['#text']);
+                $scope.topsImg.img3 = response.data.topartists.artist[0].image.pop()['#text'];
             }, function (errResponse) {
-                $scope.topsImg.push(fallbackImg);
+                $scope.topsImg.img3 = fallbackImg;
 
                 console.log("Error while fetching tops (header) images: " + errResponse);
             });

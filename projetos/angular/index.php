@@ -25,11 +25,11 @@
 <body>
     
     <header ng-controller="HeaderController">
-        <nav>
+        <nav class="z-depth-1">
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo">
-                    <img src="assets/img/logo.png" alt="Noise Polution" class="hide-on-small-only">
-                    <img src="assets/img/logo-simple.png" alt="NP" class="hide-on-med-and-up">
+                    <!-- <img src="assets/img/logo.png" alt="Noise Polution" class="hide-on-small-only"> -->
+                    <img src="assets/img/logo-simple.png" alt="NP">
                 </a>
                 <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -45,9 +45,9 @@
             </li>
         </ul>
         <div id="banner">
-            <div class="img-wrapper" ng-repeat="imgSrc in topsImg">
-                <img ng-src="{{ imgSrc }}">
-            </div>
+            <div class="img-wrapper" ng-style="{'background-image':'url(' + topsImg.img1 + ')'}"></div>
+            <div class="img-wrapper" ng-style="{'background-image':'url(' + topsImg.img2 + ')'}"></div>
+            <div class="img-wrapper" ng-style="{'background-image':'url(' + topsImg.img3 + ')'}"></div>
             <div id="bannerOverlay">
                 <div id="bannerText">Your Tracks, Artists and Albuns in a single place</div>
             </div>
