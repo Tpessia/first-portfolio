@@ -8,7 +8,7 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: 'assets/styles',
                     src: ['*.scss'],
-                    dest: 'assets/styles/css',
+                    dest: 'assets/styles/css/',
                     ext: '.css'
                 }]
             }

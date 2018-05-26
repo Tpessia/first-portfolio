@@ -4,7 +4,6 @@ app.directive('materializePag', function () {
             maxPage: '=maxPage',
             pageChangeFunc: '&pageChangeFunc'
         },
-        templateUrl: 'app/directives/pagination.directive.html',
-        transclude: true
+        templateUrl: 'app/directives/pagination.partial.html'
     };
 });

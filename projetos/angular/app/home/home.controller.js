@@ -1,15 +1,40 @@
-app.controller("HomeController", function ($scope, topsService) {
+app.controller("HomeController", function ($scope, topsService, tracksService) {
+
+    var dft = {
+        page: 1,
+        limit: 5
+    };
 
     // Make functions available for Pagination Directive
-    $scope.getTopTracks = function(page) {
+    $scope.getTopTracks = function(page, limit) {
+        if (typeof page === "undefined") {
+            var page = dft.page;
+        }
+        if (typeof limit === "undefined") {
+            limit = dft.limit;
+        }
+
         var progressBar = $$('#tracks-wrapper .progress');
 
         angular.element(progressBar).removeClass('hide');
 
-        topsService.getTopTracks(page).then(function (response) {
+        topsService.getTopTracks(page, limit).then(function (response) {
             angular.element(progressBar).addClass('hide');
 
             $scope.tracks = response.data.tracks.track.slice(-5);
+
+            for (var i in $scope.tracks) {
+                (function(j) {
+                    tracksService.getTrackInfo($scope.tracks[j].artist.name, $scope.tracks[j].name).then(function (response) {
+                        if (typeof response.data.track.album !== "undefined") {
+                            $scope.tracks[j].image = response.data.track.album.image;
+                            $scope.tracks[j].info = response.data.track;
+                        }
+                    }, function (errResponse) {
+                        console.log(errResponse)
+                    });
+                })(i)
+            }
 
             console.log(response.data);
         }, function(errResponse) {
@@ -19,12 +44,19 @@ app.controller("HomeController", function ($scope, topsService) {
         });
     };
 
-    $scope.getTopArtists = function (page) {
+    $scope.getTopArtists = function (page, limit) {
+        if (typeof page === "undefined") {
+            var page = dft.page;
+        }
+        if (typeof limit === "undefined") {
+            limit = dft.limit;
+        }
+
         var progressBar = $$('#artists-wrapper .progress');
 
         angular.element(progressBar).removeClass('hide');
         
-        topsService.getTopArtists(page).then(function (response) {
+        topsService.getTopArtists(page, limit).then(function (response) {
             angular.element(progressBar).addClass('hide');
 
             $scope.artists = response.data.artists.artist.slice(-5);
@@ -37,22 +69,29 @@ app.controller("HomeController", function ($scope, topsService) {
         });
     };
 
-    $scope.getTopTags = function (page) {
+    $scope.getTopTags = function (page, limit) {
+        if (typeof page === "undefined") {
+            var page = dft.page;
+        }
+        if (typeof limit === "undefined") {
+            limit = dft.limit;
+        }
+
         var progressBar = $$('#tags-wrapper .progress');
 
         angular.element(progressBar).removeClass('hide');
 
-        topsService.getTopTags(page).then(function (response) {
+        topsService.getTopTags(page, limit).then(function (response) {
             angular.element(progressBar).addClass('hide');
 
             $scope.tags = response.data.tags.tag.slice(-5);
 
             for (var i in $scope.tags) {
                 (function(j) {
-                    topsService.getTopArtistsByTag($scope.tags[j].name, page).then(function (response) {
+                    topsService.getTopArtistsByTag($scope.tags[j].name, page, limit).then(function (response) {
                         $scope.tags[j].image = response.data.topartists.artist[0].image;
                     }, function (errResponse) {
-                        $scope.tags.image = [{'#text': '../assets/img/logo-simple-256x256.png'}, {'#text': '../assets/img/logo-simple-256x256.png'}, {'#text': '../assets/img/logo-simple-256x256.png'}, {'#text': '../assets/img/logo-simple-256x256.png'}, {'#text': '../assets/img/logo-simple-256x256.png'}];;
+                        $scope.tags.image = [{'#text': '../assets/img/logo-simple-256x256.png'}, {'#text': '../assets/img/logo-simple-256x256.png'}, {'#text': '../assets/img/logo-simple-256x256.png'}, {'#text': '../assets/img/logo-simple-256x256.png'}, {'#text': '../assets/img/logo-simple-256x256.png'}];
 
                         console.log(errResponse);
                     });
@@ -67,7 +106,40 @@ app.controller("HomeController", function ($scope, topsService) {
         });
     };
 
-    // $scope.getTopTracks(1);
-    // $scope.getTopArtists(1);
-    // $scope.getTopTags(1);
+    getRandomTracks(5);
+    function getRandomTracks(limit) {
+        if (typeof limit === "undefined") {
+            limit = dft.limit;
+        }
+
+        var page = Math.round(Math.random() * 15);
+
+        topsService.getTopTracks(page, limit).then(function (response) {
+
+            $scope.rndTracks = response.data.tracks.track.slice(-5);
+
+            for (var i in $scope.rndTracks) {
+                (function (j) {
+                    tracksService.getTrackInfo($scope.rndTracks[j].artist.name, $scope.rndTracks[j].name).then(function (response) {
+                        if (typeof response.data.track.album !== "undefined") {
+                            $scope.rndTracks[j].image = response.data.track.album.image;
+                            $scope.rndTracks[j].info = response.data.track;
+                        }
+                    }, function (errResponse) {
+                        console.log(errResponse)
+                    });
+                })(i)
+            }
+
+            console.log(response.data);
+        }, function (errResponse) {
+            $scope.rndTracks = $scope.tracks;
+
+            console.log(errResponse);
+        });
+    };
+
+    $scope.cutStr = function (text, letters) {
+        return text.length > letters ? text.substr(0, letters) + "..." : text;
+    };
 });

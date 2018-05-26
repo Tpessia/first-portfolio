@@ -9,10 +9,10 @@ $primary-color-l: #ff7043; // Materialize deep-orange lighten-1
 $primary-color-xl: #ffccbc; // Materialize deep-orange lighten-4
 
 body {
+    overflow-x: hidden;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-
     header {
         nav {
             background-color: $nav-footer-color !important;

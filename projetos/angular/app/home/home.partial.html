@@ -1,26 +1,36 @@
 <div class="row">
-    <div id="tracks-wrapper" class="tops col s12 l4">
-        <div ng-include="'app/home/home.tracks.partial.html'"  class="panel-wrapper z-depth-1">
-            <!-- Tracks -->
-        </div>
-    <div class="progress hide">
-        <div class="indeterminate"></div>
+    <div id="music-grid" class="col s12" ng-include="'app/home/home.random.partial.html'">
+        <!-- Random Music -->
     </div>
-    </div>
-    <div id="artists-wrapper" class="tops col s12 l4">
-        <div ng-include="'app/home/home.artists.partial.html'" class="panel-wrapper z-depth-1">
-            <!-- Artists -->
-        </div>
-        <div class="progress hide">
-            <div class="indeterminate"></div>
-        </div>
-    </div>
-    <div id="albuns-wrapper" class="tops col s12 l4">
-        <div ng-include="'app/home/home.tags.partial.html'" class="panel-wrapper z-depth-1">
-            <!-- Tags -->
-        </div>
-        <div class="progress hide">
-            <div class="indeterminate"></div>
+
+    <div class="col s12 tops">
+        <h3>MOST-LISTENED</h3>
+        <hr>
+        <div class="row">
+            <div id="tracks-wrapper" class="tops-list col s12 l4">
+                <div ng-include="'app/home/home.tracks.partial.html'" class="panel-wrapper z-depth-1">
+                    <!-- Tracks -->
+                </div>
+                <div class="progress hide">
+                    <div class="indeterminate"></div>
+                </div>
+            </div>
+            <div id="artists-wrapper" class="tops-list col s12 l4">
+                <div ng-include="'app/home/home.artists.partial.html'" class="panel-wrapper z-depth-1">
+                    <!-- Artists -->
+                </div>
+                <div class="progress hide">
+                    <div class="indeterminate"></div>
+                </div>
+            </div>
+            <div id="tags-wrapper" class="tops-list col s12 l4">
+                <div ng-include="'app/home/home.tags.partial.html'" class="panel-wrapper z-depth-1">
+                    <!-- Tags -->
+                </div>
+                <div class="progress hide">
+                    <div class="indeterminate"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
