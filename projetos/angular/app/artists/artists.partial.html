@@ -1,9 +1,9 @@
-<div class="row tracks">
+<div class="row artists">
     <div class="col s12 search" search-wide search-for="'Artists'" on-search="onSearch(searchKey)" on-close="onClose()"></div>
     <div id="top-grid" class="col s12" ng-if="!hideTop">
-        <h3 class="main-title">TOP 5</h3>
-        <div tracks-grid grid-tracks="artists">
-            <!-- Top Tracks Grid -->
+        <h3 class="main-title">TRENDING ARTISTS</h3>
+        <div tracks-grid grid-tracks="artists" remove="{'album': true, 'artist': true}">
+            <!-- Top Artists Grid -->
         </div>
     </div>
     <div id="search-results" class="col s12" ng-if="isSearch">
@@ -14,22 +14,22 @@
             </div>
             <div class="row search-item" ng-repeat="artist in searchedArtists">
                 <div class="img-box col s12 m6">
-                    <div class="search-img" ng-click="newTab(artist.url)" ng-style="{'background-image':'url(' + (artist.image.length ? artist.image[artist.image.length - 1]['#text'] : 'assets/img/logo-simple-256x256.png') + ')'}"></div>
+                    <div class="search-img" ng-click="newTab(artist.url)" ng-style="(artist.imgsDone) ? {'background-image':'url(' + (artist.image.length ? artist.image[artist.image.length - 1]['#text'] : 'assets/img/logo-simple-256x256.png') + ')'} : {}"></div>
                 </div>
                 <div class="meta-data col s12 m6">
-                    <div class="title">
+                    <div class="title" ng-if="artist.name">
                         <a href="{{ artist.url }}">{{ artist.name }}</a>
                     </div>
-                    <div class="summary" ng-if="artist.info.bio.summary !== undefined && stripLink(artist.info.bio.summary) != ''">
-                        {{ stripLink(artist.info.bio.summary) }} |  <a href="{{ artist.info.bio.links.link.href }}">Read more.</a>
+                    <div class="summary" ng-if="artist.info.bio.summary && stripLink(artist.info.bio.summary) != ''">
+                        {{ stripLink(artist.info.bio.summary) }} |  <a href="{{ artist.info.bio.links.link.href }}" target="_blank">Read more.</a>
                     </div>
-                    <div class="listeners">Listeners: {{ artist.listeners }}</div>
-                    <div class="playcount" ng-if="artist.info !== undefined">Play Count: {{ artist.info.stats.playcount }}</div>
-                    <div class="similar" ng-if="artist.info !== undefined">
-                        <a ng-repeat="similar in artist.info.similar.artist" href="{{ similar.url }}">{{ similar.name }}</a>
+                    <div class="listeners" ng-if="artist.listenersy">Listeners: {{ artist.listeners }}</div>
+                    <div class="playcount" ng-if="artist.info.stats.playcount">Play Count: {{ artist.info.stats.playcount }}</div>
+                    <div class="similar" ng-if="artist.info.similar.artist && artist.info.similar.artist.length != 0">
+                        Similar: <a ng-repeat="similar in artist.info.similar.artist" href="{{ similar.url }}">{{ similar.name }}</a>
                     </div>
-                    <div class="tags" ng-if="artist.info !== undefined">
-                        <a ng-repeat="tag in artist.info.tags.tag" href="{{ tag.url }}">{{ tag.name }}</a>
+                    <div class="tags" ng-if="artist.info.tags.tag && artist.info.tags.tag.length != 0">
+                        Tags: <a ng-repeat="tag in artist.info.tags.tag" href="{{ tag.url }}">{{ tag.name }}</a>
                     </div>
                 </div>
             </div>

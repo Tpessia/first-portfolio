@@ -59,7 +59,9 @@ body {
                     .summary {
 
                     }
-                    .similar, .tags {
+                    .similar,
+                    .tags,
+                    .album-tracks {
                         a {
                             line-height: 2;
                             padding: 2px 5px;
@@ -72,7 +74,8 @@ body {
                             }
                         }
                     }
-                    .similar {
+                    .similar,
+                    .album-tracks {
                         a {
                             background-color: $primary-color-l;
                         }

@@ -1,7 +1,7 @@
 <h4>TOP TRACKS</h4>
 <ul id="top-tracks" class="collection">
     <li ng-repeat="track in tracks" class="collection-item avatar">
-        <img ng-src="{{ track.image[1]['#text'] }}" alt="{{ track.name }}" class="circle">
+        <img ng-src="{{ (track.imgsDone) ? track.image[1]['#text'] : '' }}" alt="{{ track.name }}" class="circle">
         <div class="title track-name">{{ track.name }}</div>
         <a href="{{ track.artist.url }}" class="artist-name"><small>{{ track.artist.name }}</small></a>
         <p class="description">

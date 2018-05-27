@@ -19,11 +19,11 @@ app.config(function ($routeProvider, $locationProvider) {
                 controller: 'ArtistsController',
                 templateUrl: 'app/artists/artists.partial.html'
             })
-        .when('/albuns',
+        .when('/albums',
             {
-                title: 'Albuns',
-                controller: 'AlbunsController',
-                templateUrl: 'app/albuns/albuns.partial.html'
+                title: 'Albums',
+                controller: 'AlbumsController',
+                templateUrl: 'app/albums/albums.partial.html'
             })
         .otherwise({ redirectTo: '/' });
 

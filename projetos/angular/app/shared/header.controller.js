@@ -9,8 +9,8 @@ app.controller("HeaderController", function ($scope, $location, topsService) {
             text: 'Artists',
             url: '/artists'
         }, {
-            text: 'Albuns',
-            url: '/albuns'
+            text: 'Albums',
+            url: '/albums'
         }
     ];
     

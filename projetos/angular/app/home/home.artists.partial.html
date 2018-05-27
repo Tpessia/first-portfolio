@@ -1,7 +1,7 @@
 <h4>TOP ARTISTS</h4>
 <ul id="top-artists" class="collection">
     <li ng-repeat="artist in artists" class="collection-item avatar">
-        <img ng-src="{{ artist.image[1]['#text'] }}" alt="{{ artist.name }}" class="circle">
+        <img ng-src="{{ (artist.imgsDone) ? artist.image[1]['#text'] : '' }}" alt="{{ artist.name }}" class="circle">
         <div class="title artist-name">{{ artist.name }}</div>
         <p class="description">
             Play Count: {{ artist.playcount }}

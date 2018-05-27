@@ -1,3 +1,0 @@
-app.service("albunsService", function () {
-    
-});

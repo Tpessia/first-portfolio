@@ -1,5 +1,6 @@
 <form class="search-wide" ng-submit="onSubmit(key)" ng-class="{ 'z-depth-3': isFocus }">
     <input type="search" placeholder="Search for {{ searchFor }}" ng-model="key" ng-focus="isFocus = true" ng-blur="isFocus = false" ng-class="{ 'is-focus': isFocus }">
-    <i class="material-icons" ng-click="onSubmit(key)" ng-if="!searching">arrow_forward</i>
-    <i class="material-icons" ng-click="close()" ng-if="searching">close</i>
+    <i class="material-icons left-icon">search</i>
+    <i class="material-icons right-icon" ng-click="onSubmit(key)" ng-if="!searching">arrow_forward</i>
+    <i class="material-icons right-icon" ng-click="close()" ng-if="searching">close</i>
 </form>

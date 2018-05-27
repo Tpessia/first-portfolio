@@ -14,28 +14,36 @@ app.controller("ArtistsController", function ($scope, artistsService, topsServic
         }
 
         topsService.getTopArtists(page, limit).then(function (response) {
-            $scope.artists = response.data.artists.artist.slice(-limit);
 
-            for (var i in $scope.artists) {
-                (function (j) {
-                    artistsService.getArtistInfo($scope.artists[j].name).then(function (response) {
-                        if (typeof response.data.error === "undefined") {
-                            if (typeof response.data.artist !== "undefined") {
-                                $scope.artists[j].info = response.data.artist;
-                                if (typeof response.data.artist.image !== "undefined" && response.data.artist.image[0]["#text"] != "") {
-                                    $scope.artists[j].image = response.data.artist.image;
+            if (typeof response.data.error === "undefined") {
+                $scope.artists = response.data.artists.artist.slice(-limit);
+
+                for (var i in $scope.artists) {
+                    (function (j) {
+                        artistsService.getArtistInfo($scope.artists[j].name).then(function (response) {
+                            if (typeof response.data.error === "undefined") {
+                                if (typeof response.data.artist !== "undefined") {
+                                    $scope.artists[j].info = response.data.artist;
+                                    if (typeof response.data.artist.image !== "undefined" && response.data.artist.image[0]["#text"] != "") {
+                                        $scope.artists[j].image = response.data.artist.image;
+                                    }
                                 }
+                            } else {
+                                console.log(response);
                             }
-                        } else {
-                            console.log(response.data);
-                        }
-                    }, function (errResponse) {
-                        console.log(errResponse)
-                    });
-                })(i)
-            }
 
-            console.log(response.data);
+                            $scope.artists[j].imgsDone = true;
+                        }, function (errResponse) {
+                            $scope.artists[j].imgsDone = true;
+
+                            console.log(errResponse)
+                        });
+                    })(i)
+                }
+            }
+            else {
+                console.log(response);
+            }
         }, function (errResponse) {
             console.log(errResponse);
         });
@@ -50,30 +58,35 @@ app.controller("ArtistsController", function ($scope, artistsService, topsServic
         }
 
         artistsService.getArtistSearch(artist, page, limit).then(function (response) {
+            if (typeof response.data.error === "undefined") {
+                $scope.searchedArtists = response.data.results.artistmatches.artist.slice(-limit);
 
-            $scope.searchedArtists = response.data.results.artistmatches.artist.slice(-limit);
-
-            for (var i in $scope.searchedArtists) {
-                (function (j) {
-                    artistsService.getArtistInfo($scope.searchedArtists[j].name).then(function (response) {
-                        if (typeof response.data.error === "undefined") {
-                            if (typeof response.data.artist !== "undefined") {
-                                $scope.searchedArtists[j].info = response.data.artist;
-                                if (typeof response.data.artist.image !== "undefined" && response.data.artist.image[0]["#text"] != "") {
-                                    $scope.searchedArtists[j].image = response.data.artist.image;
+                for (var i in $scope.searchedArtists) {
+                    (function (j) {
+                        artistsService.getArtistInfo($scope.searchedArtists[j].name).then(function (response) {
+                            if (typeof response.data.error === "undefined") {
+                                if (typeof response.data.artist !== "undefined") {
+                                    $scope.searchedArtists[j].info = response.data.artist;
+                                    if (typeof response.data.artist.image !== "undefined" && response.data.artist.image[0]["#text"] != "") {
+                                        $scope.searchedArtists[j].image = response.data.artist.image;
+                                    }
                                 }
+                            } else {
+                                console.log(response.data);
                             }
-                        }
-                        else {
-                            console.log(response.data);
-                        }
-                    }, function (errResponse) {
-                        console.log(errResponse)
-                    });
-                })(i)
-            }
 
-            console.log(response.data);
+                            $scope.searchedArtists[j].imgsDone = true;
+                        }, function (errResponse) {
+                            $scope.searchedArtists[j].imgsDone = true;
+                            
+                            console.log(errResponse)
+                        });
+                    })(i)
+                }
+            }
+            else {
+                console.log(response);
+            }
         }, function (errResponse) {
             console.log(errResponse);
         });

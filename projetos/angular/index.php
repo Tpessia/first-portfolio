@@ -20,7 +20,7 @@
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo">
                     <!-- <img src="assets/img/logo.png" alt="Noise Polution" class="hide-on-small-only"> -->
-                    <img src="assets/img/logo-simple.png" alt="NP">
+                    <img src="assets/img/logo-simple-raw-256x256.png" alt="NP">
                 </a>
                 <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -41,8 +41,8 @@
             <div class="img-wrapper" ng-style="{'background-image':'url(' + topsImg.img3 + ')'}"></div>
             <div id="bannerOverlay">
                 <div id="bannerText">
-                    <img id="img-logo" src="assets/img/logo.png">
-                    Your Tracks, Artists and Albuns in a single place
+                    <img id="img-logo" src="assets/img/logo-raw-512x512.png">
+                    Your Tracks, Artists and Albums in a single place
                 </div>
             </div>
         </div>

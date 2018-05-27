@@ -1,7 +1,8 @@
 app.directive('tracksGrid', function () {
     return {
         scope: {
-            gridTracks: '='
+            gridTracks: '=',
+            remove: '='
         },
         controller: 'TracksGridController',
         templateUrl: 'app/directives/tracksgrid.partial.html'

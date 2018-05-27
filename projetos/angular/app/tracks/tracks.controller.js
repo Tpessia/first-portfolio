@@ -14,28 +14,35 @@ app.controller("TracksController", function ($scope, tracksService, topsService)
         }
 
         topsService.getTopTracks(page, limit).then(function (response) {
-            $scope.tracks = response.data.tracks.track.slice(-limit);
+            if (typeof response.data.error === "undefined") {
+                $scope.tracks = response.data.tracks.track.slice(-limit);
 
-            for (var i in $scope.tracks) {
-                (function (j) {
-                    tracksService.getTrackInfo($scope.tracks[j].artist.name, $scope.tracks[j].name).then(function (response) {
-                        if (typeof response.data.error === "undefined") {
-                            if (typeof response.data.track !== "undefined") {
-                                $scope.tracks[j].info = response.data.track;
-                                if (typeof response.data.track.album !== "undefined" && response.data.track.album.image[0]["#text"] != "") {
-                                    $scope.tracks[j].image = response.data.track.album.image;
+                for (var i in $scope.tracks) {
+                    (function (j) {
+                        tracksService.getTrackInfo($scope.tracks[j].artist.name, $scope.tracks[j].name).then(function (response) {
+                            if (typeof response.data.error === "undefined") {
+                                if (typeof response.data.track !== "undefined") {
+                                    $scope.tracks[j].info = response.data.track;
+                                    if (typeof response.data.track.album !== "undefined" && response.data.track.album.image[0]["#text"] != "") {
+                                        $scope.tracks[j].image = response.data.track.album.image;
+                                    }
                                 }
+                            } else {
+                                console.log(response);
                             }
-                        } else {
-                            console.log(response.data);
-                        }
-                    }, function (errResponse) {
-                        console.log(errResponse)
-                    });
-                })(i)
-            }
 
-            console.log(response.data);
+                            $scope.tracks[j].imgsDone = true;
+                        }, function (errResponse) {
+                            $scope.tracks[j].imgsDone = true;
+
+                            console.log(errResponse)
+                        });
+                    })(i)
+                }
+            }
+            else {
+                console.log(response);
+            }
         }, function (errResponse) {
             console.log(errResponse);
         });
@@ -50,30 +57,35 @@ app.controller("TracksController", function ($scope, tracksService, topsService)
         }
 
         tracksService.getTrackSearch(track, page, limit).then(function (response) {
+            if (typeof response.data.error === "undefined") {
+                $scope.searchedTracks = response.data.results.trackmatches.track.slice(-limit);
 
-            $scope.searchedTracks = response.data.results.trackmatches.track.slice(-limit);
-
-            for (var i in $scope.searchedTracks) {
-                (function (j) {
-                    tracksService.getTrackInfo($scope.searchedTracks[j].artist, $scope.searchedTracks[j].name).then(function (response) {
-                        if (typeof response.data.error === "undefined") {
-                            if (typeof response.data.track !== "undefined") {
-                                $scope.searchedTracks[j].info = response.data.track;
-                                if (typeof response.data.track.album !== "undefined" && response.data.track.album.image[0]["#text"] != "") {
-                                    $scope.searchedTracks[j].image = response.data.track.album.image;
+                for (var i in $scope.searchedTracks) {
+                    (function (j) {
+                        tracksService.getTrackInfo($scope.searchedTracks[j].artist, $scope.searchedTracks[j].name).then(function (response) {
+                            if (typeof response.data.error === "undefined") {
+                                if (typeof response.data.track !== "undefined") {
+                                    $scope.searchedTracks[j].info = response.data.track;
+                                    if (typeof response.data.track.album !== "undefined" && response.data.track.album.image[0]["#text"] != "") {
+                                        $scope.searchedTracks[j].image = response.data.track.album.image;
+                                    }
                                 }
+                            } else {
+                                console.log(response);
                             }
-                        }
-                        else {
-                            console.log(response.data);
-                        }
-                    }, function (errResponse) {
-                        console.log(errResponse)
-                    });
-                })(i)
-            }
 
-            console.log(response.data);
+                            $scope.searchedTracks[j].imgsDone = true;
+                        }, function (errResponse) {
+                            $scope.searchedTracks[j].imgsDone = true;
+                            
+                            console.log(errResponse)
+                        });
+                    })(i)
+                }
+            }
+            else {
+                console.log(response);
+            }
         }, function (errResponse) {
             console.log(errResponse);
         });
