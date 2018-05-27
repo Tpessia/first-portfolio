@@ -48,17 +48,14 @@ Header unset X-UA-Compatible
 </FilesMatch>
 </IfModule>
 
-#text.xyz -> http://www.test.xyz
-# RewriteEngine On
-# RewriteCond %{HTTP_HOST} !^www\.pessia\.xyz$ [NC]
-# RewriteRule ^(.*)$ http://www.pessia.xyz/$1 [L,R=301]
-
 #Redirect
 RewriteEngine On
 RewriteCond %{HTTP_HOST} !=localhost
 RewriteCond %{HTTP_HOST} !=127.0.0.1
+RewriteCond %{HTTP_HOST} !=192.168.1.7:8080
 RewriteCond %{REMOTE_ADDR} !=127.0.0.1
 RewriteCond %{REMOTE_ADDR} !=::1
+RewriteCond %{REMOTE_ADDR} !=192.168.1.7:8080
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} !^www\.pessia\.xyz$ [NC]
 RewriteRule ^(.*)$ https://www.pessia.xyz/$1 [L,R=301]
