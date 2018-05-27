@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ title !== undefined && title != '' ?  title + ' - ' : '' }}Noise Pollution</title>
+    <title>{{ title !== undefined && title != '' ?  title + ' | ' : '' }}Noise Pollution</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -40,7 +40,10 @@
             <div class="img-wrapper" ng-style="{'background-image':'url(' + topsImg.img2 + ')'}"></div>
             <div class="img-wrapper" ng-style="{'background-image':'url(' + topsImg.img3 + ')'}"></div>
             <div id="bannerOverlay">
-                <div id="bannerText">Your Tracks, Artists and Albuns in a single place</div>
+                <div id="bannerText">
+                    <img id="img-logo" src="assets/img/logo.png">
+                    Your Tracks, Artists and Albuns in a single place
+                </div>
             </div>
         </div>
     </header>

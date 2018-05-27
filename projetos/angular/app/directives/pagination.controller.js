@@ -42,8 +42,11 @@ app.controller("PaginationController", function ($scope) {
     // Action Function
 
     $scope.$watch('currentPage', function (newVal, oldVal) {
-        // if (newVal !== oldVal) { // prevent running on start
+        if ($scope.runOnInit) {
             $scope.pageChangeFunc({ page: newVal });
-        // }
+        }
+        else if (newVal !== oldVal) { // prevent running on start
+            $scope.pageChangeFunc({ page: newVal });
+        }
     });
 });

@@ -1,0 +1,90 @@
+body {
+    #top-grid {
+
+    }
+    #search-results {
+        .results {
+            .not-found {
+                margin: 25px 15px 15px;
+            }
+            .search-item {
+                &:not(:last-child) {
+                    padding-bottom: 20px;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+                }
+                .img-box {
+                    .search-img {
+                        cursor: pointer;
+                        padding-top: 100%;
+                        position: relative;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: cover;
+                        @media (max-width: 600px) {
+                            margin-bottom: 20px;
+                        }
+                    }
+                }
+                .meta-data {
+                    a {
+                        color: rgba(0, 0, 0, 0.87);
+                        &:hover {
+                            text-decoration : underline;
+                        }
+                    }
+                    div {
+                        font-size: 1.1rem;
+                        margin-bottom: 5px;
+                    }
+                    .title {
+                        font-size: 2rem;
+                        line-height: 1.2;
+                        margin-bottom: 15px;
+                    }
+                    .artist {
+
+                    }
+                    .album {
+
+                    }
+                    .duration {
+
+                    }
+                    .listeners {
+
+                    }
+                    .playcount {
+
+                    }
+                    .summary {
+
+                    }
+                    .similar, .tags {
+                        a {
+                            line-height: 2;
+                            padding: 2px 5px;
+                            margin: 0 4px;
+                            &:first-child {
+                                margin-left: 0;
+                            }
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                        }
+                    }
+                    .similar {
+                        a {
+                            background-color: $primary-color-l;
+                        }
+                    }
+                    .tags {
+                        a {
+                            background-color: rgba(0,0,0,0.87);
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,44 @@
+<div class="row tracks">
+    <div class="col s12 search" search-wide search-for="'Tracks'" on-search="onSearch(searchKey)" on-close="onClose()"></div>
+    <div id="top-grid" class="col s12" ng-if="!hideTop">
+        <h3 class="main-title">TOP 5</h3>
+        <div tracks-grid grid-tracks="tracks">
+            <!-- Top Tracks Grid -->
+        </div>
+    </div>
+    <div id="search-results" class="col s12" ng-if="isSearch">
+        <h3 class="main-title">RESULTS FOR "{{ searchKey }}"</h3>
+        <div class="results">
+            <div class="not-found" ng-show="!searchedTracks.length">
+                No results for "{{ searchKey }}"
+            </div>
+            <div class="row search-item" ng-repeat="track in searchedTracks">
+                <div class="img-box col s12 m6">
+                    <div class="search-img" ng-click="newTab(track.url)" ng-style="{'background-image':'url(' + (track.image.length ? track.image[track.image.length - 1]['#text'] : 'assets/img/logo-simple-256x256.png') + ')'}"></div>
+                </div>
+                <div class="meta-data col s12 m6">
+                    <div class="title">
+                        <a href="{{ track.url }}">{{ track.name }}</a>
+                    </div>
+                    <div class="artist">
+                        <a href="{{ track.info.artist.url }}" ng-if="track.info.artist.name !== undefined">
+                            Artist: {{ track.info.artist.name }}
+                        </a>
+                        <span ng-if="track.info.artist.name === undefined">
+                            Artist: {{ track.artist }}
+                        </span>
+                    </div>
+                    <div class="album" ng-if="track.info.album !== undefined">
+                        <a href="{{ track.info.album.url }}">
+                            Album: {{ track.info.album.title }}
+                        </a>
+                    </div>
+                    <div class="duration" ng-if="track.info.duration !== undefined && track.info.duration != 0">Duration: {{ formatDuration(track.info.duration) }}</div>
+                    <div class="listeners">Listeners: {{ track.listeners }}</div>
+                    <div class="playcount" ng-if="track.info !== undefined">Play Count: {{ track.info.playcount  }}</div>
+                </div>
+            </div>
+        </div>
+        <div materialize-pag run-on-init="false" max-page="5" page-change-func="onPageChange(page)"></div>
+    </div>
+</div>

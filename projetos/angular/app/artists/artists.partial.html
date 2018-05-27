@@ -1,0 +1,39 @@
+<div class="row tracks">
+    <div class="col s12 search" search-wide search-for="'Artists'" on-search="onSearch(searchKey)" on-close="onClose()"></div>
+    <div id="top-grid" class="col s12" ng-if="!hideTop">
+        <h3 class="main-title">TOP 5</h3>
+        <div tracks-grid grid-tracks="artists">
+            <!-- Top Tracks Grid -->
+        </div>
+    </div>
+    <div id="search-results" class="col s12" ng-if="isSearch">
+        <h3 class="main-title">RESULTS FOR "{{ searchKey }}"</h3>
+        <div class="results">
+            <div class="not-found" ng-show="!searchedArtists.length">
+                No results for "{{ searchKey }}"
+            </div>
+            <div class="row search-item" ng-repeat="artist in searchedArtists">
+                <div class="img-box col s12 m6">
+                    <div class="search-img" ng-click="newTab(artist.url)" ng-style="{'background-image':'url(' + (artist.image.length ? artist.image[artist.image.length - 1]['#text'] : 'assets/img/logo-simple-256x256.png') + ')'}"></div>
+                </div>
+                <div class="meta-data col s12 m6">
+                    <div class="title">
+                        <a href="{{ artist.url }}">{{ artist.name }}</a>
+                    </div>
+                    <div class="summary" ng-if="artist.info.bio.summary !== undefined && stripLink(artist.info.bio.summary) != ''">
+                        {{ stripLink(artist.info.bio.summary) }} |  <a href="{{ artist.info.bio.links.link.href }}">Read more.</a>
+                    </div>
+                    <div class="listeners">Listeners: {{ artist.listeners }}</div>
+                    <div class="playcount" ng-if="artist.info !== undefined">Play Count: {{ artist.info.stats.playcount }}</div>
+                    <div class="similar" ng-if="artist.info !== undefined">
+                        <a ng-repeat="similar in artist.info.similar.artist" href="{{ similar.url }}">{{ similar.name }}</a>
+                    </div>
+                    <div class="tags" ng-if="artist.info !== undefined">
+                        <a ng-repeat="tag in artist.info.tags.tag" href="{{ tag.url }}">{{ tag.name }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div materialize-pag run-on-init="false" max-page="5" page-change-func="onPageChange(page)"></div>
+    </div>
+</div>
