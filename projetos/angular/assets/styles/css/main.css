@@ -158,7 +158,8 @@ body {
           margin-top: 9px; }
     body main .search-wide {
       position: relative;
-      transition: 0.5s box-shadow; }
+      transition: 0.5s box-shadow;
+      margin-bottom: 15px; }
       body main .search-wide .material-icons {
         position: absolute;
         top: 50%;
