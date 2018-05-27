@@ -27,6 +27,12 @@
         "img": "/assets/img/habilidades/materialize.png",
         "level": "60"
     },
+    "AngularJS":
+    { 
+        "name": "AngularJS",
+        "img": "/assets/img/habilidades/angularjs.png",
+        "level": "50"
+    },
     "Bootstrap": 
     { 
         "name": "Bootstrap",

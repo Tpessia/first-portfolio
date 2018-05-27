@@ -38,5 +38,25 @@
         "iswhite": "",
         "url": "https://www.promonestle.com.br/nesfitsmartfit",
         "fallback_url": "/assets/img/projetos/nesfit-smartfit-fallback.png"
+    },
+    "Clima São Paulo": 
+    { 
+        "name": "Clima São Paulo",
+        "id": "4", 
+        "description": "Mecanismo de pesquisa do histórico climático da cidade de São Paulo, com dados a partir de 30/06/1996.",
+        "img": "/assets/img/projetos/clima-sao-paulo.jpg",
+        "iswhite": "iswhite",
+        "url": "http://www.pessia.xyz/projetos/clima/",
+        "fallback_url": "/assets/img/projetos/clima-sao-paulo-fallback.png"
+    },
+    "Noise Pollution": 
+    { 
+        "name": "Noise Pollution",
+        "id": "3", 
+        "description": "Web App desenvolvido em AngularJS, com ferramentas de pesquisa e ranking para músicas, artistas e albums.",
+        "img": "/assets/img/projetos/noise-pollution.jpg",
+        "iswhite": "iswhite",
+        "url": "http://www.pessia.xyz/projetos/angular/",
+        "fallback_url": "/assets/img/projetos/noise-pollution-fallback.png"
     }
 }
