@@ -74,10 +74,11 @@ body {
           left: 50%;
           transform: translate(-50%, -50%); }
           body header #banner #bannerOverlay #bannerText #img-logo {
+            max-width: 350px;
             display: block;
             margin: 0 auto;
             width: 40%;
-            margin-bottom: 20px; }
+            margin-bottom: 10px; }
             @media (max-width: 600px) {
               body header #banner #bannerOverlay #bannerText #img-logo {
                 width: 55%; } }
