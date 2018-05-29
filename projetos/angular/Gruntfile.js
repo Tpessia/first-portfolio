@@ -21,7 +21,7 @@ module.exports = function (grunt) {
             },
             my_target: {
                 files: {
-                    'app/app.min.js': ['app/app.js', 'app/directives/*.js', 'app/services/*.js', 'app/*/*.controller.js']
+                    'app/app.min.js': ['app/app.js', 'app/directives/*/*.js', 'app/services/*.js', 'app/*/*.controller.js']
                 }
             }
         },
@@ -33,7 +33,7 @@ module.exports = function (grunt) {
             },
 
             uglify: {
-                files: ['app/{,*/}*.js', '!app/app.min.js'],
+                files: ['app/**/*.js', '!app/app.min.js'],
                 tasks: ['uglify']
             }
         },

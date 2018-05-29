@@ -2,7 +2,7 @@
     <div class="col s12 search" search-wide search-for="'Albums'" on-search="onSearch(searchKey)" on-close="onClose()"></div>
     <div id="top-grid" class="col s12" ng-if="!hideTop">
         <h3 class="main-title">TRENDING ALBUMS</h3>
-        <div tracks-grid grid-tracks="albums" remove="{'album': true}">
+        <div grid-albums series="albums">
             <!-- Top Albums Grid -->
         </div>
     </div>
@@ -35,6 +35,9 @@
                     </div>
                     <div class="tags" ng-if="album.info.tags.tag && album.info.tags.tag.length != 0">
                         Tags: <a ng-repeat="tag in album.info.tags.tag" href="{{ tag.url }}">{{ tag.name }}</a>
+                    </div>
+                    <div class="listen">
+                        <button class="btn" ng-click="ytVideo.open({ type: 'playlist', artist: album.artist, album: album.name })">Listen</button>
                     </div>
                 </div>
             </div>

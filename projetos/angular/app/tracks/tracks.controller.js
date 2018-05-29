@@ -1,4 +1,4 @@
-app.controller("TracksController", function ($scope, tracksService, topsService) {
+app.controller("TracksController", function ($rootScope, $scope, tracksService, topsService) {
     var dft = {
         page: 1,
         limit: 5
@@ -137,4 +137,11 @@ app.controller("TracksController", function ($scope, tracksService, topsService)
     $scope.newTab = function (url) {
         window.open(url);
     };
+
+    $scope.ytVideo = {
+        open: function (videoData) {
+            $rootScope.$broadcast('ytPlayVideo', videoData);
+            // { type: 'video', artist: 'Portugal. The Man', track: 'Noise Pollution' }
+        }
+    }
 });

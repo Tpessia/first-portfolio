@@ -2,7 +2,7 @@
     <div class="col s12 search" search-wide search-for="'Tracks'" on-search="onSearch(searchKey)" on-close="onClose()"></div>
     <div id="top-grid" class="col s12" ng-if="!hideTop">
         <h3 class="main-title">TRENDING TRACKS</h3>
-        <div tracks-grid grid-tracks="tracks">
+        <div grid-tracks series="tracks">
             <!-- Top Tracks Grid -->
         </div>
     </div>
@@ -36,6 +36,9 @@
                     <div class="duration" ng-if="track.info.duration && track.info.duration != 0">Duration: {{ formatDuration(track.info.duration) }}</div>
                     <div class="listeners">Listeners: {{ track.listeners }}</div>
                     <div class="playcount" ng-if="track.info">Play Count: {{ track.info.playcount  }}</div>
+                    <div class="listen">
+                        <button class="btn" ng-click="ytVideo.open({ type: 'video', artist: track.artist, track: track.name })">Listen</button>
+                    </div>
                 </div>
             </div>
         </div>

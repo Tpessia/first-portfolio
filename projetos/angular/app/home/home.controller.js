@@ -11,7 +11,7 @@ app.controller("HomeController", function ($scope, topsService, tracksService) {
             var limit = dft.limit;
         }
 
-        var page = Math.round(Math.random() * 15);
+        var page = 1 + Math.floor(Math.random() * 14);
 
         topsService.getTopTracks(page, limit).then(function (response) {
             if (typeof response.data.error === "undefined") {

@@ -41,24 +41,30 @@ body {
                         line-height: 1.2;
                         margin-bottom: 15px;
                     }
-                    .artist {
-
+                    .listen {
+                        margin-top: 10px;
+                        .btn {
+                            background-color: $primary-color-l;
+                        }
                     }
-                    .album {
+                    // .artist {
 
-                    }
-                    .duration {
+                    // }
+                    // .album {
 
-                    }
-                    .listeners {
+                    // }
+                    // .duration {
 
-                    }
-                    .playcount {
+                    // }
+                    // .listeners {
 
-                    }
-                    .summary {
+                    // }
+                    // .playcount {
 
-                    }
+                    // }
+                    // .summary {
+
+                    // }
                     .similar,
                     .tags,
                     .album-tracks {

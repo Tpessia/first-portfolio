@@ -31,7 +31,7 @@ app.controller("ArtistsController", function ($scope, artistsService, topsServic
                             } else {
                                 console.log(response);
                             }
-
+                            
                             $scope.artists[j].imgsDone = true;
                         }, function (errResponse) {
                             $scope.artists[j].imgsDone = true;
@@ -133,4 +133,11 @@ app.controller("ArtistsController", function ($scope, artistsService, topsServic
     $scope.newTab = function (url) {
         window.open(url);
     };
+
+    $scope.ytVideo = {
+        open: function (videoData) {
+            $rootScope.$broadcast('ytPlayVideo', videoData);
+            // { type: 'video', artist: 'Portugal. The Man', track: 'Noise Pollution' }
+        }
+    }
 });

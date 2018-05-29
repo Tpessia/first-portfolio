@@ -6,6 +6,6 @@ app.directive('searchWide', function () {
             onClose: '&'
         },
         controller: 'SearchController',
-        templateUrl: 'app/directives/search.partial.html'
+        templateUrl: 'app/directives/search/search.partial.html'
     };
 });

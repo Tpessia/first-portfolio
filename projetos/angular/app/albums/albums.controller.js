@@ -1,4 +1,4 @@
-app.controller("AlbumsController", function ($scope, albumsService, topsService, artistsService) {
+app.controller("AlbumsController", function ($rootScope, $scope, albumsService, topsService, artistsService) {
     var dft = {
         page: 1,
         limit: 5
@@ -21,7 +21,7 @@ app.controller("AlbumsController", function ($scope, albumsService, topsService,
                 for (var i in topTracks) {
                     (function (j) {
                         var artist = topTracks[j].artist.name,
-                            rndPage = Math.floor(Math.random() * 3);
+                            rndPage = 1 + Math.floor(Math.random() * 2);
 
                         artistsService.getTopAlbums(artist, rndPage, 1).then(function (response) { // get random album
                             if (typeof response.data.error === "undefined") {
@@ -42,7 +42,7 @@ app.controller("AlbumsController", function ($scope, albumsService, topsService,
                                         else {
                                             console.log(response);
                                         }
-
+                                        
                                         $scope.albums[j].imgsDone = true;
                                     }, function (errResponse) {
                                         $scope.albums[j].imgsDone = true;
@@ -156,5 +156,12 @@ app.controller("AlbumsController", function ($scope, albumsService, topsService,
 
     $scope.getSummaryLink = function (text) {
         return text.match(/<a(.|\n)*?<\/a>/)[0].match(/href="(.|\n)*?"/)[0].replace('href="', '').replace('"', '');
+    }
+
+    $scope.ytVideo = {
+        open: function (videoData) {
+            $rootScope.$broadcast('ytPlayVideo', videoData);
+            // { type: 'video', artist: 'Portugal. The Man', track: 'Noise Pollution' }
+        }
     }
 });

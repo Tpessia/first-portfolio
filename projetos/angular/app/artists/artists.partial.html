@@ -2,7 +2,7 @@
     <div class="col s12 search" search-wide search-for="'Artists'" on-search="onSearch(searchKey)" on-close="onClose()"></div>
     <div id="top-grid" class="col s12" ng-if="!hideTop">
         <h3 class="main-title">TRENDING ARTISTS</h3>
-        <div tracks-grid grid-tracks="artists" remove="{'album': true, 'artist': true}">
+        <div grid-artists series="artists">
             <!-- Top Artists Grid -->
         </div>
     </div>

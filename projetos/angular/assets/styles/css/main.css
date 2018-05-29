@@ -101,114 +101,6 @@ body {
     body main .main-title {
       padding-bottom: 10px;
       border-bottom: 4px solid #ff5722; }
-    body main [materialize-pag] {
-      overflow-x: visible; }
-      body main [materialize-pag] .pagination {
-        text-align: center;
-        margin-top: 0;
-        margin-bottom: 0;
-        padding: 15px 0; }
-        body main [materialize-pag] .pagination .active {
-          background-color: #ff7043; }
-    body main .tracks-grid .main-col {
-      margin-bottom: 20px; }
-    body main .tracks-grid .img-cover {
-      padding-top: 100%;
-      position: relative;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      cursor: pointer; }
-      body main .tracks-grid .img-cover:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        transition: 0.3s background-color;
-        cursor: pointer; }
-      body main .tracks-grid .img-cover:hover:before {
-        background-color: rgba(255, 255, 255, 0.25); }
-      body main .tracks-grid .img-cover .meta-wrapper {
-        z-index: 1;
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        margin-right: 10px; }
-        body main .tracks-grid .img-cover .meta-wrapper:hover {
-          z-index: 1; }
-        body main .tracks-grid .img-cover .meta-wrapper a {
-          display: inline-block;
-          padding: 3px 8px;
-          background: rgba(0, 0, 0, 0.6);
-          color: rgba(255, 255, 255, 0.9);
-          white-space: nowrap;
-          transition: 0.5s background-color; }
-          body main .tracks-grid .img-cover .meta-wrapper a:hover {
-            background-color: black;
-            text-decoration: underline; }
-        body main .tracks-grid .img-cover .meta-wrapper .title a {
-          font-weight: 500; }
-        body main .tracks-grid .img-cover .meta-wrapper .album {
-          margin-top: 5px; }
-          body main .tracks-grid .img-cover .meta-wrapper .album a {
-            font-weight: 300;
-            font-size: 13px; }
-        body main .tracks-grid .img-cover .meta-wrapper .artist {
-          margin-top: 9px; }
-      body main .tracks-grid .img-cover .youtube-icon {
-        position: absolute;
-        top: 10px;
-        right: 10px; }
-        body main .tracks-grid .img-cover .youtube-icon img {
-          width: 35px; }
-    body main .search-wide {
-      position: relative;
-      transition: 0.5s box-shadow;
-      margin-bottom: 15px; }
-      body main .search-wide .material-icons {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        color: rgba(0, 0, 0, 0.5);
-        transition: .5s color; }
-        body main .search-wide .material-icons.left-icon {
-          left: 10px;
-          font-size: 2.3rem;
-          cursor: default; }
-        body main .search-wide .material-icons.right-icon {
-          right: 15px;
-          font-size: 2.5rem;
-          cursor: pointer; }
-      body main .search-wide input {
-        margin: 0 !important;
-        padding: 0 55px !important;
-        box-sizing: border-box !important;
-        font-size: 1.5rem !important;
-        height: 3.5rem !important;
-        border-bottom: 1px solid #ffccbc !important;
-        box-shadow: 0 1px 0 0 #ffccbc !important; }
-        body main .search-wide input::placeholder {
-          color: rgba(0, 0, 0, 0.5);
-          transition: .5s color; }
-        body main .search-wide input:-ms-input-placeholder {
-          color: rgba(0, 0, 0, 0.5);
-          transition: .5s color; }
-        body main .search-wide input::-ms-input-placeholder {
-          color: rgba(0, 0, 0, 0.5);
-          transition: .5s color; }
-        body main .search-wide input.is-focus {
-          border-bottom: 1px solid #ff7043 !important;
-          box-shadow: 0 1px 0 0 #ff7043 !important; }
-          body main .search-wide input.is-focus::placeholder {
-            color: rgba(0, 0, 0, 0.65); }
-          body main .search-wide input.is-focus:-ms-input-placeholder {
-            color: rgba(0, 0, 0, 0.65); }
-          body main .search-wide input.is-focus::-ms-input-placeholder {
-            color: rgba(0, 0, 0, 0.65); }
-          body main .search-wide input.is-focus ~ .material-icons {
-            color: rgba(0, 0, 0, 0.75); }
   body footer {
     background-color: #050505 !important; }
   body .clearfix::after {
@@ -284,6 +176,10 @@ body #search-results .results .search-item .meta-data .title {
   font-size: 2rem;
   line-height: 1.2;
   margin-bottom: 15px; }
+body #search-results .results .search-item .meta-data .listen {
+  margin-top: 10px; }
+  body #search-results .results .search-item .meta-data .listen .btn {
+    background-color: #ff7043; }
 body #search-results .results .search-item .meta-data .similar a,
 body #search-results .results .search-item .meta-data .tags a,
 body #search-results .results .search-item .meta-data .album-tracks a {
@@ -304,5 +200,168 @@ body #search-results .results .search-item .meta-data .album-tracks a {
 body #search-results .results .search-item .meta-data .tags a {
   background-color: rgba(0, 0, 0, 0.87);
   color: white; }
+
+[materialize-pag] {
+  overflow-x: visible; }
+  [materialize-pag] .pagination {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 15px 0; }
+    [materialize-pag] .pagination .active {
+      background-color: #ff7043; }
+
+[grid-albums] .main-col,
+[grid-artists] .main-col,
+[grid-tracks] .main-col {
+  margin-bottom: 20px; }
+[grid-albums] .img-cover,
+[grid-artists] .img-cover,
+[grid-tracks] .img-cover {
+  padding-top: 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer; }
+  [grid-albums] .img-cover:before,
+  [grid-artists] .img-cover:before,
+  [grid-tracks] .img-cover:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.3s background-color;
+    cursor: pointer; }
+  [grid-albums] .img-cover:hover:before,
+  [grid-artists] .img-cover:hover:before,
+  [grid-tracks] .img-cover:hover:before {
+    background-color: rgba(255, 255, 255, 0.25); }
+  [grid-albums] .img-cover .meta-wrapper,
+  [grid-artists] .img-cover .meta-wrapper,
+  [grid-tracks] .img-cover .meta-wrapper {
+    z-index: 1;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin-right: 10px; }
+    [grid-albums] .img-cover .meta-wrapper:hover,
+    [grid-artists] .img-cover .meta-wrapper:hover,
+    [grid-tracks] .img-cover .meta-wrapper:hover {
+      z-index: 1; }
+    [grid-albums] .img-cover .meta-wrapper a,
+    [grid-artists] .img-cover .meta-wrapper a,
+    [grid-tracks] .img-cover .meta-wrapper a {
+      display: inline-block;
+      padding: 3px 8px;
+      background: rgba(0, 0, 0, 0.6);
+      color: rgba(255, 255, 255, 0.9);
+      white-space: nowrap;
+      transition: 0.5s background-color; }
+      [grid-albums] .img-cover .meta-wrapper a:hover,
+      [grid-artists] .img-cover .meta-wrapper a:hover,
+      [grid-tracks] .img-cover .meta-wrapper a:hover {
+        background-color: black;
+        text-decoration: underline; }
+    [grid-albums] .img-cover .meta-wrapper .title a,
+    [grid-artists] .img-cover .meta-wrapper .title a,
+    [grid-tracks] .img-cover .meta-wrapper .title a {
+      font-weight: 500; }
+    [grid-albums] .img-cover .meta-wrapper .album a,
+    [grid-artists] .img-cover .meta-wrapper .album a,
+    [grid-tracks] .img-cover .meta-wrapper .album a {
+      font-weight: 300;
+      font-size: 13px; }
+    [grid-albums] .img-cover .meta-wrapper .album,
+    [grid-albums] .img-cover .meta-wrapper .artist,
+    [grid-artists] .img-cover .meta-wrapper .album,
+    [grid-artists] .img-cover .meta-wrapper .artist,
+    [grid-tracks] .img-cover .meta-wrapper .album,
+    [grid-tracks] .img-cover .meta-wrapper .artist {
+      margin-top: 5px; }
+  [grid-albums] .img-cover .youtube-icon,
+  [grid-artists] .img-cover .youtube-icon,
+  [grid-tracks] .img-cover .youtube-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: .3s transform;
+    cursor: pointer; }
+    [grid-albums] .img-cover .youtube-icon:hover,
+    [grid-artists] .img-cover .youtube-icon:hover,
+    [grid-tracks] .img-cover .youtube-icon:hover {
+      transform: scale(1.1); }
+    [grid-albums] .img-cover .youtube-icon img,
+    [grid-artists] .img-cover .youtube-icon img,
+    [grid-tracks] .img-cover .youtube-icon img {
+      width: 35px; }
+
+[search-wide] {
+  position: relative;
+  transition: 0.5s box-shadow;
+  margin-bottom: 15px; }
+  [search-wide] .material-icons {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(0, 0, 0, 0.5);
+    transition: .5s color; }
+    [search-wide] .material-icons.left-icon {
+      left: 20px;
+      font-size: 2.3rem;
+      cursor: default; }
+    [search-wide] .material-icons.right-icon {
+      right: 20px;
+      font-size: 2.5rem;
+      cursor: pointer; }
+  [search-wide] input {
+    margin: 0 !important;
+    padding: 0 55px !important;
+    box-sizing: border-box !important;
+    font-size: 1.5rem !important;
+    height: 3.5rem !important;
+    border-bottom: 1px solid #ffccbc !important;
+    box-shadow: 0 1px 0 0 #ffccbc !important; }
+    [search-wide] input::placeholder {
+      color: rgba(0, 0, 0, 0.5);
+      transition: .5s color; }
+    [search-wide] input:-ms-input-placeholder {
+      color: rgba(0, 0, 0, 0.5);
+      transition: .5s color; }
+    [search-wide] input::-ms-input-placeholder {
+      color: rgba(0, 0, 0, 0.5);
+      transition: .5s color; }
+    [search-wide] input.is-focus {
+      border-bottom: 1px solid #ff7043 !important;
+      box-shadow: 0 1px 0 0 #ff7043 !important; }
+      [search-wide] input.is-focus::placeholder {
+        color: rgba(0, 0, 0, 0.65); }
+      [search-wide] input.is-focus:-ms-input-placeholder {
+        color: rgba(0, 0, 0, 0.65); }
+      [search-wide] input.is-focus::-ms-input-placeholder {
+        color: rgba(0, 0, 0, 0.65); }
+      [search-wide] input.is-focus ~ .material-icons {
+        color: rgba(0, 0, 0, 0.75); }
+
+[yt-player] {
+  display: inline-block;
+  width: auto;
+  max-width: 100vw;
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  z-index: 5;
+  text-align: right; }
+  [yt-player] .controls .close {
+    cursor: pointer;
+    display: inline-block; }
+    [yt-player] .controls .close i {
+      vertical-align: top;
+      color: #ff7043; }
+  [yt-player] iframe {
+    vertical-align: top;
+    max-width: calc(100% - 5px); }
 
 /*# sourceMappingURL=main.css.map */

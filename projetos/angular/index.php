@@ -52,6 +52,10 @@
         <!-- NG VIEW -->
     </main>
 
+    <aside yt-player>
+        <!-- YT PLAYER -->
+    </aside>
+
     <footer class="page-footer">
         <div class="container">
             <div class="row">
