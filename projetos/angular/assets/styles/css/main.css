@@ -157,6 +157,12 @@ body {
             font-size: 13px; }
         body main .tracks-grid .img-cover .meta-wrapper .artist {
           margin-top: 9px; }
+      body main .tracks-grid .img-cover .youtube-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px; }
+        body main .tracks-grid .img-cover .youtube-icon img {
+          width: 35px; }
     body main .search-wide {
       position: relative;
       transition: 0.5s box-shadow;
