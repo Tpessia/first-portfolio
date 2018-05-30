@@ -354,14 +354,33 @@ body #search-results .results .search-item .meta-data .tags a {
   right: 5px;
   z-index: 5;
   text-align: right; }
-  [yt-player] .controls .close {
-    cursor: pointer;
-    display: inline-block; }
-    [yt-player] .controls .close i {
+  [yt-player] #ytPlayer {
+    position: relative; }
+    [yt-player] #ytPlayer .controls {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #ff7043;
+      transition: .5s height;
+      height: 5px;
+      width: 100%;
+      overflow: hidden; }
+      [yt-player] #ytPlayer .controls .close {
+        cursor: pointer;
+        display: inline-block;
+        opacity: 0;
+        transition: .5s opacity;
+        background-color: #000000; }
+        [yt-player] #ytPlayer .controls .close i {
+          vertical-align: top;
+          color: #ff7043; }
+      [yt-player] #ytPlayer .controls:hover {
+        height: 24px; }
+        [yt-player] #ytPlayer .controls:hover .close {
+          opacity: 1; }
+    [yt-player] #ytPlayer iframe {
+      background-color: #000000;
       vertical-align: top;
-      color: #ff7043; }
-  [yt-player] iframe {
-    vertical-align: top;
-    max-width: calc(100% - 5px); }
+      width: 100%; }
 
 /*# sourceMappingURL=main.css.map */

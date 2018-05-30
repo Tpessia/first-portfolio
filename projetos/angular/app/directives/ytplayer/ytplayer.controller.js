@@ -10,7 +10,7 @@ app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTube
             var video = response.data.items[0],
                 id = video.id.videoId;
 
-            $scope.videoUrl = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + id);
+            $scope.videoUrl = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + id + '/?autoplay=1');
         }, function (errResponse) {
             console.log(errResponse)
         });
@@ -21,7 +21,7 @@ app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTube
             var playlist = response.data.items[0],
                 id = playlist.id.playlistId;
                 
-            $scope.videoUrl = $sce.trustAsResourceUrl('https://www.youtube.com/embed/videoseries?list=' + id);
+            $scope.videoUrl = $sce.trustAsResourceUrl('https://www.youtube.com/embed/videoseries?list=' + id + '&autoplay=1');
         }, function (errResponse) {
             console.log(errResponse)
         });

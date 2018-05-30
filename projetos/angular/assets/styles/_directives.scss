@@ -162,18 +162,39 @@
     right: 5px;
     z-index: 5;
     text-align: right;
-    .controls {        
-        .close {
-            cursor: pointer;
-            display: inline-block;
-            i {
-                vertical-align: top;
-                color: $primary-color-l;
+    #ytPlayer {
+        position: relative;
+        .controls {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: $primary-color-l;
+            transition: .5s height;
+            height: 5px;
+            width: 100%;
+            overflow: hidden;
+            .close {
+                cursor: pointer;
+                display: inline-block;
+                opacity: 0;
+                transition: .5s opacity;
+                background-color: #000000;
+                i {
+                    vertical-align: top;
+                    color: $primary-color-l;
+                }
+            }
+            &:hover {
+                height: 24px;
+                .close {
+                    opacity: 1;
+                }
             }
         }
-    }
-    iframe {
-        vertical-align: top;
-        max-width: calc(100% - 5px);
+        iframe {
+            background-color: #000000;
+            vertical-align: top;
+            width: 100%;
+        }
     }
 }
