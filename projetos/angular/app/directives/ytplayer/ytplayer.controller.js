@@ -1,8 +1,13 @@
 app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTubeService) {
     $scope.isOpen = false;
+    $scope.isExpanded = false;
 
     $scope.close = function () {
         $scope.isOpen = false;
+    }
+
+    $scope.expand = function () {
+        $scope.isExpanded = !$scope.isExpanded;
     }
 
     $scope.getVideoId = function(artist, track) {

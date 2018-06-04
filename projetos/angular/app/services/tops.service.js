@@ -15,18 +15,4 @@ app.service("topsService", function ($http, apiKeysService) {
     this.getTopArtistsByTag = function(tag, page, limit) {
         return $http.get('//ws.audioscrobbler.com/2.0/?method=tag.gettopartists&api_key=' + apiKeysService.getLastFmKey() + '&format=json&limit=' + encodeURIComponent(limit) + '&tag=' + encodeURIComponent(tag) + '&page=' + encodeURIComponent(page), { cache: true });
     }
-
-
-
-    this.getTheTopTrack = function () {
-        return $http.get('//ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=' + apiKeysService.getLastFmKey() + '&format=json&limit=1', { cache: true });
-    }
-
-    this.getTheTopArtist = function () {
-        return $http.get('//ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=' + apiKeysService.getLastFmKey() + '&format=json&limit=1', { cache: true });
-    }
-
-    this.getTheTopTag = function () {
-        return $http.get('//ws.audioscrobbler.com/2.0/?method=chart.gettoptags&api_key=' + apiKeysService.getLastFmKey() + '&format=json&limit=1', { cache: true });
-    }
 });

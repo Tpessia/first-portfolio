@@ -365,22 +365,25 @@ body #search-results .results .search-item .meta-data .tags a {
       height: 5px;
       width: 100%;
       overflow: hidden; }
-      [yt-player] #ytPlayer .controls .close {
+      [yt-player] #ytPlayer .controls .close, [yt-player] #ytPlayer .controls .expand {
         cursor: pointer;
         display: inline-block;
         opacity: 0;
         transition: .5s opacity;
         background-color: #000000; }
-        [yt-player] #ytPlayer .controls .close i {
+        [yt-player] #ytPlayer .controls .close i, [yt-player] #ytPlayer .controls .expand i {
           vertical-align: top;
           color: #ff7043; }
       [yt-player] #ytPlayer .controls:hover {
         height: 24px; }
-        [yt-player] #ytPlayer .controls:hover .close {
+        [yt-player] #ytPlayer .controls:hover .close, [yt-player] #ytPlayer .controls:hover .expand {
           opacity: 1; }
     [yt-player] #ytPlayer iframe {
       background-color: #000000;
       vertical-align: top;
       width: 100%; }
+      [yt-player] #ytPlayer iframe.expanded {
+        width: 35vw;
+        height: 19.6875vw; }
 
 /*# sourceMappingURL=main.css.map */

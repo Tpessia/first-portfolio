@@ -173,7 +173,7 @@
             height: 5px;
             width: 100%;
             overflow: hidden;
-            .close {
+            .close, .expand {
                 cursor: pointer;
                 display: inline-block;
                 opacity: 0;
@@ -186,12 +186,16 @@
             }
             &:hover {
                 height: 24px;
-                .close {
+                .close, .expand {
                     opacity: 1;
                 }
             }
         }
         iframe {
+            &.expanded {
+                width: 35vw;
+                height: 19.6875vw;
+            }
             background-color: #000000;
             vertical-align: top;
             width: 100%;

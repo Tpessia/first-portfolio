@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ title !== undefined && title != '' ?  title + ' | ' : '' }}Noise Pollution</title>
+    <title ng-bind="title !== undefined && title != '' ?  title + ' | Noise Pollution' : 'Noise Pollution'">Noise Pollution</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -36,9 +36,9 @@
             </li>
         </ul>
         <div id="banner">
-            <div class="img-wrapper" ng-style="{'background-image':'url(' + topsImg.img1 + ')'}"></div>
-            <div class="img-wrapper" ng-style="{'background-image':'url(' + topsImg.img2 + ')'}"></div>
-            <div class="img-wrapper" ng-style="{'background-image':'url(' + topsImg.img3 + ')'}"></div>
+            <div class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.img1 + ')'}"></div>
+            <div class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.img2 + ')'}"></div>
+            <div class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.img3 + ')'}"></div>
             <div id="bannerOverlay">
                 <div id="bannerText">
                     <img id="img-logo" src="assets/img/logo-raw-512x512.png">
