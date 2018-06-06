@@ -32,6 +32,17 @@ app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTube
         });
     }
 
+    $scope.getArtistId = function (artist) {
+        youTubeService.getArtistPlaylist(artist).then(function (response) {
+            var playlist = response.data.items[0],
+                id = playlist.id.playlistId;
+
+            $scope.videoUrl = $sce.trustAsResourceUrl('https://www.youtube.com/embed/videoseries?list=' + id + '&autoplay=1');
+        }, function (errResponse) {
+            console.log(errResponse)
+        });
+    }
+
     $scope.$on('ytPlayVideo', function ( event, videoData ) {
         switch (videoData.type) {
             case 'video':
@@ -41,6 +52,10 @@ app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTube
             case 'playlist':
                 $scope.isOpen = true;
                 $scope.getPlaylistId(videoData.artist, videoData.album);
+                break;
+            case 'artist':
+                $scope.isOpen = true;
+                $scope.getArtistId(videoData.artist);
                 break;
             default:
                 throw "Invalid video type";

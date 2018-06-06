@@ -13,14 +13,14 @@ app.controller("AlbumsController", function ($rootScope, $scope, albumsService, 
             var limit = dft.limit;
         }
 
-        topsService.getTopTracks(page, limit).then(function (response) {
+        topsService.getTopArtists(page, limit).then(function (response) {
             if (typeof response.data.error === "undefined") {
                 $scope.albums = [];
-                var topTracks = response.data.tracks.track;
+                var topArtists = response.data.artists.artist;
 
-                for (var i in topTracks) {
+                for (var i in topArtists) {
                     (function (j) {
-                        var artist = topTracks[j].artist.name,
+                        var artist = topArtists[j].name,
                             rndPage = 1 + Math.floor(Math.random() * 2);
 
                         artistsService.getTopAlbums(artist, rndPage, 1).then(function (response) { // get random album

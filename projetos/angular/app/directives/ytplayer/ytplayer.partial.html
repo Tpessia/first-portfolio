@@ -1,12 +1,12 @@
 <div id="ytPlayer" ng-if="isOpen">
-    <div class="controls">
-        <span class="expand" ng-click="expand()">
-            <i class="material-icons">zoom_out_map</i>
-        </span>
-        <span class="close" ng-click="close()">
+    <span class="controls">
+        <span class="action expand" ng-click="expand()">
+            <i class="material-icons">{{ isExpanded ? 'expand_more' : 'expand_less' }}</i>
+        </span><!--
+        --><span class="action close" ng-click="close()">
             <i class="material-icons">close</i>
         </span>
-    </div>
+    </span>
     <iframe frameborder="0" allowfullscreen ng-src="{{ videoUrl }}" ng-class="{ 'expanded': isExpanded }"></iframe>
      <!-- style="width: 100vw;height: 56.25vw;" -->
 </div>

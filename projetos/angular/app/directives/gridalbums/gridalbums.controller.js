@@ -3,10 +3,6 @@ app.controller("GridAlbumsController", function ($rootScope, $scope) {
         return text.length > letters ? text.substr(0, letters) + "..." : text;
     };
 
-    $scope.newTab = function (url) {
-        window.open(url);
-    };
-
     $scope.ytVideo = {
         open: function (videoData) {
             $rootScope.$broadcast('ytPlayVideo', videoData);
