@@ -5,8 +5,7 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
         limit: 5
     };
 
-    getRandomTracks(5);
-    function getRandomTracks(limit) {
+    $scope.getRandomTracks = function (limit) {
         if (typeof limit === "undefined") {
             var limit = dft.limit;
         }
@@ -51,6 +50,7 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
             console.log(errResponse);
         });
     };
+    $scope.getRandomTracks(5);
 
     // Make functions available for Pagination Directive
     $scope.getTopTracks = function(page, limit) {
