@@ -1,4 +1,4 @@
-app.controller("ArtistsController", function ($scope, artistsService, topsService) {
+app.controller("ArtistsController", function ($rootScope, $scope, artistsService, topsService) {
     var dft = {
         page: 1,
         limit: 5
@@ -31,12 +31,14 @@ app.controller("ArtistsController", function ($scope, artistsService, topsServic
                             } else {
                                 console.log(response);
                             }
-                            
-                            $scope.artists[j].imgsDone = true;
                         }, function (errResponse) {
-                            $scope.artists[j].imgsDone = true;
+                            console.log(errResponse);
+                        }).finally(function () {
+                            if ($scope.artists[j].image !== "undefined" && $scope.artists[j].image[0]["#text"] == "") {
+                                $scope.artists[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
+                            }
 
-                            console.log(errResponse)
+                            $scope.artists[j].imgsDone = true;
                         });
                     })(i)
                 }
@@ -74,12 +76,14 @@ app.controller("ArtistsController", function ($scope, artistsService, topsServic
                             } else {
                                 console.log(response.data);
                             }
+                        }, function (errResponse) {                            
+                            console.log(errResponse);
+                        }).finally(function () {
+                            if ($scope.searchedArtists[j].image !== "undefined" && $scope.searchedArtists[j].image[0]["#text"] == "") {
+                                $scope.searchedArtists[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
+                            }
 
                             $scope.searchedArtists[j].imgsDone = true;
-                        }, function (errResponse) {
-                            $scope.searchedArtists[j].imgsDone = true;
-                            
-                            console.log(errResponse)
                         });
                     })(i)
                 }
@@ -130,14 +134,10 @@ app.controller("ArtistsController", function ($scope, artistsService, topsServic
         return text.replace(/<a(.|\n)*?<\/a>/, '').trim();
     }
 
-    $scope.newTab = function (url) {
-        window.open(url);
-    };
-
     $scope.ytVideo = {
         open: function (videoData) {
             $rootScope.$broadcast('ytPlayVideo', videoData);
-            // { type: 'video', artist: 'Portugal. The Man', track: 'Noise Pollution' }
+            // { type: 'artist', artist: 'Portugal. The Man' }
         }
     }
 });

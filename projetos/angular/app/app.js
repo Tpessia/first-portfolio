@@ -32,8 +32,10 @@ app.config(function ($routeProvider, $locationProvider) {
 
 // Dynamic Title
 
-app.run(function ($rootScope) {
+app.run(function ($rootScope, $window) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         $rootScope.title = current.$$route.title;
     });
+
+    $rootScope.fallbackImg = $window.location.pathname + 'assets/img/logo-simple-256x256.png';
 });

@@ -42,12 +42,14 @@ app.controller("AlbumsController", function ($rootScope, $scope, albumsService, 
                                         else {
                                             console.log(response);
                                         }
-                                        
-                                        $scope.albums[j].imgsDone = true;
                                     }, function (errResponse) {
-                                        $scope.albums[j].imgsDone = true;
-
                                         console.log(errResponse);
+                                    }).finally(function () {
+                                        if ($scope.albums[j].image !== "undefined" && $scope.albums[j].image[0]["#text"] == "") {
+                                            $scope.albums[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
+                                        }
+
+                                        $scope.albums[j].imgsDone = true;
                                     });
                                 }
                             } else {
@@ -92,12 +94,14 @@ app.controller("AlbumsController", function ($rootScope, $scope, albumsService, 
                             } else {
                                 console.log(response.data);
                             }
+                        }, function (errResponse) {                                
+                            console.log(errResponse);
+                        }).finally(function () {
+                            if ($scope.searchedAlbums[j].image !== "undefined" && $scope.searchedAlbums[j].image[0]["#text"] == "") {
+                                $scope.searchedAlbums[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
+                            }
 
                             $scope.searchedAlbums[j].imgsDone = true;
-                        }, function (errResponse) {
-                            $scope.searchedAlbums[j].imgsDone = true;
-                            
-                            console.log(errResponse)
                         });
                     })(i)
                 }
@@ -161,7 +165,7 @@ app.controller("AlbumsController", function ($rootScope, $scope, albumsService, 
     $scope.ytVideo = {
         open: function (videoData) {
             $rootScope.$broadcast('ytPlayVideo', videoData);
-            // { type: 'video', artist: 'Portugal. The Man', track: 'Noise Pollution' }
+            // { type: 'playlist', artist: 'Portugal. The Man', album: 'Woodstock' }
         }
     }
 });

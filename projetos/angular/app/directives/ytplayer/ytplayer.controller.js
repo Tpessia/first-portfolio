@@ -1,6 +1,7 @@
 app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTubeService) {
     $scope.isOpen = false;
     $scope.isExpanded = false;
+    $scope.isVisible = true;
 
     $scope.close = function () {
         $scope.isOpen = false;
@@ -10,7 +11,11 @@ app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTube
         $scope.isExpanded = !$scope.isExpanded;
     }
 
-    $scope.getVideoId = function(artist, track) {
+    $scope.visibility = function () {
+        $scope.isVisible = !$scope.isVisible;
+    }
+
+    $scope.getTrackVideo = function(artist, track) {
         youTubeService.getMusicVideo(artist, track).then(function (response) {
             var video = response.data.items[0],
                 id = video.id.videoId;
@@ -21,8 +26,8 @@ app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTube
         });
     }
 
-    $scope.getPlaylistId = function (artist, album) {
-        youTubeService.getMusicPlaylist(artist, album).then(function (response) {
+    $scope.getAlbumPlaylist = function (artist, album) {
+        youTubeService.getAlbumPlaylist(artist, album).then(function (response) {
             var playlist = response.data.items[0],
                 id = playlist.id.playlistId;
                 
@@ -32,7 +37,7 @@ app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTube
         });
     }
 
-    $scope.getArtistId = function (artist) {
+    $scope.getArtistPlaylist = function (artist) {
         youTubeService.getArtistPlaylist(artist).then(function (response) {
             var playlist = response.data.items[0],
                 id = playlist.id.playlistId;
@@ -47,15 +52,15 @@ app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTube
         switch (videoData.type) {
             case 'video':
                 $scope.isOpen = true;
-                $scope.getVideoId(videoData.artist, videoData.track);
+                $scope.getTrackVideo(videoData.artist, videoData.track);
                 break;
             case 'playlist':
                 $scope.isOpen = true;
-                $scope.getPlaylistId(videoData.artist, videoData.album);
+                $scope.getAlbumPlaylist(videoData.artist, videoData.album);
                 break;
             case 'artist':
                 $scope.isOpen = true;
-                $scope.getArtistId(videoData.artist);
+                $scope.getArtistPlaylist(videoData.artist);
                 break;
             default:
                 throw "Invalid video type";

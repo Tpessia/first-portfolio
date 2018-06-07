@@ -155,7 +155,6 @@ body #search-results .results .search-item:not(:last-child) {
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.4); }
 body #search-results .results .search-item .img-box .search-img {
-  cursor: pointer;
   padding-top: 100%;
   position: relative;
   background-repeat: no-repeat;
@@ -164,6 +163,17 @@ body #search-results .results .search-item .img-box .search-img {
   @media (max-width: 600px) {
     body #search-results .results .search-item .img-box .search-img {
       margin-bottom: 20px; } }
+  body #search-results .results .search-item .img-box .search-img .youtube-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: .3s transform;
+    z-index: 1;
+    cursor: pointer; }
+    body #search-results .results .search-item .img-box .search-img .youtube-icon:hover {
+      transform: scale(1.1); }
+    body #search-results .results .search-item .img-box .search-img .youtube-icon img {
+      width: 35px; }
 body #search-results .results .search-item .meta-data a {
   color: rgba(0, 0, 0, 0.87); }
   body #search-results .results .search-item .meta-data a:hover {
@@ -210,10 +220,19 @@ body #search-results .results .search-item .meta-data .tags a {
     [materialize-pag] .pagination .active {
       background-color: #ff7043; }
 
-[grid-albums] .main-col,
-[grid-artists] .main-col,
-[grid-tracks] .main-col {
-  margin-bottom: 20px; }
+@media (max-width: 992px) {
+  [grid-albums] .img-cover,
+  [grid-artists] .img-cover,
+  [grid-tracks] .img-cover {
+    margin-bottom: 20px; }
+  [grid-albums] .sub-col .img-cover,
+  [grid-artists] .sub-col .img-cover,
+  [grid-tracks] .sub-col .img-cover {
+    padding-top: 50%; }
+  [grid-albums] .sub-col .row,
+  [grid-artists] .sub-col .row,
+  [grid-tracks] .sub-col .row {
+    margin-bottom: 0; } }
 [grid-albums] .img-cover,
 [grid-artists] .img-cover,
 [grid-tracks] .img-cover {
@@ -333,7 +352,7 @@ body #search-results .results .search-item .meta-data .tags a {
 [yt-player] {
   display: inline-block;
   width: auto;
-  max-width: calc(100vw - 27px);
+  max-width: calc(100vw - 10px);
   position: fixed;
   bottom: 5px;
   right: 5px;
@@ -342,27 +361,37 @@ body #search-results .results .search-item .meta-data .tags a {
   [yt-player] #ytPlayer {
     position: relative; }
     [yt-player] #ytPlayer .controls {
-      position: absolute;
-      top: 0;
-      right: 0;
-      transform: translateY(-100%);
       background-color: #000000; }
       [yt-player] #ytPlayer .controls .action {
         cursor: pointer;
         display: inline-block;
-        color: #ff7043; }
-        [yt-player] #ytPlayer .controls .action:first-child {
+        color: #ff7043;
+        padding: 3px; }
+        [yt-player] #ytPlayer .controls .action:not(:last-child) {
           border-right: 1px solid #ff7043; }
         [yt-player] #ytPlayer .controls .action:hover {
           color: #ffccbc; }
         [yt-player] #ytPlayer .controls .action .material-icons {
           vertical-align: top; }
-    [yt-player] #ytPlayer iframe {
+    [yt-player] #ytPlayer.visible .controls {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translateY(-100%); }
+    [yt-player] #ytPlayer.visible iframe {
       background-color: #000000;
       vertical-align: top;
       width: 100%; }
-      [yt-player] #ytPlayer iframe.expanded {
+      [yt-player] #ytPlayer.visible iframe.expanded {
         width: 35vw;
         height: 19.6875vw; }
+    [yt-player] #ytPlayer:not(.visible) .controls {
+      display: block; }
+    @media (max-width: 992px) {
+      [yt-player] #ytPlayer .controls .expand {
+        display: none; }
+      [yt-player] #ytPlayer iframe.expanded {
+        width: auto;
+        height: auto; } }
 
 /*# sourceMappingURL=main.css.map */

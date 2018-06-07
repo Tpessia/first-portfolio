@@ -14,7 +14,11 @@
             </div>
             <div class="row search-item" ng-repeat="artist in searchedArtists">
                 <div class="img-box col s12 m6">
-                    <div class="search-img" ng-click="newTab(artist.url)" ng-style="(artist.imgsDone) ? {'background-image':'url(' + (artist.image.length ? artist.image[artist.image.length - 1]['#text'] : 'assets/img/logo-simple-256x256.png') + ')'} : {}"></div>
+                    <div class="search-img" ng-style="(artist.imgsDone) ? {'background-image':'url(' + (artist.image.length ? artist.image[artist.image.length - 1]['#text'] : fallbackImg) + ')'} : {}">
+                        <div class="youtube-icon" ng-click="ytVideo.open({ type: 'artist', artist: artist.name })">
+                            <img src="assets/img/icons/youtube-icon.png">
+                        </div>
+                    </div>
                 </div>
                 <div class="meta-data col s12 m6">
                     <div class="title" ng-if="artist.name">

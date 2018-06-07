@@ -1,4 +1,4 @@
-app.controller("HeaderController", function ($scope, $location, $window, topsService) {
+app.controller("HeaderController", function ($rootScope, $scope, $location, topsService) {
     $scope.navItens = [{
             text: 'Home',
             url: '/'
@@ -18,28 +18,26 @@ app.controller("HeaderController", function ($scope, $location, $window, topsSer
         return url == $location.path();
     };
 
+    var dft = {
+        page: 1,
+        limit: 5
+    };
+
     getHeaderImgs();
     function getHeaderImgs() {
 
         $scope.headerImgs = {};
 
-        var dft = {
-            page: 1,
-            limit: 5
-        };
-
-        var fallbackImg = $window.location.pathname + 'assets/img/logo-simple-256x256.png';
-
-        $scope.headerImgs.img1 = fallbackImg;
-        $scope.headerImgs.img2 = fallbackImg;
-        $scope.headerImgs.img3 = fallbackImg;
+        $scope.headerImgs.img1 = $rootScope.fallbackImg;
+        $scope.headerImgs.img2 = $rootScope.fallbackImg;
+        $scope.headerImgs.img3 = $rootScope.fallbackImg;
 
         topsService.getTopTracks(dft.page, dft.limit).then(function (response) {
             if (typeof response.data.error === "undefined") {
                     if (typeof response.data.tracks !== "undefined") {
                         if (typeof response.data.tracks.track[0].image !== "undefined" && response.data.tracks.track[0].image[0]["#text"] != "") {
                             
-                            $scope.headerImgs.img1 = getUniqueImg(response.data.tracks.track, $scope.headerImgs, fallbackImg);
+                            $scope.headerImgs.img1 = getUniqueImg(response.data.tracks.track, $scope.headerImgs);
                             
                         }
                     }
@@ -47,7 +45,7 @@ app.controller("HeaderController", function ($scope, $location, $window, topsSer
                     console.log(response);
                 }
         }, function (errResponse) {
-            $scope.headerImgs.img1 = fallbackImg;
+            $scope.headerImgs.img1 = $rootScope.fallbackImg;
 
             console.log("Error while fetching tops (header) images: " + errResponse);
         });
@@ -57,7 +55,7 @@ app.controller("HeaderController", function ($scope, $location, $window, topsSer
                     if (typeof response.data.artists !== "undefined") {
                         if (typeof response.data.artists.artist[0].image !== "undefined" && response.data.artists.artist[0].image[0]["#text"] != "") {
 
-                            $scope.headerImgs.img2 = getUniqueImg(response.data.artists.artist, $scope.headerImgs, fallbackImg);
+                            $scope.headerImgs.img2 = getUniqueImg(response.data.artists.artist, $scope.headerImgs);
                             
                         }
                     }
@@ -65,7 +63,7 @@ app.controller("HeaderController", function ($scope, $location, $window, topsSer
                     console.log(response);
                 }
         }, function (errResponse) {
-            $scope.headerImgs.img2 = fallbackImg;
+            $scope.headerImgs.img2 = $rootScope.fallbackImg;
 
             console.log("Error while fetching tops (header) images: " + errResponse);
         });
@@ -77,7 +75,7 @@ app.controller("HeaderController", function ($scope, $location, $window, topsSer
                     if (typeof response.data.topartists !== "undefined") {
                         if (typeof response.data.topartists.artist[0].image !== "undefined" && response.data.topartists.artist[0].image[0]["#text"] != "") {
 
-                            $scope.headerImgs.img3 = getUniqueImg(response.data.topartists.artist, $scope.headerImgs, fallbackImg);;
+                            $scope.headerImgs.img3 = getUniqueImg(response.data.topartists.artist, $scope.headerImgs);
                             
                         }
                     }
@@ -85,13 +83,13 @@ app.controller("HeaderController", function ($scope, $location, $window, topsSer
                     console.log(response);
                 }
             }, function (errResponse) {
-                $scope.headerImgs.img3 = fallbackImg;
+                $scope.headerImgs.img3 = $rootScope.fallbackImg;
 
                 console.log("Error while fetching tops (header) images: " + errResponse);
             });
         });
 
-        function getUniqueImg(dataArray, headerImgs, fallbackImg) {
+        function getUniqueImg(dataArray, headerImgs) {
             var img = "";
 
             for (var i in dataArray) {
@@ -110,7 +108,7 @@ app.controller("HeaderController", function ($scope, $location, $window, topsSer
             }
 
             if (img == "") {
-                img = fallbackImg;
+                img = $rootScope.fallbackImg;
             }
             
             return img;

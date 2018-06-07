@@ -14,8 +14,18 @@
 [grid-albums],
 [grid-artists],
 [grid-tracks] {
-    .main-col {
-        margin-bottom: 20px;
+    @media (max-width: 992px) {
+        .img-cover {
+            margin-bottom: 20px;
+        }
+        .sub-col {
+            .img-cover {
+                padding-top: 50%;
+            }
+            .row {
+                margin-bottom: 0;
+            }
+        }
     }
     .img-cover {
         padding-top: 100%; // Keep ratio 1x1
@@ -142,7 +152,7 @@
 [yt-player] {
     display: inline-block;
     width: auto;
-    max-width: calc(100vw - 27px);
+    max-width: calc(100vw - 10px);
     position: fixed;
     bottom: 5px;
     right: 5px;
@@ -151,16 +161,13 @@
     #ytPlayer {
         position: relative;
         .controls {
-            position: absolute;
-            top: 0;
-            right: 0;
-            transform: translateY(-100%);
             background-color: #000000;
             .action {
                 cursor: pointer;
                 display: inline-block;
                 color: $primary-color-l;
-                &:first-child {
+                padding: 3px;
+                &:not(:last-child) {
                     border-right: 1px solid $primary-color-l;
                 }
                 &:hover {
@@ -171,14 +178,40 @@
                 }
             }
         }
-        iframe {
-            &.expanded {
-                width: 35vw;
-                height: 19.6875vw;
+        &.visible {
+            .controls {
+                position: absolute;
+                top: 0;
+                right: 0;
+                transform: translateY(-100%);
             }
-            background-color: #000000;
-            vertical-align: top;
-            width: 100%;
+            iframe {
+                &.expanded {
+                    width: 35vw;
+                    height: 19.6875vw;
+                }
+                background-color: #000000;
+                vertical-align: top;
+                width: 100%;
+            }
+        }
+        &:not(.visible) {
+            .controls {
+                display: block;
+            }
+        }
+        @media (max-width: 992px) {
+            .controls {
+                .expand {
+                    display: none;
+                }
+            }
+            iframe {
+                &.expanded {
+                    width: auto;
+                    height: auto;
+                }
+            }
         }
     }
 }

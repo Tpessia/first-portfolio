@@ -30,12 +30,14 @@ app.controller("TracksController", function ($rootScope, $scope, tracksService, 
                             } else {
                                 console.log(response);
                             }
-
-                            $scope.tracks[j].imgsDone = true;
                         }, function (errResponse) {
-                            $scope.tracks[j].imgsDone = true;
-
                             console.log(errResponse)
+                        }).finally(function () {
+                            if ($scope.tracks[j].image !== "undefined" && $scope.tracks[j].image[0]["#text"] == "") {
+                                $scope.tracks[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
+                            }
+
+                            $scope.tracks[j].imgsDone = true;
                         });
                     })(i)
                 }
@@ -73,12 +75,14 @@ app.controller("TracksController", function ($rootScope, $scope, tracksService, 
                             } else {
                                 console.log(response);
                             }
+                        }, function (errResponse) {                            
+                            console.log(errResponse);
+                        }).finally(function () {
+                            if ($scope.searchedTracks[j].image !== "undefined" && $scope.searchedTracks[j].image[0]["#text"] == "") {
+                                $scope.searchedTracks[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
+                            }
 
                             $scope.searchedTracks[j].imgsDone = true;
-                        }, function (errResponse) {
-                            $scope.searchedTracks[j].imgsDone = true;
-                            
-                            console.log(errResponse)
                         });
                     })(i)
                 }
@@ -133,10 +137,6 @@ app.controller("TracksController", function ($rootScope, $scope, tracksService, 
 
         return minutes + ":" + seconds;
     }
-
-    $scope.newTab = function (url) {
-        window.open(url);
-    };
 
     $scope.ytVideo = {
         open: function (videoData) {

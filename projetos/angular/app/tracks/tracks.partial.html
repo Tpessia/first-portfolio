@@ -14,7 +14,11 @@
             </div>
             <div class="row search-item" ng-repeat="track in searchedTracks">
                 <div class="img-box col s12 m6">
-                    <div class="search-img" ng-click="newTab(track.url)" ng-style="(track.imgsDone) ? {'background-image':'url(' + (track.image.length ? track.image[track.image.length - 1]['#text'] : 'assets/img/logo-simple-256x256.png') + ')'} : {}"></div>
+                    <div class="search-img" ng-style="(track.imgsDone) ? {'background-image':'url(' + (track.image.length ? track.image[track.image.length - 1]['#text'] : fallbackImg) + ')'} : {}">
+                        <div class="youtube-icon" ng-click="ytVideo.open({ type: 'video', artist: track.artist, track: track.name })">
+                            <img src="assets/img/icons/youtube-icon.png">
+                        </div>
+                    </div>
                 </div>
                 <div class="meta-data col s12 m6">
                     <div class="title">
@@ -36,9 +40,6 @@
                     <div class="duration" ng-if="track.info.duration && track.info.duration != 0">Duration: {{ formatDuration(track.info.duration) }}</div>
                     <div class="listeners">Listeners: {{ track.listeners }}</div>
                     <div class="playcount" ng-if="track.info">Play Count: {{ track.info.playcount  }}</div>
-                    <div class="listen">
-                        <button class="btn" ng-click="ytVideo.open({ type: 'video', artist: track.artist, track: track.name })">Listen</button>
-                    </div>
                 </div>
             </div>
         </div>
