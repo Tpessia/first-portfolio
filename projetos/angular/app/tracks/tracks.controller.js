@@ -1,8 +1,10 @@
-app.controller("TracksController", function ($rootScope, $scope, tracksService, topsService) {
+app.controller("TracksController", function ($rootScope, $scope, $routeParams, $location, tracksService, topsService) {
     var dft = {
         page: 1,
         limit: 5
     };
+
+    // Content control
 
     getTopTracks(1, 5);
     function getTopTracks(page, limit) {
@@ -95,9 +97,12 @@ app.controller("TracksController", function ($rootScope, $scope, tracksService, 
         });
     };
 
+    // Events
+
     $scope.onSearch = function (searchKey) {
         if (validate(searchKey)) {
-            $scope.hideTop = true;
+            $location.search('search', searchKey); // url search param set
+            $scope.hideTop = true; // switch from "Trending" to "Search" sub view
             $scope.isSearch = false; // Reset view if research
             setTimeout(function () {
                 $scope.isSearch = true;
@@ -129,6 +134,29 @@ app.controller("TracksController", function ($rootScope, $scope, tracksService, 
         $scope.getTrackSearch($scope.searchKey, page, dft.limit);
     }
 
+    // Youtube caller
+
+    $scope.ytVideo = {
+        open: function (videoData) {
+            $rootScope.$broadcast('ytPlayVideo', videoData);
+            // { type: 'video', artist: 'Portugal. The Man', track: 'Noise Pollution' }
+        }
+    }
+
+    // Routing for search url param
+
+    searchParamControl();
+    function searchParamControl() {
+        if (typeof $location.search().search !== "undefined") {
+            var searchParam = $location.search().search;
+
+            $scope.onSearch(searchParam);
+            $scope.searchKey = searchParam;
+        }
+    }
+
+    // Helpers
+
     $scope.formatDuration = function(time) {
         var minutes = Math.floor((time / 60) / 1000);
         var seconds = Math.round(((time / 60) / 1000 - Math.floor((time / 60) / 1000)) * 60);
@@ -136,12 +164,5 @@ app.controller("TracksController", function ($rootScope, $scope, tracksService, 
         seconds = seconds < 10 ? seconds + "0" : seconds;
 
         return minutes + ":" + seconds;
-    }
-
-    $scope.ytVideo = {
-        open: function (videoData) {
-            $rootScope.$broadcast('ytPlayVideo', videoData);
-            // { type: 'video', artist: 'Portugal. The Man', track: 'Noise Pollution' }
-        }
     }
 });

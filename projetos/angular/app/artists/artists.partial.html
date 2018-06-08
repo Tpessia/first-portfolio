@@ -1,5 +1,7 @@
 <div class="row artists">
-    <div class="col s12 search" search-wide search-for="'Artists'" on-search="onSearch(searchKey)" on-close="onClose()"></div>
+    <div class="col s12 search" search-wide search-for="'Artists'" key="searchKey" on-search="onSearch(searchKey)" on-close="onClose()">
+        <!-- Search Input -->
+    </div>
     <div id="top-grid" class="col s12" ng-if="!hideTop">
         <h3 class="main-title">TRENDING ARTISTS</h3>
         <div grid-artists series="artists">

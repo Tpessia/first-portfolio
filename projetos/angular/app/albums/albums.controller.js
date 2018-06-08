@@ -1,8 +1,10 @@
-app.controller("AlbumsController", function ($rootScope, $scope, albumsService, topsService, artistsService) {
+app.controller("AlbumsController", function ($rootScope, $scope, $routeParams, $location, albumsService, topsService, artistsService) {
     var dft = {
         page: 1,
         limit: 5
     };
+
+    // Content control
 
     getTopAlbums(1, 5);
     function getTopAlbums(page, limit) {
@@ -114,9 +116,12 @@ app.controller("AlbumsController", function ($rootScope, $scope, albumsService, 
         });
     };
 
+    // Events
+
     $scope.onSearch = function (searchKey) {
         if (validate(searchKey)) {
-            $scope.hideTop = true;
+            $location.search('search', searchKey); // url search param set
+            $scope.hideTop = true; // switch from "Trending" to "Search" sub view
             $scope.isSearch = false; // Reset view if research
             setTimeout(function () {
                 $scope.isSearch = true;
@@ -147,6 +152,29 @@ app.controller("AlbumsController", function ($rootScope, $scope, albumsService, 
     $scope.onPageChange = function (page) {
         $scope.getAlbumSearch($scope.searchKey, page, dft.limit);
     }
+    
+    // Youtube caller
+
+    $scope.ytVideo = {
+        open: function (videoData) {
+            $rootScope.$broadcast('ytPlayVideo', videoData);
+            // { type: 'playlist', artist: 'Portugal. The Man', album: 'Woodstock' }
+        }
+    }
+
+    // Routing for search url param
+
+    searchParamControl();
+    function searchParamControl() {
+        if (typeof $location.search().search !== "undefined") {
+            var searchParam = $location.search().search;
+
+            $scope.onSearch(searchParam);
+            $scope.searchKey = searchParam;
+        }
+    }
+
+    // Helpers
 
     $scope.getArtistUrlFromString = function (strUrl) {
         var pathToArtist = "https://www.last.fm/music/";
@@ -160,12 +188,5 @@ app.controller("AlbumsController", function ($rootScope, $scope, albumsService, 
 
     $scope.getSummaryLink = function (text) {
         return text.match(/<a(.|\n)*?<\/a>/)[0].match(/href="(.|\n)*?"/)[0].replace('href="', '').replace('"', '');
-    }
-
-    $scope.ytVideo = {
-        open: function (videoData) {
-            $rootScope.$broadcast('ytPlayVideo', videoData);
-            // { type: 'playlist', artist: 'Portugal. The Man', album: 'Woodstock' }
-        }
     }
 });

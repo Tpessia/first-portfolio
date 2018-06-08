@@ -1,8 +1,10 @@
-app.controller("ArtistsController", function ($rootScope, $scope, artistsService, topsService) {
+app.controller("ArtistsController", function ($rootScope, $scope, $routeParams, $location, artistsService, topsService) {
     var dft = {
         page: 1,
         limit: 5
     };
+
+    // Content control
 
     getTopArtists(1, 5);
     function getTopArtists(page, limit) {
@@ -96,9 +98,12 @@ app.controller("ArtistsController", function ($rootScope, $scope, artistsService
         });
     };
 
+    // Events
+
     $scope.onSearch = function (searchKey) {
         if (validate(searchKey)) {
-            $scope.hideTop = true;
+            $location.search('search', searchKey); // url search param set
+            $scope.hideTop = true; // switch from "Trending" to "Search" sub view
             $scope.isSearch = false; // Reset view if research
             setTimeout(function () {
                 $scope.isSearch = true;
@@ -130,14 +135,30 @@ app.controller("ArtistsController", function ($rootScope, $scope, artistsService
         $scope.getArtistSearch($scope.searchKey, page, dft.limit);
     }
 
-    $scope.stripLink = function (text) {
-        return text.replace(/<a(.|\n)*?<\/a>/, '').trim();
-    }
+    // Youtube caller
 
     $scope.ytVideo = {
         open: function (videoData) {
             $rootScope.$broadcast('ytPlayVideo', videoData);
             // { type: 'artist', artist: 'Portugal. The Man' }
         }
+    }
+
+    // Routing for search url param
+
+    searchParamControl();
+    function searchParamControl() {
+        if (typeof $location.search().search !== "undefined") {
+            var searchParam = $location.search().search;
+
+            $scope.onSearch(searchParam);
+            $scope.searchKey = searchParam;
+        }
+    }
+
+    // Helpers
+
+    $scope.stripLink = function (text) {
+        return text.replace(/<a(.|\n)*?<\/a>/, '').trim();
     }
 });

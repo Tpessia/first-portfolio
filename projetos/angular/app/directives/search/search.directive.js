@@ -2,6 +2,7 @@ app.directive('searchWide', function () {
     return {
         scope: {
             searchFor: '=',
+            key: '=',
             onSearch: '&',
             onClose: '&'
         },
