@@ -106,9 +106,8 @@ app.controller("TracksController", function ($rootScope, $scope, $routeParams, $
             $scope.isSearch = false; // Reset view if research
             setTimeout(function () {
                 $scope.isSearch = true;
-                $scope.searchKey = searchKey;
 
-                $scope.getTrackSearch($scope.searchKey, dft.page, dft.limit);
+                $scope.getTrackSearch(searchKey, dft.page, dft.limit);
             }, 10);
             return true;
         }

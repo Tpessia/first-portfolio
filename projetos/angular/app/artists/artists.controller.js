@@ -107,9 +107,8 @@ app.controller("ArtistsController", function ($rootScope, $scope, $routeParams, 
             $scope.isSearch = false; // Reset view if research
             setTimeout(function () {
                 $scope.isSearch = true;
-                $scope.searchKey = searchKey;
 
-                $scope.getArtistSearch($scope.searchKey, dft.page, dft.limit);
+                $scope.getArtistSearch(searchKey, dft.page, dft.limit);
             }, 10);
             return true;
         }

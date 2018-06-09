@@ -1,3 +1,8 @@
+<?php
+// Start the session
+// session_start();
+// $_SESSION["teste"] = "teste";
+?>
 <!DOCTYPE html>
 <html lang="en" ng-app="noisePolution">
 <head>
@@ -36,12 +41,12 @@
             </li>
         </ul>
         <div id="banner">
-            <div class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.img1 + ')'}"></div>
-            <div class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.img2 + ')'}"></div>
-            <div class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.img3 + ')'}"></div>
+            <div class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.topTrack + ')'}"></div>
+            <div class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.topArtist + ')'}"></div>
+            <div class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.topTag + ')'}"></div>
             <div id="bannerOverlay">
+                <img id="img-logo" src="assets/img/logo-simple-raw-256x256.png">
                 <div id="bannerText">
-                    <img id="img-logo" src="assets/img/logo-raw-512x512.png">
                     Your Tracks, Artists and Albums in a single place
                 </div>
             </div>

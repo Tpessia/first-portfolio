@@ -28,16 +28,16 @@ app.controller("HeaderController", function ($rootScope, $scope, $location, tops
 
         $scope.headerImgs = {};
 
-        $scope.headerImgs.img1 = $rootScope.fallbackImg;
-        $scope.headerImgs.img2 = $rootScope.fallbackImg;
-        $scope.headerImgs.img3 = $rootScope.fallbackImg;
+        $scope.headerImgs.topTrack = $rootScope.fallbackImg;
+        $scope.headerImgs.topArtist = $rootScope.fallbackImg;
+        $scope.headerImgs.topTag = $rootScope.fallbackImg;
 
         topsService.getTopTracks(dft.page, dft.limit).then(function (response) {
             if (typeof response.data.error === "undefined") {
                     if (typeof response.data.tracks !== "undefined") {
                         if (typeof response.data.tracks.track[0].image !== "undefined" && response.data.tracks.track[0].image[0]["#text"] != "") {
                             
-                            $scope.headerImgs.img1 = getUniqueImg(response.data.tracks.track, $scope.headerImgs);
+                            $scope.headerImgs.topTrack = getUniqueImg(response.data.tracks.track, $scope.headerImgs);
                             
                         }
                     }
@@ -45,7 +45,7 @@ app.controller("HeaderController", function ($rootScope, $scope, $location, tops
                     console.log(response);
                 }
         }, function (errResponse) {
-            $scope.headerImgs.img1 = $rootScope.fallbackImg;
+            $scope.headerImgs.topTrack = $rootScope.fallbackImg;
 
             console.log("Error while fetching tops (header) images: " + errResponse);
         });
@@ -55,7 +55,7 @@ app.controller("HeaderController", function ($rootScope, $scope, $location, tops
                     if (typeof response.data.artists !== "undefined") {
                         if (typeof response.data.artists.artist[0].image !== "undefined" && response.data.artists.artist[0].image[0]["#text"] != "") {
 
-                            $scope.headerImgs.img2 = getUniqueImg(response.data.artists.artist, $scope.headerImgs);
+                            $scope.headerImgs.topArtist = getUniqueImg(response.data.artists.artist, $scope.headerImgs);
                             
                         }
                     }
@@ -63,7 +63,7 @@ app.controller("HeaderController", function ($rootScope, $scope, $location, tops
                     console.log(response);
                 }
         }, function (errResponse) {
-            $scope.headerImgs.img2 = $rootScope.fallbackImg;
+            $scope.headerImgs.topArtist = $rootScope.fallbackImg;
 
             console.log("Error while fetching tops (header) images: " + errResponse);
         });
@@ -75,7 +75,7 @@ app.controller("HeaderController", function ($rootScope, $scope, $location, tops
                     if (typeof response.data.topartists !== "undefined") {
                         if (typeof response.data.topartists.artist[0].image !== "undefined" && response.data.topartists.artist[0].image[0]["#text"] != "") {
 
-                            $scope.headerImgs.img3 = getUniqueImg(response.data.topartists.artist, $scope.headerImgs);
+                            $scope.headerImgs.topTag = getUniqueImg(response.data.topartists.artist, $scope.headerImgs);
                             
                         }
                     }
@@ -83,7 +83,7 @@ app.controller("HeaderController", function ($rootScope, $scope, $location, tops
                     console.log(response);
                 }
             }, function (errResponse) {
-                $scope.headerImgs.img3 = $rootScope.fallbackImg;
+                $scope.headerImgs.topTag = $rootScope.fallbackImg;
 
                 console.log("Error while fetching tops (header) images: " + errResponse);
             });

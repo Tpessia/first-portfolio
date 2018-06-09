@@ -125,9 +125,8 @@ app.controller("AlbumsController", function ($rootScope, $scope, $routeParams, $
             $scope.isSearch = false; // Reset view if research
             setTimeout(function () {
                 $scope.isSearch = true;
-                $scope.searchKey = searchKey;
 
-                $scope.getAlbumSearch($scope.searchKey, dft.page, dft.limit);
+                $scope.getAlbumSearch(searchKey, dft.page, dft.limit);
             }, 10);
             return true;
         }

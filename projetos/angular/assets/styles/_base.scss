@@ -98,6 +98,7 @@ body {
                     left: 50%;
                     transform: translate(-50%, -50%);
                     #img-logo {
+                        opacity: .8;
                         max-width: 350px;
                         display: block;
                         margin: 0 auto;
@@ -107,6 +108,14 @@ body {
                             width: 55%;
                         }
                     }
+                }
+                #img-logo {
+                    position: absolute;
+                    opacity: 0.25;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 256px;
                 }
             }
             @media (max-width: 992px) {

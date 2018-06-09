@@ -73,6 +73,7 @@ body {
           left: 50%;
           transform: translate(-50%, -50%); }
           body header #banner #bannerOverlay #bannerText #img-logo {
+            opacity: .8;
             max-width: 350px;
             display: block;
             margin: 0 auto;
@@ -81,6 +82,13 @@ body {
             @media (max-width: 600px) {
               body header #banner #bannerOverlay #bannerText #img-logo {
                 width: 55%; } }
+        body header #banner #bannerOverlay #img-logo {
+          position: absolute;
+          opacity: 0.25;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 256px; }
       @media (max-width: 992px) {
         body header #banner .img-wrapper {
           width: calc(100% / 2); }
