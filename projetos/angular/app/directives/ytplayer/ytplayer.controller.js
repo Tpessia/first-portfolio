@@ -23,6 +23,7 @@ app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTube
 
     cleanPlayer();
     function cleanPlayer() {
+        $scope.isVisible = true;
         delete $scope.YTplayer;
         delete $scope.videoUrl; // force change to trigger player (fix module bug)
         $scope.playerVars = {

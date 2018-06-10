@@ -153,4 +153,23 @@ app.controller("TracksController", function ($rootScope, $scope, $location, trac
 
         return minutes + ":" + seconds;
     }
+
+    // Search on click
+
+    $scope.searchFor = function (type, value) {
+        switch (type) {
+            case 'track':
+                return $rootScope.baseUrl + '#!/tracks?search=' + value;
+                break;
+            case 'artist':
+                return $rootScope.baseUrl + '#!/artists?search=' + value;
+                break;
+            case 'album':
+                return $rootScope.baseUrl + '#!/albums?search=' + value;
+                break;
+            default:
+                throw 'Invalid video type "' + type + '"';
+                break;
+        }
+    };
 });

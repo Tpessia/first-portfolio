@@ -22,18 +22,18 @@
                 </div>
                 <div class="meta-data col s12 m6">
                     <div class="title" ng-if="artist.name">
-                        <a href="{{ artist.url }}">{{ artist.name }}</a>
+                        <a ng-href="{{ searchFor('artist', artist.name) }}">{{ artist.name }}</a>
                     </div>
                     <div class="summary" ng-if="artist.info.bio.summary && stripLink(artist.info.bio.summary) != ''">
-                        {{ stripLink(artist.info.bio.summary) }} |  <a href="{{ artist.info.bio.links.link.href }}" target="_blank">Read more.</a>
+                        {{ stripLink(artist.info.bio.summary) }} |  <a ng-href="{{ artist.info.bio.links.link.href }}" target="_blank">Read more.</a>
                     </div>
                     <div class="listeners" ng-if="artist.listenersy">Listeners: {{ artist.listeners }}</div>
                     <div class="playcount" ng-if="artist.info.stats.playcount">Play Count: {{ artist.info.stats.playcount }}</div>
                     <div class="similar" ng-if="artist.info.similar.artist && artist.info.similar.artist.length != 0">
-                        Similar: <a ng-repeat="similar in artist.info.similar.artist" href="{{ similar.url }}">{{ similar.name }}</a>
+                        Similar: <a ng-repeat="similar in artist.info.similar.artist" ng-href="{{ searchFor('artist', similar.name) }}">{{ similar.name }}</a>
                     </div>
                     <div class="tags" ng-if="artist.info.tags.tag && artist.info.tags.tag.length != 0">
-                        Tags: <a ng-repeat="tag in artist.info.tags.tag" href="{{ tag.url }}">{{ tag.name }}</a>
+                        Tags: <a ng-repeat="tag in artist.info.tags.tag" ng-href="{{ tag.url }}">{{ tag.name }}</a>
                     </div>
                 </div>
             </div>

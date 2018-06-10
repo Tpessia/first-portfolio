@@ -53,6 +53,7 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
     $scope.getRandomTracks(5);
 
     // Make functions available for Pagination Directive
+    
     $scope.getTopTracks = function(page, limit) {
         if (typeof page === "undefined") {
             var page = dft.page;
@@ -190,13 +191,18 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
         });
     };
 
+    // Search on click
+
     $scope.searchFor = function (type, value) {
-        switch(type) {
+        switch (type) {
             case 'track':
                 return $rootScope.baseUrl + '#!/tracks?search=' + value;
                 break;
             case 'artist':
                 return $rootScope.baseUrl + '#!/artists?search=' + value;
+                break;
+            case 'album':
+                return $rootScope.baseUrl + '#!/albums?search=' + value;
                 break;
             default:
                 throw 'Invalid video type "' + type + '"';

@@ -149,4 +149,23 @@ app.controller("ArtistsController", function ($rootScope, $scope, $location, art
     $scope.stripLink = function (text) {
         return text.replace(/<a(.|\n)*?<\/a>/, '').trim();
     }
+
+    // Search on click
+
+    $scope.searchFor = function (type, value) {
+        switch (type) {
+            case 'track':
+                return $rootScope.baseUrl + '#!/tracks?search=' + value;
+                break;
+            case 'artist':
+                return $rootScope.baseUrl + '#!/artists?search=' + value;
+                break;
+            case 'album':
+                return $rootScope.baseUrl + '#!/albums?search=' + value;
+                break;
+            default:
+                throw 'Invalid video type "' + type + '"';
+                break;
+        }
+    };
 });

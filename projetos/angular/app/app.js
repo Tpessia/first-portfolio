@@ -46,6 +46,9 @@ app.config(function ($routeProvider, $locationProvider) {
 // Dynamic Title
 
 app.run(function ($rootScope, $window) {
+
+    // Route change
+
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         $rootScope.title = current.$$route.title;
         $rootScope.titleClass = current.$$route.title == '' ? 'home' : current.$$route.title.toLowerCase().replace(/ /g, "");
@@ -53,8 +56,9 @@ app.run(function ($rootScope, $window) {
         $window.scrollTo(0, 0);
     });
 
+    // URLs
+
     $rootScope.baseUrl = $window.location.pathname.substring(0, $window.location.pathname.lastIndexOf("/")) + '/';
     
     $rootScope.fallbackImg = $rootScope.baseUrl + 'assets/img/logo-simple-256x256.png';
-
 });

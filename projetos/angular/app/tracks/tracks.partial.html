@@ -22,10 +22,10 @@
                 </div>
                 <div class="meta-data col s12 m6">
                     <div class="title" ng-if="track.name">
-                        <a href="{{ track.url }}">{{ track.name }}</a>
+                        <a ng-href="{{ searchFor('track', track.info.artist.name + ' - ' + track.name) }}">{{ track.name }}</a>
                     </div>
                     <div class="artist">
-                        <a href="{{ track.info.artist.url }}" ng-if="track.info.artist.name">
+                        <a ng-href="{{ searchFor('artist', track.info.artist.name) }}" ng-if="track.info.artist.name">
                             Artist: {{ track.info.artist.name }}
                         </a>
                         <span ng-if="track.info.artist.name === undefined">
@@ -33,7 +33,7 @@
                         </span>
                     </div>
                     <div class="album" ng-if="track.info.album">
-                        <a href="{{ track.info.album.url }}">
+                        <a ng-href="{{ searchFor('album', track.info.artist.name + ' - ' + track.info.album.title) }}">
                             Album: {{ track.info.album.title }}
                         </a>
                     </div>
