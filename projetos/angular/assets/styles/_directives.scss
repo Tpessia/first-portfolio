@@ -14,22 +14,15 @@
                     display: none;
                 }
             }
+            @media (min-width: 601px) {
+                .form-switch {
+                    display: none;
+                }
+            }
             .row {
                 margin-bottom: 10px;
                 &:last-child {
                     margin-bottom: 0;
-                }
-                .input-field {
-                    input {
-                        &:focus {
-                            border-bottom: 1px solid $primary-color-l;
-                            -webkit-box-shadow: 0 1px 0 0 $primary-color-l;
-                            box-shadow: 0 1px 0 0 $primary-color-l;
-                            & ~ label {
-                                color: $primary-color-l;
-                            }
-                        }
-                    }
                 }
                 #signin-submit {
                     background-color: $secondary-color;

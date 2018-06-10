@@ -189,4 +189,18 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
             console.log(errResponse);
         });
     };
+
+    $scope.searchFor = function (type, value) {
+        switch(type) {
+            case 'track':
+                return $rootScope.baseUrl + '#!/tracks?search=' + value;
+                break;
+            case 'artist':
+                return $rootScope.baseUrl + '#!/artists?search=' + value;
+                break;
+            default:
+                throw 'Invalid video type "' + type + '"';
+                break;
+        }
+    };
 });

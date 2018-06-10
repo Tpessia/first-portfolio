@@ -41,6 +41,10 @@ app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTube
     $scope.$on('ytPlayVideo', function (event, videoData) {
         // { type: 'track', artist: 'Portugal. The Man', track: 'Noise Pollution' }
         switch (videoData.type) {
+            case 'id':
+                $scope.isOpen = true;
+                playVideoId(videoData.id);
+                break;
             case 'track':
                 $scope.isOpen = true;
                 playTrackVideo(videoData.artist, videoData.track);
@@ -61,14 +65,19 @@ app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTube
 
     $scope.$on('ytPlayCustomPlaylist', function (event, playlist) {
         // ['123456', '654321']
-        $scope.$apply(function () {
-            $scope.isOpen = true;
-            cleanPlayer();
-            $scope.playerVars.playlist = playlist.join(',');
-        });
+        $scope.isOpen = true;
+        cleanPlayer();
+        $scope.playerVars.playlist = playlist.map(function (elem) {
+            return elem.id;
+        }).join(",");;
     });
 
     // Video getters
+
+    function playVideoId(id) {
+        cleanPlayer();
+        $scope.videoUrl = id;
+    }
 
     function playTrackVideo(artist, track) {
         youTubeService.getMusicVideo(artist, track).then(function (response) {

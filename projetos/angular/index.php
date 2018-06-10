@@ -24,6 +24,9 @@
             <li ng-repeat="item in navItems.user" ng-class="{'active': isActive(item.url)}">
                 <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
             </li>
+            <li>
+                <a class="logout" ng-click="userMethods.logOut">Log Out</a>
+            </li>
         </ul>
         <nav class="z-depth-1">
             <div class="nav-wrapper">
@@ -36,10 +39,12 @@
                     <li ng-repeat="item in navItems.main" ng-class="{'active': isActive(item.url)}">
                         <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
                     </li>
-                    <li id="loginAvatar">
-                        <a data-target="login-modal" class="login modal-trigger" ng-if="!user.isLogged">Log In</a>
-                        <a id="user-dropdown" href="#!" data-target="user-dropdown-items" ng-if="user.isLogged">
-                            <img ng-src="{{ user.avatar }}" alt="{{ user.name }}" class="circle avatar">
+                    <li ng-if="!user.isLogged">
+                        <a data-target="login-modal" class="login modal-trigger">Log In</a>
+                    </li>
+                    <li id="loginAvatar" ng-class="{'active': isActive('/user') || isActive('/user/playlists')}" ng-if="user.isLogged">
+                        <a id="user-dropdown" href="#!" data-target="user-dropdown-items">
+                            <img alt="{{ user.name }}" class="circle avatar" ng-src="{{ user.avatar }}" >
                         </a>
                     </li>
                 </ul>
@@ -50,9 +55,9 @@
             <li ng-if="user.isLogged">
                 <div class="user-view">
                     <div class="background">
-                        <img src="assets/img/office.jpg">
+                        <img ng-src="{{ headerImgs.topTrack }}">
                     </div>
-                    <a href="#user"><img class="circle" src="assets/img/yuna.jpg"></a>
+                    <a href="#user"><img class="circle" alt="{{ user.name }}" ng-src="{{ user.avatar }}"></a>
                     <a href="#name"><span class="white-text name">John Doe</span></a>
                     <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
                 </div>
@@ -66,6 +71,9 @@
             </li>
             <li ng-if="user.isLogged" ng-repeat="item in navItems.user" ng-class="{'active': isActive(item.url)}">
                 <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
+            </li>
+            <li ng-if="user.isLogged">
+                <a class="logout" ng-click="userMethods.logOut()">Log Out</a>
             </li>
         </ul>
 

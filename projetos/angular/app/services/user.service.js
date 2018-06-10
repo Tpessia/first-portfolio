@@ -1,13 +1,24 @@
 app.service("userService", function ($rootScope) {
     this.user = {
-        isLogged: false,
-        username: 'johnsmith',
-        name: 'John Smith',
-        avatar: $rootScope.baseUrl + 'assets/img/yuna.jpg'
+        isLogged: true,
+        avatar: $rootScope.baseUrl + 'assets/img/yuna.jpg',
+        name: 'John Smith'
     };
 
+    this.userSecure = {
+        username: 'johnsmith',
+        email: 'johnsmith@email.com',
+        password: '12345678'
+    }
+
     var savedPlaylistsObject = {
-        'myPlaylist': ['VYOjWnS4cMY', '71Es-8FfATo']
+        'myPlaylist': [{
+            id: 'VYOjWnS4cMY',
+            title: 'Childish Gambino - This Is America (Official Video)'
+        }, {
+            id: '71Es-8FfATo',
+            title: 'Arctic Monkeys - Four Out Of Five (Official Video)'
+        }]
     };
 
     this.savedPlaylists = {
@@ -23,7 +34,6 @@ app.service("userService", function ($rootScope) {
         deletePlaylist: function (playlistName) {
             if (exist(savedPlaylistsObject[playlistName])) {
                 delete savedPlaylistsObject[playlistName];
-                savedPlaylistsObject[playlistName] = [];
                 return true;
             } else {
                 return false;
@@ -36,9 +46,16 @@ app.service("userService", function ($rootScope) {
                 return false;
             }
         },
-        addTrack: function (playlistName, trackId) {
+        getAllPlaylists: function () {
+            if (Object.keys(savedPlaylistsObject).length > 0) {
+                return savedPlaylistsObject;
+            } else {
+                return false;
+            }
+        },
+        addTrack: function (playlistName, trackData) {
             if (exist(savedPlaylistsObject[playlistName])) {
-                savedPlaylistsObject[playlistName].push(trackId);
+                savedPlaylistsObject[playlistName].push(trackData);
                 return true;
             } else {
                 return false;

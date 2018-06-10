@@ -33,36 +33,36 @@ body {
           body header nav .nav-wrapper .sidenav-trigger i {
             font-size: 2.2rem; }
       body header nav ul li.active {
-        background-color: rgba(255, 87, 34, 0.8); }
+        background-color: rgba(255, 87, 34, 0.8) !important; }
       body header nav ul li a:hover {
         background-color: rgba(255, 87, 34, 0.25); }
-      body header nav ul li#loginAvatar a {
-        display: inline-block;
-        cursor: pointer;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none; }
-        body header nav ul li#loginAvatar a.login:hover {
-          background-color: rgba(255, 87, 34, 0.25); }
-        body header nav ul li#loginAvatar a#user-dropdown {
+      body header nav ul li#loginAvatar {
+        height: 64px; }
+        body header nav ul li#loginAvatar #user-dropdown {
+          display: inline-block;
+          cursor: pointer;
           outline: 0;
           position: relative;
           width: 64px;
-          height: 64px; }
-          body header nav ul li#loginAvatar a#user-dropdown .avatar {
+          height: 64px;
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none; }
+          body header nav ul li#loginAvatar #user-dropdown .avatar {
             height: 70%;
             position: absolute;
             top: 50%;
             right: 50%;
             transform: translate(50%, -50%); }
-          body header nav ul li#loginAvatar a#user-dropdown ~ #user-dropdown-items li {
+          body header nav ul li#loginAvatar #user-dropdown ~ #user-dropdown-items li {
             background-color: transparent; }
-            body header nav ul li#loginAvatar a#user-dropdown ~ #user-dropdown-items li a {
+            body header nav ul li#loginAvatar #user-dropdown ~ #user-dropdown-items li a {
+              width: 100%;
               color: rgba(0, 0, 0, 0.87); }
-              body header nav ul li#loginAvatar a#user-dropdown ~ #user-dropdown-items li a:hover {
+              body header nav ul li#loginAvatar #user-dropdown ~ #user-dropdown-items li a:hover {
                 background-color: rgba(255, 87, 34, 0.15); }
     body header #banner {
       height: 320px;
@@ -170,6 +170,18 @@ body {
     display: table; }
   body .modal, body .modal .modal-content {
     outline: 0 !important; }
+  body .input-field.orange-input input:focus {
+    border-bottom: 1px solid #ff7043 !important;
+    -webkit-box-shadow: 0 1px 0 0 #ff7043 !important;
+    box-shadow: 0 1px 0 0 #ff7043 !important; }
+    body .input-field.orange-input input:focus ~ label {
+      color: #ff7043 !important; }
+  body .input-field.dark-input input:focus {
+    border-bottom: 1px solid #212121 !important;
+    -webkit-box-shadow: 0 1px 0 0 #212121 !important;
+    box-shadow: 0 1px 0 0 #212121 !important; }
+    body .input-field.dark-input input:focus ~ label {
+      color: #212121 !important; }
 @-webkit-keyframes autofill {
   to {
     color: inherit;
@@ -285,16 +297,13 @@ body #search-results .results .search-item .meta-data .tags a {
     @media (max-width: 600px) {
       [login-modal] .modal-content form:not(.form-active) {
         display: none; } }
+    @media (min-width: 601px) {
+      [login-modal] .modal-content form .form-switch {
+        display: none; } }
     [login-modal] .modal-content form .row {
       margin-bottom: 10px; }
       [login-modal] .modal-content form .row:last-child {
         margin-bottom: 0; }
-      [login-modal] .modal-content form .row .input-field input:focus {
-        border-bottom: 1px solid #ff7043;
-        -webkit-box-shadow: 0 1px 0 0 #ff7043;
-        box-shadow: 0 1px 0 0 #ff7043; }
-        [login-modal] .modal-content form .row .input-field input:focus ~ label {
-          color: #ff7043; }
       [login-modal] .modal-content form .row #signin-submit {
         background-color: #212121; }
       [login-modal] .modal-content form .row #signup-submit {

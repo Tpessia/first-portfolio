@@ -1,6 +1,8 @@
 app.controller("UserController", function ($rootScope, $scope, userService, youTubeService) {
 
-    $scope.userMethods = {a:1};
+    $scope.user = userService.user;
+
+    $scope.userMethods = {};
 
     // Login
 
@@ -11,6 +13,11 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
 
     $scope.userMethods.signUp = function () {
         console.log("sign up");
+        return true;
+    };
+
+    $scope.userMethods.logOut = function () {
+        console.log("log out");
         return true;
     };
 
@@ -40,10 +47,14 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
         youTubeService.getMusicVideo(artist, track).then(function (response) {
             if (typeof response.data.error === "undefined" && typeof response.data.error === "undefined") {
                 var video = response.data.items[0],
-                    id = video.id.videoId;
+                    id = video.id.videoId,
+                    title = video.snippet.title;
 
-                userService.savedPlaylists.addTrack('myPlaylist', id);
-
+                userService.savedPlaylists.addTrack('myPlaylist', {
+                    'id': id,
+                    'title': title
+                });
+                
                 console.log(userService.savedPlaylists.getPlaylist('myPlaylist'));
             }
             else {
@@ -59,22 +70,26 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
             if (typeof response.data.error === "undefined" && typeof response.data.error === "undefined") {
                 var playlist = response.data.items[0],
                     id = playlist.id.playlistId, // Playlist's ID
-                    videoIds = [];
+                    videosData = [];
 
                     getVideosIds(id, null);
                     function getVideosIds(id, pageToken) {
                         youTubeService.getPlaylistVideos(id, pageToken).then(function (response) {
                             if (typeof response.data.error === "undefined" && typeof response.data.error === "undefined") {
                                 var videos = response.data.items;
-                                for (var i in videos) {
-                                    videoIds.push(videos[i].contentDetails.videoId);
-                                }
 
+                                for (var i in videos) {
+                                    videosData.push({
+                                        id: videos[i].contentDetails.videoId,
+                                        title: videos[i].snippet.title
+                                    });
+                                }
+                                
                                 if (typeof response.data.nextPageToken !== "undefined") { // tem mais páginas?
                                     getVideosIds(id, response.data.nextPageToken);
                                 }
                                 else { // se não, adiciona todos os dados
-                                    userService.savedPlaylists.appendPlaylist('myPlaylist', videoIds);
+                                    userService.savedPlaylists.appendPlaylist('myPlaylist', videosData);
 
                                     console.log(userService.savedPlaylists.getPlaylist('myPlaylist'));
                                 }
@@ -99,7 +114,7 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
             if (typeof response.data.error === "undefined" && typeof response.data.error === "undefined") {
                 var playlist = response.data.items[0],
                     id = playlist.id.playlistId, // Playlist's ID
-                    videoIds = [];
+                    videosData = [];
 
                     getVideosIds(id, null);
                     function getVideosIds(id, pageToken) {
@@ -107,14 +122,17 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
                             if (typeof response.data.error === "undefined" && typeof response.data.error === "undefined") {
                                 var videos = response.data.items;
                                 for (var i in videos) {
-                                    videoIds.push(videos[i].contentDetails.videoId);
+                                    videosData.push({
+                                        id: videos[i].contentDetails.videoId,
+                                        title: videos[i].snippet.title
+                                    });
                                 }
 
                                 if (typeof response.data.nextPageToken !== "undefined") { // tem mais páginas?
                                     getVideosIds(id, response.data.nextPageToken);
                                 }
                                 else { // se não, adiciona todos os dados
-                                    userService.savedPlaylists.appendPlaylist('myPlaylist', videoIds);
+                                    userService.savedPlaylists.appendPlaylist('myPlaylist', videosData);
 
                                     console.log(userService.savedPlaylists.getPlaylist('myPlaylist'));
                                 }
@@ -132,14 +150,5 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
         }, function (errResponse) {
             console.log(errResponse)
         });
-    }
-
-    // TESTE
-
-    $scope.ytVideo = {
-        playCustomPlaylist: function (videoData) {
-            console.log(userService.savedPlaylists.getPlaylist('myPlaylist'));
-            $rootScope.$broadcast('ytPlayCustomPlaylist', userService.savedPlaylists.getPlaylist('myPlaylist'));
-        }
     }
 });

@@ -50,7 +50,7 @@ body {
             ul {
                 li {
                     &.active {
-                        background-color: rgba($primary-color, 0.8);
+                        background-color: rgba($primary-color, 0.8) !important;
                     }
                     a {
                         &:hover {
@@ -58,40 +58,35 @@ body {
                         }
                     }
                     &#loginAvatar {
-                        a {
+                        height: 64px;
+                        #user-dropdown {
                             display: inline-block;
-                            cursor: pointer;
+                            cursor: pointer;                       
+                            outline: 0;
+                            position: relative;
+                            width: 64px;
+                            height: 64px;
                             -webkit-touch-callout: none;
                             -webkit-user-select: none;
                             -khtml-user-select: none;
                             -moz-user-select: none;
                             -ms-user-select: none;
                             user-select: none;
-                            &.login {
-                                &:hover {
-                                    background-color: rgba($primary-color, 0.25);
-                                }
+                            .avatar {
+                                height: 70%;
+                                position: absolute;
+                                top: 50%;
+                                right: 50%;
+                                transform: translate(50%, -50%);
                             }
-                            &#user-dropdown {                                
-                                outline: 0;
-                                position: relative;
-                                width: 64px;
-                                height: 64px;
-                                .avatar {
-                                    height: 70%;
-                                    position: absolute;
-                                    top: 50%;
-                                    right: 50%;
-                                    transform: translate(50%, -50%);
-                                }
-                                &~#user-dropdown-items {
-                                    li {
-                                        background-color: transparent;
-                                        a {
-                                            color: rgba(0, 0, 0, 0.87);
-                                            &:hover {
-                                                background-color: rgba($primary-color, 0.15);
-                                            }
+                            &~#user-dropdown-items {
+                                li {
+                                    background-color: transparent;
+                                    a {
+                                        width: 100%;
+                                        color: rgba(0, 0, 0, 0.87);
+                                        &:hover {
+                                            background-color: rgba($primary-color, 0.15);
                                         }
                                     }
                                 }
@@ -262,6 +257,33 @@ body {
     .modal {
         &, .modal-content {
             outline: 0 !important;
+        }
+    }
+
+    .input-field {
+        &.orange-input {
+            input {
+                &:focus {
+                    border-bottom: 1px solid $primary-color-l !important;
+                    -webkit-box-shadow: 0 1px 0 0 $primary-color-l !important;
+                    box-shadow: 0 1px 0 0 $primary-color-l !important;
+                    &~label {
+                        color: $primary-color-l !important;
+                    }
+                }
+            }
+        }
+        &.dark-input {
+            input {
+                &:focus {
+                    border-bottom: 1px solid $secondary-color !important;
+                    -webkit-box-shadow: 0 1px 0 0 $secondary-color !important;
+                    box-shadow: 0 1px 0 0 $secondary-color !important;
+                    &~label {
+                        color: $secondary-color !important;
+                    }
+                }
+            }
         }
     }
 

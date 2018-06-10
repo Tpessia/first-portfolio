@@ -15,7 +15,7 @@ app.service("youTubeService", function ($http, apiKeysService) {
     this.getPlaylistVideos = function (playlistId, pageToken) {
         var pg = pageToken ? '&pageToken=' + pageToken : '';
 
-        return $http.get('https://www.googleapis.com/youtube/v3/playlistItems?key=' + apiKeysService.getYouTubeKey() + '&part=contentDetails&maxResults=50' + pg + '&playlistId=' + playlistId, {
+        return $http.get('https://www.googleapis.com/youtube/v3/playlistItems?key=' + apiKeysService.getYouTubeKey() + '&part=snippet,contentDetails&maxResults=50' + pg + '&playlistId=' + playlistId, {
             cache: true
         });
     }

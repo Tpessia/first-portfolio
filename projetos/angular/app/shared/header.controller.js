@@ -1,5 +1,4 @@
 app.controller("HeaderController", function ($rootScope, $scope, $location, topsService, userService) {
-    $scope.user = userService.user;
 
     $scope.navItems = {
         main: [{
@@ -16,17 +15,11 @@ app.controller("HeaderController", function ($rootScope, $scope, $location, tops
                 url: '/albums'
             }],
         user: [{
-                text: 'Main',
+                text: 'Playlists',
+                url: '/user/playlists'
+            }, {
+                text: 'Settings',
                 url: '/user'
-            }, {
-                text: 'Test 1',
-                url: '/user/test1'
-            }, {
-                text: 'Test 2',
-                url: '/user/test2'
-            }, {
-                text: 'Test 3',
-                url: '/user/test3'
             }]
     };
     

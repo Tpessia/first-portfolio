@@ -1,3 +1,3 @@
-app.controller("LoginModalController", function ($rootScope, $scope) {
+app.controller("LoginModalController", function ($scope) {
     
 });

@@ -1,0 +1,31 @@
+<div class="row usersettings" ng-if="user.isLogged">
+    <div class="col s12">
+        <h3 class="main-title">
+            USER SETTINGS
+        </h3>
+    </div>
+    <form name="user-settings" class="col s12">
+        <div class="row">
+            <div class="input-field dark-input col s6">
+                <input disabled value="{{ userSecure.username }}" id="username-us" type="text">
+                <label for="username-us" class="active">Username</label>
+            </div>
+            <div class="input-field dark-input col s6">
+                <input value="{{ user.name }}" id="name-us" type="text">
+                <label for="name-us" class="active">Full Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field dark-input col s12">
+                <input value="{{ userSecure.password }}" id="password-us" type="password">
+                <label for="password-us" class="active">Password</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field dark-input col s12">
+                <input value="{{ userSecure.email }}" id="email-us" type="email">
+                <label for="email-us" class="active">Email</label>
+            </div>
+        </div>
+    </form>
+</div>

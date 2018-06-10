@@ -3,13 +3,13 @@
     <li ng-repeat="track in tracks" class="collection-item avatar">
         <img ng-src="{{ (track.imgsDone) ? track.image[1]['#text'] : '' }}" alt="{{ track.name }}" class="circle">
         <div class="title track-name">{{ track.name }}</div>
-        <a href="{{ track.artist.url }}" class="artist-name"><small>{{ track.artist.name }}</small></a>
+        <a href="{{ searchFor('artist', track.artist.name) }}" class="artist-name"><small>{{ track.artist.name }}</small></a>
         <p class="description">
             Play Count: {{ track.playcount }}
             <br>
             Listeners: {{ track.listeners }}
         </p>
-        <a href="{{ track.url }}" target="_blank" class="secondary-content">
+        <a href="{{ searchFor('track', track.name + ' - ' + track.artist.name) }}" class="secondary-content">
             <i class="material-icons">more_vert</i>
         </a>
     </li>
