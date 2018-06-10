@@ -1,18 +1,34 @@
-app.controller("HeaderController", function ($rootScope, $scope, $location, topsService) {
-    $scope.navItens = [{
-            text: 'Home',
-            url: '/'
-        }, {
-            text: 'Tracks',
-            url: '/tracks'
-        }, {
-            text: 'Artists',
-            url: '/artists'
-        }, {
-            text: 'Albums',
-            url: '/albums'
-        }
-    ];
+app.controller("HeaderController", function ($rootScope, $scope, $location, topsService, userService) {
+    $scope.user = userService.user;
+
+    $scope.navItems = {
+        main: [{
+                text: 'Home',
+                url: '/'
+            }, {
+                text: 'Tracks',
+                url: '/tracks'
+            }, {
+                text: 'Artists',
+                url: '/artists'
+            }, {
+                text: 'Albums',
+                url: '/albums'
+            }],
+        user: [{
+                text: 'Main',
+                url: '/user'
+            }, {
+                text: 'Test 1',
+                url: '/user/test1'
+            }, {
+                text: 'Test 2',
+                url: '/user/test2'
+            }, {
+                text: 'Test 3',
+                url: '/user/test3'
+            }]
+    };
     
     $scope.isActive = function(url) {
         return url == $location.path();

@@ -18,9 +18,13 @@
     <link href="./lib/materialize/materialize.min.css" rel="stylesheet">
     <link href="./assets/styles/css/main.css" rel="stylesheet">
 </head>
-<body>
-    
+<body ng-controller="UserController">    
     <header ng-controller="HeaderController">
+        <ul id="user-dropdown-items" class="dropdown-content">
+            <li ng-repeat="item in navItems.user" ng-class="{'active': isActive(item.url)}">
+                <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
+            </li>
+        </ul>
         <nav class="z-depth-1">
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo">
@@ -29,27 +33,56 @@
                 </a>
                 <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li ng-repeat="item in navItens" ng-class="{'active': isActive(item.url)}">
+                    <li ng-repeat="item in navItems.main" ng-class="{'active': isActive(item.url)}">
                         <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
+                    </li>
+                    <li id="loginAvatar">
+                        <a data-target="login-modal" class="login modal-trigger" ng-if="!user.isLogged">Log In</a>
+                        <a id="user-dropdown" href="#!" data-target="user-dropdown-items" ng-if="user.isLogged">
+                            <img ng-src="{{ user.avatar }}" alt="{{ user.name }}" class="circle avatar">
+                        </a>
                     </li>
                 </ul>
             </div>
         </nav>
-        <ul class="sidenav" id="sidenav">
-            <li ng-repeat="item in navItens" ng-class="{'active': isActive(item.url)}">
+
+        <ul id="sidenav" class="sidenav">
+            <li ng-if="user.isLogged">
+                <div class="user-view">
+                    <div class="background">
+                        <img src="assets/img/office.jpg">
+                    </div>
+                    <a href="#user"><img class="circle" src="assets/img/yuna.jpg"></a>
+                    <a href="#name"><span class="white-text name">John Doe</span></a>
+                    <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                </div>
+            </li>
+            <li ng-repeat="item in navItems.main" ng-class="{'active': isActive(item.url)}">
+                <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
+            </li>
+            <li><div class="divider"></div></li>
+            <li ng-if="!user.isLogged">
+                <a data-target="login-modal" class="login modal-trigger">Log In</a>
+            </li>
+            <li ng-if="user.isLogged" ng-repeat="item in navItems.user" ng-class="{'active': isActive(item.url)}">
                 <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
             </li>
         </ul>
-        <div id="banner">
-            <div class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.topTrack + ')'}"></div>
-            <div class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.topArtist + ')'}"></div>
-            <div class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.topTag + ')'}"></div>
+
+        <div id="banner" class="{{ titleClass }}">
+            <div id="img-wrapper1" class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.topTrack + ')'}"></div>
+            <div id="img-wrapper2" class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.topArtist + ')'}"></div>
+            <div id="img-wrapper3" class="img-wrapper" ng-style="{'background-image':'url(' + headerImgs.topTag + ')'}"></div>
             <div id="bannerOverlay">
                 <img id="img-logo" src="assets/img/logo-simple-raw-256x256.png">
                 <div id="bannerText">
                     Your Tracks, Artists and Albums in a single place
                 </div>
             </div>
+        </div>
+        
+        <div login-modal sign-in="userMethods.signIn()" sign-up="userMethods.signUp()" id="login-modal" class="modal">
+            <!-- Login Modal -->
         </div>
     </header>
 
@@ -98,11 +131,12 @@
     <script src="./lib/angular/angular.min.js"></script>
     <script src="./lib/angular/angular-route.min.js"></script>
     <script src="./lib/angular/angular-animate.min.js"></script>
+    <script src="./lib/youtube-embed/iframe_api.js"></script>
+    <script src="./lib/youtube-embed/angular-youtube-embed.js"></script>
     <script src="./app/app.min.js"></script>
 
     <!-- <script src="./lib/jquery/jquery-3.2.1.min.js"></script> -->
     <script src="./lib/materialize/materialize.min.js"></script>
     <script src="./assets/js/index.js"></script>
-
 </body>
 </html>

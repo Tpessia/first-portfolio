@@ -1,8 +1,8 @@
 <div class="row albums">
-    <div class="col s12 search" search-wide search-for="'Albums'" key="searchKey" on-search="onSearch(searchKey)" on-close="onClose()">
+    <div class="col s12 search" search-wide search-for="'Albums'" key="inputKey" on-search="onSearch(searchKey)" on-close="onClose()">
         <!-- Search Input -->
     </div>
-    <div id="top-grid" class="col s12" ng-if="!hideTop">
+    <div id="top-grid" class="col s12" ng-if="!isSearch">
         <h3 class="main-title">TRENDING ALBUMS</h3>
         <div grid-albums series="albums">
             <!-- Top Albums Grid -->
@@ -17,9 +17,7 @@
             <div class="row search-item" ng-repeat="album in searchedAlbums">
                 <div class="img-box col s12 m6">
                     <div class="search-img" ng-style="(album.imgsDone) ? {'background-image':'url(' + (album.image.length ? album.image[album.image.length - 1]['#text'] : fallbackImg) + ')'} : {}">
-                        <div class="youtube-icon" ng-click="ytVideo.open({ type: 'playlist', artist: album.artist, album: album.name }); $event.stopPropagation();">
-                            <img src="assets/img/icons/youtube-icon.png">
-                        </div>
+                        <materialize-video-fab play="ytVideo.open({ type: 'album', artist: album.artist, album: album.name });" add="saveOnPlaylist({ type: 'album', artist: album.artist, album: album.name });"></materialize-video-fab>
                     </div>
                 </div>
                 <div class="meta-data col s12 m6">

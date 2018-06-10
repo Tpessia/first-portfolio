@@ -1,9 +1,10 @@
-var app = angular.module('noisePolution', ['ngRoute']);
+var app = angular.module('noisePolution', ['ngRoute', 'youtube-embed']);
 
 app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/',
             {
+                title: '',
                 controller: 'HomeController',
                 templateUrl: 'app/home/home.partial.html'
             })
@@ -35,7 +36,10 @@ app.config(function ($routeProvider, $locationProvider) {
 app.run(function ($rootScope, $window) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         $rootScope.title = current.$$route.title;
+        $rootScope.titleClass = current.$$route.title == '' ? 'home' : current.$$route.title.toLowerCase().replace(/ /g, "");
     });
 
     $rootScope.fallbackImg = $window.location.pathname + 'assets/img/logo-simple-256x256.png';
+
+    $rootScope.baseUrl = $window.location.pathname;
 });

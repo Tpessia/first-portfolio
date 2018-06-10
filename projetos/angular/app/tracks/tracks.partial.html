@@ -1,8 +1,8 @@
 <div class="row tracks">
-    <div class="col s12 search" search-wide search-for="'Tracks'" key="searchKey" on-search="onSearch(searchKey)" on-close="onClose()">
+    <div class="col s12 search" search-wide search-for="'Tracks'" key="inputKey" on-search="onSearch(searchKey)" on-close="onClose()">
         <!-- Search Input -->
     </div>
-    <div id="top-grid" class="col s12" ng-if="!hideTop">
+    <div id="top-grid" class="col s12" ng-if="!isSearch">
         <h3 class="main-title">TRENDING TRACKS</h3>
         <div grid-tracks series="tracks">
             <!-- Top Tracks Grid -->
@@ -17,13 +17,11 @@
             <div class="row search-item" ng-repeat="track in searchedTracks">
                 <div class="img-box col s12 m6">
                     <div class="search-img" ng-style="(track.imgsDone) ? {'background-image':'url(' + (track.image.length ? track.image[track.image.length - 1]['#text'] : fallbackImg) + ')'} : {}">
-                        <div class="youtube-icon" ng-click="ytVideo.open({ type: 'video', artist: track.artist, track: track.name })">
-                            <img src="assets/img/icons/youtube-icon.png">
-                        </div>
+                        <materialize-video-fab play="ytVideo.open({ type: 'track', artist: track.artist, track: track.name });" add="saveOnPlaylist({ type: 'track', artist: track.artist, track: track.name });"></materialize-video-fab>
                     </div>
                 </div>
                 <div class="meta-data col s12 m6">
-                    <div class="title">
+                    <div class="title" ng-if="track.name">
                         <a href="{{ track.url }}">{{ track.name }}</a>
                     </div>
                     <div class="artist">

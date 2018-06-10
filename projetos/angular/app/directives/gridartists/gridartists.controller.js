@@ -3,6 +3,14 @@ app.controller("GridArtistsController", function ($rootScope, $scope) {
         return text.length > letters ? text.substr(0, letters) + "..." : text;
     };
 
+    // User options
+
+    $scope.saveOnPlaylist = function (videoData) {
+        $rootScope.$broadcast('userSaveTrack', videoData);
+    }
+
+    // Youtube caller
+
     $scope.ytVideo = {
         open: function (videoData) {
             $rootScope.$broadcast('ytPlayVideo', videoData);

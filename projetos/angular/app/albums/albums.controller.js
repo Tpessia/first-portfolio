@@ -1,4 +1,4 @@
-app.controller("AlbumsController", function ($rootScope, $scope, $routeParams, $location, albumsService, topsService, artistsService) {
+app.controller("AlbumsController", function ($rootScope, $scope, $location, albumsService, topsService, artistsService) {
     var dft = {
         page: 1,
         limit: 5
@@ -121,13 +121,9 @@ app.controller("AlbumsController", function ($rootScope, $scope, $routeParams, $
     $scope.onSearch = function (searchKey) {
         if (validate(searchKey)) {
             $location.search('search', searchKey); // url search param set
-            $scope.hideTop = true; // switch from "Trending" to "Search" sub view
-            $scope.isSearch = false; // Reset view if research
-            setTimeout(function () {
-                $scope.isSearch = true;
-
-                $scope.getAlbumSearch(searchKey, dft.page, dft.limit);
-            }, 10);
+            $scope.searchKey = searchKey;
+            $scope.isSearch = true;
+            $scope.getAlbumSearch(searchKey, dft.page, dft.limit);
             return true;
         }
 
@@ -144,12 +140,17 @@ app.controller("AlbumsController", function ($rootScope, $scope, $routeParams, $
     }
 
     $scope.onClose = function () {
-        $scope.hideTop = false;
         $scope.isSearch = false;
     }
 
     $scope.onPageChange = function (page) {
         $scope.getAlbumSearch($scope.searchKey, page, dft.limit);
+    }
+
+    // User options
+
+    $scope.saveOnPlaylist = function (videoData) {
+        $rootScope.$broadcast('userSaveTrack', videoData);
     }
     
     // Youtube caller
@@ -158,18 +159,6 @@ app.controller("AlbumsController", function ($rootScope, $scope, $routeParams, $
         open: function (videoData) {
             $rootScope.$broadcast('ytPlayVideo', videoData);
             // { type: 'playlist', artist: 'Portugal. The Man', album: 'Woodstock' }
-        }
-    }
-
-    // Routing for search url param
-
-    searchParamControl();
-    function searchParamControl() {
-        if (typeof $location.search().search !== "undefined") {
-            var searchParam = $location.search().search;
-
-            $scope.onSearch(searchParam);
-            $scope.searchKey = searchParam;
         }
     }
 

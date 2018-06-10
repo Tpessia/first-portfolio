@@ -1,12 +1,14 @@
 app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTubeService) {
+
+    // Player controls
+
     $scope.isOpen = false;
     $scope.isExpanded = false;
     $scope.isVisible = true;
 
-    // Player state
-
     $scope.close = function () {
         $scope.isOpen = false;
+        cleanPlayer();
     }
 
     $scope.expand = function () {
@@ -17,58 +19,88 @@ app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTube
         $scope.isVisible = !$scope.isVisible;
     }
 
+    // Player state
+
+    cleanPlayer();
+    function cleanPlayer() {
+        delete $scope.YTplayer;
+        delete $scope.videoUrl; // force change to trigger player (fix module bug)
+        $scope.playerVars = {
+            autoplay: 1,
+            playsinline: 1,
+            rel: 0
+        };
+    }
+
+    $scope.$on('youtube.player.ready', function ($event, player) {
+        $scope.YTplayer = player;
+    });    
+
     // Event receiver
 
     $scope.$on('ytPlayVideo', function (event, videoData) {
+        // { type: 'track', artist: 'Portugal. The Man', track: 'Noise Pollution' }
         switch (videoData.type) {
-            case 'video':
+            case 'track':
                 $scope.isOpen = true;
-                getTrackVideo(videoData.artist, videoData.track);
+                playTrackVideo(videoData.artist, videoData.track);
                 break;
-            case 'playlist':
+            case 'album':
                 $scope.isOpen = true;
-                getAlbumPlaylist(videoData.artist, videoData.album);
+                playAlbumPlaylist(videoData.artist, videoData.album);
                 break;
             case 'artist':
                 $scope.isOpen = true;
-                getArtistPlaylist(videoData.artist);
+                playArtistPlaylist(videoData.artist);
                 break;
             default:
-                throw "Invalid video type";
+                throw 'Invalid video type "' + videoData.type + '"';
                 break;
         }
     });
 
+    $scope.$on('ytPlayCustomPlaylist', function (event, playlist) {
+        // ['123456', '654321']
+        $scope.$apply(function () {
+            $scope.isOpen = true;
+            cleanPlayer();
+            $scope.playerVars.playlist = playlist.join(',');
+        });
+    });
+
     // Video getters
 
-    function getTrackVideo(artist, track) {
+    function playTrackVideo(artist, track) {
         youTubeService.getMusicVideo(artist, track).then(function (response) {
             var video = response.data.items[0],
                 id = video.id.videoId;
 
-            $scope.videoUrl = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + id + '/?autoplay=1');
+            cleanPlayer();
+            $scope.videoUrl = id;
         }, function (errResponse) {
             console.log(errResponse)
         });
     }
 
-    function getAlbumPlaylist(artist, album) {
+    function playAlbumPlaylist(artist, album) {
         youTubeService.getAlbumPlaylist(artist, album).then(function (response) {
             var playlist = response.data.items[0],
                 id = playlist.id.playlistId;
                 
-            $scope.videoUrl = $sce.trustAsResourceUrl('https://www.youtube.com/embed/videoseries?list=' + id + '&autoplay=1');
+            cleanPlayer();
+            $scope.playerVars.list = id;
         }, function (errResponse) {
             console.log(errResponse)
         });
     }
 
-    function getArtistPlaylist(artist) {
+    function playArtistPlaylist(artist) {
         youTubeService.getArtistPlaylist(artist).then(function (response) {
             var playlist = response.data.items[0],
                 id = playlist.id.playlistId;
 
-            $scope.videoUrl = $sce.trustAsResourceUrl('https://www.youtube.com/embed/videoseries?list=' + id + '&autoplay=1');
+            cleanPlayer();
+            $scope.playerVars.list = id;
         }, function (errResponse) {
             console.log(errResponse)
         });
@@ -77,6 +109,6 @@ app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTube
     // Na Controller que chama o YouTube:
     // $scope.ytPlayVideo = function(videoData) {
     //     $rootScope.$broadcast('ytPlayVideo', videoData);
-    //     // { type: 'video', artist: 'Portugal. The Man', track: 'Noise Pollution' }
+    //     // { type: 'track', artist: 'Portugal. The Man', track: 'Noise Pollution' }
     // }
 });

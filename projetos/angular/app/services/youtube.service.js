@@ -10,5 +10,14 @@ app.service("youTubeService", function ($http, apiKeysService) {
     this.getArtistPlaylist = function (artist) {
         return $http.get('https://content.googleapis.com/youtube/v3/search?key=' + apiKeysService.getYouTubeKey() + '&part=id%2Csnippet&videoEmbeddable =true&maxResults=1&type=playlist&q=' + encodeURIComponent(artist), { cache: true });
     }
+
+
+    this.getPlaylistVideos = function (playlistId, pageToken) {
+        var pg = pageToken ? '&pageToken=' + pageToken : '';
+
+        return $http.get('https://www.googleapis.com/youtube/v3/playlistItems?key=' + apiKeysService.getYouTubeKey() + '&part=contentDetails&maxResults=50' + pg + '&playlistId=' + playlistId, {
+            cache: true
+        });
+    }
 });
 

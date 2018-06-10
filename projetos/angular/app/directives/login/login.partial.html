@@ -1,0 +1,62 @@
+<div class="modal-content row">
+    <h4>Login</h4>
+    <form id="signin" name="signin" class="col s12 m6" ng-class="{ 'form-active': !signOut }" ng-submit="signIn()">
+        <h5>Sign In</h5>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="username" type="text" class="validate">
+                <label for="username">Username</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="password" type="password" class="validate">
+                <label for="password">Password</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <button id="signin-submit" class="btn waves-effect waves-light" type="submit" form="signin" name="submit">
+                    SIGN IN
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">Not registered? <a ng-click="signOut = true">Sign Up</a></div>
+        </div>
+    </form>
+    <form id="signup" name="signup" class="col s12 m4 offset-m2" ng-class="{ 'form-active': signOut }" ng-submit="signUp()">
+        <h5>Sign Up</h5>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="new-username" type="text" class="validate">
+                <label for="new-username">Username</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="new-password" type="password" class="validate">
+                <label for="new-password">Password</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="new-email" type="email" class="validate">
+                <label for="new-email">Email</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <button id="signup-submit" class="btn waves-effect waves-light" type="submit" form="signup" name="submit">
+                    SIGN UP
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">Have an account? <a ng-click="signOut = false">Sign In</a></div>
+        </div>
+    </form>
+    <span class="modal-close">
+        <i class="material-icons">close</i>
+    </span>
+</div>

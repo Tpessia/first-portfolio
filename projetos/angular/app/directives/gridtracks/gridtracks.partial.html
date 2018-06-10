@@ -1,5 +1,5 @@
 <div class="row grid-tracks">
-    <div class="col s12 l6 main-col">
+    <div class="col s12 l6 main-col" ng-if="series[0]">
         <div class="img-cover" ng-style="(series[0].imgsDone) ? {'background-image':'url(' + series[0].image[series[0].image.length - 1]['#text'] + ')'} : {}">
             <div class="meta-wrapper" ng-style="mOn[0][0] == true || mOn[0][1] == true || mOn[0][3] == true ? {'z-index':'2'} : {}">
                 <div class="title">
@@ -14,9 +14,7 @@
                     </a>
                 </div>
             </div>
-            <div class="youtube-icon" ng-click="ytVideo.open({ type: 'video', artist: series[0].artist.name, track: series[0].name }); $event.stopPropagation();">
-                <img src="assets/img/icons/youtube-icon.png">
-            </div>
+            <materialize-video-fab play="ytVideo.open({ type: 'track', artist: series[0].artist.name, track: series[0].name });" add="saveOnPlaylist({ type: 'track', artist: series[0].artist.name, track: series[0].name });"></materialize-video-fab>
         </div>
     </div>
     <div class="col s12 l6 sub-col">
@@ -36,9 +34,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="youtube-icon" ng-click="ytVideo.open({ type: 'video', artist: serie.artist.name, track: serie.name }); $event.stopPropagation();">
-                        <img src="assets/img/icons/youtube-icon.png">
-                    </div>
+                    <materialize-video-fab play="ytVideo.open({ type: 'track', artist: serie.artist.name, track: serie.name });" add="saveOnPlaylist({ type: 'track', artist: serie.artist.name, track: serie.name });"></materialize-video-fab>
                 </div>
             </div>
         </div>
