@@ -26,7 +26,6 @@ body {
             top: 0;
             z-index: 10;
             .nav-wrapper {
-                padding-left: 15px;
                 .brand-logo {
                     font-family: 'Fondamento', cursive;
                     color: $primary-color;
@@ -34,12 +33,14 @@ body {
                     img {
                         vertical-align: top;
                         height: 100%;
-                        padding: 10px;
+                        &.hide-on-large-only {
+                            padding: 10px;
+                        }
                     }
                 }
                 .sidenav-trigger {
                     margin: 0;
-                    padding: 0 0 0 10px;
+                    padding: 0 20px;
                     // float: right;
                     // padding: 0 30px;
                     i {
@@ -97,7 +98,7 @@ body {
             }
         }
         #banner {
-            $bannerHeightPx: 320px;
+            $bannerHeightPx: 330px;
             height: $bannerHeightPx;
             overflow: hidden;
             position: relative;
@@ -111,13 +112,13 @@ body {
                 background-position: center;
                 background-size: cover;
             }
-            &.home {
-                $bannerHeightPx: 400px;
-                height: $bannerHeightPx;
-                .img-wrapper {
-                    min-height: $bannerHeightPx;
-                }
-            }
+            // &.home {
+            //     $bannerHeightPx: 400px;
+            //     height: $bannerHeightPx;
+            //     .img-wrapper {
+            //         min-height: $bannerHeightPx;
+            //     }
+            // }
             #bannerOverlay {
                 width: 100%;
                 height: 100%;

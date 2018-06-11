@@ -30,7 +30,7 @@
                         </a>
                     </div>
                     <div class="summary" ng-if="album.info.wiki.summary && stripLink(album.info.wiki.summary) != ''">
-                        {{ stripLink(album.info.wiki.summary) }} |  <a ng-href="{{ getSummaryLink(album.info.wiki.summary) }}" target="_blank">Read more.</a>
+                        {{ stripLink(album.info.wiki.summary) }} |  <a class="read-more" ng-href="{{ getSummaryLink(album.info.wiki.summary) }}" target="_blank">Read more.</a>
                     </div>
                     <div class="listeners" ng-if="album.info.listeners">Listeners: {{ album.info.listeners }}</div>
                     <div class="playcount" ng-if="album.info.playcount">Play Count: {{ album.info.playcount  }}</div>

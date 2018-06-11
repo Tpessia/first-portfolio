@@ -64,7 +64,7 @@ materialize-video-fab {
         bottom: auto;
         top: 10px;
         right: 10px;
-        z-index: 5;
+        z-index: 3;
         .fab-open {
             background-color: #212121 !important;
         }
@@ -114,7 +114,7 @@ materialize-video-fab {
             left: 10px;
             margin-right: 10px;
             &:hover {
-                z-index: 1;
+                z-index: 5;
             }
             a {
                 display: inline-block;
@@ -235,20 +235,24 @@ materialize-video-fab {
     #ytPlayer {
         position: relative;
         .controls {
-            background-color: #000000;
             .action {
                 cursor: pointer;
                 display: inline-block;
-                color: $primary-color-l;
-                padding: 3px;
-                &:not(:last-child) {
-                    border-right: 1px solid $primary-color-l;
-                }
+                color: white;
+                background-color: $primary-color;
+                padding: 4px;
+                margin: 3px;
+                border-radius: 50%;
+                transition: .3s background-color;
+                line-height: 0;
+                -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+                box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
                 &:hover {
-                    color: $primary-color-xl;
+                    background-color: $primary-color-l;
                 }
                 .material-icons {
                     vertical-align: top;
+                    font-size: 20px;
                 }
             }
         }
@@ -266,6 +270,7 @@ materialize-video-fab {
                 max-width: 100%;
                 background-color: #000000;
                 vertical-align: top;
+                transition: .2s width, .2s height;
                 &.expanded {
                     width: 40vw;
                     height: 22.5vw;

@@ -60,5 +60,5 @@ app.run(function ($rootScope, $window) {
 
     $rootScope.baseUrl = $window.location.pathname.substring(0, $window.location.pathname.lastIndexOf("/")) + '/';
     
-    $rootScope.fallbackImg = $rootScope.baseUrl + 'assets/img/logo-simple-256x256.png';
+    $rootScope.fallbackImg = $rootScope.baseUrl + 'assets/img/logo-simple-512x512.png';
 });

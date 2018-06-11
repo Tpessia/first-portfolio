@@ -1,7 +1,7 @@
 <div class="row grid-tracks">
     <div class="col s12 l6 main-col" ng-if="series[0]">
         <div class="img-cover" ng-style="(series[0].imgsDone) ? {'background-image':'url(' + series[0].image[series[0].image.length - 1]['#text'] + ')'} : {}">
-            <div class="meta-wrapper" ng-style="mOn[0][0] == true || mOn[0][1] == true || mOn[0][3] == true ? {'z-index':'2'} : {}">
+            <div class="meta-wrapper">
                 <div class="title">
                     <a ng-href="{{ searchFor('album', series[0].artist.name + ' - ' + series[0].name) }}" ng-mouseenter="mOn[0][0]=true" ng-mouseleave="mOn[0][0]=false">{{ series[0].name === undefined ? 'Unknown' : ( mOn[0][0] ? series[0].name : cutStr(series[0].name, 20) ) }}</a>
                 </div>
@@ -18,9 +18,9 @@
         <div class="row" ng-repeat="offset in [1,3]">
             <div class="col s12 l6" ng-repeat="serie in series | limitTo:2:offset">
                 <div class="img-cover" ng-style="(serie.imgsDone) ? {'background-image':'url(' + serie.image[serie.image.length - 1]['#text'] + ')'} : {}">
-                    <div class="meta-wrapper" ng-style="mOn[$index + offset][0] == true || mOn[$index + offset][1] == true || mOn[$index + offset][3] == true ? {'z-index':'2'} : {}">
+                    <div class="meta-wrapper">
                         <div class="title">
-                            <a ng-href="{{ searchFor('album', serie.artist.name + ' - ' + series[0].name) }}" ng-mouseenter="mOn[$index + offset][0]=true" ng-mouseleave="mOn[$index + offset][0]=false">{{ serie.name === undefined ? 'Unknown' : ( mOn[$index + offset][0] ? serie.name : cutStr(serie.name, 10)) }}</a>
+                            <a ng-href="{{ searchFor('album', serie.artist.name + ' - ' + serie.name) }}" ng-mouseenter="mOn[$index + offset][0]=true" ng-mouseleave="mOn[$index + offset][0]=false">{{ serie.name === undefined ? 'Unknown' : ( mOn[$index + offset][0] ? serie.name : cutStr(serie.name, 10)) }}</a>
                         </div>
                         <div class="artist">
                             <a ng-href="{{ searchFor('artist', serie.artist.name) }}" ng-mouseenter="mOn[$index + offset][2]=true" ng-mouseleave="mOn[$index + offset][2]=false">

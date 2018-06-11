@@ -25,7 +25,7 @@
                         <a ng-href="{{ searchFor('artist', artist.name) }}">{{ artist.name }}</a>
                     </div>
                     <div class="summary" ng-if="artist.info.bio.summary && stripLink(artist.info.bio.summary) != ''">
-                        {{ stripLink(artist.info.bio.summary) }} |  <a ng-href="{{ artist.info.bio.links.link.href }}" target="_blank">Read more.</a>
+                        {{ stripLink(artist.info.bio.summary) }} |  <a class="read-more" ng-href="{{ artist.info.bio.links.link.href }}" target="_blank">Read more.</a>
                     </div>
                     <div class="listeners" ng-if="artist.listenersy">Listeners: {{ artist.listeners }}</div>
                     <div class="playcount" ng-if="artist.info.stats.playcount">Play Count: {{ artist.info.stats.playcount }}</div>

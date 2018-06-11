@@ -17,21 +17,20 @@ body {
       position: fixed;
       top: 0;
       z-index: 10; }
-      body header nav .nav-wrapper {
-        padding-left: 15px; }
-        body header nav .nav-wrapper .brand-logo {
-          font-family: 'Fondamento', cursive;
-          color: #ff5722;
+      body header nav .nav-wrapper .brand-logo {
+        font-family: 'Fondamento', cursive;
+        color: #ff5722;
+        height: 100%; }
+        body header nav .nav-wrapper .brand-logo img {
+          vertical-align: top;
           height: 100%; }
-          body header nav .nav-wrapper .brand-logo img {
-            vertical-align: top;
-            height: 100%;
+          body header nav .nav-wrapper .brand-logo img.hide-on-large-only {
             padding: 10px; }
-        body header nav .nav-wrapper .sidenav-trigger {
-          margin: 0;
-          padding: 0 0 0 10px; }
-          body header nav .nav-wrapper .sidenav-trigger i {
-            font-size: 2.2rem; }
+      body header nav .nav-wrapper .sidenav-trigger {
+        margin: 0;
+        padding: 0 20px; }
+        body header nav .nav-wrapper .sidenav-trigger i {
+          font-size: 2.2rem; }
       body header nav ul li.active {
         background-color: rgba(255, 87, 34, 0.8) !important; }
       body header nav ul li a:hover {
@@ -65,7 +64,7 @@ body {
               body header nav ul li#loginAvatar #user-dropdown ~ #user-dropdown-items li a:hover {
                 background-color: rgba(255, 87, 34, 0.15); }
     body header #banner {
-      height: 320px;
+      height: 330px;
       overflow: hidden;
       position: relative;
       background-color: #050505; }
@@ -73,14 +72,10 @@ body {
         width: calc(100% / 3 - .1px);
         float: left;
         overflow: hidden;
-        min-height: 320px;
+        min-height: 330px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover; }
-      body header #banner.home {
-        height: 400px; }
-        body header #banner.home .img-wrapper {
-          min-height: 400px; }
       body header #banner #bannerOverlay {
         width: 100%;
         height: 100%;
@@ -265,6 +260,10 @@ body #search-results .results .search-item .meta-data .listen {
   margin-top: 10px; }
   body #search-results .results .search-item .meta-data .listen .btn {
     background-color: #ff7043; }
+body #search-results .results .search-item .meta-data .summary .read-more {
+  text-decoration: underline; }
+  body #search-results .results .search-item .meta-data .summary .read-more:hover {
+    text-decoration: none; }
 body #search-results .results .search-item .meta-data .similar a,
 body #search-results .results .search-item .meta-data .tags a,
 body #search-results .results .search-item .meta-data .album-tracks a {
@@ -332,7 +331,7 @@ materialize-video-fab .video-fab {
   bottom: auto;
   top: 10px;
   right: 10px;
-  z-index: 5; }
+  z-index: 3; }
   materialize-video-fab .video-fab .fab-open {
     background-color: #212121 !important; }
   materialize-video-fab .video-fab ul {
@@ -376,7 +375,7 @@ materialize-video-fab .video-fab {
     [grid-albums] .img-cover .meta-wrapper:hover,
     [grid-artists] .img-cover .meta-wrapper:hover,
     [grid-tracks] .img-cover .meta-wrapper:hover {
-      z-index: 1; }
+      z-index: 5; }
     [grid-albums] .img-cover .meta-wrapper a,
     [grid-artists] .img-cover .meta-wrapper a,
     [grid-tracks] .img-cover .meta-wrapper a {
@@ -484,19 +483,23 @@ materialize-video-fab .video-fab {
   text-align: right; }
   [yt-player] #ytPlayer {
     position: relative; }
-    [yt-player] #ytPlayer .controls {
-      background-color: #000000; }
-      [yt-player] #ytPlayer .controls .action {
-        cursor: pointer;
-        display: inline-block;
-        color: #ff7043;
-        padding: 3px; }
-        [yt-player] #ytPlayer .controls .action:not(:last-child) {
-          border-right: 1px solid #ff7043; }
-        [yt-player] #ytPlayer .controls .action:hover {
-          color: #ffccbc; }
-        [yt-player] #ytPlayer .controls .action .material-icons {
-          vertical-align: top; }
+    [yt-player] #ytPlayer .controls .action {
+      cursor: pointer;
+      display: inline-block;
+      color: white;
+      background-color: #ff5722;
+      padding: 4px;
+      margin: 3px;
+      border-radius: 50%;
+      transition: .3s background-color;
+      line-height: 0;
+      -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2); }
+      [yt-player] #ytPlayer .controls .action:hover {
+        background-color: #ff7043; }
+      [yt-player] #ytPlayer .controls .action .material-icons {
+        vertical-align: top;
+        font-size: 20px; }
     [yt-player] #ytPlayer.visible .controls {
       position: absolute;
       top: 0;
@@ -508,7 +511,8 @@ materialize-video-fab .video-fab {
       height: 180px;
       max-width: 100%;
       background-color: #000000;
-      vertical-align: top; }
+      vertical-align: top;
+      transition: .2s width, .2s height; }
       [yt-player] #ytPlayer.visible .player-wrapper.expanded {
         width: 40vw;
         height: 22.5vw;
