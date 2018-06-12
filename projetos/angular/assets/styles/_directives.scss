@@ -305,3 +305,47 @@ materialize-video-fab {
         }
     }
 }
+
+carousel-playlists {
+    .carousel {
+        .carousel-item {
+            cursor: pointer;
+            &:not(.active) {
+                opacity: .7 !important;
+            }
+        }
+        .indicators {
+            .indicator-item {
+                background-color: rgba($secondary-color, .5);
+                &.active {
+                    background-color: $secondary-color;
+                }
+            }
+        }
+    }
+}
+
+[playlist-selection] {
+    max-height: 80%;
+    .modal-content {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 20px 24px;
+        h4 {
+            margin-bottom: 1.4rem;
+        }
+        h5 {
+            margin-top: 0;
+        }
+        .modal-close {
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            cursor: pointer;
+            .material-icons {
+                font-size: 2.5rem;
+                vertical-align: top;
+            }
+        }
+    }
+}

@@ -185,106 +185,6 @@ body {
     -webkit-animation-name: autofill;
     -webkit-animation-fill-mode: both; }
 
-body .home .tops .tops-list {
-  margin-bottom: 40px; }
-  body .home .tops .tops-list .panel-wrapper {
-    padding: 0 15px; }
-    body .home .tops .tops-list .panel-wrapper h4 {
-      margin: 0;
-      padding: 1.3rem 0 1rem 0; }
-    body .home .tops .tops-list .panel-wrapper .collection {
-      border: 0; }
-      body .home .tops .tops-list .panel-wrapper .collection .collection-item {
-        padding-right: 40px; }
-        body .home .tops .tops-list .panel-wrapper .collection .collection-item.avatar .title {
-          font-weight: 500; }
-        body .home .tops .tops-list .panel-wrapper .collection .collection-item.avatar .description {
-          font-size: 0.9rem; }
-        body .home .tops .tops-list .panel-wrapper .collection .collection-item .secondary-content i {
-          transition: all 0.2s linear;
-          color: #9e9e9e; }
-          body .home .tops .tops-list .panel-wrapper .collection .collection-item .secondary-content i:hover {
-            color: #bdbdbd; }
-      body .home .tops .tops-list .panel-wrapper .collection#top-tracks .collection-item .artist-name {
-        display: block;
-        margin-bottom: 5px;
-        line-height: 1; }
-        body .home .tops .tops-list .panel-wrapper .collection#top-tracks .collection-item .artist-name small {
-          display: block; }
-      body .home .tops .tops-list .panel-wrapper .collection#top-tags .collection-item {
-        text-transform: capitalize; }
-  body .home .tops .tops-list .progress {
-    margin: 0;
-    margin-top: -4px;
-    background-color: #ffccbc; }
-    body .home .tops .tops-list .progress .indeterminate {
-      background-color: #ff5722; }
-
-body #search-results .results .not-found {
-  margin: 25px 15px 15px; }
-body #search-results .results .search-item:not(:last-child) {
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4); }
-body #search-results .results .search-item .img-box .search-img {
-  padding-top: 100%;
-  position: relative;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover; }
-  @media (max-width: 600px) {
-    body #search-results .results .search-item .img-box .search-img {
-      margin-bottom: 20px; } }
-  body #search-results .results .search-item .img-box .search-img .youtube-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    transition: .3s transform;
-    z-index: 1;
-    cursor: pointer; }
-    body #search-results .results .search-item .img-box .search-img .youtube-icon:hover {
-      transform: scale(1.1); }
-    body #search-results .results .search-item .img-box .search-img .youtube-icon img {
-      width: 35px; }
-body #search-results .results .search-item .meta-data a {
-  color: rgba(0, 0, 0, 0.87); }
-  body #search-results .results .search-item .meta-data a:hover {
-    text-decoration: underline; }
-body #search-results .results .search-item .meta-data div {
-  font-size: 1.1rem;
-  margin-bottom: 5px; }
-body #search-results .results .search-item .meta-data .title {
-  font-size: 2rem;
-  line-height: 1.2;
-  margin-bottom: 15px; }
-body #search-results .results .search-item .meta-data .listen {
-  margin-top: 10px; }
-  body #search-results .results .search-item .meta-data .listen .btn {
-    background-color: #ff7043; }
-body #search-results .results .search-item .meta-data .summary .read-more {
-  text-decoration: underline; }
-  body #search-results .results .search-item .meta-data .summary .read-more:hover {
-    text-decoration: none; }
-body #search-results .results .search-item .meta-data .similar a,
-body #search-results .results .search-item .meta-data .tags a,
-body #search-results .results .search-item .meta-data .album-tracks a {
-  line-height: 2;
-  padding: 2px 5px;
-  margin: 0 4px; }
-  body #search-results .results .search-item .meta-data .similar a:first-child,
-  body #search-results .results .search-item .meta-data .tags a:first-child,
-  body #search-results .results .search-item .meta-data .album-tracks a:first-child {
-    margin-left: 0; }
-  body #search-results .results .search-item .meta-data .similar a:last-child,
-  body #search-results .results .search-item .meta-data .tags a:last-child,
-  body #search-results .results .search-item .meta-data .album-tracks a:last-child {
-    margin-right: 0; }
-body #search-results .results .search-item .meta-data .similar a,
-body #search-results .results .search-item .meta-data .album-tracks a {
-  background-color: #ff7043; }
-body #search-results .results .search-item .meta-data .tags a {
-  background-color: rgba(0, 0, 0, 0.87);
-  color: white; }
-
 [login-modal] {
   max-height: 80%; }
   [login-modal] .modal-content {
@@ -531,5 +431,167 @@ materialize-video-fab .video-fab {
       [yt-player] #ytPlayer iframe.expanded {
         width: auto;
         height: auto; } }
+
+carousel-playlists .carousel .carousel-item {
+  cursor: pointer; }
+  carousel-playlists .carousel .carousel-item:not(.active) {
+    opacity: .7 !important; }
+carousel-playlists .carousel .indicators .indicator-item {
+  background-color: rgba(33, 33, 33, 0.5); }
+  carousel-playlists .carousel .indicators .indicator-item.active {
+    background-color: #212121; }
+
+[playlist-selection] {
+  max-height: 80%; }
+  [playlist-selection] .modal-content {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 20px 24px; }
+    [playlist-selection] .modal-content h4 {
+      margin-bottom: 1.4rem; }
+    [playlist-selection] .modal-content h5 {
+      margin-top: 0; }
+    [playlist-selection] .modal-content .modal-close {
+      position: absolute;
+      right: 25px;
+      top: 25px;
+      cursor: pointer; }
+      [playlist-selection] .modal-content .modal-close .material-icons {
+        font-size: 2.5rem;
+        vertical-align: top; }
+
+body .home .tops .tops-list {
+  margin-bottom: 40px; }
+  body .home .tops .tops-list .panel-wrapper {
+    padding: 0 15px; }
+    body .home .tops .tops-list .panel-wrapper h4 {
+      margin: 0;
+      padding: 1.3rem 0 1rem 0; }
+    body .home .tops .tops-list .panel-wrapper .collection {
+      border: 0; }
+      body .home .tops .tops-list .panel-wrapper .collection .collection-item {
+        padding-right: 40px; }
+        body .home .tops .tops-list .panel-wrapper .collection .collection-item.avatar .title {
+          font-weight: 500; }
+        body .home .tops .tops-list .panel-wrapper .collection .collection-item.avatar .description {
+          font-size: 0.9rem; }
+        body .home .tops .tops-list .panel-wrapper .collection .collection-item .secondary-content i {
+          transition: all 0.2s linear;
+          color: #9e9e9e; }
+          body .home .tops .tops-list .panel-wrapper .collection .collection-item .secondary-content i:hover {
+            color: #bdbdbd; }
+      body .home .tops .tops-list .panel-wrapper .collection#top-tracks .collection-item .artist-name {
+        display: block;
+        margin-bottom: 5px;
+        line-height: 1; }
+        body .home .tops .tops-list .panel-wrapper .collection#top-tracks .collection-item .artist-name small {
+          display: block; }
+      body .home .tops .tops-list .panel-wrapper .collection#top-tags .collection-item {
+        text-transform: capitalize; }
+  body .home .tops .tops-list .progress {
+    margin: 0;
+    margin-top: -4px;
+    background-color: #ffccbc; }
+    body .home .tops .tops-list .progress .indeterminate {
+      background-color: #ff5722; }
+
+body #search-results .results .not-found {
+  margin: 25px 15px 15px; }
+body #search-results .results .search-item:not(:last-child) {
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4); }
+body #search-results .results .search-item .img-box .search-img {
+  padding-top: 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; }
+  @media (max-width: 600px) {
+    body #search-results .results .search-item .img-box .search-img {
+      margin-bottom: 20px; } }
+  body #search-results .results .search-item .img-box .search-img .youtube-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: .3s transform;
+    z-index: 1;
+    cursor: pointer; }
+    body #search-results .results .search-item .img-box .search-img .youtube-icon:hover {
+      transform: scale(1.1); }
+    body #search-results .results .search-item .img-box .search-img .youtube-icon img {
+      width: 35px; }
+body #search-results .results .search-item .meta-data a {
+  color: rgba(0, 0, 0, 0.87); }
+  body #search-results .results .search-item .meta-data a:hover {
+    text-decoration: underline; }
+body #search-results .results .search-item .meta-data div {
+  font-size: 1.1rem;
+  margin-bottom: 5px; }
+body #search-results .results .search-item .meta-data .title {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: 15px; }
+body #search-results .results .search-item .meta-data .listen {
+  margin-top: 10px; }
+  body #search-results .results .search-item .meta-data .listen .btn {
+    background-color: #ff7043; }
+body #search-results .results .search-item .meta-data .summary .read-more {
+  text-decoration: underline; }
+  body #search-results .results .search-item .meta-data .summary .read-more:hover {
+    text-decoration: none; }
+body #search-results .results .search-item .meta-data .similar a,
+body #search-results .results .search-item .meta-data .tags a,
+body #search-results .results .search-item .meta-data .album-tracks a {
+  line-height: 2;
+  padding: 2px 5px;
+  margin: 0 4px; }
+  body #search-results .results .search-item .meta-data .similar a:first-child,
+  body #search-results .results .search-item .meta-data .tags a:first-child,
+  body #search-results .results .search-item .meta-data .album-tracks a:first-child {
+    margin-left: 0; }
+  body #search-results .results .search-item .meta-data .similar a:last-child,
+  body #search-results .results .search-item .meta-data .tags a:last-child,
+  body #search-results .results .search-item .meta-data .album-tracks a:last-child {
+    margin-right: 0; }
+body #search-results .results .search-item .meta-data .similar a,
+body #search-results .results .search-item .meta-data .album-tracks a {
+  background-color: #ff7043; }
+body #search-results .results .search-item .meta-data .tags a {
+  background-color: rgba(0, 0, 0, 0.87);
+  color: white; }
+
+body .usersettings form {
+  margin-bottom: 50px; }
+  body .usersettings form .row {
+    margin-bottom: 0px; }
+    body .usersettings form .row .avatar {
+      text-align: center; }
+      body .usersettings form .row .avatar .img-wrapper {
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        max-height: 275px;
+        max-width: 275px; }
+        body .usersettings form .row .avatar .img-wrapper img {
+          width: 100%; }
+        body .usersettings form .row .avatar .img-wrapper .edit {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          display: block;
+          width: 100%;
+          background: #1b1b1b;
+          color: white;
+          font-weight: 600; }
+          body .usersettings form .row .avatar .img-wrapper .edit .material-icons {
+            vertical-align: top;
+            margin: 0 5px; }
+    body .usersettings form .row .img-wrapper,
+    body .usersettings form .row .input-field {
+      margin-bottom: 2rem; }
+    body .usersettings form .row #us-submit {
+      background-color: #ff5722; }
+  body .usersettings form > .row {
+    margin-bottom: 20px; }
 
 /*# sourceMappingURL=main.css.map */

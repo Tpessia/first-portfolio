@@ -23,39 +23,40 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
 
     // Events
 
-    $scope.$on('userSaveTrack', function (event, videoData) {
+    $scope.$on('userSaveTrack', function (event, data) {
         // { type: 'track', artist: 'Portugal. The Man', track: 'Noise Pollution' }
-        switch (videoData.type) {
+        switch (data.videoData.type) {
             case 'track':
-                getTrackId(videoData.artist, videoData.track);
+                getTrackId(data.playlistName, data.videoData.artist, data.videoData.track);
                 break;
             case 'album':
-                getAlbumTrackIds(videoData.artist, videoData.album);
+                getAlbumTrackIds(data.playlistName, data.videoData.artist, data.videoData.album);
                 break;
             case 'artist':
-                getArtistTrackIds(videoData.artist);
+                getArtistTrackIds(data.playlistName, data.videoData.artist);
                 break;
             default:
-                throw 'Invalid video type "' + videoData.type + '"';
+                throw 'Invalid video type "' + data.videoData.type + '"';
                 break;
         }
     });
 
     // Video ID getters
 
-    function getTrackId(artist, track) {
+    function getTrackId(playlistName, artist, track) {
         youTubeService.getMusicVideo(artist, track).then(function (response) {
             if (typeof response.data.error === "undefined" && typeof response.data.error === "undefined") {
                 var video = response.data.items[0],
                     id = video.id.videoId,
                     title = video.snippet.title;
-
-                userService.savedPlaylists.addTrack('myPlaylist', {
+                    
+                userService.savedPlaylists.addTrack(playlistName, {
                     'id': id,
-                    'title': title
+                    'title': title,
+                    'img': video.snippet.thumbnails.medium.url
                 });
                 
-                console.log(userService.savedPlaylists.getPlaylist('myPlaylist'));
+                console.log(userService.savedPlaylists.getPlaylist(playlistName));
             }
             else {
                 console.log(response);
@@ -65,7 +66,7 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
         });
     }
 
-    function getAlbumTrackIds(artist, album) {
+    function getAlbumTrackIds(playlistName, artist, album) {
         youTubeService.getAlbumPlaylist(artist, album).then(function (response) {
             if (typeof response.data.error === "undefined" && typeof response.data.error === "undefined") {
                 var playlist = response.data.items[0],
@@ -80,8 +81,9 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
 
                                 for (var i in videos) {
                                     videosData.push({
-                                        id: videos[i].contentDetails.videoId,
-                                        title: videos[i].snippet.title
+                                        'id': videos[i].contentDetails.videoId,
+                                        'title': videos[i].snippet.title,
+                                        'img': videos[i].snippet.thumbnails.medium.url
                                     });
                                 }
                                 
@@ -89,9 +91,9 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
                                     getVideosIds(id, response.data.nextPageToken);
                                 }
                                 else { // se não, adiciona todos os dados
-                                    userService.savedPlaylists.appendPlaylist('myPlaylist', videosData);
+                                    userService.savedPlaylists.appendPlaylist(playlistName, videosData);
 
-                                    console.log(userService.savedPlaylists.getPlaylist('myPlaylist'));
+                                    console.log(userService.savedPlaylists.getPlaylist(playlistName));
                                 }
                             } else {
                                 console.log(response);
@@ -109,7 +111,7 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
         });
     }
 
-    function getArtistTrackIds(artist) {
+    function getArtistTrackIds(playlistName, artist) {
         youTubeService.getArtistPlaylist(artist).then(function (response) {
             if (typeof response.data.error === "undefined" && typeof response.data.error === "undefined") {
                 var playlist = response.data.items[0],
@@ -123,8 +125,9 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
                                 var videos = response.data.items;
                                 for (var i in videos) {
                                     videosData.push({
-                                        id: videos[i].contentDetails.videoId,
-                                        title: videos[i].snippet.title
+                                        'id': videos[i].contentDetails.videoId,
+                                        'title': videos[i].snippet.title,
+                                        'img': videos[i].snippet.thumbnails.medium.url
                                     });
                                 }
 
@@ -132,9 +135,9 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
                                     getVideosIds(id, response.data.nextPageToken);
                                 }
                                 else { // se não, adiciona todos os dados
-                                    userService.savedPlaylists.appendPlaylist('myPlaylist', videosData);
+                                    userService.savedPlaylists.appendPlaylist(playlistName, videosData);
 
-                                    console.log(userService.savedPlaylists.getPlaylist('myPlaylist'));
+                                    console.log(userService.savedPlaylists.getPlaylist(playlistName));
                                 }
                             } else {
                                 console.log(response);

@@ -4,27 +4,54 @@
             USER SETTINGS
         </h3>
     </div>
-    <form name="user-settings" class="col s12">
+    <form id="user-settings" name="user-settings" class="col s12" ng-submit="onSubmit()">
         <div class="row">
-            <div class="input-field dark-input col s6">
-                <input disabled value="{{ userSecure.username }}" id="username-us" type="text">
-                <label for="username-us" class="active">Username</label>
+            <div class="col s12 l4 avatar">
+                <div class="img-wrapper">
+                    <img ng-src="{{ user.avatar }}" alt="Avatar">
+                    <a class="edit btn-flat" ng-click="changeAvatar()">EDIT<i class="material-icons">image</i></a>
+                </div>
             </div>
-            <div class="input-field dark-input col s6">
-                <input value="{{ user.name }}" id="name-us" type="text">
-                <label for="name-us" class="active">Full Name</label>
+            <div class="col s12 l8">
+                <div class="row">
+                    <div class="input-field dark-input col s12">
+                        <input value="{{ user.name }}" id="name-us" type="text">
+                        <label for="name-us" class="active">Full Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field dark-input col s12">
+                        <input disabled value="{{ userSecure.username }}" id="username-us" type="text">
+                        <label for="username-us" class="active">Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field dark-input col s12">
+                        <input disabled value="{{ userSecure.email }}" id="email-us" type="email">
+                        <label for="email-us" class="active">Email</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col s12">
+                <h4>Change Password</h4>
+            </div>
+            <div class="input-field dark-input col s12 l6">
+                <input id="password-us-old" type="password">
+                <label for="password-us-old">Old Password</label>
+            </div>
+            <div class="input-field dark-input col s12 l6">
+                <input id="password-us-new" type="password">
+                <label for="password-us-new">New Password</label>
             </div>
         </div>
         <div class="row">
-            <div class="input-field dark-input col s12">
-                <input value="{{ userSecure.password }}" id="password-us" type="password">
-                <label for="password-us" class="active">Password</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field dark-input col s12">
-                <input value="{{ userSecure.email }}" id="email-us" type="email">
-                <label for="email-us" class="active">Email</label>
+            <div class="col s12">
+                <button id="us-submit" class="btn waves-effect waves-light" type="submit" form="user-settings" name="submit">
+                    SUBMIT CHANGES
+                </button>
             </div>
         </div>
     </form>

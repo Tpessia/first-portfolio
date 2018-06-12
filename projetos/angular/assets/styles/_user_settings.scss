@@ -1,0 +1,47 @@
+body {
+    .usersettings {
+        form {
+            margin-bottom: 50px;
+            .row {
+                margin-bottom: 0px;
+                .avatar {
+                    text-align: center;
+                    .img-wrapper {
+                        display: inline-block;
+                        position: relative;
+                        width: 100%;
+                        max-height: 275px;
+                        max-width: 275px;
+                        img {
+                            width: 100%;
+                        }
+                        .edit {
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            display: block;
+                            width: 100%;
+                            background: #1b1b1b;
+                            color: white;
+                            font-weight: 600;
+                            .material-icons {
+                                vertical-align: top;
+                                margin: 0 5px;
+                            }
+                        }
+                    }
+                }
+                .img-wrapper,
+                .input-field {
+                    margin-bottom: 2rem;
+                }
+                #us-submit {
+                    background-color: $primary-color;
+                }
+            }
+            &>.row {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}

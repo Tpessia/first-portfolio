@@ -4,7 +4,7 @@
     </a>
     <ul>
         <li>
-            <a class="fab-add btn-floating btn-small" ng-click="add()" onclick="M.toast({html: 'Video Adicionado!'})">
+            <a class="fab-add btn-floating btn-small modal-trigger" data-target="playlist-selection">
                 <i class="material-icons small">add</i>
             </a>
         </li>
@@ -14,4 +14,8 @@
             </a>
         </li>
     </ul>
+</div>
+
+<div playlist-selection on-select="onPlaylistSelect(playlistName)" id="playlist-selection" class="modal">
+    <!-- Playlist Selection Modal -->
 </div>

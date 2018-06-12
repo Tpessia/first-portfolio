@@ -88,11 +88,11 @@
                 </div>
             </div>
         </div>
-        
-        <div login-modal sign-in="userMethods.signIn()" sign-up="userMethods.signUp()" id="login-modal" class="modal">
-            <!-- Login Modal -->
-        </div>
     </header>
+        
+    <div login-modal sign-in="userMethods.signIn()" sign-up="userMethods.signUp()" id="login-modal" class="modal">
+        <!-- Login Modal -->
+    </div>
 
     <main class="container" ng-view="">
         <!-- NG VIEW -->

@@ -149,8 +149,11 @@ app.controller("AlbumsController", function ($rootScope, $scope, $location, albu
 
     // User options
 
-    $scope.saveOnPlaylist = function (videoData) {
-        $rootScope.$broadcast('userSaveTrack', videoData);
+    $scope.saveOnPlaylist = function (playlistName, videoData) {
+        $rootScope.$broadcast('userSaveTrack', {
+            'playlistName': playlistName,
+            'videoData': videoData
+        });
     }
     
     // Youtube caller

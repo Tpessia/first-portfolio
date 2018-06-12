@@ -5,8 +5,11 @@ app.controller("GridAlbumsController", function ($rootScope, $scope) {
 
     // User options
 
-    $scope.saveOnPlaylist = function (videoData) {
-        $rootScope.$broadcast('userSaveTrack', videoData);
+    $scope.saveOnPlaylist = function (playlistName, videoData) {
+        $rootScope.$broadcast('userSaveTrack', {
+            'playlistName': playlistName,
+            'videoData': videoData
+        });
     }
 
     // Youtube caller
