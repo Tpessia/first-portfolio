@@ -436,6 +436,10 @@ carousel-playlists .carousel {
   margin-top: -50px; }
   carousel-playlists .carousel .carousel-item {
     cursor: pointer; }
+    carousel-playlists .carousel .carousel-item img {
+      object-fit: cover;
+      object-position: center;
+      height: 100%; }
   carousel-playlists .carousel .indicators .indicator-item {
     background-color: rgba(33, 33, 33, 0.5); }
     carousel-playlists .carousel .indicators .indicator-item.active {
@@ -615,5 +619,27 @@ body .usersettings form {
       background-color: #ff5722; }
   body .usersettings form > .row {
     margin-bottom: 20px; }
+
+body .userplaylists .carousel-wrapper {
+  overflow: hidden; }
+body .userplaylists .focused-playlist .playlist-tracks .track-item {
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px; }
+  body .userplaylists .focused-playlist .playlist-tracks .track-item .track-image {
+    display: inline-block;
+    width: 50px;
+    vertical-align: top; }
+    body .userplaylists .focused-playlist .playlist-tracks .track-item .track-image img {
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      width: 100%; }
+  body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 10px; }
 
 /*# sourceMappingURL=main.css.map */

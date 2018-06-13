@@ -1,0 +1,34 @@
+body {
+    .userplaylists {
+        .carousel-wrapper {
+            overflow: hidden;
+        }
+        .focused-playlist {
+            .playlist-tracks {
+                .track-item {
+                    width: 100%;
+                    position: relative;
+                    margin-bottom: 10px;
+                    .track-image {
+                        display: inline-block;
+                        width: 50px;
+                        vertical-align: top;
+                        img {
+                            object-fit: cover;
+                            object-position: center;
+                            display: block;
+                            width: 100%;
+                        }
+                    }
+                    .track-title {
+                        display: inline-block;
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

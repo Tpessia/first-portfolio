@@ -311,8 +311,10 @@ carousel-playlists {
         margin-top: -50px;
         .carousel-item {
             cursor: pointer;
-            &:not(.active) {
-                // opacity: .7 !important;
+            img {
+                object-fit: cover;
+                object-position: center;
+                height: 100%;
             }
         }
         .indicators {

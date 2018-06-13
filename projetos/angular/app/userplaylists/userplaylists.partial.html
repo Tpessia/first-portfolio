@@ -4,22 +4,22 @@
             SAVED PLAYLISTS
         </h3>
     </div>
-    <div class="col s12">
+    <div class="col s12 carousel-wrapper">
         <carousel-playlists playlists="playlists" on-slide="selectPlaylist(name)"></carousel-playlists>
     </div>
-    <div class="col s12" ng-if="activePlaylist">
+    <div class="col s12 focused-playlist" ng-if="activePlaylist">
         <h5 class="main-title">
             <a ng-click="ytVideo.playCustomPlaylist(activePlaylist.name);">{{ activePlaylist.name }}</a>
         </h5>
-        <ul>
-            <li ng-if="activePlaylist.list.length == 0">
+        <ul class="playlist-tracks">
+            <li class="empty-list" ng-if="activePlaylist.list.length == 0">
                 This list is empty.
             </li>
-            <li ng-repeat="music in activePlaylist.list track by $index">
-                <div>
+            <li class="track-item" ng-repeat="music in activePlaylist.list track by $index">
+                <div class="track-image">
                     <img ng-src="{{ music.img }}">
                 </div>
-                <div>
+                <div class="track-title">
                     <a ng-click="ytVideo.open({ type: 'id', id: music.id });">{{ music.title }}</a>
                 </div>
             </li>

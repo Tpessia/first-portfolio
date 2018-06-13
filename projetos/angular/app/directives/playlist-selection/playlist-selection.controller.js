@@ -2,14 +2,12 @@ app.controller("PlaylistSelectionController", function ($scope, userService) {
     $scope.playlists = userService.savedPlaylists.getAllPlaylists();
     
     $scope.selectPlaylist = function (playlistName) {
-        $scope.onSelect({ 'playlistName': playlistName });
-        $scope.instances[0].close();
+        addPlaylist(playlistName);
     };
 
     $scope.createPlaylist = function (playlistName) {
         if (userService.savedPlaylists.newPlaylist(playlistName)) {
-            $scope.onSelect({ 'playlistName': playlistName });
-            $scope.instances[0].close();
+            addPlaylist(playlistName);
             M.toast({
                 html: 'Video Adicionado!',
                 displayLength: '3000'
@@ -23,4 +21,10 @@ app.controller("PlaylistSelectionController", function ($scope, userService) {
             });
         }
     }
+
+    function addPlaylist(playlistName) {
+        $scope.onSelect({ 'playlistName': playlistName });
+        $scope.instances[0].close();
+        $scope.newPlaylist = "";
+    };
 });

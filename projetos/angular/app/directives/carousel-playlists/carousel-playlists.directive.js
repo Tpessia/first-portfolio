@@ -9,12 +9,12 @@ app.directive('carouselPlaylists', function () {
         link: function (scope, element, attrs) {
             setTimeout(function () {
                 var instances = M.Carousel.init($$('.carousel'), {
-                    numVisible: 5,
+                    // numVisible: 5,
                     dist: -10,
                     shift: 10,
                     padding: 5,
                     indicators: true,
-                    noWrap: true,
+                    // noWrap: true,
                     onCycleTo: function (elem) {
                         scope.$apply(function () {
                             scope.focusedElem = elem;
