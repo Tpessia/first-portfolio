@@ -14,6 +14,10 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, userServ
         };
     };
 
+    $scope.deletePlaylsit = function (name) {
+        userService.savedPlaylists.deletePlaylist(name);
+    }
+
     $scope.ytVideo = {
         open: function (videoData) {
             $rootScope.$broadcast('ytPlayVideo', videoData);

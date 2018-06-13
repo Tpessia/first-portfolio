@@ -8,19 +8,27 @@
         <carousel-playlists playlists="playlists" on-slide="selectPlaylist(name)"></carousel-playlists>
     </div>
     <div class="col s12 focused-playlist" ng-if="activePlaylist">
-        <h5 class="main-title">
-            <a ng-click="ytVideo.playCustomPlaylist(activePlaylist.name);">{{ activePlaylist.name }}</a>
-        </h5>
+        <h4 class="playlist-title">
+            <span class="title-wrapper">
+                <span class="playlist-name">{{ activePlaylist.name }}</span>
+                <a ng-click="ytVideo.playCustomPlaylist(activePlaylist.name);">
+                    <i class="material-icons">play_arrow</i>
+                </a>
+                <a>
+                    <i class="material-icons" ng-click="deletePlaylsit(activePlaylist.name)">delete</i>
+                </a>
+            </span>
+        </h4>
         <ul class="playlist-tracks">
             <li class="empty-list" ng-if="activePlaylist.list.length == 0">
                 This list is empty.
             </li>
-            <li class="track-item" ng-repeat="music in activePlaylist.list track by $index">
+            <li class="track-item" ng-repeat="music in activePlaylist.list track by $index" ng-click="ytVideo.open({ type: 'id', id: music.id });">
                 <div class="track-image">
                     <img ng-src="{{ music.img }}">
                 </div>
                 <div class="track-title">
-                    <a ng-click="ytVideo.open({ type: 'id', id: music.id });">{{ music.title }}</a>
+                    <a>{{ music.title }}</a>
                 </div>
             </li>
         </ul>
