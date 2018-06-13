@@ -1,6 +1,19 @@
 app.controller("UserPlaylistsController", function ($rootScope, $scope, userService) {
     $scope.playlists = userService.savedPlaylists.getAllPlaylists();
 
+    var firstPlaylistName = Object.keys($scope.playlists)[0];
+    $scope.activePlaylist = {
+        'name': firstPlaylistName,
+        'list': userService.savedPlaylists.getPlaylist(firstPlaylistName)
+    };
+
+    $scope.selectPlaylist = function (name) {
+        $scope.activePlaylist = {
+            'name': name,
+            'list': userService.savedPlaylists.getPlaylist(name)
+        };
+    };
+
     $scope.ytVideo = {
         open: function (videoData) {
             $rootScope.$broadcast('ytPlayVideo', videoData);
@@ -10,12 +23,5 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, userServ
             console.log(userService.savedPlaylists.getPlaylist(name))
             $rootScope.$broadcast('ytPlayCustomPlaylist', userService.savedPlaylists.getPlaylist(name));
         }
-    };
-
-    $scope.selectPlaylist = function (name) {
-        $scope.activePlaylist = {
-            'name': name,
-            'list': userService.savedPlaylists.getPlaylist(name)
-        };
     };
 });

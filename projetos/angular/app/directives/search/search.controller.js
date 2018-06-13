@@ -8,7 +8,11 @@ app.controller("SearchController", function ($scope, $location) {
             angular.element($$(".search-wide input")).triggerHandler("blur");
         }
         else {
-            M.toast({html: 'Pesquisa Inválida!', classes: 'red darken-4', displayLength: '3000'});
+            M.toast({
+                html: 'Pesquisa Inválida!',
+                classes: 'red darken-4',
+                displayLength: '3000'
+            });
         }
     }
 

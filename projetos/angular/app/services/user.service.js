@@ -30,15 +30,7 @@ app.service("userService", function ($rootScope) {
             title: 'Arctic Monkeys - Four Out Of Five (Official Video)',
             img: 'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg'
         }],
-        'myPlaylist3': [{
-            id: 'VYOjWnS4cMY',
-            title: 'Childish Gambino - This Is America (Official Video)',
-            img: 'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg'
-        }, {
-            id: '71Es-8FfATo',
-            title: 'Arctic Monkeys - Four Out Of Five (Official Video)',
-            img: 'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg'
-        }]
+        'myPlaylist3': []
     };
 
     this.savedPlaylists = {

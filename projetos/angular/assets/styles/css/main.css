@@ -432,33 +432,55 @@ materialize-video-fab .video-fab {
         width: auto;
         height: auto; } }
 
-carousel-playlists .carousel .carousel-item {
-  cursor: pointer; }
-  carousel-playlists .carousel .carousel-item:not(.active) {
-    opacity: .7 !important; }
-carousel-playlists .carousel .indicators .indicator-item {
-  background-color: rgba(33, 33, 33, 0.5); }
-  carousel-playlists .carousel .indicators .indicator-item.active {
-    background-color: #212121; }
+carousel-playlists .carousel {
+  margin-top: -50px; }
+  carousel-playlists .carousel .carousel-item {
+    cursor: pointer; }
+  carousel-playlists .carousel .indicators .indicator-item {
+    background-color: rgba(33, 33, 33, 0.5); }
+    carousel-playlists .carousel .indicators .indicator-item.active {
+      background-color: #212121; }
 
 [playlist-selection] {
-  max-height: 80%; }
+  max-height: 60%;
+  width: 250px; }
   [playlist-selection] .modal-content {
-    margin-left: 0;
-    margin-right: 0;
-    padding: 20px 24px; }
+    margin: 0;
+    padding: 15px 10px;
+    height: calc(100% - 123px) !important; }
     [playlist-selection] .modal-content h4 {
-      margin-bottom: 1.4rem; }
-    [playlist-selection] .modal-content h5 {
-      margin-top: 0; }
+      margin-bottom: 5px;
+      max-width: 165px; }
+    [playlist-selection] .modal-content ul li {
+      margin: 15px 0; }
+      [playlist-selection] .modal-content ul li span {
+        cursor: pointer;
+        padding: 5px;
+        background-color: #ffccbc; }
+        [playlist-selection] .modal-content ul li span .material-icons {
+          vertical-align: top; }
     [playlist-selection] .modal-content .modal-close {
       position: absolute;
-      right: 25px;
-      top: 25px;
+      left: 190px;
+      top: 15px;
       cursor: pointer; }
       [playlist-selection] .modal-content .modal-close .material-icons {
         font-size: 2.5rem;
         vertical-align: top; }
+  [playlist-selection] .modal-footer {
+    text-align: left;
+    margin-bottom: 0;
+    padding: 10px;
+    margin: 0;
+    height: 123px;
+    background-color: #212121; }
+    [playlist-selection] .modal-footer .input-field {
+      margin: 0; }
+      [playlist-selection] .modal-footer .input-field input {
+        color: white; }
+    [playlist-selection] .modal-footer .btn {
+      background-color: #ff5722;
+      width: 100%; }
 
 body .home .tops .tops-list {
   margin-bottom: 40px; }

@@ -2,7 +2,7 @@ app.directive('carouselPlaylists', function () {
     return {
         scope: {
             playlists: '=',
-            onImgClick: '&'
+            onSlide: '&'
         },
         controller: 'CarouselPlaylistsController',
         templateUrl: 'app/directives/carousel-playlists/carousel-playlists.partial.html',
@@ -14,7 +14,12 @@ app.directive('carouselPlaylists', function () {
                     shift: 10,
                     padding: 5,
                     indicators: true,
-                    noWrap: true
+                    noWrap: true,
+                    onCycleTo: function (elem) {
+                        scope.$apply(function () {
+                            scope.focusedElem = elem;
+                        });                        
+                    }
                 });
             }, 100);
         }
