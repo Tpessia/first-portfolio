@@ -2,20 +2,28 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
     $scope.playlists = userService.savedPlaylists.getAllPlaylists();
     
     var firstPlaylistName = Object.keys($scope.playlists)[0];
-    $scope.activePlaylist = {
-        'name': firstPlaylistName,
-        'list': userService.savedPlaylists.getPlaylist(firstPlaylistName)
-    };
+    if (firstPlaylistName) {
+        $scope.activePlaylist = {
+            'name': firstPlaylistName,
+            'list': userService.savedPlaylists.getPlaylist(firstPlaylistName).list
+        };
+    }
 
     $scope.selectPlaylist = function (name) {
         $scope.activePlaylist = {
             'name': name,
-            'list': userService.savedPlaylists.getPlaylist(name)
+            'list': userService.savedPlaylists.getPlaylist(name).list
         };
     };
 
     $scope.deletePlaylsit = function (name) {
         userService.savedPlaylists.deletePlaylist(name);
+        $route.reload();
+    }
+
+    $scope.renamePlaylsit = function (name, newName) {
+        var newName = prompt("novo nome");
+        userService.savedPlaylists.renamePlaylist(name, newName);
         $route.reload();
     }
 
@@ -29,8 +37,8 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
             // { type: 'id', id: '123456' }
         },
         playCustomPlaylist: function (name) {
-            console.log(userService.savedPlaylists.getPlaylist(name))
-            $rootScope.$broadcast('ytPlayCustomPlaylist', userService.savedPlaylists.getPlaylist(name));
+            console.log(userService.savedPlaylists.getPlaylist(name).list);
+            $rootScope.$broadcast('ytPlayCustomPlaylist', userService.savedPlaylists.getPlaylist(name).list);
         }
     };
 });

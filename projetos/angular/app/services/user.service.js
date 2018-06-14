@@ -12,31 +12,43 @@ app.service("userService", function ($rootScope) {
     }
 
     var savedPlaylistsObject = {
-        'myPlaylist': [{
-            id: 'VYOjWnS4cMY',
-            title: 'Childish Gambino - This Is America (Official Video)',
-            img: 'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg'
-        }, {
-            id: '71Es-8FfATo',
-            title: 'Arctic Monkeys - Four Out Of Five (Official Video)',
-            img: 'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg'
-        }],
-        'myPlaylist2': [{
-            id: 'VYOjWnS4cMY',
-            title: 'Childish Gambino - This Is America (Official Video)',
-            img: 'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg'
-        }, {
-            id: '71Es-8FfATo',
-            title: 'Arctic Monkeys - Four Out Of Five (Official Video)',
-            img: 'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg'
-        }],
-        'myPlaylist3': []
+        'myPlaylist1': {
+            date: new Date('2018-06-14T14:30:00'),
+            list: [{
+                id: 'VYOjWnS4cMY',
+                title: 'Childish Gambino - This Is America (Official Video)',
+                img: 'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg'
+            }, {
+                id: '71Es-8FfATo',
+                title: 'Arctic Monkeys - Four Out Of Five (Official Video)',
+                img: 'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg'
+            }]
+        },
+        'myPlaylist2': {
+            date: new Date('2018-06-14T14:30:00'),
+            list: [{
+                id: 'VYOjWnS4cMY',
+                title: 'Childish Gambino - This Is America (Official Video)',
+                img: 'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg'
+            }, {
+                id: '71Es-8FfATo',
+                title: 'Arctic Monkeys - Four Out Of Five (Official Video)',
+                img: 'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg'
+            }]
+        },
+        'myPlaylist3': {
+            date: new Date('2018-06-14T14:30:00'),
+            list: []
+        },
     };
 
     this.savedPlaylists = {
         newPlaylist: function (playlistName) {
             if (!exist(savedPlaylistsObject[playlistName])) {
-                savedPlaylistsObject[playlistName] = [];
+                savedPlaylistsObject[playlistName] = {
+                    date: new Date(),
+                    list: []
+                };
                 return true;
             }
             else {
@@ -45,6 +57,15 @@ app.service("userService", function ($rootScope) {
         },
         deletePlaylist: function (playlistName) {
             if (exist(savedPlaylistsObject[playlistName])) {
+                delete savedPlaylistsObject[playlistName];
+                return true;
+            } else {
+                return false;
+            }
+        },
+        renamePlaylist: function (playlistName, newName) {
+            if (exist(savedPlaylistsObject[playlistName]) && !exist(savedPlaylistsObject[newName])) {
+                savedPlaylistsObject[newName] = savedPlaylistsObject[playlistName];
                 delete savedPlaylistsObject[playlistName];
                 return true;
             } else {
@@ -67,7 +88,7 @@ app.service("userService", function ($rootScope) {
         },
         addTrack: function (playlistName, trackData) {
             if (exist(savedPlaylistsObject[playlistName])) {
-                savedPlaylistsObject[playlistName].push(trackData);
+                savedPlaylistsObject[playlistName].list.push(trackData);
                 return true;
             } else {
                 return false;
@@ -75,7 +96,7 @@ app.service("userService", function ($rootScope) {
         },
         removeTrack: function (playlistName, index) {
             if (exist(savedPlaylistsObject[playlistName]) && index > -1) {
-                savedPlaylistsObject[playlistName].splice(index, 1);
+                savedPlaylistsObject[playlistName].list.splice(index, 1);
                 return true;
             }
             else {

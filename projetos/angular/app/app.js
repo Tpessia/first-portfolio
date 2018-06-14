@@ -43,22 +43,27 @@ app.config(function ($routeProvider, $locationProvider) {
     // $locationProvider.html5Mode(true);
 });
 
-// Dynamic Title
+// App Run
 
 app.run(function ($rootScope, $window) {
 
     // Route change
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+
+        // Change Title
+
         $rootScope.title = current.$$route.title;
         $rootScope.titleClass = current.$$route.title == '' ? 'home' : current.$$route.title.toLowerCase().replace(/ /g, "");
+
+        // Scroll to Top
         
         if (typeof previous !== "undefined" && current.$$route.originalPath != previous.$$route.originalPath) { // check if redirect or reload
             $window.scrollTo(0, 0);
         }
     });
 
-    // URLs
+    // Base URLs
 
     $rootScope.baseUrl = $window.location.pathname.substring(0, $window.location.pathname.lastIndexOf("/")) + '/';
     

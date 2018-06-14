@@ -6,21 +6,31 @@ body {
         .focused-playlist {
             .playlist-title {
                 margin-bottom: 25px;
+                .options {
+                    margin-bottom: 5px;
+                    a {
+                        display: inline-block;
+                        &:not(:first-child) {
+                            margin-left: 5px;
+                        }
+                        &:first-child {
+                            margin-left: -5px;
+                        }
+                        .material-icons {
+                            cursor: pointer;
+                            font-size: 2rem;
+                            vertical-align: bottom;
+                            color: rgba(0, 0, 0, 0.87);
+                        }
+                    }
+                }                
                 .title-wrapper {
-                    padding-bottom: 10px;
-                    border-bottom: 4px solid #ff5722;
-                    display: inline-block;
-                    @media (max-width: 600px) {
-                        width: 100%;
-                    }
-                    * {
+                    .playlist-name {
+                        padding-bottom: 10px;
+                        border-bottom: 4px solid #ff5722;
+                        display: inline-block;
                         color: rgba(0, 0, 0, 0.87);
-                    }
-                    .material-icons {
-                        cursor: pointer;
-                        font-size: 2rem;
-                        margin-left: 5px;
-                        vertical-align: bottom;
+                        max-width: 100%;
                     }
                 }
             }
@@ -28,29 +38,49 @@ body {
                 .track-item {
                     width: 100%;
                     position: relative;
+                    margin: 0;
                     margin-bottom: 10px;
-                    cursor: pointer;
-                    .track-image {
-                        display: inline-block;
-                        width: 50px;
-                        height: 50px;
-                        vertical-align: top;
-                        img {
-                            object-fit: cover;
-                            object-position: center;
-                            display: block;
-                            width: 100%;
-                            height: 100%;
+                    .remove-track {
+                        cursor: pointer;
+                        text-align: center;
+                        width: auto;
+                        padding-left: 0;
+                        padding-right: 5px;
+                        margin: 0;
+                        .material-icons {
+                            font-size: 2rem;
+                            vertical-align: bottom;
+                            color: rgba(0, 0, 0, 0.87);
                         }
                     }
                     .track-title {
-                        max-width: calc(100% - 70px);
-                        margin-top: 12px;
-                        display: inline-block;
-                        font-size: 1.2rem;
-                        margin-left: 10px;
-                        * {
-                            color: rgba(0, 0, 0, 0.87);
+                        margin: 0;
+                        .track-title-wrapper {
+                            display: inline-block;
+                            cursor: pointer;
+                            .track-image {
+                                display: inline-block;
+                                width: 50px;
+                                height: 50px;
+                                vertical-align: top;
+                                img {
+                                    object-fit: cover;
+                                    object-position: center;
+                                    display: block;
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
+
+                            .track-name {
+                                margin-top: 12px;
+                                display: inline-block;
+                                font-size: 1.2rem;
+                                margin-left: 10px;
+                                * {
+                                    color: rgba(0, 0, 0, 0.87);
+                                }
+                            }
                         }
                     }
                 }
