@@ -52,8 +52,10 @@ app.run(function ($rootScope, $window) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         $rootScope.title = current.$$route.title;
         $rootScope.titleClass = current.$$route.title == '' ? 'home' : current.$$route.title.toLowerCase().replace(/ /g, "");
-
-        $window.scrollTo(0, 0);
+        
+        if (typeof previous !== "undefined" && current.$$route.originalPath != previous.$$route.originalPath) { // check if redirect or reload
+            $window.scrollTo(0, 0);
+        }
     });
 
     // URLs

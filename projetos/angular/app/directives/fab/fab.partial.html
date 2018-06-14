@@ -4,7 +4,7 @@
     </a>
     <ul>
         <li>
-            <a class="fab-add btn-floating btn-small modal-trigger" data-target="playlist-selection">
+            <a class="fab-add btn-floating btn-small modal-trigger" data-target="playlist-selection-{{ index }}">
                 <i class="material-icons small">add</i>
             </a>
         </li>
@@ -16,6 +16,6 @@
     </ul>
 </div>
 
-<div playlist-selection on-select="onPlaylistSelect(playlistName)" id="playlist-selection" class="modal modal-fixed-footer">
+<div playlist-selection index="index" on-select="onPlaylistSelect(playlistName)" id="playlist-selection-{{ index }}" class="modal modal-fixed-footer">
     <!-- Playlist Selection Modal -->
 </div>

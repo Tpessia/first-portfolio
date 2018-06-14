@@ -1,5 +1,6 @@
 <div class="carousel">
 <a class="carousel-item" ng-repeat="(name, list) in playlists" data-playlist-name="{{ name }}">
         <img ng-src="{{ list.length > 0 ? list[0].img : fallbackImg }}">
+        <div class="text">{{ name }}</div>
     </a>
   </div>

@@ -316,6 +316,17 @@ carousel-playlists {
                 object-position: center;
                 height: 100%;
             }
+            .text {
+                white-space: nowrap;
+                width: calc(100% - 18px);
+                overflow: hidden;
+                position : absolute;
+                bottom: 5px;
+                left: 9px;
+                color: rgba(0, 0, 0, 0.87);
+                font-weight: 600;
+                text-shadow: 2px 0px white;
+            }
         }
         .indicators {
             .indicator-item {

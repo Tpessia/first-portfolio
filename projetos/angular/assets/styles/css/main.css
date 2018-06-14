@@ -440,6 +440,16 @@ carousel-playlists .carousel {
       object-fit: cover;
       object-position: center;
       height: 100%; }
+    carousel-playlists .carousel .carousel-item .text {
+      white-space: nowrap;
+      width: calc(100% - 18px);
+      overflow: hidden;
+      position: absolute;
+      bottom: 5px;
+      left: 9px;
+      color: rgba(0, 0, 0, 0.87);
+      font-weight: 600;
+      text-shadow: 2px 0px white; }
   carousel-playlists .carousel .indicators .indicator-item {
     background-color: rgba(33, 33, 33, 0.5); }
     carousel-playlists .carousel .indicators .indicator-item.active {
@@ -623,16 +633,20 @@ body .usersettings form {
 body .userplaylists .carousel-wrapper {
   overflow: hidden; }
 body .userplaylists .focused-playlist .playlist-title {
-  margin-bottom: 35px; }
+  margin-bottom: 25px; }
   body .userplaylists .focused-playlist .playlist-title .title-wrapper {
     padding-bottom: 10px;
-    border-bottom: 4px solid #ff5722; }
+    border-bottom: 4px solid #ff5722;
+    display: inline-block; }
+    @media (max-width: 600px) {
+      body .userplaylists .focused-playlist .playlist-title .title-wrapper {
+        width: 100%; } }
     body .userplaylists .focused-playlist .playlist-title .title-wrapper * {
       color: rgba(0, 0, 0, 0.87); }
     body .userplaylists .focused-playlist .playlist-title .title-wrapper .material-icons {
       cursor: pointer;
       font-size: 2rem;
-      margin-left: 10px;
+      margin-left: 5px;
       vertical-align: bottom; }
 body .userplaylists .focused-playlist .playlist-tracks .track-item {
   width: 100%;
@@ -651,11 +665,10 @@ body .userplaylists .focused-playlist .playlist-tracks .track-item {
       width: 100%;
       height: 100%; }
   body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title {
+    max-width: calc(100% - 70px);
+    margin-top: 12px;
     display: inline-block;
-    position: absolute;
     font-size: 1.2rem;
-    top: 50%;
-    transform: translateY(-50%);
     margin-left: 10px; }
     body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title * {
       color: rgba(0, 0, 0, 0.87); }

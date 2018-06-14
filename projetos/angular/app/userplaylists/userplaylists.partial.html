@@ -14,8 +14,8 @@
                 <a ng-click="ytVideo.playCustomPlaylist(activePlaylist.name);">
                     <i class="material-icons">play_arrow</i>
                 </a>
-                <a>
-                    <i class="material-icons" ng-click="deletePlaylsit(activePlaylist.name)">delete</i>
+                <a ng-click="deletePlaylsit(activePlaylist.name)">
+                    <i class="material-icons">delete</i>
                 </a>
             </span>
         </h4>
@@ -23,13 +23,18 @@
             <li class="empty-list" ng-if="activePlaylist.list.length == 0">
                 This list is empty.
             </li>
-            <li class="track-item" ng-repeat="music in activePlaylist.list track by $index" ng-click="ytVideo.open({ type: 'id', id: music.id });">
-                <div class="track-image">
-                    <img ng-src="{{ music.img }}">
-                </div>
-                <div class="track-title">
-                    <a>{{ music.title }}</a>
-                </div>
+            <li class="track-item" ng-repeat="music in activePlaylist.list track by $index">
+                <a ng-click="removeTrack(activePlaylist.name, $index)">
+                    <i class="material-icons">delete</i>
+                </a>
+                <span ng-click="ytVideo.open({ type: 'id', id: music.id });">
+                    <div class="track-image">
+                        <img ng-src="{{ music.img }}">
+                    </div>
+                    <div class="track-title">
+                        <a>{{ music.title }}</a>
+                    </div>
+                </span>
             </li>
         </ul>
     </div>

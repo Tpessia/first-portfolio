@@ -1,6 +1,7 @@
 app.directive('materializeVideoFab', function () {
     return {
         scope: {
+            index: '=',
             play: '&',
             add: '&'
         },
