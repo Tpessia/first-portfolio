@@ -11,8 +11,8 @@ app.service("userService", function ($rootScope) {
         password: '12345678'
     }
 
-    var savedPlaylistsObject = {
-        'myPlaylist1': {
+    var savedPlaylistsArray = [{
+            name: 'myPlaylist1',
             date: new Date('2018-06-14T14:30:00'),
             list: [{
                 id: 'VYOjWnS4cMY',
@@ -23,8 +23,8 @@ app.service("userService", function ($rootScope) {
                 title: 'Arctic Monkeys - Four Out Of Five (Official Video)',
                 img: 'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg'
             }]
-        },
-        'myPlaylist2': {
+        }, {
+            name: 'myPlaylist2',
             date: new Date('2018-06-14T14:30:00'),
             list: [{
                 id: 'VYOjWnS4cMY',
@@ -35,20 +35,21 @@ app.service("userService", function ($rootScope) {
                 title: 'Arctic Monkeys - Four Out Of Five (Official Video)',
                 img: 'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F.jpg'
             }]
-        },
-        'myPlaylist3': {
-            date: new Date('2018-06-14T14:30:00'),
+        }, {
+            name: 'myPlaylist3',
+            date: new Date('2018-06-14T14:00:00'),
             list: []
-        },
-    };
+        }
+    ];
 
     this.savedPlaylists = {
         newPlaylist: function (playlistName) {
-            if (!exist(savedPlaylistsObject[playlistName])) {
-                savedPlaylistsObject[playlistName] = {
+            if (!playlistExists(playlistName)) {
+                savedPlaylistsArray.push({
+                    name: playlistName,
                     date: new Date(),
                     list: []
-                };
+                });
                 return true;
             }
             else {
@@ -56,47 +57,46 @@ app.service("userService", function ($rootScope) {
             }
         },
         deletePlaylist: function (playlistName) {
-            if (exist(savedPlaylistsObject[playlistName])) {
-                delete savedPlaylistsObject[playlistName];
+            if (playlistExists(playlistName)) {
+                savedPlaylistsArray.splice(getIndex(playlistName), 1);
                 return true;
             } else {
                 return false;
             }
         },
         renamePlaylist: function (playlistName, newName) {
-            if (exist(savedPlaylistsObject[playlistName]) && !exist(savedPlaylistsObject[newName])) {
-                savedPlaylistsObject[newName] = savedPlaylistsObject[playlistName];
-                delete savedPlaylistsObject[playlistName];
+            if (playlistExists(playlistName) && !playlistExists(newName)) {
+                savedPlaylistsArray[getIndex(playlistName)].name = newName;
                 return true;
             } else {
                 return false;
             }
         },
         getPlaylist: function (playlistName) {
-            if (exist(savedPlaylistsObject[playlistName])) {
-                return savedPlaylistsObject[playlistName];
+            if (playlistExists(playlistName)) {
+                return savedPlaylistsArray[getIndex(playlistName)];
             } else {
                 return false;
             }
         },
         getAllPlaylists: function () {
-            if (Object.keys(savedPlaylistsObject).length > 0) {
-                return savedPlaylistsObject;
+            if (savedPlaylistsArray.length > 0) {
+                return savedPlaylistsArray;
             } else {
                 return false;
             }
         },
         addTrack: function (playlistName, trackData) {
-            if (exist(savedPlaylistsObject[playlistName])) {
-                savedPlaylistsObject[playlistName].list.push(trackData);
+            if (playlistExists(playlistName)) {
+                savedPlaylistsArray[getIndex(playlistName)].list.push(trackData);
                 return true;
             } else {
                 return false;
             }
         },
         removeTrack: function (playlistName, index) {
-            if (exist(savedPlaylistsObject[playlistName]) && index > -1) {
-                savedPlaylistsObject[playlistName].list.splice(index, 1);
+            if (playlistExists(playlistName) && index > -1) {
+                savedPlaylistsArray[getIndex(playlistName)].list.splice(index, 1);
                 return true;
             }
             else {
@@ -104,7 +104,7 @@ app.service("userService", function ($rootScope) {
             }
         },
         appendPlaylist: function (playlistName, sourcePlaylist) {
-            if (exist(savedPlaylistsObject[playlistName]) && exist(sourcePlaylist)) {
+            if (playlistExists(playlistName) && typeof sourcePlaylist !== "undefined") {
                 for (var i in sourcePlaylist) {
                     this.addTrack(playlistName, sourcePlaylist[i]);
                 }
@@ -116,7 +116,18 @@ app.service("userService", function ($rootScope) {
         }
     }
 
-    function exist(data) {
-        return typeof data !== 'undefined';
+    function getIndex(name) {
+        var index = savedPlaylistsArray.findIndex(function(e) { return e.name == name });
+        if (index >= 0) {
+            return index;
+        }
+        return false;
+    }
+
+    function playlistExists(name) {
+        if (savedPlaylistsArray.filter(function(e) { return e.name == name; }).length > 0) {
+            return true;
+        }
+        return false;
     }
 });

@@ -651,10 +651,23 @@ body .userplaylists .focused-playlist .playlist-title {
         color: rgba(0, 0, 0, 0.87); }
   body .userplaylists .focused-playlist .playlist-title .title-wrapper .playlist-name {
     padding-bottom: 10px;
-    border-bottom: 4px solid #ff5722;
     display: inline-block;
-    color: rgba(0, 0, 0, 0.87);
+    border-bottom: 4px solid #ff5722;
     max-width: 100%; }
+  body .userplaylists .focused-playlist .playlist-title .title-wrapper input {
+    color: rgba(0, 0, 0, 0.87);
+    height: auto;
+    font-size: 2.28rem;
+    line-height: 110%;
+    width: auto;
+    margin: 0;
+    box-shadow: none;
+    border: 0; }
+  body .userplaylists .focused-playlist .playlist-title .title-wrapper .material-icons {
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 5px 5px 5px 10px; }
 body .userplaylists .focused-playlist .playlist-tracks .track-item {
   width: 100%;
   position: relative;

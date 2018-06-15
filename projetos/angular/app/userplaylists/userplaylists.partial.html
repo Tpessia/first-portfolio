@@ -13,7 +13,7 @@
                 <a ng-click="ytVideo.playCustomPlaylist(activePlaylist.name);">
                     <i class="material-icons">play_arrow</i>
                 </a>
-                <a ng-click="renamePlaylsit(activePlaylist.name)">
+                <a ng-click="state.renamingPlaylist = true">
                     <i class="material-icons">edit</i>
                 </a>
                 <a ng-click="deletePlaylsit(activePlaylist.name)">
@@ -21,7 +21,11 @@
                 </a>
             </div>
             <div class="title-wrapper">
-                <span class="playlist-name">{{ activePlaylist.name }}</span>
+                <span class="playlist-name" ng-if="!state.renamingPlaylist">{{ activePlaylist.name }}</span>
+                <span class="playlist-name" ng-if="state.renamingPlaylist">
+                    <input type="text" ng-init="tempName = activePlaylist.name" ng-model="tempName" ng-keydown="$event.keyCode === 13 && renamePlaylist(activePlaylist.name, tempName)"><!--
+                    --><i class="material-icons" ng-click="renamePlaylist(activePlaylist.name, tempName)">check</i>
+                </span>
             </div>
         </h4>
         <ul class="playlist-tracks">

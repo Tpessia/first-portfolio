@@ -27,10 +27,25 @@ body {
                 .title-wrapper {
                     .playlist-name {
                         padding-bottom: 10px;
-                        border-bottom: 4px solid #ff5722;
                         display: inline-block;
-                        color: rgba(0, 0, 0, 0.87);
+                        border-bottom: 4px solid $primary-color;
                         max-width: 100%;
+                    }
+                    input {
+                        color: rgba(0, 0, 0, 0.87);
+                        height: auto;
+                        font-size: 2.28rem;
+                        line-height: 110%;
+                        width: auto;
+                        margin: 0;
+                        box-shadow: none;
+                        border: 0;
+                    }
+                    .material-icons {
+                        color: rgba(0, 0, 0, 0.87);
+                        font-size: 1.8rem;
+                        cursor: pointer;
+                        padding: 5px 5px 5px 10px;
                     }
                 }
             }

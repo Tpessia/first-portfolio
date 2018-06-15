@@ -1,7 +1,8 @@
 app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, userService) {
     $scope.playlists = userService.savedPlaylists.getAllPlaylists();
+    $scope.state = { renamingPlaylist: false };
     
-    var firstPlaylistName = Object.keys($scope.playlists)[0];
+    var firstPlaylistName = $scope.playlists[0].name;
     if (firstPlaylistName) {
         $scope.activePlaylist = {
             'name': firstPlaylistName,
@@ -19,13 +20,13 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
     $scope.deletePlaylsit = function (name) {
         userService.savedPlaylists.deletePlaylist(name);
         $route.reload();
-    }
+    };
 
-    $scope.renamePlaylsit = function (name, newName) {
-        var newName = prompt("novo nome");
+    $scope.renamePlaylist = function (name, newName) {
+        $scope.state.renamingPlaylist = false;
         userService.savedPlaylists.renamePlaylist(name, newName);
         $route.reload();
-    }
+    };
 
     $scope.removeTrack = function (name, index) {
         userService.savedPlaylists.removeTrack(name, index);

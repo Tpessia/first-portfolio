@@ -1,5 +1,5 @@
-<div class="row grid-tracks">
-    <div class="col s12 l6 main-col" ng-if="series[0]">
+<div class="row grid-tracks" ng-if="series">
+    <div class="col s12 l6 main-col">
         <div class="img-cover" ng-style="(series[0].imgsDone) ? {'background-image':'url(' + series[0].image[series[0].image.length - 1]['#text'] + ')'} : {}">
             <div class="meta-wrapper">
                 <div class="title">
