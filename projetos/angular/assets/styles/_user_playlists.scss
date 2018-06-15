@@ -8,7 +8,7 @@ body {
             .playlist-title {
                 margin-bottom: 25px;
                 .options {
-                    margin-bottom: 5px;
+                    // margin-bottom: 5px;
                     a {
                         display: inline-block;
                         &:not(:first-child) {
@@ -27,10 +27,10 @@ body {
                 }                
                 .title-wrapper {
                     .playlist-name {
-                        padding-bottom: 10px;
+                        // padding-bottom: 10px;
                         display: inline-block;
-                        border-bottom: 4px solid $primary-color;
-                        max-width: 100%;
+                        // border-bottom: 4px solid $primary-color;
+                        max-width: calc(100% - 55px);
                         line-height: normal;
                         input {
                             max-width: 100%;
@@ -52,7 +52,7 @@ body {
                         background: #212121;
                         border-radius: 50%;
                         margin-left: 5px;
-                        vertical-align: sub;
+                        // vertical-align: sub;
                     }
                 }
             }
@@ -62,6 +62,19 @@ body {
                     position: relative;
                     margin: 0;
                     margin-bottom: 10px;
+                    @media (max-width: 600px) {
+                        .remove-track {
+                            i {
+                                // transform: translateY(-50%);
+                            }
+                        }
+                        .track-title {
+                            .track-name {
+                                max-width: calc(100% - 64px);
+                                margin-top: 0 !important;
+                            }
+                        }
+                    }
                     .remove-track {
                         cursor: pointer;
                         text-align: center;

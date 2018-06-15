@@ -638,24 +638,20 @@ body .userplaylists .focused-playlist {
   margin-bottom: 50px; }
   body .userplaylists .focused-playlist .playlist-title {
     margin-bottom: 25px; }
-    body .userplaylists .focused-playlist .playlist-title .options {
-      margin-bottom: 5px; }
-      body .userplaylists .focused-playlist .playlist-title .options a {
-        display: inline-block; }
-        body .userplaylists .focused-playlist .playlist-title .options a:not(:first-child) {
-          margin-left: 5px; }
-        body .userplaylists .focused-playlist .playlist-title .options a:first-child {
-          margin-left: -5px; }
-        body .userplaylists .focused-playlist .playlist-title .options a .material-icons {
-          cursor: pointer;
-          font-size: 2rem;
-          vertical-align: bottom;
-          color: rgba(0, 0, 0, 0.87); }
+    body .userplaylists .focused-playlist .playlist-title .options a {
+      display: inline-block; }
+      body .userplaylists .focused-playlist .playlist-title .options a:not(:first-child) {
+        margin-left: 5px; }
+      body .userplaylists .focused-playlist .playlist-title .options a:first-child {
+        margin-left: -5px; }
+      body .userplaylists .focused-playlist .playlist-title .options a .material-icons {
+        cursor: pointer;
+        font-size: 2rem;
+        vertical-align: bottom;
+        color: rgba(0, 0, 0, 0.87); }
     body .userplaylists .focused-playlist .playlist-title .title-wrapper .playlist-name {
-      padding-bottom: 10px;
       display: inline-block;
-      border-bottom: 4px solid #ff5722;
-      max-width: 100%;
+      max-width: calc(100% - 55px);
       line-height: normal; }
       body .userplaylists .focused-playlist .playlist-title .title-wrapper .playlist-name input {
         max-width: 100%;
@@ -674,13 +670,16 @@ body .userplaylists .focused-playlist {
       padding: 8px;
       background: #212121;
       border-radius: 50%;
-      margin-left: 5px;
-      vertical-align: sub; }
+      margin-left: 5px; }
   body .userplaylists .focused-playlist .playlist-tracks .track-item {
     width: 100%;
     position: relative;
     margin: 0;
     margin-bottom: 10px; }
+    @media (max-width: 600px) {
+      body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-name {
+        max-width: calc(100% - 64px);
+        margin-top: 0 !important; } }
     body .userplaylists .focused-playlist .playlist-tracks .track-item .remove-track {
       cursor: pointer;
       text-align: center;
