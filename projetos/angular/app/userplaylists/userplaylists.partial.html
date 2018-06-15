@@ -5,15 +5,16 @@
         </h3>
     </div>
     <div class="col s12 carousel-wrapper" ng-if="activePlaylist">
-        <carousel-playlists playlists="playlists" on-slide="selectPlaylist(name)"></carousel-playlists>
+        <carousel-playlists playlists="playlists" on-slide="selectPlaylist(name)" initial-slide="activePlaylist.index"></carousel-playlists>
     </div>
     <div class="col s12 focused-playlist" ng-if="activePlaylist">
+        <hr>
         <h4 class="playlist-title">
             <div class="options">
                 <a ng-click="ytVideo.playCustomPlaylist(activePlaylist.name);">
                     <i class="material-icons">play_arrow</i>
                 </a>
-                <a ng-click="state.renamingPlaylist = true">
+                <a ng-click="showInput()">
                     <i class="material-icons">edit</i>
                 </a>
                 <a ng-click="deletePlaylsit(activePlaylist.name)">
@@ -22,9 +23,11 @@
             </div>
             <div class="title-wrapper">
                 <span class="playlist-name" ng-if="!state.renamingPlaylist">{{ activePlaylist.name }}</span>
-                <span class="playlist-name" ng-if="state.renamingPlaylist">
-                    <input type="text" ng-init="tempName = activePlaylist.name" ng-model="tempName" ng-keydown="$event.keyCode === 13 && renamePlaylist(activePlaylist.name, tempName)"><!--
-                    --><i class="material-icons" ng-click="renamePlaylist(activePlaylist.name, tempName)">check</i>
+                <span ng-if="state.renamingPlaylist" ng-init="tempName = activePlaylist.name">
+                    <span class="playlist-name" >
+                        <input type="text" ng-model="tempName" ng-blur="onBlur()" ng-keydown="$event.keyCode === 13 && renamePlaylist(activePlaylist.name, tempName)">
+                    </span>
+                    <i class="material-icons" ng-click="renamePlaylist(activePlaylist.name, tempName)">check</i>
                 </span>
             </div>
         </h4>

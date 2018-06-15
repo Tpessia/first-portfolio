@@ -25,7 +25,7 @@ app.service("userService", function ($rootScope) {
             }]
         }, {
             name: 'myPlaylist2',
-            date: new Date('2018-06-14T14:30:00'),
+            date: new Date('2018-06-14T14:31:00'),
             list: [{
                 id: 'VYOjWnS4cMY',
                 title: 'Childish Gambino - This Is America (Official Video)',
@@ -37,14 +37,14 @@ app.service("userService", function ($rootScope) {
             }]
         }, {
             name: 'myPlaylist3',
-            date: new Date('2018-06-14T14:00:00'),
+            date: new Date('2018-06-14T14:32:00'),
             list: []
         }
     ];
 
     this.savedPlaylists = {
         newPlaylist: function (playlistName) {
-            if (!playlistExists(playlistName)) {
+            if (!this.playlistExists(playlistName)) {
                 savedPlaylistsArray.push({
                     name: playlistName,
                     date: new Date(),
@@ -57,24 +57,24 @@ app.service("userService", function ($rootScope) {
             }
         },
         deletePlaylist: function (playlistName) {
-            if (playlistExists(playlistName)) {
-                savedPlaylistsArray.splice(getIndex(playlistName), 1);
+            if (this.playlistExists(playlistName)) {
+                savedPlaylistsArray.splice(this.getIndex(playlistName), 1);
                 return true;
             } else {
                 return false;
             }
         },
         renamePlaylist: function (playlistName, newName) {
-            if (playlistExists(playlistName) && !playlistExists(newName)) {
-                savedPlaylistsArray[getIndex(playlistName)].name = newName;
+            if (this.playlistExists(playlistName) && !this.playlistExists(newName)) {
+                savedPlaylistsArray[this.getIndex(playlistName)].name = newName;
                 return true;
             } else {
                 return false;
             }
         },
         getPlaylist: function (playlistName) {
-            if (playlistExists(playlistName)) {
-                return savedPlaylistsArray[getIndex(playlistName)];
+            if (this.playlistExists(playlistName)) {
+                return savedPlaylistsArray[this.getIndex(playlistName)];
             } else {
                 return false;
             }
@@ -87,16 +87,16 @@ app.service("userService", function ($rootScope) {
             }
         },
         addTrack: function (playlistName, trackData) {
-            if (playlistExists(playlistName)) {
-                savedPlaylistsArray[getIndex(playlistName)].list.push(trackData);
+            if (this.playlistExists(playlistName)) {
+                savedPlaylistsArray[this.getIndex(playlistName)].list.push(trackData);
                 return true;
             } else {
                 return false;
             }
         },
         removeTrack: function (playlistName, index) {
-            if (playlistExists(playlistName) && index > -1) {
-                savedPlaylistsArray[getIndex(playlistName)].list.splice(index, 1);
+            if (this.playlistExists(playlistName) && index > -1) {
+                savedPlaylistsArray[this.getIndex(playlistName)].list.splice(index, 1);
                 return true;
             }
             else {
@@ -104,7 +104,7 @@ app.service("userService", function ($rootScope) {
             }
         },
         appendPlaylist: function (playlistName, sourcePlaylist) {
-            if (playlistExists(playlistName) && typeof sourcePlaylist !== "undefined") {
+            if (this.playlistExists(playlistName) && typeof sourcePlaylist !== "undefined") {
                 for (var i in sourcePlaylist) {
                     this.addTrack(playlistName, sourcePlaylist[i]);
                 }
@@ -113,21 +113,22 @@ app.service("userService", function ($rootScope) {
             else {
                 return false
             }
+        },
+        // Helpers
+        getIndex: function (name) {
+            var index = savedPlaylistsArray.findIndex(function(e) { return e.name == name });
+            if (index >= 0) {
+                return index;
+            }
+            return false;
+        },
+        playlistExists: function (name) {
+            if (savedPlaylistsArray.filter(function (e) {
+                    return e.name == name;
+                }).length > 0) {
+                return true;
+            }
+            return false;
         }
-    }
-
-    function getIndex(name) {
-        var index = savedPlaylistsArray.findIndex(function(e) { return e.name == name });
-        if (index >= 0) {
-            return index;
-        }
-        return false;
-    }
-
-    function playlistExists(name) {
-        if (savedPlaylistsArray.filter(function(e) { return e.name == name; }).length > 0) {
-            return true;
-        }
-        return false;
     }
 });

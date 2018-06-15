@@ -12,25 +12,29 @@ app.config(function ($routeProvider, $locationProvider) {
             {
                 title: 'Tracks',
                 controller: 'TracksController',
-                templateUrl: 'app/tracks/tracks.partial.html'
+                templateUrl: 'app/tracks/tracks.partial.html',
+                reloadOnSearch: false
             })
         .when('/artists',
             {
                 title: 'Artists',
                 controller: 'ArtistsController',
-                templateUrl: 'app/artists/artists.partial.html'
+                templateUrl: 'app/artists/artists.partial.html',
+                reloadOnSearch: false
             })
         .when('/albums',
             {
                 title: 'Albums',
                 controller: 'AlbumsController',
-                templateUrl: 'app/albums/albums.partial.html'
+                templateUrl: 'app/albums/albums.partial.html',
+                reloadOnSearch: false
             })
         .when('/user/playlists',
         {
             title: 'User Playlists',
             controller: 'UserPlaylistsController',
-            templateUrl: 'app/userplaylists/userplaylists.partial.html'
+            templateUrl: 'app/userplaylists/userplaylists.partial.html',
+            reloadOnSearch: false
         })
         .when('/user',
         {

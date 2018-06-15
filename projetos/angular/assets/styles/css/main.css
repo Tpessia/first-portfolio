@@ -634,78 +634,86 @@ body .usersettings form {
 
 body .userplaylists .carousel-wrapper {
   overflow: hidden; }
-body .userplaylists .focused-playlist .playlist-title {
-  margin-bottom: 25px; }
-  body .userplaylists .focused-playlist .playlist-title .options {
-    margin-bottom: 5px; }
-    body .userplaylists .focused-playlist .playlist-title .options a {
-      display: inline-block; }
-      body .userplaylists .focused-playlist .playlist-title .options a:not(:first-child) {
-        margin-left: 5px; }
-      body .userplaylists .focused-playlist .playlist-title .options a:first-child {
-        margin-left: -5px; }
-      body .userplaylists .focused-playlist .playlist-title .options a .material-icons {
-        cursor: pointer;
+body .userplaylists .focused-playlist {
+  margin-bottom: 50px; }
+  body .userplaylists .focused-playlist .playlist-title {
+    margin-bottom: 25px; }
+    body .userplaylists .focused-playlist .playlist-title .options {
+      margin-bottom: 5px; }
+      body .userplaylists .focused-playlist .playlist-title .options a {
+        display: inline-block; }
+        body .userplaylists .focused-playlist .playlist-title .options a:not(:first-child) {
+          margin-left: 5px; }
+        body .userplaylists .focused-playlist .playlist-title .options a:first-child {
+          margin-left: -5px; }
+        body .userplaylists .focused-playlist .playlist-title .options a .material-icons {
+          cursor: pointer;
+          font-size: 2rem;
+          vertical-align: bottom;
+          color: rgba(0, 0, 0, 0.87); }
+    body .userplaylists .focused-playlist .playlist-title .title-wrapper .playlist-name {
+      padding-bottom: 10px;
+      display: inline-block;
+      border-bottom: 4px solid #ff5722;
+      max-width: 100%;
+      line-height: normal; }
+      body .userplaylists .focused-playlist .playlist-title .title-wrapper .playlist-name input {
+        max-width: 100%;
+        color: rgba(0, 0, 0, 0.87);
+        height: auto;
+        font-size: 2.28rem;
+        width: auto;
+        margin: 0;
+        box-shadow: none;
+        border: 0;
+        line-height: normal; }
+    body .userplaylists .focused-playlist .playlist-title .title-wrapper .material-icons {
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+      padding: 8px;
+      background: #212121;
+      border-radius: 50%;
+      margin-left: 5px;
+      vertical-align: sub; }
+  body .userplaylists .focused-playlist .playlist-tracks .track-item {
+    width: 100%;
+    position: relative;
+    margin: 0;
+    margin-bottom: 10px; }
+    body .userplaylists .focused-playlist .playlist-tracks .track-item .remove-track {
+      cursor: pointer;
+      text-align: center;
+      width: auto;
+      padding-left: 0;
+      padding-right: 5px;
+      margin: 0; }
+      body .userplaylists .focused-playlist .playlist-tracks .track-item .remove-track .material-icons {
         font-size: 2rem;
         vertical-align: bottom;
         color: rgba(0, 0, 0, 0.87); }
-  body .userplaylists .focused-playlist .playlist-title .title-wrapper .playlist-name {
-    padding-bottom: 10px;
-    display: inline-block;
-    border-bottom: 4px solid #ff5722;
-    max-width: 100%; }
-  body .userplaylists .focused-playlist .playlist-title .title-wrapper input {
-    color: rgba(0, 0, 0, 0.87);
-    height: auto;
-    font-size: 2.28rem;
-    line-height: 110%;
-    width: auto;
-    margin: 0;
-    box-shadow: none;
-    border: 0; }
-  body .userplaylists .focused-playlist .playlist-title .title-wrapper .material-icons {
-    color: rgba(0, 0, 0, 0.87);
-    font-size: 1.8rem;
-    cursor: pointer;
-    padding: 5px 5px 5px 10px; }
-body .userplaylists .focused-playlist .playlist-tracks .track-item {
-  width: 100%;
-  position: relative;
-  margin: 0;
-  margin-bottom: 10px; }
-  body .userplaylists .focused-playlist .playlist-tracks .track-item .remove-track {
-    cursor: pointer;
-    text-align: center;
-    width: auto;
-    padding-left: 0;
-    padding-right: 5px;
-    margin: 0; }
-    body .userplaylists .focused-playlist .playlist-tracks .track-item .remove-track .material-icons {
-      font-size: 2rem;
-      vertical-align: bottom;
-      color: rgba(0, 0, 0, 0.87); }
-  body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title {
-    margin: 0; }
-    body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper {
-      display: inline-block;
-      cursor: pointer; }
-      body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper .track-image {
+    body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title {
+      margin: 0; }
+      body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper {
         display: inline-block;
-        width: 50px;
-        height: 50px;
-        vertical-align: top; }
-        body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper .track-image img {
-          object-fit: cover;
-          object-position: center;
-          display: block;
-          width: 100%;
-          height: 100%; }
-      body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper .track-name {
-        margin-top: 12px;
-        display: inline-block;
-        font-size: 1.2rem;
-        margin-left: 10px; }
-        body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper .track-name * {
-          color: rgba(0, 0, 0, 0.87); }
+        cursor: pointer; }
+        body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper .track-image {
+          display: inline-block;
+          width: 50px;
+          height: 50px;
+          vertical-align: top; }
+          body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper .track-image img {
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            width: 100%;
+            height: 100%; }
+        body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper .track-name {
+          margin-top: 12px;
+          display: inline-block;
+          font-size: 1.2rem;
+          margin-left: 10px; }
+          body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper .track-name * {
+            color: rgba(0, 0, 0, 0.87); }
 
 /*# sourceMappingURL=main.css.map */

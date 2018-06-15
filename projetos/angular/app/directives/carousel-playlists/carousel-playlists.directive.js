@@ -2,6 +2,7 @@ app.directive('carouselPlaylists', function () {
     return {
         scope: {
             playlists: '=',
+            initialSlide: '=?',
             onSlide: '&'
         },
         controller: 'CarouselPlaylistsController',
@@ -21,6 +22,8 @@ app.directive('carouselPlaylists', function () {
                         });                        
                     }
                 });
+
+                instances[0].set(scope.initialSlide);
             }, 100);
         }
     };
