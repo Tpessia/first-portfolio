@@ -35,6 +35,13 @@ body {
         background-color: rgba(255, 87, 34, 0.8) !important; }
       body header nav ul li a:hover {
         background-color: rgba(255, 87, 34, 0.25); }
+      body header nav ul li .login {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none; }
       body header nav ul li#loginAvatar {
         height: 64px; }
         body header nav ul li#loginAvatar #user-dropdown {
@@ -43,13 +50,7 @@ body {
           outline: 0;
           position: relative;
           width: 64px;
-          height: 64px;
-          -webkit-touch-callout: none;
-          -webkit-user-select: none;
-          -khtml-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none; }
+          height: 64px; }
           body header nav ul li#loginAvatar #user-dropdown .avatar {
             height: 70%;
             position: absolute;
@@ -674,45 +675,44 @@ body .userplaylists .focused-playlist {
   body .userplaylists .focused-playlist .playlist-tracks .track-item {
     width: 100%;
     position: relative;
-    margin: 0;
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start; }
     @media (max-width: 600px) {
       body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-name {
-        max-width: calc(100% - 64px);
         margin-top: 0 !important; } }
     body .userplaylists .focused-playlist .playlist-tracks .track-item .remove-track {
       cursor: pointer;
       text-align: center;
       width: auto;
-      padding-left: 0;
-      padding-right: 5px;
-      margin: 0; }
+      margin: 10px 5px 0 0; }
       body .userplaylists .focused-playlist .playlist-tracks .track-item .remove-track .material-icons {
         font-size: 2rem;
         vertical-align: bottom;
         color: rgba(0, 0, 0, 0.87); }
     body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title {
-      margin: 0; }
-      body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper {
+      margin: 0;
+      display: inline-block;
+      cursor: pointer;
+      white-space: nowrap; }
+      body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-image {
+        width: 50px;
+        height: 50px;
         display: inline-block;
-        cursor: pointer; }
-        body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper .track-image {
-          display: inline-block;
-          width: 50px;
-          height: 50px;
-          vertical-align: top; }
-          body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper .track-image img {
-            object-fit: cover;
-            object-position: center;
-            display: block;
-            width: 100%;
-            height: 100%; }
-        body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper .track-name {
-          margin-top: 12px;
-          display: inline-block;
-          font-size: 1.2rem;
-          margin-left: 10px; }
-          body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-title-wrapper .track-name * {
-            color: rgba(0, 0, 0, 0.87); }
+        vertical-align: top;
+        margin-right: 5px; }
+        body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          display: block; }
+      body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-name {
+        display: inline-block;
+        white-space: normal;
+        margin-top: 13px;
+        max-width: calc(100% - 58px); }
+        body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-name a {
+          color: rgba(0, 0, 0, 0.87); }
 
 /*# sourceMappingURL=main.css.map */

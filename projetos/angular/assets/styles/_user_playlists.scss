@@ -60,17 +60,12 @@ body {
                 .track-item {
                     width: 100%;
                     position: relative;
-                    margin: 0;
                     margin-bottom: 10px;
+                    display : flex;
+                    align-items : flex-start;
                     @media (max-width: 600px) {
-                        .remove-track {
-                            i {
-                                // transform: translateY(-50%);
-                            }
-                        }
                         .track-title {
                             .track-name {
-                                max-width: calc(100% - 64px);
                                 margin-top: 0 !important;
                             }
                         }
@@ -79,9 +74,7 @@ body {
                         cursor: pointer;
                         text-align: center;
                         width: auto;
-                        padding-left: 0;
-                        padding-right: 5px;
-                        margin: 0;
+                        margin: 10px 5px 0 0;
                         .material-icons {
                             font-size: 2rem;
                             vertical-align: bottom;
@@ -90,31 +83,30 @@ body {
                     }
                     .track-title {
                         margin: 0;
-                        .track-title-wrapper {
-                            display: inline-block;
-                            cursor: pointer;
-                            .track-image {
-                                display: inline-block;
-                                width: 50px;
-                                height: 50px;
-                                vertical-align: top;
-                                img {
-                                    object-fit: cover;
-                                    object-position: center;
-                                    display: block;
-                                    width: 100%;
-                                    height: 100%;
-                                }
+                        display: inline-block;
+                        cursor: pointer;
+                        white-space: nowrap;
+                        .track-image {
+                            width: 50px;
+                            height : 50px;
+                            display : inline-block;
+                            vertical-align : top;
+                            margin-right : 5px;
+                            img {
+                                width : 100%;
+                                height : 100%;
+                                object-fit: cover;
+                                object-position: center;
+                                display: block;
                             }
-
-                            .track-name {
-                                margin-top: 12px;
-                                display: inline-block;
-                                font-size: 1.2rem;
-                                margin-left: 10px;
-                                * {
-                                    color: rgba(0, 0, 0, 0.87);
-                                }
+                        }
+                        .track-name {
+                            display : inline-block;
+                            white-space: normal;
+                            margin-top: 13px;
+                            max-width: calc(100% - 58px);
+                            a {
+                                color: rgba(0, 0, 0, 0.87);
                             }
                         }
                     }

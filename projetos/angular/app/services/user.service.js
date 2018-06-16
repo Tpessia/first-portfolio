@@ -1,15 +1,33 @@
-app.service("userService", function ($rootScope) {
+app.service("userService", function ($rootScope, $http) {
+    
+    // User
+
     this.user = {
-        isLogged: true,
+        isLogged: false,
         avatar: $rootScope.baseUrl + 'assets/img/yuna.jpg',
-        name: 'John Smith'
+        name: 'John Smith',
+        email: 'johnsmith@email.com'
     };
 
     this.userSecure = {
         username: 'johnsmith',
-        email: 'johnsmith@email.com',
-        password: '12345678'
-    }
+        // password: '12345678'
+    };
+
+    this.signUp = function (data) {
+        if (typeof data !== "undefined") {
+            return $http.post($rootScope.baseUrl + 'src/user.signup.php', data);
+        }
+        else {
+            return new Promise(
+                function (resolve, reject) {
+                    resolve({data:'0'});
+                }
+            );
+        }
+    };
+
+    // Playlists
 
     var savedPlaylistsArray = [{
             name: 'myPlaylist1',
@@ -130,5 +148,5 @@ app.service("userService", function ($rootScope) {
             }
             return false;
         }
-    }
+    };
 });

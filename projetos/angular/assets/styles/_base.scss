@@ -58,6 +58,14 @@ body {
                             background-color: rgba($primary-color, 0.25);
                         }
                     }
+                    .login {
+                        -webkit-touch-callout: none;
+                        -webkit-user-select: none;
+                        -khtml-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+                    }
                     &#loginAvatar {
                         height: 64px;
                         #user-dropdown {
@@ -67,12 +75,6 @@ body {
                             position: relative;
                             width: 64px;
                             height: 64px;
-                            -webkit-touch-callout: none;
-                            -webkit-user-select: none;
-                            -khtml-user-select: none;
-                            -moz-user-select: none;
-                            -ms-user-select: none;
-                            user-select: none;
                             .avatar {
                                 height: 70%;
                                 position: absolute;

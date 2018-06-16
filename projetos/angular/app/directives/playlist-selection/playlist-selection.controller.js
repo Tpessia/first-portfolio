@@ -9,13 +9,13 @@ app.controller("PlaylistSelectionController", function ($scope, userService) {
         if (userService.savedPlaylists.newPlaylist(playlistName)) {
             addPlaylist(playlistName);
             M.toast({
-                html: 'Video Adicionado!',
+                html: 'Video added',
                 displayLength: '3000'
             });
         }
         else {
             M.toast({
-                html: 'Erro ao criar playlist!',
+                html: 'Error on playlist creation',
                 classes: 'red darken-4',
                 displayLength: '3000'
             });

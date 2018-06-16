@@ -1,16 +1,16 @@
 <div class="modal-content row">
     <h4>Login</h4>
-    <form id="signin" name="signin" class="col s12 m6" ng-class="{ 'form-active': !signOut }" ng-submit="signIn()">
+    <form id="signin" name="signin" class="col s12 m6" ng-class="{ 'form-active': !signOut }" ng-submit="actions.signIn()">
         <h5>Sign In</h5>
         <div class="row">
             <div class="input-field orange-input col s12">
-                <input id="username-in" type="text" class="validate">
+                <input id="username-in" type="text" class="validate" ng-model="formData.signIn.username">
                 <label for="username-in">Username</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field orange-input col s12">
-                <input id="password-in" type="password" class="validate">
+                <input id="password-in" type="password" class="validate" ng-model="formData.signIn.password">
                 <label for="password-in">Password</label>
             </div>
         </div>
@@ -25,23 +25,23 @@
             <div class="col s12">Not registered? <a ng-click="signOut = true">Sign Up</a></div>
         </div>
     </form>
-    <form id="signup" name="signup" class="col s12 m5 offset-m1" ng-class="{ 'form-active': signOut }" ng-submit="signUp()">
+    <form id="signup" name="signup" class="col s12 m5 offset-m1" ng-class="{ 'form-active': signOut }" ng-submit="actions.signUp()">
         <h5>Sign Up</h5>
         <div class="row">
             <div class="input-field dark-input col s12">
-                <input id="username-up" type="text" class="validate">
+                <input id="username-up" type="text" class="validate" ng-model="formData.signUp.username">
                 <label for="username-up">Username</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field dark-input col s12">
-                <input id="password-up" type="password" class="validate">
+                <input id="password-up" type="password" class="validate" ng-model="formData.signUp.password">
                 <label for="password-up">Password</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field dark-input col s12">
-                <input id="email-up" type="email" class="validate">
+                <input id="email-up" type="email" class="validate" ng-model="formData.signUp.email">
                 <label for="email-up">Email</label>
             </div>
         </div>

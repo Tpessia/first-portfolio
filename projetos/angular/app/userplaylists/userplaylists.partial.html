@@ -1,4 +1,4 @@
-<div class="row userplaylists" ng-if="user.isLogged">
+<div class="row userplaylists">
     <div class="col s12">
         <h3 class="main-title">
             SAVED PLAYLISTS
@@ -35,20 +35,18 @@
             <li class="empty-list" ng-if="activePlaylist.list.length == 0">
                 This list is empty.
             </li>
-            <li class="row valign-wrapper track-item" ng-repeat="music in activePlaylist.list track by $index">
-                <a class="col s1 remove-track" ng-click="removeTrack(activePlaylist.name, $index)">
+            <li class="track-item" ng-repeat="music in activePlaylist.list track by $index">
+                <a class="remove-track" ng-click="removeTrack(activePlaylist.name, $index)">
                     <i class="material-icons">close</i>
-                </a>
-                <div class="col s11 track-title">
-                    <span class="track-title-wrapper" ng-click="ytVideo.open({ type: 'id', id: music.id });">
-                        <div class="track-image">
-                            <img ng-src="{{ music.img }}">
-                        </div>
-                        <div class="track-name">
-                            <a>{{ music.title }}</a>
-                        </div>
-                    </span>
-                </div>
+                </a>                
+                <span class="track-title" ng-click="ytVideo.open({ type: 'id', id: music.id });">
+                    <div class="track-image">
+                        <img ng-src="{{ music.img }}">
+                    </div>
+                    <div class="track-name">
+                        <a>{{ music.title }}</a>
+                    </div>
+                </span>
             </li>
         </ul>
     </div>

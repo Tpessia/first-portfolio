@@ -2,6 +2,16 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
     $scope.playlists = userService.savedPlaylists.getAllPlaylists();
     $scope.state = { renamingPlaylist: false };
 
+    // Redirect
+
+    redirectNotLogged();
+    function redirectNotLogged() {
+        if (!userService.user.isLogged) {
+            $location.search("pl", null);
+            $location.path("/");
+        }
+    }
+
     setInitialPlaylist();
     function setInitialPlaylist() {
         var pl = 0; // default playlist
@@ -46,7 +56,7 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
         $scope.state.renamingPlaylist = false;
         if (!userService.savedPlaylists.renamePlaylist(name, newName)) {
             M.toast({
-                html: 'Erro ao criar playlist!',
+                html: 'Error on playlist creation',
                 classes: 'red darken-4',
                 displayLength: '3000'
             });

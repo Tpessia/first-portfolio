@@ -9,7 +9,7 @@ app.controller("SearchController", function ($scope, $location) {
         }
         else {
             M.toast({
-                html: 'Pesquisa Inválida!',
+                html: 'Invalid search',
                 classes: 'red darken-4',
                 displayLength: '3000'
             });

@@ -11,13 +11,27 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
         return true;
     };
 
-    $scope.userMethods.signUp = function () {
-        console.log("sign up");
-        return true;
+    $scope.userMethods.signUp = function (data) {
+        return userService.signUp(data).then(function (response) {
+            if (response.data == "1") {
+                userService.user.isLogged = true;
+                // userService.user.avatar = $rootScope.baseUrl + 'assets/img/yuna.jpg';
+                userService.user.name = data.username;
+                userService.user.email = data.email;
+
+                userService.userSecure.username = data.username;
+            }
+            return response;
+        });
     };
 
     $scope.userMethods.logOut = function () {
-        console.log("log out");
+        userService.user.isLogged = false;
+        // userService.user.avatar = $rootScope.baseUrl + 'assets/img/yuna.jpg';
+        userService.user.name = "";
+        userService.user.email = "";
+
+        userService.userSecure.username = "";
         return true;
     };
 

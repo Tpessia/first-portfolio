@@ -7,7 +7,7 @@ app.directive('loginModal', function () {
         controller: 'LoginModalController',
         templateUrl: 'app/directives/login/login.partial.html',
         link: function (scope, element, attr) {
-            var instances = M.Modal.init($$('#login-modal'), {});
+            scope.instances = M.Modal.init($$('#login-modal'), {});
         }
     };
 });
