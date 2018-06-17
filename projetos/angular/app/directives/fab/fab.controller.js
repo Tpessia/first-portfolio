@@ -1,7 +1,9 @@
-app.controller("MaterializeFabController", function ($scope) {
-    $scope.onPlaylistSelect = function (playlistName) {
+app.controller("MaterializeFabController", function ($scope, userService) {
+    $scope.user = userService.user;
+    
+    $scope.onPlaylistSelect = function (playlistId) {
         $scope.add({
-            'playlistName': playlistName
+            'playlistId': playlistId
         });
     };
 });

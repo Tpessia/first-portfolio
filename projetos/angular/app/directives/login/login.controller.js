@@ -8,8 +8,36 @@ app.controller("LoginModalController", function ($scope, $route) {
     $scope.actions.signIn = function () {
         var data = $scope.formData.signIn;
         $scope.signIn({
-            username: data.username,
-            password: data.password
+            data: {
+                username: data.username,
+                password: data.password
+            }
+        }).then(function (response) {
+            if (typeof response.data.UserID !== "undefined") {
+                M.toast({
+                    html: 'Logged in',
+                    displayLength: '3000'
+                });
+
+                $scope.instances[0].close();
+            }
+            else {
+                M.toast({
+                    html: 'Error on login',
+                    classes: 'red darken-4',
+                    displayLength: '3000'
+                });
+
+                console.log(response);
+            }
+        }, function (errResponse) {
+            M.toast({
+                html: 'Error on login',
+                classes: 'red darken-4',
+                displayLength: '3000'
+            });
+
+            console.log(errResponse);
         });
     };
 
@@ -22,22 +50,13 @@ app.controller("LoginModalController", function ($scope, $route) {
                 email: data.email
             }
         }).then(function (response) {
-            if (response.data == "1") {
+            if (typeof response.data.UserID !== "undefined") {
                 M.toast({
                     html: 'User created',
                     displayLength: '3000'
                 });
 
                 $scope.instances[0].close();
-
-                // $route.reload();
-                // gambiarra
-                setTimeout(function () {
-                    M.Dropdown.init($$('#user-dropdown'), {
-                        // coverTrigger: false,
-                        alignment: 'right'
-                    });
-                }, 100);
             }
             else {
                 M.toast({

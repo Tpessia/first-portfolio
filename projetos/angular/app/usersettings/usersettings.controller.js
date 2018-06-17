@@ -1,4 +1,4 @@
-app.controller("UserSettingsController", function ($scope, userService) {
+app.controller("UserSettingsController", function ($scope, $location, userService) {
     $scope.userSecure = userService.userSecure;
 
     redirectNotLogged();

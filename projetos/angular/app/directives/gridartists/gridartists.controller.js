@@ -5,9 +5,9 @@ app.controller("GridArtistsController", function ($rootScope, $scope) {
 
     // User options
 
-    $scope.saveOnPlaylist = function (playlistName, videoData) {
+    $scope.saveOnPlaylist = function (playlistId, videoData) {
         $rootScope.$broadcast('userSaveTrack', {
-            'playlistName': playlistName,
+            'playlistId': playlistId,
             'videoData': videoData
         });
     }

@@ -14,7 +14,7 @@
                     </a>
                 </div>
             </div>
-            <materialize-video-fab index="0" play="ytVideo.open({ type: 'track', artist: series[0].artist.name, track: series[0].name });" add="saveOnPlaylist(playlistName, { type: 'track', artist: series[0].artist.name, track: series[0].name });"></materialize-video-fab>
+            <materialize-video-fab index="0" play="ytVideo.open({ type: 'track', artist: series[0].artist.name, track: series[0].name });" add="saveOnPlaylist(playlistId, { type: 'track', artist: series[0].artist.name, track: series[0].name });"></materialize-video-fab>
         </div>
     </div>
     <div class="col s12 l6 sub-col">
@@ -34,7 +34,7 @@
                             </a>
                         </div>
                     </div>
-                    <materialize-video-fab index="$index + offset" play="ytVideo.open({ type: 'track', artist: serie.artist.name, track: serie.name });" add="saveOnPlaylist(playlistName, { type: 'track', artist: serie.artist.name, track: serie.name });"></materialize-video-fab>
+                    <materialize-video-fab index="$index + offset" play="ytVideo.open({ type: 'track', artist: serie.artist.name, track: serie.name });" add="saveOnPlaylist(playlistId, { type: 'track', artist: serie.artist.name, track: serie.name });"></materialize-video-fab>
                 </div>
             </div>
         </div>

@@ -69,7 +69,7 @@ app.controller("YTPlayerController", function ($rootScope, $scope, $sce, youTube
         $scope.isOpen = true;
         cleanPlayer();
         $scope.playerVars.playlist = playlist.map(function (elem) {
-            return elem.id;
+            return elem.videoId;
         }).join(",");;
     });
 

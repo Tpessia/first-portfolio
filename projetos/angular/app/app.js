@@ -49,7 +49,7 @@ app.config(function ($routeProvider, $locationProvider) {
 
 // App Run
 
-app.run(function ($rootScope, $window) {
+app.run(function ($rootScope, $window, $timeout) {
 
     // Route change
 
@@ -72,4 +72,37 @@ app.run(function ($rootScope, $window) {
     $rootScope.baseUrl = $window.location.pathname.substring(0, $window.location.pathname.lastIndexOf("/")) + '/';
     
     $rootScope.fallbackImg = $rootScope.baseUrl + 'assets/img/logo-simple-512x512.png';
+
+    // Materialize init functions
+
+    $rootScope.materialize = {
+        headerDropdown: function () {
+            return M.Dropdown.init($$('#user-dropdown')[0], {
+                // coverTrigger: false,
+                alignment: 'right'
+            });
+        },
+        sidenav: function () {
+            var sidenav = M.Sidenav.init($$('.sidenav')[0], {});
+
+            angular.element($$('.sidenav li')).on('click', function () {
+                sidenav.close();
+            });
+
+            return sidenav;
+        },
+        all: function () {
+            var dropdown = this.headerDropdown();
+            var sidenav = this.sidenav();
+
+            return {
+                headerDropdown: dropdown,
+                sidenav: sidenav
+            };
+        }
+    }
+    $timeout(function () {
+        $rootScope.materialize.all();
+    }, 10);
+    
 });

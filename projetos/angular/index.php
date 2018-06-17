@@ -1,8 +1,3 @@
-<?php
-// Start the session
-// session_start();
-// $_SESSION["teste"] = "teste";
-?>
 <!DOCTYPE html>
 <html lang="en" ng-app="noisePolution">
 <head>
@@ -25,7 +20,7 @@
                 <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
             </li>
             <li>
-                <a class="logout" ng-click="userMethods.logOut">Log Out</a>
+                <a class="logout" ng-click="userMethods.logOut()">Log Out</a>
             </li>
         </ul>
         <nav class="z-depth-1">

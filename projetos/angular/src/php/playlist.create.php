@@ -25,21 +25,31 @@ if (!$conn) {
 
 $params = json_decode(file_get_contents('php://input'),true);
 
-$username = mysqli_real_escape_string($conn, $params["username"]);
-$email = mysqli_real_escape_string($conn, $params["email"]);
-$password = mysqli_real_escape_string($conn, $params["password"]);
-$name = mysqli_real_escape_string($conn, $params["username"]);
+$name = mysqli_real_escape_string($conn, $params["name"]);
 $date = date('Y-m-d H-i-s');
+$user = mysqli_real_escape_string($conn, $params["user"]);
 
 // Insert
 
 $sql = "
 
-    CALL insert_user('". $username ."','". $email ."','". $name ."','". $password ."','". $date ."');
+    CALL playlist_create('". $name ."','". $date ."','". $user ."');
 
 ";
 
-if (!mysqli_query($conn, $sql)) {
+$result = mysqli_query($conn, $sql);
+
+if ($result) {
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo json_encode($row);
+        }
+    }
+    else {
+        die("Error: Query returned 0 results");
+    }
+}
+else {
     die("Error: " . $sql . "<br>" . mysqli_error($conn));
 }
 
@@ -48,7 +58,5 @@ if (!mysqli_query($conn, $sql)) {
 // Close connection
 
 mysqli_close($conn);
-
-echo 1;
 
 ?>

@@ -24,44 +24,132 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
         }
 
         if (typeof $scope.playlists[pl] !== "undefined") {
-            var firstPlaylistName = $scope.playlists[pl].name;
             $scope.activePlaylist = {
-                'name': firstPlaylistName,
-                'list': userService.savedPlaylists.getPlaylist(firstPlaylistName).list
+                'playlistId': $scope.playlists[pl].playlistId,
+                'name': $scope.playlists[pl].name,
+                'list': $scope.playlists[pl].list,
+                'index': pl
             };
-
-            $scope.activePlaylist.index = pl;
         }
     }
 
-    $scope.selectPlaylist = function (name) {
+    $scope.selectPlaylist = function (playlistId) {
+        var playlist = userService.savedPlaylists.getPlaylist(playlistId),
+            index = userService.savedPlaylists.getIndexId(playlistId);
         $scope.activePlaylist = {
-            'name': name,
-            'list': userService.savedPlaylists.getPlaylist(name).list
+            'playlistId': playlist.playlistId,
+            'name': playlist.name,
+            'list': playlist.list,
+            'index': index
         };
         
-        $location.search('pl', userService.savedPlaylists.getIndex(name));
+        $location.search('pl', index);
     };
 
-    $scope.deletePlaylsit = function (name) {
-        userService.savedPlaylists.deletePlaylist(name);
+    $scope.deletePlaylist = function (playlistId) {
+        userService.savedPlaylists.deletePlaylist(playlistId).then(function (response) {
+            if (typeof response.data.UserID !== "undefined") {
+                M.toast({
+                    html: 'Playlist deleted',
+                    displayLength: '3000'
+                });
 
-        var prev = userService.savedPlaylists.getIndex(name) == 0 ? userService.savedPlaylists.getAllPlaylists().length - 1 : userService.savedPlaylists.getIndex(name) - 1;
+                var index = userService.savedPlaylists.getIndexId(playlistId),
+                    prev = index == 0 ? userService.savedPlaylists.getAllPlaylists().length - 1 : index - 1;
 
-        $location.search('pl', prev);
-        $route.reload();
+                $location.search('pl', prev);
+                $route.reload();
+            }
+            else {
+                M.toast({
+                    html: 'Error on playlist deletion',
+                    classes: 'red darken-4',
+                    displayLength: '3000'
+                });
+
+                console.log(response);
+            }
+        }, function (errResponse) {
+            M.toast({
+                html: 'Error on playlist deletion',
+                classes: 'red darken-4',
+                displayLength: '3000'
+            });
+
+            console.log(errResponse);
+        });
     };
 
-    $scope.renamePlaylist = function (name, newName) {
+    $scope.renamePlaylist = function (playlistId, newName) {
         $scope.state.renamingPlaylist = false;
-        if (!userService.savedPlaylists.renamePlaylist(name, newName)) {
+
+        userService.savedPlaylists.renamePlaylist(playlistId, newName).then(function (response) {
+            if (typeof response.data.PlaylistID !== "undefined") {
+                M.toast({
+                    html: 'Playlist renamed',
+                    displayLength: '3000'
+                });
+
+                $route.reload();
+            }
+            else {
+                M.toast({
+                    html: 'Error on playlist creation',
+                    classes: 'red darken-4',
+                    displayLength: '3000'
+                });
+
+                console.log(response);
+            }
+        }, function (errResponse) {
             M.toast({
                 html: 'Error on playlist creation',
                 classes: 'red darken-4',
                 displayLength: '3000'
             });
+
+            console.log(errResponse);
+        });
+    };
+
+    $scope.removeTrack = function (playlistId, trackId) {
+        userService.savedPlaylists.removeTrack(playlistId, trackId).then(function (response) {
+            if (typeof response.data.TrackID !== "undefined") {
+                M.toast({
+                    html: 'Track removed',
+                    displayLength: '3000'
+                });
+            }
+            else {
+                M.toast({
+                    html: 'Error on track removal',
+                    classes: 'red darken-4',
+                    displayLength: '3000'
+                });
+
+                console.log(response);
+            }
+        }, function (errResponse) {
+            M.toast({
+                html: 'Error on track removal',
+                classes: 'red darken-4',
+                displayLength: '3000'
+            });
+
+            console.log(errResponse);
+        });
+    }
+
+    $scope.ytVideo = {
+        open: function (videoData) {
+            $rootScope.$broadcast('ytPlayVideo', videoData);
+            // { type: 'id', id: '123456' }
+        },
+        playCustomPlaylist: function (playlistId) {
+            if ($scope.activePlaylist.list.length > 0) {
+                $rootScope.$broadcast('ytPlayCustomPlaylist', userService.savedPlaylists.getPlaylist(playlistId).list);
+            }
         }
-        $route.reload();
     };
 
     $scope.showInput = function () {
@@ -74,21 +162,6 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
     $scope.onBlur = function () {
         $timeout(function () {
             $scope.state.renamingPlaylist = false;
-        }, 100);
-    };
-
-    $scope.removeTrack = function (name, index) {
-        userService.savedPlaylists.removeTrack(name, index);
-    }
-
-    $scope.ytVideo = {
-        open: function (videoData) {
-            $rootScope.$broadcast('ytPlayVideo', videoData);
-            // { type: 'id', id: '123456' }
-        },
-        playCustomPlaylist: function (name) {
-            console.log(userService.savedPlaylists.getPlaylist(name).list);
-            $rootScope.$broadcast('ytPlayCustomPlaylist', userService.savedPlaylists.getPlaylist(name).list);
-        }
+        }, 1000);
     };
 });

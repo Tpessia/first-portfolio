@@ -7,7 +7,7 @@
     </div>
     <div class="col s12">
         <ul>
-            <li ng-repeat="playlist in playlists" ng-click="selectPlaylist(playlist.name)" ng-if="playlists" onclick="M.toast({html: 'Video Adicionado!', displayLength: '3000'});"><span>{{ playlist.name }}<i class="material-icons">chevron_right</i></span></li>
+            <li ng-repeat="playlist in playlists" ng-click="selectPlaylist(playlist.playlistId)" ng-if="playlists"><span>{{ playlist.name }}<i class="material-icons">chevron_right</i></span></li>
             <li ng-if="!playlists">
                 No playlist created yet.
             </li>

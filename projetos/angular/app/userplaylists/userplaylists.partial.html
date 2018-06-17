@@ -5,19 +5,19 @@
         </h3>
     </div>
     <div class="col s12 carousel-wrapper" ng-if="activePlaylist">
-        <carousel-playlists playlists="playlists" on-slide="selectPlaylist(name)" initial-slide="activePlaylist.index"></carousel-playlists>
+        <carousel-playlists playlists="playlists" on-slide="selectPlaylist(playlistId)" initial-slide="activePlaylist.index"></carousel-playlists>
     </div>
     <div class="col s12 focused-playlist" ng-if="activePlaylist">
         <hr>
         <h4 class="playlist-title">
             <div class="options">
-                <a ng-click="ytVideo.playCustomPlaylist(activePlaylist.name);">
+                <a ng-click="ytVideo.playCustomPlaylist(activePlaylist.playlistId);">
                     <i class="material-icons">play_arrow</i>
                 </a>
                 <a ng-click="showInput()">
                     <i class="material-icons">edit</i>
                 </a>
-                <a ng-click="deletePlaylsit(activePlaylist.name)">
+                <a ng-click="deletePlaylist(activePlaylist.playlistId)">
                     <i class="material-icons">delete</i>
                 </a>
             </div>
@@ -25,9 +25,9 @@
                 <span class="playlist-name" ng-if="!state.renamingPlaylist">{{ activePlaylist.name }}</span>
                 <span ng-if="state.renamingPlaylist" ng-init="tempName = activePlaylist.name">
                     <span class="playlist-name" >
-                        <input type="text" ng-model="tempName" ng-blur="onBlur()" ng-keydown="$event.keyCode === 13 && renamePlaylist(activePlaylist.name, tempName)">
+                        <input type="text" ng-model="tempName" ng-blur="onBlur()" ng-keydown="$event.keyCode === 13 && renamePlaylist(activePlaylist.playlistId, tempName)">
                     </span>
-                    <i class="material-icons" ng-click="renamePlaylist(activePlaylist.name, tempName)">check</i>
+                    <i class="material-icons" ng-click="renamePlaylist(activePlaylist.playlistId, tempName)">check</i>
                 </span>
             </div>
         </h4>
@@ -35,11 +35,11 @@
             <li class="empty-list" ng-if="activePlaylist.list.length == 0">
                 This list is empty.
             </li>
-            <li class="track-item" ng-repeat="music in activePlaylist.list track by $index">
-                <a class="remove-track" ng-click="removeTrack(activePlaylist.name, $index)">
+            <li class="track-item" ng-repeat="music in activePlaylist.list | orderBy:'date'">
+                <a class="remove-track" ng-click="removeTrack(activePlaylist.playlistId, music.trackId)">
                     <i class="material-icons">close</i>
                 </a>                
-                <span class="track-title" ng-click="ytVideo.open({ type: 'id', id: music.id });">
+                <span class="track-title" ng-click="ytVideo.open({ type: 'id', id: music.videoId });">
                     <div class="track-image">
                         <img ng-src="{{ music.img }}">
                     </div>

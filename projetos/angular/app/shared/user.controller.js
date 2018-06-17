@@ -1,4 +1,4 @@
-app.controller("UserController", function ($rootScope, $scope, userService, youTubeService) {
+app.controller("UserController", function ($rootScope, $scope, $timeout, userService, youTubeService) {
 
     $scope.user = userService.user;
 
@@ -6,34 +6,88 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
 
     // Login
 
-    $scope.userMethods.signIn = function () {
-        console.log("sign in");
-        return true;
-    };
-
     $scope.userMethods.signUp = function (data) {
         return userService.signUp(data).then(function (response) {
-            if (response.data == "1") {
-                userService.user.isLogged = true;
-                // userService.user.avatar = $rootScope.baseUrl + 'assets/img/yuna.jpg';
-                userService.user.name = data.username;
-                userService.user.email = data.email;
-
-                userService.userSecure.username = data.username;
+            if (typeof response.data.UserID !== "undefined") {
+                logUser(response.data);
             }
+            
             return response;
+        }, function (errResponse) {
+            console.log(errResponse);
+            
+            return errResponse;
+        });
+    };
+
+    $scope.userMethods.signIn = function (data) {
+        return userService.signIn(data).then(function (response) {
+            if (typeof response.data.UserID !== "undefined") {
+                logUser(response.data);
+
+                userService.savedPlaylists.loadPlaylists();
+            }
+            
+            return response;
+        }, function (errResponse) {
+            console.log(errResponse);
+            
+            return errResponse;
         });
     };
 
     $scope.userMethods.logOut = function () {
-        userService.user.isLogged = false;
-        // userService.user.avatar = $rootScope.baseUrl + 'assets/img/yuna.jpg';
-        userService.user.name = "";
-        userService.user.email = "";
+        userService.logOut().then(function (response) {
+            userService.user.isLogged = false;
+            userService.user.avatar = null;
+            userService.user.name = null;
+            userService.user.email = null;
 
-        userService.userSecure.username = "";
-        return true;
+            userService.userSecure.username = null;
+            userService.userSecure.userId = null;
+
+            M.toast({
+                html: 'Logged Out',
+                displayLength: '3000'
+            });
+        }, function (errResponse) {
+            M.toast({
+                html: 'Error on logout',
+                classes: 'red darken-4',
+                displayLength: '3000'
+            });
+
+            console.log(errResponse);
+        });
     };
+
+    function logUser(data) {
+        userService.user.isLogged = true;
+        userService.user.avatar = $rootScope.baseUrl + data.Avatar;
+        userService.user.name = data.Name;
+        userService.user.email = data.Email;
+
+        userService.userSecure.username = data.Username;
+        userService.userSecure.userId = data.UserID;
+
+        $timeout(function () {
+            $rootScope.materialize.all();
+        }, 10);
+    }
+
+    // Login from session
+
+    sessionLogin();
+    function sessionLogin() {
+        userService.sessionLogin().then(function (response) {
+            $scope.userMethods.signIn({
+                username: response.data.username,
+                password: response.data.password
+            });
+        }, function (errResponse) {
+            console.log(errResponse);
+        });
+    }
 
     // Events
 
@@ -41,13 +95,13 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
         // { type: 'track', artist: 'Portugal. The Man', track: 'Noise Pollution' }
         switch (data.videoData.type) {
             case 'track':
-                getTrackId(data.playlistName, data.videoData.artist, data.videoData.track);
+                getTrackId(data.playlistId, data.videoData.artist, data.videoData.track);
                 break;
             case 'album':
-                getAlbumTrackIds(data.playlistName, data.videoData.artist, data.videoData.album);
+                getAlbumTrackIds(data.playlistId, data.videoData.artist, data.videoData.album);
                 break;
             case 'artist':
-                getArtistTrackIds(data.playlistName, data.videoData.artist);
+                getArtistTrackIds(data.playlistId, data.videoData.artist);
                 break;
             default:
                 throw 'Invalid video type "' + data.videoData.type + '"';
@@ -57,20 +111,42 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
 
     // Video ID getters
 
-    function getTrackId(playlistName, artist, track) {
+    function getTrackId(playlistId, artist, track) {
         youTubeService.getMusicVideo(artist, track).then(function (response) {
             if (typeof response.data.error === "undefined" && typeof response.data.error === "undefined") {
                 var video = response.data.items[0],
-                    id = video.id.videoId,
+                    videoId = video.id.videoId,
                     title = video.snippet.title;
                     
-                userService.savedPlaylists.addTrack(playlistName, {
-                    'id': id,
+                userService.savedPlaylists.addTrack(playlistId, {
+                    'videoId': videoId,
                     'title': title,
                     'img': video.snippet.thumbnails.medium.url
+                }).then(function (response) {
+                    if (typeof response.data.TrackID !== "undefined") {
+                        M.toast({
+                            html: 'Track added',
+                            displayLength: '3000'
+                        });
+                    }
+                    else {
+                        M.toast({
+                            html: 'Error on track addition',
+                            classes: 'red darken-4',
+                            displayLength: '3000'
+                        });
+
+                        console.log(response);
+                    }
+                }, function (errResponse) {
+                    M.toast({
+                        html: 'Error on track addition',
+                        classes: 'red darken-4',
+                        displayLength: '3000'
+                    });
+
+                    console.log(errResponse);
                 });
-                
-                console.log(userService.savedPlaylists.getPlaylist(playlistName));
             }
             else {
                 console.log(response);
@@ -80,7 +156,7 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
         });
     }
 
-    function getAlbumTrackIds(playlistName, artist, album) {
+    function getAlbumTrackIds(playlistId, artist, album) {
         youTubeService.getAlbumPlaylist(artist, album).then(function (response) {
             if (typeof response.data.error === "undefined" && typeof response.data.error === "undefined") {
                 var playlist = response.data.items[0],
@@ -95,7 +171,7 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
 
                                 for (var i in videos) {
                                     videosData.push({
-                                        'id': videos[i].contentDetails.videoId,
+                                        'videoId': videos[i].contentDetails.videoId,
                                         'title': videos[i].snippet.title,
                                         'img': videos[i].snippet.thumbnails.medium.url
                                     });
@@ -105,9 +181,31 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
                                     getVideosIds(id, response.data.nextPageToken);
                                 }
                                 else { // se não, adiciona todos os dados
-                                    userService.savedPlaylists.appendPlaylist(playlistName, videosData);
+                                    userService.savedPlaylists.appendPlaylist(playlistId, videosData).then(function (response) {
+                                        if (typeof response.data.TrackID !== "undefined") {
+                                            M.toast({
+                                                html: 'Tracks added',
+                                                displayLength: '3000'
+                                            });
+                                        }
+                                        else {
+                                            M.toast({
+                                                html: 'Error on tracks addition',
+                                                classes: 'red darken-4',
+                                                displayLength: '3000'
+                                            });
 
-                                    console.log(userService.savedPlaylists.getPlaylist(playlistName));
+                                            console.log(response);
+                                        }
+                                    }, function (errResponse) {
+                                        M.toast({
+                                            html: 'Error on tracks addition',
+                                            classes: 'red darken-4',
+                                            displayLength: '3000'
+                                        });
+
+                                        console.log(errResponse);
+                                    });
                                 }
                             } else {
                                 console.log(response);
@@ -125,7 +223,7 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
         });
     }
 
-    function getArtistTrackIds(playlistName, artist) {
+    function getArtistTrackIds(playlistId, artist) {
         youTubeService.getArtistPlaylist(artist).then(function (response) {
             if (typeof response.data.error === "undefined" && typeof response.data.error === "undefined") {
                 var playlist = response.data.items[0],
@@ -139,7 +237,7 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
                                 var videos = response.data.items;
                                 for (var i in videos) {
                                     videosData.push({
-                                        'id': videos[i].contentDetails.videoId,
+                                        'videoId': videos[i].contentDetails.videoId,
                                         'title': videos[i].snippet.title,
                                         'img': videos[i].snippet.thumbnails.medium.url
                                     });
@@ -149,9 +247,31 @@ app.controller("UserController", function ($rootScope, $scope, userService, youT
                                     getVideosIds(id, response.data.nextPageToken);
                                 }
                                 else { // se não, adiciona todos os dados
-                                    userService.savedPlaylists.appendPlaylist(playlistName, videosData);
+                                    userService.savedPlaylists.appendPlaylist(playlistId, videosData).then(function (response) {
+                                        if (typeof response.data.TrackID !== "undefined") {
+                                            M.toast({
+                                                html: 'Tracks added',
+                                                displayLength: '3000'
+                                            });
+                                        }
+                                        else {
+                                            M.toast({
+                                                html: 'Error on tracks addition',
+                                                classes: 'red darken-4',
+                                                displayLength: '3000'
+                                            });
 
-                                    console.log(userService.savedPlaylists.getPlaylist(playlistName));
+                                            console.log(response);
+                                        }
+                                    }, function (errResponse) {
+                                        M.toast({
+                                            html: 'Error on tracks addition',
+                                            classes: 'red darken-4',
+                                            displayLength: '3000'
+                                        });
+
+                                        console.log(errResponse);
+                                    });
                                 }
                             } else {
                                 console.log(response);

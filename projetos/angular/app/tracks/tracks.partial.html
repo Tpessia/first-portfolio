@@ -17,7 +17,7 @@
             <div class="row search-item" ng-repeat="track in searchedTracks">
                 <div class="img-box col s12 m6">
                     <div class="search-img" ng-style="(track.imgsDone) ? {'background-image':'url(' + (track.image.length ? track.image[track.image.length - 1]['#text'] : fallbackImg) + ')'} : {}">
-                        <materialize-video-fab index="$index" play="ytVideo.open({ type: 'track', artist: track.artist, track: track.name });" add="saveOnPlaylist(playlistName, { type: 'track', artist: track.artist, track: track.name });"></materialize-video-fab>
+                        <materialize-video-fab index="$index" play="ytVideo.open({ type: 'track', artist: track.artist, track: track.name });" add="saveOnPlaylist(playlistId, { type: 'track', artist: track.artist, track: track.name });"></materialize-video-fab>
                     </div>
                 </div>
                 <div class="meta-data col s12 m6">

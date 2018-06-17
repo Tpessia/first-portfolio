@@ -3,8 +3,8 @@ app.controller("CarouselPlaylistsController", function ($rootScope, $scope) {
     
     $scope.$watch('focusedElem', function (newElem, oldElem) {
         if (newElem !== oldElem && typeof oldElem !== "undefined") {
-            var name = newElem.getAttribute('data-playlist-name');
-            $scope.onSlide({ 'name': name });
+            var playlistId = newElem.getAttribute('data-playlist-id');
+            $scope.onSlide({ 'playlistId': playlistId });
         }
     });
 });
