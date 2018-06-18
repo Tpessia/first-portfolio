@@ -6,7 +6,7 @@ body {
         .focused-playlist {
             margin-bottom: 50px;
             .playlist-title {
-                margin-bottom: 25px;
+                margin: 25px 0 35px;
                 .options {
                     // margin-bottom: 5px;
                     a {
@@ -60,9 +60,15 @@ body {
                 .track-item {
                     width: 100%;
                     position: relative;
-                    margin-bottom: 10px;
                     display : flex;
                     align-items : flex-start;
+                    padding-bottom: 10px;
+                    margin-bottom: 10px;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+                    &:first-child {
+                        padding-top: 10px;
+                        border-top: 1px solid rgba(0, 0, 0, 0.15);
+                    }
                     @media (max-width: 600px) {
                         .track-title {
                             .track-name {
@@ -82,6 +88,7 @@ body {
                         }
                     }
                     .track-title {
+                        width: calc(100% - 40px);
                         margin: 0;
                         display: inline-block;
                         cursor: pointer;

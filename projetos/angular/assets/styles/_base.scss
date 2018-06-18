@@ -15,12 +15,11 @@ body {
     flex-direction: column;
     overflow-x: hidden;
     header {
-        margin-bottom: 30px;
         padding-top: 64px;
         @media (max-width: 600px) {
             padding-top: 56px;
         }
-        nav {
+        #top-nav {
             background-color: $nav-footer-color !important;
             position: fixed;
             top: 0;
@@ -102,6 +101,7 @@ body {
         #banner {
             $bannerHeightPx: 330px;
             height: $bannerHeightPx;
+            margin-bottom: 30px;
             overflow: hidden;
             position: relative;
             background-color: #050505;
@@ -225,6 +225,29 @@ body {
                 &.albums {
                     .img-wrapper:not(#img-wrapper3) {
                         display: none;
+                    }
+                }
+            }
+        }
+        .breadcrumb-bar {
+            nav {
+                background-color: transparent;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+                margin-bottom: 0;
+                .nav-wrapper {
+                    height: auto;
+                    .breadcrumb {
+                        text-transform: capitalize;
+                        color: rgba(0, 0, 0, 0.87);
+                        font-weight: 500;
+                        &:before {
+                            color: orangered;
+                        }
+                        &:last-child {
+                            color: rgba(0, 0, 0, 0.7);
+                            font-weight: 400;
+                        }
                     }
                 }
             }

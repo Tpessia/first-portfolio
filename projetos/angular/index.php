@@ -23,7 +23,7 @@
                 <a class="logout" ng-click="userMethods.logOut()">Log Out</a>
             </li>
         </ul>
-        <nav class="z-depth-1">
+        <nav id="top-nav" class="z-depth-1">
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo">
                     <img src="assets/img/logo-simple-orange-256x256.png" alt="NP" class="hide-on-med-and-down">
@@ -37,7 +37,7 @@
                     <li ng-if="!user.isLogged">
                         <a data-target="login-modal" class="login modal-trigger">Log In</a>
                     </li>
-                    <li id="loginAvatar" ng-class="{'active': isActive('/user') || isActive('/user/playlists')}" ng-if="user.isLogged">
+                    <li id="loginAvatar" ng-class="{'active': isActive('/user') || isActive('/user/playlists')}" ng-show="user.isLogged">
                         <a id="user-dropdown" href="#!" data-target="user-dropdown-items">
                             <img alt="{{ user.name }}" class="circle avatar" ng-src="{{ user.avatar }}" >
                         </a>
@@ -82,6 +82,16 @@
                     Your Tracks, Artists and Albums in a single place
                 </div>
             </div>
+        </div>
+
+        <div class="container breadcrumb-bar">
+            <nav class="row">
+                <div class="col s12 nav-wrapper">
+                    <div>
+                        <a class="breadcrumb" ng-repeat="item in breadcrumb.items" ng-href="{{ breadcrumb.urls($index) }}" ng-bind="item"></a>
+                    </div>
+                </div>
+            </nav>
         </div>
     </header>
         

@@ -22,7 +22,7 @@ app.directive('carouselPlaylists', function () {
                         });                        
                     }
                 });
-
+                
                 instances[0].set(scope.initialSlide);
             }, 100);
         }

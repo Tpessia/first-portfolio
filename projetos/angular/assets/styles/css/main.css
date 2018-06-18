@@ -7,65 +7,65 @@ body {
   flex-direction: column;
   overflow-x: hidden; }
   body header {
-    margin-bottom: 30px;
     padding-top: 64px; }
     @media (max-width: 600px) {
       body header {
         padding-top: 56px; } }
-    body header nav {
+    body header #top-nav {
       background-color: #050505 !important;
       position: fixed;
       top: 0;
       z-index: 10; }
-      body header nav .nav-wrapper .brand-logo {
+      body header #top-nav .nav-wrapper .brand-logo {
         font-family: 'Fondamento', cursive;
         color: #ff5722;
         height: 100%; }
-        body header nav .nav-wrapper .brand-logo img {
+        body header #top-nav .nav-wrapper .brand-logo img {
           vertical-align: top;
           height: 100%; }
-          body header nav .nav-wrapper .brand-logo img.hide-on-large-only {
+          body header #top-nav .nav-wrapper .brand-logo img.hide-on-large-only {
             padding: 10px; }
-      body header nav .nav-wrapper .sidenav-trigger {
+      body header #top-nav .nav-wrapper .sidenav-trigger {
         margin: 0;
         padding: 0 20px; }
-        body header nav .nav-wrapper .sidenav-trigger i {
+        body header #top-nav .nav-wrapper .sidenav-trigger i {
           font-size: 2.2rem; }
-      body header nav ul li.active {
+      body header #top-nav ul li.active {
         background-color: rgba(255, 87, 34, 0.8) !important; }
-      body header nav ul li a:hover {
+      body header #top-nav ul li a:hover {
         background-color: rgba(255, 87, 34, 0.25); }
-      body header nav ul li .login {
+      body header #top-nav ul li .login {
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         -khtml-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none; }
-      body header nav ul li#loginAvatar {
+      body header #top-nav ul li#loginAvatar {
         height: 64px; }
-        body header nav ul li#loginAvatar #user-dropdown {
+        body header #top-nav ul li#loginAvatar #user-dropdown {
           display: inline-block;
           cursor: pointer;
           outline: 0;
           position: relative;
           width: 64px;
           height: 64px; }
-          body header nav ul li#loginAvatar #user-dropdown .avatar {
+          body header #top-nav ul li#loginAvatar #user-dropdown .avatar {
             height: 60%;
             position: absolute;
             top: 50%;
             right: 50%;
             transform: translate(50%, -50%); }
-          body header nav ul li#loginAvatar #user-dropdown ~ #user-dropdown-items li {
+          body header #top-nav ul li#loginAvatar #user-dropdown ~ #user-dropdown-items li {
             background-color: transparent; }
-            body header nav ul li#loginAvatar #user-dropdown ~ #user-dropdown-items li a {
+            body header #top-nav ul li#loginAvatar #user-dropdown ~ #user-dropdown-items li a {
               width: 100%;
               color: rgba(0, 0, 0, 0.87); }
-              body header nav ul li#loginAvatar #user-dropdown ~ #user-dropdown-items li a:hover {
+              body header #top-nav ul li#loginAvatar #user-dropdown ~ #user-dropdown-items li a:hover {
                 background-color: rgba(255, 87, 34, 0.15); }
     body header #banner {
       height: 330px;
+      margin-bottom: 30px;
       overflow: hidden;
       position: relative;
       background-color: #050505; }
@@ -146,6 +146,22 @@ body {
           display: none; }
         body header #banner.albums .img-wrapper:not(#img-wrapper3) {
           display: none; } }
+    body header .breadcrumb-bar nav {
+      background-color: transparent;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      margin-bottom: 0; }
+      body header .breadcrumb-bar nav .nav-wrapper {
+        height: auto; }
+        body header .breadcrumb-bar nav .nav-wrapper .breadcrumb {
+          text-transform: capitalize;
+          color: rgba(0, 0, 0, 0.87);
+          font-weight: 500; }
+          body header .breadcrumb-bar nav .nav-wrapper .breadcrumb:before {
+            color: orangered; }
+          body header .breadcrumb-bar nav .nav-wrapper .breadcrumb:last-child {
+            color: rgba(0, 0, 0, 0.7);
+            font-weight: 400; }
   body main {
     flex: 1 0 auto;
     word-wrap: break-word; }
@@ -334,6 +350,7 @@ materialize-video-fab .video-fab {
 
 [search-wide] {
   position: relative;
+  margin-top: 20px;
   margin-bottom: 15px; }
   [search-wide] form {
     transition: .3s box-shadow; }
@@ -638,7 +655,7 @@ body .userplaylists .carousel-wrapper {
 body .userplaylists .focused-playlist {
   margin-bottom: 50px; }
   body .userplaylists .focused-playlist .playlist-title {
-    margin-bottom: 25px; }
+    margin: 25px 0 35px; }
     body .userplaylists .focused-playlist .playlist-title .options a {
       display: inline-block; }
       body .userplaylists .focused-playlist .playlist-title .options a:not(:first-child) {
@@ -675,9 +692,14 @@ body .userplaylists .focused-playlist {
   body .userplaylists .focused-playlist .playlist-tracks .track-item {
     width: 100%;
     position: relative;
-    margin-bottom: 10px;
     display: flex;
-    align-items: flex-start; }
+    align-items: flex-start;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15); }
+    body .userplaylists .focused-playlist .playlist-tracks .track-item:first-child {
+      padding-top: 10px;
+      border-top: 1px solid rgba(0, 0, 0, 0.15); }
     @media (max-width: 600px) {
       body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-name {
         margin-top: 0 !important; } }
@@ -691,6 +713,7 @@ body .userplaylists .focused-playlist {
         vertical-align: bottom;
         color: rgba(0, 0, 0, 0.87); }
     body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title {
+      width: calc(100% - 40px);
       margin: 0;
       display: inline-block;
       cursor: pointer;

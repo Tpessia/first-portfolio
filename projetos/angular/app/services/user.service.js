@@ -159,7 +159,7 @@ app.service("userService", function ($rootScope, $http) {
                     else {
                         console.log(response);
                     }
-
+                    
                     return response;
                 }, function (errResponse) {
                     console.log(errResponse);

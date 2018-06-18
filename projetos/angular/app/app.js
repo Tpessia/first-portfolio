@@ -60,6 +60,18 @@ app.run(function ($rootScope, $window, $timeout) {
         $rootScope.title = current.$$route.title;
         $rootScope.titleClass = current.$$route.title == '' ? 'home' : current.$$route.title.toLowerCase().replace(/ /g, "");
 
+        // Breadcrumb items
+
+        var breadcrumbItems = current.$$route.originalPath.split(/\//g).filter(function (e) { return e != "" });
+        breadcrumbItems.length == 0 ? breadcrumbItems[0] = 'home' : breadcrumbItems.unshift('home');
+
+        $rootScope.breadcrumb = {
+            items: breadcrumbItems,
+            urls: function (index) {
+                return '#!/' + $rootScope.breadcrumb.items.filter(function (e, i) { return i < index + 1 }).filter(function (e) { return e != 'home' }).join('/');
+            }
+        };
+        
         // Scroll to Top
         
         if (typeof previous !== "undefined" && current.$$route.originalPath != previous.$$route.originalPath) { // check if redirect or reload

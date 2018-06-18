@@ -1,12 +1,23 @@
-app.controller("UserSettingsController", function ($scope, $location, userService) {
-    $scope.userSecure = userService.userSecure;
+app.controller("UserSettingsController", function ($scope, $location, userService) {    
+    // Check session
 
     redirectNotLogged();
     function redirectNotLogged() {
-        if (!userService.user.isLogged) {
-            $location.path("/");
-        }
+        $scope.$parent.sessionLoginResponse.then(function (response) {
+            if (!userService.user.isLogged) {
+                // Redirect
+
+                $location.path("/");
+            }
+            else {
+                $scope.userSecure = userService.userSecure;
+            }
+        }, function (errResponse) {
+            console.log(errResponse);
+        });
     }
+
+    // Actions & Events
 
     $scope.onSubmit = function () {
         console.log("submit changes");

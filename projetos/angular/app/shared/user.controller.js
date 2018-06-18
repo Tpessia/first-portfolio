@@ -1,4 +1,4 @@
-app.controller("UserController", function ($rootScope, $scope, $timeout, userService, youTubeService) {
+app.controller("UserController", function ($rootScope, $scope, $timeout, $location, userService, youTubeService) {
 
     $scope.user = userService.user;
 
@@ -22,13 +22,21 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, userSer
 
     $scope.userMethods.signIn = function (data) {
         return userService.signIn(data).then(function (response) {
+            var signInResponse = response;
             if (typeof response.data.UserID !== "undefined") {
                 logUser(response.data);
 
-                userService.savedPlaylists.loadPlaylists();
+                return userService.savedPlaylists.loadPlaylists().then(function (response) {
+                    return signInResponse;
+                }, function (errResponse) {
+                    console.log(errResponse);
+
+                    return errResponse;
+                });
             }
-            
-            return response;
+            else {
+                return response;
+            }
         }, function (errResponse) {
             console.log(errResponse);
             
@@ -50,6 +58,8 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, userSer
                 html: 'Logged Out',
                 displayLength: '3000'
             });
+
+            $location.path("/");
         }, function (errResponse) {
             M.toast({
                 html: 'Error on logout',
@@ -79,13 +89,21 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, userSer
 
     sessionLogin();
     function sessionLogin() {
-        userService.sessionLogin().then(function (response) {
-            $scope.userMethods.signIn({
+        $scope.sessionLoginResponse = userService.sessionLogin().then(function (response) {
+            return $scope.userMethods.signIn({
                 username: response.data.username,
                 password: response.data.password
+            }).then(function (response) {
+                return response;                
+            }, function (errResponse) {
+                console.log(errResponse);
+
+                return errResponse;
             });
         }, function (errResponse) {
             console.log(errResponse);
+
+            return errResponse;
         });
     }
 

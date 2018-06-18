@@ -5,7 +5,7 @@ app.controller("SearchController", function ($scope, $location) {
         var searchSuccess = $scope.onSearch({ searchKey: key });
         if (searchSuccess) {
             $scope.searchAvailable = false;
-            angular.element($$(".search-wide input")).triggerHandler("blur");
+            $$(".search-wide input")[0].blur();
         }
         else {
             M.toast({

@@ -16,7 +16,7 @@
 </div>
 <div class="modal-footer row">
     <div class="col s12 input-field orange-input">
-        <input type="text" placeholder="Playlist Name" ng-model="newPlaylist">
+        <input type="text" placeholder="Playlist Name" ng-model="newPlaylist" ng-keydown="$event.keyCode === 13 && createPlaylist(newPlaylist)">
     </div>
     <div class="col s12">
         <a class="waves-effect waves-light btn" ng-click="createPlaylist(newPlaylist)">Create Playlist</a>

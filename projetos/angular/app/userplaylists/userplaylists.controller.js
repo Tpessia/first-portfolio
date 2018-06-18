@@ -2,36 +2,49 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
     $scope.playlists = userService.savedPlaylists.getAllPlaylists();
     $scope.state = { renamingPlaylist: false };
 
-    // Redirect
+    // Check session
 
     redirectNotLogged();
     function redirectNotLogged() {
-        if (!userService.user.isLogged) {
-            $location.search("pl", null);
-            $location.path("/");
-        }
-    }
+        $scope.$parent.sessionLoginResponse.then(function (response) {
+            if (!userService.user.isLogged) {
+                // Redirect
 
-    setInitialPlaylist();
-    function setInitialPlaylist() {
-        var pl = 0; // default playlist
-
-        if (typeof $location.search().pl !== "undefined") {
-            var tempPl = $location.search().pl;
-            if (typeof $scope.playlists[tempPl] !== 'undefined') {
-                pl = parseInt(tempPl);
+                $location.search("pl", null);
+                $location.path("/");
             }
-        }
+            else {
+                $scope.playlists = userService.savedPlaylists.getAllPlaylists();
 
-        if (typeof $scope.playlists[pl] !== "undefined") {
-            $scope.activePlaylist = {
-                'playlistId': $scope.playlists[pl].playlistId,
-                'name': $scope.playlists[pl].name,
-                'list': $scope.playlists[pl].list,
-                'index': pl
-            };
-        }
+                // Set initial playlist
+
+                setInitialPlaylist();
+                function setInitialPlaylist() {
+                    var pl = 0; // default playlist
+
+                    if (typeof $location.search().pl !== "undefined") {
+                        var tempPl = $location.search().pl;
+                        if (typeof $scope.playlists[tempPl] !== 'undefined') {
+                            pl = parseInt(tempPl);
+                        }
+                    }
+
+                    if (typeof $scope.playlists[pl] !== "undefined") {
+                        $scope.activePlaylist = {
+                            'playlistId': $scope.playlists[pl].playlistId,
+                            'name': $scope.playlists[pl].name,
+                            'list': $scope.playlists[pl].list,
+                            'index': pl
+                        };
+                    }
+                }
+            }
+        }, function (errResponse) {
+            console.log(errResponse);
+        });
     }
+
+    // Actions & Events
 
     $scope.selectPlaylist = function (playlistId) {
         var playlist = userService.savedPlaylists.getPlaylist(playlistId),
