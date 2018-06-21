@@ -1,4 +1,4 @@
-app.controller("UserSettingsController", function ($rootScope, $scope, $location, userService, FileUploader) {  
+app.controller("UserSettingsController", function ($rootScope, $scope, $location, userService, FileUploader) {
     
     // Check session
 
@@ -12,6 +12,14 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
             }
             else {
                 $scope.userSecure = userService.userSecure;
+
+                $scope.userChangeable = {
+                    'initialName': userService.user.name,
+                    'name': userService.user.name,
+                    'avatar': userService.user.avatar,
+                    'oldPassword': "",
+                    'newPassword': ""
+                };
             }
         }, function (errResponse) {
             console.log(errResponse);
@@ -31,10 +39,26 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
     });
 
     $scope.uploader.onAfterAddingFile = function (item) {
-        item.url = $rootScope.baseUrl + 'src/php/settings.update.php';
+        item.url = $rootScope.baseUrl + 'src/php/settings.avatar.php';
         item.formData = [{
             'userId': userService.userSecure.userId
         }];
+        
+        var oldImg = $$('#avatar-img')[0],
+            file = item._file;
+
+        var newImg = document.createElement("img");
+        newImg.id = "avatar-img";
+        newImg.file = file;
+        oldImg.parentNode.replaceChild(newImg, oldImg);
+
+        var reader = new FileReader();
+        reader.onload = (function (aImg) {
+            return function (e) {
+                aImg.src = e.target.result;
+            };
+        })(newImg);
+        reader.readAsDataURL(file);
     }
 
     $scope.uploader.onWhenAddingFileFailed = function (item, filter, options) {
@@ -49,15 +73,117 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
     // Actions & Events
 
     $scope.onSubmit = function () {
-        var item = $scope.uploader.queue[0];
+        var changing = [];
 
-        item.onSuccess = function (response, status, headers) {
-            if (response == "1") {
-                console.log(response);
-                // Atualizar avatar, nome...
+        if ($scope.uploader.queue.length != 0) { // Img changed
+            changing.push('avatar');
+
+            var item = $scope.uploader.queue[0];
+
+            item.onSuccess = function (response, status, headers) {
+                if (typeof response.UserID !== "undefined") {
+                    $scope.userChangeable.avatar = userService.user.avatar = response.Avatar;
+
+                    M.toast({
+                        html: 'Avatar changed',
+                        displayLength: '3000'
+                    });
+                }
+                else {
+                    console.log(response);
+
+                    M.toast({
+                        html: 'Error on avatar change',
+                        classes: 'red darken-4',
+                        displayLength: '3000'
+                    });
+                }
+            }
+
+            $scope.uploader.uploadItem(0);
+        }
+        if ($scope.userChangeable.oldPassword != "" || $scope.userChangeable.newPassword != "") {
+            changing.push('password');
+
+            if ($scope.userChangeable.oldPassword != "" && $scope.userChangeable.newPassword != "") {
+                userService.changePassword({
+                    'userId': userService.userSecure.userId,
+                    'oldPassword': $scope.userChangeable.oldPassword,
+                    'newPassword': $scope.userChangeable.newPassword,
+                }).then(function (response) {
+                    if (typeof response.data.UserID !== "undefined") {
+                        M.toast({
+                            html: 'Password changed',
+                            displayLength: '3000'
+                        });
+                    }
+                    else {
+                        console.log(response);
+
+                        M.toast({
+                            html: 'Error on password change',
+                            classes: 'red darken-4',
+                            displayLength: '3000'
+                        });
+                    }
+                }, function (errResponse) {
+                    console.log(errResponse);
+
+                    M.toast({
+                        html: 'Error on password change',
+                        classes: 'red darken-4',
+                        displayLength: '3000'
+                    });
+                });
+            }
+            else {
+                M.toast({
+                    html: 'Error on password change',
+                    classes: 'red darken-4',
+                    displayLength: '3000'
+                });
             }
         }
+        if ($scope.userChangeable.name != $scope.userChangeable.initialName) {
+            changing.push('name');
 
-        $scope.uploader.uploadItem(0);
+            userService.changeName({
+                'userId': userService.userSecure.userId,
+                'newName': $scope.userChangeable.name
+            }).then(function (response) {
+                if (typeof response.data.UserID !== "undefined") {
+                    $scope.userChangeable.name = userService.user.name = response.data.Name;
+
+                    M.toast({
+                        html: 'Name changed',
+                        displayLength: '3000'
+                    });
+                }
+                else {
+                    console.log(response);
+
+                    M.toast({
+                        html: 'Error on name change',
+                        classes: 'red darken-4',
+                        displayLength: '3000'
+                    });
+                }
+            }, function (errResponse) {
+                console.log(errResponse);
+
+                M.toast({
+                    html: 'Error on name change',
+                    classes: 'red darken-4',
+                    displayLength: '3000'
+                });
+            });
+        }
+        if (changing.length == 0) {
+            M.toast({
+                html: 'No change has been made',
+                classes: 'red darken-4',
+                displayLength: '3000'
+            });
+        }
     };
 });

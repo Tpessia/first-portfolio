@@ -77,6 +77,20 @@ app.service("userService", function ($rootScope, $http) {
         return $http.get($rootScope.baseUrl + 'src/php/session.login.php');
     };
 
+    // Change settings
+
+    this.changeAvatar = function (data) {
+        return $http.post($rootScope.baseUrl + 'src/php/settings.avatar.php', data);
+    };
+
+    this.changeName = function (data) {
+        return $http.post($rootScope.baseUrl + 'src/php/settings.name.php', data);
+    };
+
+    this.changePassword = function (data) {
+        return $http.post($rootScope.baseUrl + 'src/php/settings.password.php', data);
+    };
+
     // Playlists
 
     this.savedPlaylistsArray = [/*{

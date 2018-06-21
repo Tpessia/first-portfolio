@@ -9,9 +9,20 @@ CALL user_sign_up(
     '2018-06-16 20:09:00'
 );
 
+CALL user_change_password(
+	1,
+    '123456',
+    '654321'
+);
+
+CALL user_change_avatar(
+	1,
+    'public/users/avatars/1.jpg'
+);
+
 CALL user_sign_in(
 	'tpessia',
-    '123456'
+    '654321'
 );
 
 SELECT *

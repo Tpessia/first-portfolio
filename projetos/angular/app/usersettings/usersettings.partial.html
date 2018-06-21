@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col s12 l4 avatar">
                 <div class="img-wrapper">
-                    <img ng-src="{{ user.avatar }}" alt="Avatar">
+                    <img ng-src="{{ userChangeable.avatar }}" alt="Avatar" id="avatar-img">
                     <div class="edit btn-flat">
                         <label for="upload-avatar">EDIT<i class="material-icons">image</i></label>
                         <input type="file" name="avatar" id="upload-avatar" nv-file-select uploader="uploader">
@@ -19,7 +19,7 @@
             <div class="col s12 l8">
                 <div class="row">
                     <div class="input-field dark-input col s12">
-                        <input value="{{ user.name }}" id="name-us" type="text">
+                        <input id="name-us" type="text" ng-model="userChangeable.name">
                         <label for="name-us" class="active">Full Name</label>
                     </div>
                 </div>
@@ -43,11 +43,11 @@
                 <h4>Change Password</h4>
             </div>
             <div class="input-field dark-input col s12 l6">
-                <input id="password-us-old" type="password">
+                <input id="password-us-old" type="password" ng-model="userChangeable.oldPassword">
                 <label for="password-us-old">Old Password</label>
             </div>
             <div class="input-field dark-input col s12 l6">
-                <input id="password-us-new" type="password">
+                <input id="password-us-new" type="password" ng-model="userChangeable.newPassword">
                 <label for="password-us-new">New Password</label>
             </div>
         </div>
