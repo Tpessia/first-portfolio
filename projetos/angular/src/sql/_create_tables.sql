@@ -31,7 +31,8 @@ CREATE TABLE IF NOT EXISTS Playlist (
 
 	UserID int NOT NULL,
        
-    CONSTRAINT FK_UserPlaylist FOREIGN KEY (UserID) REFERENCES User(UserID)
+    CONSTRAINT FK_UserPlaylist FOREIGN KEY (UserID) REFERENCES User(UserID),
+    CONSTRAINT UC_NameUserID UNIQUE (Name,UserID)
 
 );
 

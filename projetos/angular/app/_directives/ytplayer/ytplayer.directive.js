@@ -4,6 +4,6 @@ app.directive('ytPlayer', function () {
             
         // },
         controller: 'YTPlayerController',
-        templateUrl: 'app/directives/ytplayer/ytplayer.partial.html'
+        templateUrl: 'app/_directives/ytplayer/ytplayer.partial.html'
     };
 });

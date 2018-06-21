@@ -6,7 +6,7 @@ app.directive('materializeVideoFab', function () {
             add: '&'
         },
         controller: 'MaterializeFabController',
-        templateUrl: 'app/directives/fab/fab.partial.html',
+        templateUrl: 'app/_directives/fab/fab.partial.html',
         link: function (scope, element, attrs) {
             setTimeout(function() {
                 var instances = M.FloatingActionButton.init($$('.video-fab'), {

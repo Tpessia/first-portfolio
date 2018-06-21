@@ -1,4 +1,6 @@
 app.service("userService", function ($rootScope, $http) {
+
+    var self = this;
     
     // User
 
@@ -9,14 +11,10 @@ app.service("userService", function ($rootScope, $http) {
         email: null
     };
 
-    var user = this.user;
-
     this.userSecure = {
         username: null,
         userId: null
     };
-
-    var userSecure = this.userSecure;
 
     this.signUp = function (data) {
         if (typeof data !== "undefined") {
@@ -123,13 +121,11 @@ app.service("userService", function ($rootScope, $http) {
         }
     */];
 
-    var savedPlaylistsArray = this.savedPlaylistsArray;
-
     this.savedPlaylists = {
         loadPlaylists: function () {
-            if (user.isLogged) {
+            if (self.user.isLogged) {
                 return $http.post($rootScope.baseUrl + 'src/php/track.getall.php', {
-                    user: userSecure.userId
+                    user: self.userSecure.userId
                 }).then(function (response) {
                     if (typeof response.data !== "undefined" && typeof response.data === "object") {
                         var rawPlaylists = response.data,
@@ -154,7 +150,7 @@ app.service("userService", function ($rootScope, $http) {
                             }
                         }
 
-                        savedPlaylistsArray = playlist;
+                        self.savedPlaylistsArray = playlist;
                     }
                     else {
                         console.log(response);
@@ -178,13 +174,13 @@ app.service("userService", function ($rootScope, $http) {
             }
         },
         newPlaylist: function (playlistName) {
-            if (user.isLogged && !this.playlistExistsName(playlistName)) {
+            if (self.user.isLogged && !this.playlistExistsName(playlistName)) {
                 return $http.post($rootScope.baseUrl + 'src/php/playlist.create.php', {
                     name: playlistName,
-                    user: userSecure.userId
+                    user: self.userSecure.userId
                 }).then(function (response) {
                     if (typeof response.data.PlaylistID !== "undefined") {
-                        savedPlaylistsArray.push({
+                        self.savedPlaylistsArray.push({
                             playlistId: response.data.PlaylistID,
                             name: response.data.Name,
                             date: new Date(response.data.CreationDate),
@@ -214,13 +210,13 @@ app.service("userService", function ($rootScope, $http) {
         },
         deletePlaylist: function (playlistId) {
             var $this = this;
-            if (user.isLogged && this.playlistExistsId(playlistId)) {
+            if (self.user.isLogged && this.playlistExistsId(playlistId)) {
                 return $http.post($rootScope.baseUrl + 'src/php/playlist.delete.php', {
                     playlist: playlistId,
-                    user: userSecure.userId
+                    user: self.userSecure.userId
                 }).then(function (response) {
                     if (typeof response.data.PlaylistID !== "undefined") {
-                        savedPlaylistsArray.splice($this.getIndexId(playlistId), 1);
+                        self.savedPlaylistsArray.splice($this.getIndexId(playlistId), 1);
                     }
                     else {
                         console.log(response);
@@ -245,14 +241,14 @@ app.service("userService", function ($rootScope, $http) {
         },
         renamePlaylist: function (playlistId, newName) {
             var $this = this;
-            if (user.isLogged && this.playlistExistsId(playlistId) && !this.playlistExistsName(newName)) {
+            if (self.user.isLogged && this.playlistExistsId(playlistId) && !this.playlistExistsName(newName)) {
                 return $http.post($rootScope.baseUrl + 'src/php/playlist.rename.php', {
                     playlist: playlistId,
                     newName: newName,
-                    user: userSecure.userId
+                    user: self.userSecure.userId
                 }).then(function (response) {
                     if (typeof response.data.PlaylistID !== "undefined") {
-                        savedPlaylistsArray[$this.getIndexId(playlistId)].name = newName;
+                        self.savedPlaylistsArray[$this.getIndexId(playlistId)].name = newName;
                     }
                     else {
                         console.log(response);
@@ -276,31 +272,31 @@ app.service("userService", function ($rootScope, $http) {
             }
         },
         getPlaylist: function (playlistId) {
-            if (user.isLogged && this.playlistExistsId(playlistId)) {
-                return savedPlaylistsArray[this.getIndexId(playlistId)];
+            if (self.user.isLogged && this.playlistExistsId(playlistId)) {
+                return self.savedPlaylistsArray[this.getIndexId(playlistId)];
             } else {
                 return false;
             }
         },
         getAllPlaylists: function () {
-            if (user.isLogged && savedPlaylistsArray.length > 0) {
-                return savedPlaylistsArray;
+            if (self.user.isLogged && self.savedPlaylistsArray.length > 0) {
+                return self.savedPlaylistsArray;
             } else {
                 return false;
             }
         },
         addTrack: function (playlistId, trackData) {
             var $this = this;
-            if (user.isLogged && this.playlistExistsId(playlistId) && typeof trackData !== "undefined") {
+            if (self.user.isLogged && this.playlistExistsId(playlistId) && typeof trackData !== "undefined") {
                 return $http.post($rootScope.baseUrl + 'src/php/track.add.php', {
                     title: trackData.title,
                     video: trackData.videoId,
                     img: trackData.img,
                     playlist: playlistId,
-                    user: userSecure.userId
+                    user: self.userSecure.userId
                 }).then(function (response) {
                     if (typeof response.data.PlaylistID !== "undefined") {
-                        savedPlaylistsArray[$this.getIndexId(playlistId)].list.push({
+                        self.savedPlaylistsArray[$this.getIndexId(playlistId)].list.push({
                             trackId: response.data.TrackID,
                             title: response.data.Title,
                             videoId: response.data.Video,
@@ -331,16 +327,16 @@ app.service("userService", function ($rootScope, $http) {
         },
         removeTrack: function (playlistId, trackId) {
             var $this = this;
-            if (user.isLogged && this.playlistExistsId(playlistId) && trackId > 0) {
+            if (self.user.isLogged && this.playlistExistsId(playlistId) && trackId > 0) {
                 return $http.post($rootScope.baseUrl + 'src/php/track.remove.php', {
                     track: trackId,
                     playlist: playlistId,
-                    user: userSecure.userId
+                    user: self.userSecure.userId
                 }).then(function (response) {
                     if (typeof response.data.PlaylistID !== "undefined") {
                         var plIndex = $this.getIndexId(playlistId),
-                            tkIndex = savedPlaylistsArray[plIndex].list.findIndex(function(e) { return e.trackId == trackId });
-                        savedPlaylistsArray[plIndex].list.splice(tkIndex, 1);
+                            tkIndex = self.savedPlaylistsArray[plIndex].list.findIndex(function(e) { return e.trackId == trackId });
+                        self.savedPlaylistsArray[plIndex].list.splice(tkIndex, 1);
                     }
                     else {
                         console.log(response);
@@ -364,7 +360,7 @@ app.service("userService", function ($rootScope, $http) {
             }
         },
         appendPlaylist: function (playlistId, sourcePlaylist) {
-            if (user.isLogged && this.playlistExistsId(playlistId) && typeof sourcePlaylist !== "undefined") {
+            if (self.user.isLogged && this.playlistExistsId(playlistId) && typeof sourcePlaylist !== "undefined") {
                 var request = new Promise(function (resolve, reject) { resolve({ data: '0' }); });
 
                 for (var i in sourcePlaylist) {
@@ -385,21 +381,21 @@ app.service("userService", function ($rootScope, $http) {
         },
         // Helpers
         getIndexName: function (name) {
-            var index = savedPlaylistsArray.findIndex(function(e) { return e.name == name });
+            var index = self.savedPlaylistsArray.findIndex(function(e) { return e.name == name });
             if (index >= 0) {
                 return index;
             }
             return false;
         },
         getIndexId: function (playlistId) {
-            var index = savedPlaylistsArray.findIndex(function(e) { return e.playlistId == playlistId });
+            var index = self.savedPlaylistsArray.findIndex(function(e) { return e.playlistId == playlistId });
             if (index >= 0) {
                 return index;
             }
             return false;
         },
         playlistExistsName: function (name) {
-            if (savedPlaylistsArray.filter(function (e) {
+            if (self.savedPlaylistsArray.filter(function (e) {
                     return e.name == name;
                 }).length > 0) {
                 return true;
@@ -407,7 +403,7 @@ app.service("userService", function ($rootScope, $http) {
             return false;
         },
         playlistExistsId: function (playlistId) {
-            if (savedPlaylistsArray.filter(function (e) {
+            if (self.savedPlaylistsArray.filter(function (e) {
                     return e.playlistId == playlistId;
                 }).length > 0) {
                 return true;

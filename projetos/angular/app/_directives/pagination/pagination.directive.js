@@ -6,6 +6,6 @@ app.directive('materializePag', function () {
             pageChangeFunc: '&pageChangeFunc'
         },
         controller: 'PaginationController',
-        templateUrl: 'app/directives/pagination/pagination.partial.html'
+        templateUrl: 'app/_directives/pagination/pagination.partial.html'
     };
 });

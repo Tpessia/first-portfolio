@@ -4,6 +4,6 @@ app.directive('gridArtists', function () {
             series: '='
         },
         controller: 'GridArtistsController',
-        templateUrl: 'app/directives/gridartists/gridartists.partial.html'
+        templateUrl: 'app/_directives/gridartists/gridartists.partial.html'
     };
 });

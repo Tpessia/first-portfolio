@@ -1,4 +1,4 @@
-var app = angular.module('noisePolution', ['ngRoute', 'youtube-embed']);
+var app = angular.module('noisePolution', ['ngRoute', 'youtube-embed', 'angularFileUpload']);
 
 app.config(function ($routeProvider, $locationProvider) {
     $routeProvider

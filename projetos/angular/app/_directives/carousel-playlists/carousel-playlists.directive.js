@@ -6,7 +6,7 @@ app.directive('carouselPlaylists', function () {
             onSlide: '&'
         },
         controller: 'CarouselPlaylistsController',
-        templateUrl: 'app/directives/carousel-playlists/carousel-playlists.partial.html',
+        templateUrl: 'app/_directives/carousel-playlists/carousel-playlists.partial.html',
         link: function (scope, element, attrs) {
             setTimeout(function () {
                 var instances = M.Carousel.init($$('.carousel'), {

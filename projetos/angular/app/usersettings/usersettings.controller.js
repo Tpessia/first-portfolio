@@ -1,4 +1,5 @@
-app.controller("UserSettingsController", function ($scope, $location, userService) {    
+app.controller("UserSettingsController", function ($rootScope, $scope, $location, userService, FileUploader) {  
+    
     // Check session
 
     redirectNotLogged();
@@ -17,13 +18,46 @@ app.controller("UserSettingsController", function ($scope, $location, userServic
         });
     }
 
+    // Materialize init
+
+    var instances = M.Tooltip.init($$('.tooltipped'), {});
+
+    // Uploader config
+
+    $scope.uploader = new FileUploader({
+        alias: 'avatar',
+        queueLimit: 1,
+        removeAfterUpload: true
+    });
+
+    $scope.uploader.onAfterAddingFile = function (item) {
+        item.url = $rootScope.baseUrl + 'src/php/settings.update.php';
+        item.formData = [{
+            'userId': userService.userSecure.userId
+        }];
+    }
+
+    $scope.uploader.onWhenAddingFileFailed = function (item, filter, options) {
+        if (filter.name == "queueLimit") {
+            $scope.uploader.clearQueue();
+            $scope.uploader.addToQueue(item);
+        }
+    }
+
+    
+
     // Actions & Events
 
     $scope.onSubmit = function () {
-        console.log("submit changes");
-    };
+        var item = $scope.uploader.queue[0];
 
-    $scope.changeAvatar = function () {
-        console.log("change avatar");
-    }
+        item.onSuccess = function (response, status, headers) {
+            if (response == "1") {
+                console.log(response);
+                // Atualizar avatar, nome...
+            }
+        }
+
+        $scope.uploader.uploadItem(0);
+    };
 });

@@ -9,7 +9,11 @@
             <div class="col s12 l4 avatar">
                 <div class="img-wrapper">
                     <img ng-src="{{ user.avatar }}" alt="Avatar">
-                    <a class="edit btn-flat" ng-click="changeAvatar()">EDIT<i class="material-icons">image</i></a>
+                    <div class="edit btn-flat">
+                        <label for="upload-avatar">EDIT<i class="material-icons">image</i></label>
+                        <input type="file" name="avatar" id="upload-avatar" nv-file-select uploader="uploader">
+                    </div>
+                    <small class="info">Max. size: 1MB</small>
                 </div>
             </div>
             <div class="col s12 l8">

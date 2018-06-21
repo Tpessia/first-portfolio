@@ -5,7 +5,7 @@ app.directive('playlistSelection', function () {
             onSelect: '&'
         },
         controller: 'PlaylistSelectionController',
-        templateUrl: 'app/directives/playlist-selection/playlist-selection.partial.html',
+        templateUrl: 'app/_directives/playlist-selection/playlist-selection.partial.html',
         link: function (scope, element, attr) {
             setTimeout(function () {
                 scope.instances = M.Modal.init($$('#playlist-selection-' + scope.index), {

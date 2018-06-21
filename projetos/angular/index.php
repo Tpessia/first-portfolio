@@ -144,8 +144,9 @@
     <script src="./lib/angular/angular.min.js"></script>
     <script src="./lib/angular/angular-route.min.js"></script>
     <script src="./lib/angular/angular-animate.min.js"></script>
-    <script src="./lib/youtube-embed/iframe_api.js"></script>
-    <script src="./lib/youtube-embed/angular-youtube-embed.js"></script>
+    <script src="./lib/angular/others/youtube-embed/iframe_api.js"></script>
+    <script src="./lib/angular/others/youtube-embed/angular-youtube-embed.js"></script>
+    <script src="./lib/angular/others/file-upload/angular-file-upload.min.js"></script>
     <script src="./app/app.min.js"></script>
 
     <!-- <script src="./lib/jquery/jquery-3.2.1.min.js"></script> -->

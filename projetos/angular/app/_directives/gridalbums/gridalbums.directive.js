@@ -4,6 +4,6 @@ app.directive('gridAlbums', function () {
             series: '='
         },
         controller: 'GridAlbumsController',
-        templateUrl: 'app/directives/gridalbums/gridalbums.partial.html'
+        templateUrl: 'app/_directives/gridalbums/gridalbums.partial.html'
     };
 });

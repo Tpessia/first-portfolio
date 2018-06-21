@@ -4,6 +4,6 @@ app.directive('gridTracks', function () {
             series: '='
         },
         controller: 'GridTracksController',
-        templateUrl: 'app/directives/gridtracks/gridtracks.partial.html'
+        templateUrl: 'app/_directives/gridtracks/gridtracks.partial.html'
     };
 });
