@@ -13,21 +13,21 @@ app.config(function ($routeProvider, $locationProvider) {
                 title: 'Tracks',
                 controller: 'TracksController',
                 templateUrl: 'app/tracks/tracks.partial.html',
-                reloadOnSearch: false
+                // reloadOnSearch: false
             })
         .when('/artists',
             {
                 title: 'Artists',
                 controller: 'ArtistsController',
                 templateUrl: 'app/artists/artists.partial.html',
-                reloadOnSearch: false
+                // reloadOnSearch: false
             })
         .when('/albums',
             {
                 title: 'Albums',
                 controller: 'AlbumsController',
                 templateUrl: 'app/albums/albums.partial.html',
-                reloadOnSearch: false
+                // reloadOnSearch: false
             })
         .when('/user/playlists',
         {

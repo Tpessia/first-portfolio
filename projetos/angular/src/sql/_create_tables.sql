@@ -1,4 +1,4 @@
-CREATE DEFINER=`u312806541_user1`@`191.188.45.253` PROCEDURE `_create_tables`()
+CREATE PROCEDURE `_create_tables`()
 BEGIN
 CREATE TABLE IF NOT EXISTS User (
 
@@ -47,6 +47,8 @@ CREATE TABLE IF NOT EXISTS Track (
 	Image VARCHAR(255) NOT NULL,
     
 	AdditionDate DATETIME NOT NULL,
+    
+    Position int NOT NULL,
     
     PlaylistID int NOT NULL,
     

@@ -150,7 +150,32 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
 
             console.log(errResponse);
         });
-    }
+    };
+
+    $scope.changeTrackPosition = function (playlistId, trackId, direction) {
+        userService.savedPlaylists.changeTrackPosition(playlistId, trackId, direction).then(function (response) {
+            if (typeof response.data.TrackID !== "undefined") {
+
+            }
+            else {
+                M.toast({
+                    html: 'Error on position alteration',
+                    classes: 'red darken-4',
+                    displayLength: '3000'
+                });
+
+                console.log(response);
+            }
+        }, function (errResponse) {
+            M.toast({
+                html: 'Error on position alteration',
+                classes: 'red darken-4',
+                displayLength: '3000'
+            });
+
+            console.log(errResponse);
+        });
+    };
 
     $scope.ytVideo = {
         open: function (videoData) {

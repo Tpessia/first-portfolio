@@ -159,7 +159,8 @@ app.service("userService", function ($rootScope, $http) {
                                     videoId: list.Video,
                                     title: list.Title,
                                     img: list.Image,
-                                    date: list.AdditionDate
+                                    date: list.AdditionDate,
+                                    position: list.Position
                                 });
                             }
                         }
@@ -351,6 +352,48 @@ app.service("userService", function ($rootScope, $http) {
                         var plIndex = $this.getIndexId(playlistId),
                             tkIndex = self.savedPlaylistsArray[plIndex].list.findIndex(function(e) { return e.trackId == trackId });
                         self.savedPlaylistsArray[plIndex].list.splice(tkIndex, 1);
+                    }
+                    else {
+                        console.log(response);
+                    }
+
+                    return response;
+                }, function (errResponse) {
+                    console.log(errResponse);
+
+                    return response;
+                });
+            }
+            else {
+                return new Promise(
+                    function (resolve, reject) {
+                        resolve({
+                            data: '0'
+                        });
+                    }
+                );
+            }
+        },
+        changeTrackPosition: function (playlistId, trackId, direction) {
+            var $this = this;
+            if (self.user.isLogged && this.playlistExistsId(playlistId) && trackId > 0 && (direction == 'up' || direction == 'down')) {
+                return $http.post($rootScope.baseUrl + 'src/php/track.position.php', {
+                    track: trackId,
+                    playlist: playlistId,
+                    direction: direction,
+                    user: self.userSecure.userId
+                }).then(function (response) {
+                    if (typeof response.data.Position !== "undefined") {
+                        var plIndex = $this.getIndexId(playlistId),
+                            tkIndex = self.savedPlaylistsArray[plIndex].list.findIndex(function(e) { return e.trackId == response.data.TrackID });
+                        self.savedPlaylistsArray[plIndex].list[tkIndex].position = response.data.Position;
+
+                        if (direction == 'up') {
+                            self.savedPlaylistsArray[plIndex].list[tkIndex + 1].position = (parseInt(response.data.Position) - 1).toString();
+                        }
+                        else {
+                            self.savedPlaylistsArray[plIndex].list[tkIndex - 1].position = (parseInt(response.data.Position) + 1).toString();
+                        }
                     }
                     else {
                         console.log(response);

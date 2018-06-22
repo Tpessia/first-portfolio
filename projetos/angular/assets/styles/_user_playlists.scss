@@ -87,6 +87,17 @@ body {
                             color: rgba(0, 0, 0, 0.87);
                         }
                     }
+                    .move-track {
+                        text-align: center;
+                        width: auto;
+                        margin: 5px 10px 0 0;
+                        .material-icons {
+                            cursor: pointer;
+                            font-size: 1.5rem;
+                            display: block;
+                            color: rgba(0, 0, 0, 0.87);
+                        }
+                    }
                     .track-title {
                         max-width: calc(100% - 40px);
                         margin: 0;

@@ -80,9 +80,19 @@ CALL track_remove(
     1
 );
 
+
+CALL track_position(
+	1,
+    1,
+    "down",
+    1
+);
+
+UPDATE Track -- reset all postions
+SET Position = TrackID;
+
 SELECT *
 FROM Track;
-
 
 CALL playlist_delete(
 	1

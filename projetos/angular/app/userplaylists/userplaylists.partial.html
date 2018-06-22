@@ -35,9 +35,14 @@
             <li class="empty-list" ng-if="activePlaylist.list.length == 0">
                 This list is empty.
             </li>
-            <li class="track-item" ng-repeat="music in activePlaylist.list | orderBy:'date'">
+            <li class="track-item" ng-repeat="music in activePlaylist.list | orderBy:'position'">
+                {{music.position}}
                 <a class="remove-track">
                     <i class="material-icons" ng-click="removeTrack(activePlaylist.playlistId, music.trackId)">close</i>
+                </a>
+                <a class="move-track">
+                    <i class="material-icons" ng-click="changeTrackPosition(activePlaylist.playlistId, music.trackId, 'up')">arrow_upward</i>
+                    <i class="material-icons" ng-click="changeTrackPosition(activePlaylist.playlistId, music.trackId, 'down')">arrow_downward</i>
                 </a>
                 <span class="track-title" ng-click="ytVideo.open({ type: 'id', id: music.videoId });">
                     <div class="track-image">
