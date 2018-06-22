@@ -1,5 +1,4 @@
 app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, $timeout, $location, userService) {
-    $scope.playlists = userService.savedPlaylists.getAllPlaylists();
     $scope.state = { renamingPlaylist: false };
 
     // Check session
@@ -14,7 +13,7 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
                 $location.path("/");
             }
             else {
-                $scope.playlists = userService.savedPlaylists.getAllPlaylists();
+                $scope.playlists = userService.savedPlaylists.getAllPlaylists().sort(function(a,b){return new Date(a.date) - new Date(b.date);});
 
                 // Set initial playlist
 
@@ -28,7 +27,7 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
                             pl = parseInt(tempPl);
                         }
                     }
-
+                    a = $scope.playlists;
                     if (typeof $scope.playlists[pl] !== "undefined") {
                         $scope.activePlaylist = {
                             'playlistId': $scope.playlists[pl].playlistId,
