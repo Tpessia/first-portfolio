@@ -17,6 +17,10 @@ if (isset($_FILES["avatar"]) && isset($_POST["userId"])) {
         $uploadOk = "Not an image";
     }
 
+    if($imageFileType != "jpg") {
+        $uploadOk = "Wrong image format";
+    }
+
     // Check file size
     if ($_FILES["avatar"]["size"] > 1000000) { // 1 MB
         $uploadOk = "Image too large";
@@ -26,7 +30,38 @@ if (isset($_FILES["avatar"]) && isset($_POST["userId"])) {
     if ($uploadOk == 1) {
         if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
 
-            // Remove older imgs
+            $img = imagecreatefromjpeg($target_file);
+
+            if ($img) {                
+                $width  = imagesx($img);
+                $height = imagesy($img);
+
+                if ($width > $height) {
+                    $size = $height;
+                    $centerX = round($size / 2);
+                    $centerY = 0;
+                }
+                else if ($height > $width) {
+                    $size = $width;
+                    $centerX = 0;
+                    $centerY = round($size / 2);
+                }
+                else {
+                    $size = $width;
+                    $centerX = 0;
+                    $centerY = 0;
+                }
+
+                $img2 = imagecrop($img, ['x' => $centerX, 'y' => $centerY, 'width' => $size, 'height' => $size]);
+
+                if ($img2) {
+                    imagejpeg($img2, $target_file);
+                    imagedestroy($img2);
+                }
+                imagedestroy($img);
+            }
+
+            // Delete older imgs
 
             $files = glob($target_dir . $_POST["userId"] . ".*");
 
@@ -83,8 +118,6 @@ if (isset($_FILES["avatar"]) && isset($_POST["userId"])) {
             else {
                 die("Error: " . $sql . "<br>" . mysqli_error($conn));
             }
-
-
 
             // Close connection
 

@@ -82,7 +82,9 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
 
             item.onSuccess = function (response, status, headers) {
                 if (typeof response.UserID !== "undefined") {
-                    $scope.userChangeable.avatar = userService.user.avatar = response.Avatar;
+                    $scope.$apply(function () {
+                        $$('#avatar-img')[0].src = $scope.userChangeable.avatar = userService.user.avatar = response.Avatar + "?_=" + new Date().getTime();
+                    });
 
                     M.toast({
                         html: 'Avatar changed',

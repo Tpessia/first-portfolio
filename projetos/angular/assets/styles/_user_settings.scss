@@ -13,7 +13,12 @@ body {
                         max-height: 260px;
                         max-width: 260px;
                         min-height: 245px;
-                        img {
+                        #avatar-img {
+                            max-height: inherit;
+                            max-width: inherit;
+                            min-height: inherit;
+                            object-fit: cover;
+                            object-position: center;
                             width: 100%;
                         }
                         .edit {

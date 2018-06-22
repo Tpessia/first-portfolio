@@ -629,7 +629,12 @@ body .usersettings form {
         max-height: 260px;
         max-width: 260px;
         min-height: 245px; }
-        body .usersettings form .row .avatar .img-wrapper img {
+        body .usersettings form .row .avatar .img-wrapper #avatar-img {
+          max-height: inherit;
+          max-width: inherit;
+          min-height: inherit;
+          object-fit: cover;
+          object-position: center;
           width: 100%; }
         body .usersettings form .row .avatar .img-wrapper .edit {
           position: absolute;
