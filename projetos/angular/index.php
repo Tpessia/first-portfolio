@@ -39,7 +39,7 @@
                     </li>
                     <li id="loginAvatar" ng-class="{'active': isActive('/user') || isActive('/user/playlists')}" ng-show="user.isLogged">
                         <a id="user-dropdown" href="#!" data-target="user-dropdown-items">
-                            <img alt="{{ user.name }}" class="circle avatar" ng-src="{{ user.avatar }}" >
+                            <img alt="{{ user.name }}" class="circle avatar z-depth-1" ng-src="{{ user.avatar }}" >
                         </a>
                     </li>
                 </ul>

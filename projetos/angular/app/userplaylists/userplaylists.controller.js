@@ -27,7 +27,7 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
                             pl = parseInt(tempPl);
                         }
                     }
-                    a = $scope.playlists;
+                    
                     if (typeof $scope.playlists[pl] !== "undefined") {
                         $scope.activePlaylist = {
                             'playlistId': $scope.playlists[pl].playlistId,

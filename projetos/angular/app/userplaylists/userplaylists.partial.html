@@ -36,9 +36,9 @@
                 This list is empty.
             </li>
             <li class="track-item" ng-repeat="music in activePlaylist.list | orderBy:'date'">
-                <a class="remove-track" ng-click="removeTrack(activePlaylist.playlistId, music.trackId)">
-                    <i class="material-icons">close</i>
-                </a>                
+                <a class="remove-track">
+                    <i class="material-icons" ng-click="removeTrack(activePlaylist.playlistId, music.trackId)">close</i>
+                </a>
                 <span class="track-title" ng-click="ytVideo.open({ type: 'id', id: music.videoId });">
                     <div class="track-image">
                         <img ng-src="{{ music.img }}">

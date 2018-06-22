@@ -77,18 +77,18 @@ body {
                         }
                     }
                     .remove-track {
-                        cursor: pointer;
                         text-align: center;
                         width: auto;
                         margin: 10px 5px 0 0;
                         .material-icons {
+                            cursor: pointer;
                             font-size: 2rem;
                             vertical-align: bottom;
                             color: rgba(0, 0, 0, 0.87);
                         }
                     }
                     .track-title {
-                        width: calc(100% - 40px);
+                        max-width: calc(100% - 40px);
                         margin: 0;
                         display: inline-block;
                         cursor: pointer;
