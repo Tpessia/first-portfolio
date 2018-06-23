@@ -38,13 +38,13 @@ if (isset($_FILES["avatar"]) && isset($_POST["userId"])) {
 
                 if ($width > $height) {
                     $size = $height;
-                    $centerX = round($size / 2);
+                    $centerX = round(($width - $size) / 2);
                     $centerY = 0;
                 }
                 else if ($height > $width) {
                     $size = $width;
                     $centerX = 0;
-                    $centerY = round($size / 2);
+                    $centerY = round(($height - $size) / 2);
                 }
                 else {
                     $size = $width;

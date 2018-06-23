@@ -320,7 +320,8 @@ materialize-video-fab {
 
 carousel-playlists {
     .carousel {
-        margin-top: -50px;
+        margin-top: -65px;
+        height: 350px;
         .carousel-item {
             cursor: pointer;
             img {
@@ -342,6 +343,8 @@ carousel-playlists {
         }
         .indicators {
             .indicator-item {
+                margin: 18px 4px;
+                vertical-align: bottom;
                 background-color: rgba($secondary-color, .5);
                 &.active {
                     background-color: $secondary-color;

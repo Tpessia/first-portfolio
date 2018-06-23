@@ -20,12 +20,15 @@
                 <a ng-click="deletePlaylist(activePlaylist.playlistId)">
                     <i class="material-icons">delete</i>
                 </a>
+                <a ng-click="downloadPlaylist(activePlaylist.playlistId)" ng-if="easterEgg">
+                    <i class="material-icons">file_download</i>
+                </a>
             </div>
             <div class="title-wrapper">
                 <span class="playlist-name" ng-if="!state.renamingPlaylist">{{ activePlaylist.name }}</span>
-                <span ng-if="state.renamingPlaylist" ng-init="tempName = activePlaylist.name">
+                <span ng-if="state.renamingPlaylist" ng-init="state.tempName = activePlaylist.name">
                     <span class="playlist-name" >
-                        <input type="text" ng-model="tempName" ng-blur="onBlur()" ng-keydown="$event.keyCode === 13 && renamePlaylist(activePlaylist.playlistId, tempName)">
+                        <input type="text" ng-model="state.tempName" ng-blur="onBlur()" ng-keydown="$event.keyCode === 13 && renamePlaylist(activePlaylist.playlistId, state.tempName)">
                     </span>
                     <i class="material-icons" ng-click="renamePlaylist(activePlaylist.playlistId, tempName)">check</i>
                 </span>
@@ -41,8 +44,11 @@
                         <i class="material-icons" ng-click="removeTrack(activePlaylist.playlistId, music.trackId)">close</i>
                     </a>
                     <a class="move-track">
-                        <i class="material-icons" ng-click="changeTrackPosition(activePlaylist.playlistId, music.trackId, 'up')">arrow_upward</i>
-                        <i class="material-icons" ng-click="changeTrackPosition(activePlaylist.playlistId, music.trackId, 'down')">arrow_downward</i>
+                        <i class="material-icons" ng-class="{ 'control-disabled': $first }" ng-click="changeTrackPosition(activePlaylist.playlistId, music.trackId, 'up')">arrow_upward</i>
+                        <i class="material-icons" ng-class="{ 'control-disabled': $last }" ng-click="changeTrackPosition(activePlaylist.playlistId, music.trackId, 'down')">arrow_downward</i>
+                    </a>
+                    <a class="download-track" ng-if="easterEgg">
+                        <i class="material-icons" ng-click="downloadTrack(music.videoId)">file_download</i>
                     </a>
                 </span>
                 <span class="track-title" ng-click="ytVideo.open({ type: 'id', id: music.videoId });">

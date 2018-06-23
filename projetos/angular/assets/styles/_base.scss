@@ -101,7 +101,7 @@ body {
         #banner {
             $bannerHeightPx: 330px;
             height: $bannerHeightPx;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             overflow: hidden;
             position: relative;
             background-color: #050505;
@@ -253,6 +253,15 @@ body {
     main {
         flex: 1 0 auto;
         word-wrap: break-word;
+        &>.row {
+            &>.col {
+                &:first-child {
+                    .main-title {
+                        margin-top: 1rem;
+                    }
+                }
+            }
+        }
         .main-title {
             padding-bottom: 10px;
             border-bottom: 4px solid $primary-color;
@@ -329,4 +338,23 @@ body {
         -webkit-animation-name: autofill;
         -webkit-animation-fill-mode: both;
     }
+}
+
+@mixin flex() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+@mixin align-items($align) { // stretch|center|flex-start|flex-end|baseline|initial|inherit;
+    -webkit-align-items: $align;
+    align-items: $align;
+}
+
+@mixin flex-direction($direction) { // row|row-reverse|column|column-reverse|initial|inherit;
+    -webkit-flex-direction: $direction;
+    -ms-flex-direction: $direction;
+    flex-direction: $direction;
 }

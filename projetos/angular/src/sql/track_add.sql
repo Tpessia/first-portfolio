@@ -12,6 +12,10 @@ VALUES (inTitle, inVideo, inImage, inAdditionDate, inPlaylistID, inUserID);
 
 SET @track_id = LAST_INSERT_ID();
 
+UPDATE Track
+SET Position = @track_id
+WHERE TrackID = @track_id;
+
 SELECT *
 FROM Track as t
 WHERE t.TrackID = @track_id AND t.PlaylistID = inPlaylistID;

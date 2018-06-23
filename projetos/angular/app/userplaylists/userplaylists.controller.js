@@ -1,5 +1,8 @@
 app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, $timeout, $location, userService) {
-    $scope.state = { renamingPlaylist: false };
+    $scope.state = {
+        renamingPlaylist: false,
+        tempName: ''
+    };
 
     // Check session
 
@@ -64,37 +67,39 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
     };
 
     $scope.deletePlaylist = function (playlistId) {
-        userService.savedPlaylists.deletePlaylist(playlistId).then(function (response) {
-            if (typeof response.data.UserID !== "undefined") {
-                M.toast({
-                    html: 'Playlist deleted',
-                    displayLength: '3000'
-                });
+        if (window.confirm("This action is irreversible. Do you want to proceed?")) {
+            userService.savedPlaylists.deletePlaylist(playlistId).then(function (response) {
+                if (typeof response.data.UserID !== "undefined") {
+                    M.toast({
+                        html: 'Playlist deleted',
+                        displayLength: '3000'
+                    });
 
-                var index = userService.savedPlaylists.getIndexId(playlistId),
-                    prev = index == 0 ? userService.savedPlaylists.getAllPlaylists().length - 1 : index - 1;
+                    var index = userService.savedPlaylists.getIndexId(playlistId),
+                        prev = index == 0 ? userService.savedPlaylists.getAllPlaylists().length - 1 : index - 1;
 
-                $location.search('pl', prev);
-                $route.reload();
-            }
-            else {
+                    $location.search('pl', prev);
+                    $route.reload();
+                }
+                else {
+                    M.toast({
+                        html: 'Error on playlist deletion',
+                        classes: 'red darken-4',
+                        displayLength: '3000'
+                    });
+
+                    console.log(response);
+                }
+            }, function (errResponse) {
                 M.toast({
                     html: 'Error on playlist deletion',
                     classes: 'red darken-4',
                     displayLength: '3000'
                 });
 
-                console.log(response);
-            }
-        }, function (errResponse) {
-            M.toast({
-                html: 'Error on playlist deletion',
-                classes: 'red darken-4',
-                displayLength: '3000'
+                console.log(errResponse);
             });
-
-            console.log(errResponse);
-        });
+        }
     };
 
     $scope.renamePlaylist = function (playlistId, newName) {
@@ -205,5 +210,29 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
         $timeout(function () {
             $scope.state.renamingPlaylist = false;
         }, 1000);
+    };
+
+    // Easter egg
+
+    $scope.$watch('state.tempName', function (newVal, oldVal) {
+        console.log(oldVal)
+        console.log(newVal)
+        if (oldVal !== newVal && newVal == "314159") {
+            $scope.easterEgg = true;
+        }
+    });
+
+    $scope.downloadPlaylist = function (playlistId) {
+        var playlist = userService.savedPlaylists.getPlaylist(playlistId);
+        
+        for (var i in playlist.list) {
+            var track = playlist.list[i];
+            
+            window.open('https://www.yout.com/video/' + track.videoId, '_blank');
+        }
+    };
+
+    $scope.downloadTrack = function (videoId) {
+        window.open('https://www.yout.com/video/' + videoId, '_blank');
     };
 });

@@ -162,6 +162,8 @@ app.service("userService", function ($rootScope, $http) {
                                     date: new Date(list.AdditionDate),
                                     position: list.Position
                                 });
+
+                                playlist[i].list.sort(function (a,b) { return parseInt(a.position) - parseInt(b.position)});
                             }
                         }
 
@@ -316,7 +318,8 @@ app.service("userService", function ($rootScope, $http) {
                             title: response.data.Title,
                             videoId: response.data.Video,
                             img: response.data.Image,
-                            date: new Date(response.data.AdditionDate)
+                            date: new Date(response.data.AdditionDate),
+                            position: response.data.Position
                         });
                     }
                     else {
@@ -388,7 +391,7 @@ app.service("userService", function ($rootScope, $http) {
                             tkIndex = self.savedPlaylistsArray[plIndex].list.findIndex(function(e) { return e.trackId == response.data.TrackID });
 
                         if (direction == 'up') {
-                            var nextIndex = self.savedPlaylistsArray[plIndex].list.findIndex(function (e) { return e.position == parseInt(response.data.Position) - 1 });
+                            var nextIndex = self.savedPlaylistsArray[plIndex].list.findIndex(function (e) { return e.position == parseInt(response.data.Position) - 1 });                            
                             self.savedPlaylistsArray[plIndex].list[nextIndex].position = response.data.Position;
 
                             self.savedPlaylistsArray[plIndex].list[tkIndex].position = (parseInt(response.data.Position) - 1).toString();
@@ -399,6 +402,8 @@ app.service("userService", function ($rootScope, $http) {
 
                             self.savedPlaylistsArray[plIndex].list[tkIndex].position = (parseInt(response.data.Position) + 1).toString();
                         }
+
+                        self.savedPlaylistsArray[plIndex].list.sort(function (a,b) { return parseInt(a.position) - parseInt(b.position)});
                     }
                     else {
                         console.log(response);
