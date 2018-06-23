@@ -54,6 +54,10 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, $locati
             userService.userSecure.username = null;
             userService.userSecure.userId = null;
 
+            $timeout(function () {
+                $rootScope.materialize.sidenav();
+            }, 10);
+
             M.toast({
                 html: 'Logged Out',
                 displayLength: '3000'

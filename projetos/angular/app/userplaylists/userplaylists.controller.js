@@ -13,7 +13,7 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
                 $location.path("/");
             }
             else {
-                $scope.playlists = userService.savedPlaylists.getAllPlaylists().sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+                $scope.playlists = userService.savedPlaylists.getAllPlaylists().sort(function(a,b){return new Date(b.date) - new Date(a.date);});
 
                 // Set initial playlist
 
@@ -55,7 +55,12 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
             'index': index
         };
         
-        $location.search('pl', index);
+        if (typeof index === 'number' && (index % 1) === 0) {
+            $location.search('pl', index);
+        }
+        else {
+            $location.search('pl', null);
+        }
     };
 
     $scope.deletePlaylist = function (playlistId) {

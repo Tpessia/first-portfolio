@@ -149,7 +149,7 @@ app.service("userService", function ($rootScope, $http) {
                                 playlistId: rawPlaylists[i].PlaylistID,
                                 name: rawPlaylists[i].Name,
                                 list: [],
-                                date: rawPlaylists[i].CreationDate,
+                                date: new Date(rawPlaylists[i].CreationDate),
                             }
 
                             for (var j in rawPlaylists[i].list) {
@@ -159,7 +159,7 @@ app.service("userService", function ($rootScope, $http) {
                                     videoId: list.Video,
                                     title: list.Title,
                                     img: list.Image,
-                                    date: list.AdditionDate,
+                                    date: new Date(list.AdditionDate),
                                     position: list.Position
                                 });
                             }
@@ -290,14 +290,14 @@ app.service("userService", function ($rootScope, $http) {
             if (self.user.isLogged && this.playlistExistsId(playlistId)) {
                 return self.savedPlaylistsArray[this.getIndexId(playlistId)];
             } else {
-                return false;
+                return {};
             }
         },
         getAllPlaylists: function () {
             if (self.user.isLogged && self.savedPlaylistsArray.length > 0) {
                 return self.savedPlaylistsArray;
             } else {
-                return false;
+                return [];
             }
         },
         addTrack: function (playlistId, trackData) {

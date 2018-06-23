@@ -175,22 +175,20 @@ body {
                         font-size: 5vw;
                     }
                 }
-                &.home {
+                &.home,
+                &.albums {
                     .img-wrapper:not(#img-wrapper1):not(#img-wrapper2) {
                         display: none;
                     }
                 }
-                &.tracks {
-                    .img-wrapper:not(#img-wrapper1):not(#img-wrapper2) {
-                        display: none;
-                    }
-                }
-                &.artists {
+                &.tracks,
+                &.userplaylists {
                     .img-wrapper:not(#img-wrapper2):not(#img-wrapper3) {
                         display: none;
                     }
                 }
-                &.albums {
+                &.artists,
+                &.usersettings {
                     .img-wrapper:not(#img-wrapper1):not(#img-wrapper3) {
                         display: none;
                     }
@@ -207,22 +205,20 @@ body {
                         font-size: 8vw;
                     }
                 }                
-                &.home {
+                &.home,
+                &.albums {
                     .img-wrapper:not(#img-wrapper1) {
                         display: none;
                     }
                 }
-                &.tracks {
-                    .img-wrapper:not(#img-wrapper1) {
-                        display: none;
-                    }
-                }
-                &.artists {
+                &.tracks,
+                &.userplaylists {
                     .img-wrapper:not(#img-wrapper2) {
                         display: none;
                     }
                 }
-                &.albums {
+                &.artists,
+                &.usersettings {
                     .img-wrapper:not(#img-wrapper3) {
                         display: none;
                     }

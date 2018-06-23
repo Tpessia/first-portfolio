@@ -95,11 +95,13 @@ app.run(function ($rootScope, $window, $timeout) {
             });
         },
         sidenav: function () {
-            var sidenav = M.Sidenav.init($$('.sidenav')[0], {});
+            var instance = M.Sidenav.getInstance($$(".sidenav")[0]);
 
-            angular.element($$('.sidenav li')).on('click', function () {
+            var sidenav = (typeof instance === "undefined" ? M.Sidenav.init($$('.sidenav')[0], {}) : instance);
+
+            angular.element($$('.sidenav li:not(.init), .user-view a:not(.init)')).on('click', function () {
                 sidenav.close();
-            });
+            }).addClass('init');
 
             return sidenav;
         },

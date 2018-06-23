@@ -123,13 +123,11 @@ body {
         body header #banner #bannerOverlay #bannerText {
           width: 70%;
           font-size: 5vw; }
-        body header #banner.home .img-wrapper:not(#img-wrapper1):not(#img-wrapper2) {
+        body header #banner.home .img-wrapper:not(#img-wrapper1):not(#img-wrapper2), body header #banner.albums .img-wrapper:not(#img-wrapper1):not(#img-wrapper2) {
           display: none; }
-        body header #banner.tracks .img-wrapper:not(#img-wrapper1):not(#img-wrapper2) {
+        body header #banner.tracks .img-wrapper:not(#img-wrapper2):not(#img-wrapper3), body header #banner.userplaylists .img-wrapper:not(#img-wrapper2):not(#img-wrapper3) {
           display: none; }
-        body header #banner.artists .img-wrapper:not(#img-wrapper2):not(#img-wrapper3) {
-          display: none; }
-        body header #banner.albums .img-wrapper:not(#img-wrapper1):not(#img-wrapper3) {
+        body header #banner.artists .img-wrapper:not(#img-wrapper1):not(#img-wrapper3), body header #banner.usersettings .img-wrapper:not(#img-wrapper1):not(#img-wrapper3) {
           display: none; } }
       @media (max-width: 600px) {
         body header #banner .img-wrapper {
@@ -138,13 +136,11 @@ body {
         body header #banner #bannerOverlay #bannerText {
           width: 80%;
           font-size: 8vw; }
-        body header #banner.home .img-wrapper:not(#img-wrapper1) {
+        body header #banner.home .img-wrapper:not(#img-wrapper1), body header #banner.albums .img-wrapper:not(#img-wrapper1) {
           display: none; }
-        body header #banner.tracks .img-wrapper:not(#img-wrapper1) {
+        body header #banner.tracks .img-wrapper:not(#img-wrapper2), body header #banner.userplaylists .img-wrapper:not(#img-wrapper2) {
           display: none; }
-        body header #banner.artists .img-wrapper:not(#img-wrapper2) {
-          display: none; }
-        body header #banner.albums .img-wrapper:not(#img-wrapper3) {
+        body header #banner.artists .img-wrapper:not(#img-wrapper3), body header #banner.usersettings .img-wrapper:not(#img-wrapper3) {
           display: none; } }
     body header .breadcrumb-bar nav {
       background-color: transparent;

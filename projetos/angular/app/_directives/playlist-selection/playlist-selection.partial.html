@@ -8,7 +8,7 @@
     <div class="col s12">
         <ul>
             <li ng-repeat="playlist in playlists" ng-click="selectPlaylist(playlist.playlistId)" ng-if="playlists"><span>{{ playlist.name }}<i class="material-icons">chevron_right</i></span></li>
-            <li ng-if="!playlists">
+            <li ng-if="playlists.length == 0">
                 No playlist created yet.
             </li>
         </ul>

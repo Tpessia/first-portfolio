@@ -52,9 +52,9 @@
                     <div class="background">
                         <img ng-src="{{ headerImgs.topTrack }}">
                     </div>
-                    <a href="#user"><img class="circle" alt="{{ user.name }}" ng-src="{{ user.avatar }}"></a>
-                    <a href="#name"><span class="white-text name">{{ user.name }}</span></a>
-                    <a href="#email"><span class="white-text email">{{ user.email }}</span></a>
+                    <a href="#!/user"><img class="circle" alt="{{ user.name }}" ng-src="{{ user.avatar }}"></a>
+                    <a href="#!/user"><span class="white-text name">{{ user.name }}</span></a>
+                    <a href="#!/user"><span class="white-text email">{{ user.email }}</span></a>
                 </div>
             </li>
             <li ng-repeat="item in navItems.main" ng-class="{'active': isActive(item.url)}">
