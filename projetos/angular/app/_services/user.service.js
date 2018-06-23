@@ -386,13 +386,18 @@ app.service("userService", function ($rootScope, $http) {
                     if (typeof response.data.Position !== "undefined") {
                         var plIndex = $this.getIndexId(playlistId),
                             tkIndex = self.savedPlaylistsArray[plIndex].list.findIndex(function(e) { return e.trackId == response.data.TrackID });
-                        self.savedPlaylistsArray[plIndex].list[tkIndex].position = response.data.Position;
 
                         if (direction == 'up') {
-                            self.savedPlaylistsArray[plIndex].list[tkIndex + 1].position = (parseInt(response.data.Position) - 1).toString();
+                            var nextIndex = self.savedPlaylistsArray[plIndex].list.findIndex(function (e) { return e.position == parseInt(response.data.Position) - 1 });
+                            self.savedPlaylistsArray[plIndex].list[nextIndex].position = response.data.Position;
+
+                            self.savedPlaylistsArray[plIndex].list[tkIndex].position = (parseInt(response.data.Position) - 1).toString();
                         }
                         else {
-                            self.savedPlaylistsArray[plIndex].list[tkIndex - 1].position = (parseInt(response.data.Position) + 1).toString();
+                            var prevIndex = self.savedPlaylistsArray[plIndex].list.findIndex(function (e) { return e.position == parseInt(response.data.Position) + 1 });
+                            self.savedPlaylistsArray[plIndex].list[prevIndex].position = response.data.Position;
+
+                            self.savedPlaylistsArray[plIndex].list[tkIndex].position = (parseInt(response.data.Position) + 1).toString();
                         }
                     }
                     else {

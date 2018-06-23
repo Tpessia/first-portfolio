@@ -695,10 +695,13 @@ body .userplaylists .focused-playlist {
         font-size: 2rem;
         vertical-align: bottom;
         color: rgba(0, 0, 0, 0.87); }
+        @media (max-width: 600px) {
+          body .userplaylists .focused-playlist .playlist-title .options a .material-icons {
+            font-size: 2.5rem; } }
     body .userplaylists .focused-playlist .playlist-title .title-wrapper .playlist-name {
       display: inline-block;
-      max-width: calc(100% - 55px);
-      line-height: normal; }
+      line-height: normal;
+      max-width: calc(100% - 55px); }
       body .userplaylists .focused-playlist .playlist-title .title-wrapper .playlist-name input {
         max-width: 100%;
         color: rgba(0, 0, 0, 0.87);
@@ -728,39 +731,67 @@ body .userplaylists .focused-playlist {
     body .userplaylists .focused-playlist .playlist-tracks .track-item:first-child {
       padding-top: 10px;
       border-top: 1px solid rgba(0, 0, 0, 0.15); }
-    @media (max-width: 600px) {
-      body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-name {
-        margin-top: 0 !important; } }
-    body .userplaylists .focused-playlist .playlist-tracks .track-item .remove-track {
-      text-align: center;
-      width: auto;
-      margin: 10px 5px 0 0; }
-      body .userplaylists .focused-playlist .playlist-tracks .track-item .remove-track .material-icons {
-        cursor: pointer;
-        font-size: 2rem;
-        vertical-align: bottom;
-        color: rgba(0, 0, 0, 0.87); }
-    body .userplaylists .focused-playlist .playlist-tracks .track-item .move-track {
-      text-align: center;
-      width: auto;
-      margin: 5px 10px 0 0; }
-      body .userplaylists .focused-playlist .playlist-tracks .track-item .move-track .material-icons {
-        cursor: pointer;
-        font-size: 1.5rem;
-        display: block;
-        color: rgba(0, 0, 0, 0.87); }
+    body .userplaylists .focused-playlist .playlist-tracks .track-item .track-control {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      margin-right: 10px; }
+      @media (max-width: 600px) {
+        body .userplaylists .focused-playlist .playlist-tracks .track-item .track-control {
+          -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+          flex-direction: column; } }
+      body .userplaylists .focused-playlist .playlist-tracks .track-item .track-control .remove-track {
+        text-align: center;
+        width: auto; }
+        @media (min-width: 601px) {
+          body .userplaylists .focused-playlist .playlist-tracks .track-item .track-control .remove-track {
+            margin-top: 10px; } }
+        body .userplaylists .focused-playlist .playlist-tracks .track-item .track-control .remove-track .material-icons {
+          cursor: pointer;
+          vertical-align: bottom;
+          color: rgba(0, 0, 0, 0.87);
+          font-size: 2rem; }
+          @media (max-width: 600px) {
+            body .userplaylists .focused-playlist .playlist-tracks .track-item .track-control .remove-track .material-icons {
+              font-size: 2.5rem; } }
+      body .userplaylists .focused-playlist .playlist-tracks .track-item .track-control .move-track {
+        text-align: center;
+        width: auto;
+        margin-top: 5px; }
+        body .userplaylists .focused-playlist .playlist-tracks .track-item .track-control .move-track .material-icons {
+          cursor: pointer;
+          display: block;
+          color: rgba(0, 0, 0, 0.87);
+          font-size: 1.5rem; }
+          @media (max-width: 600px) {
+            body .userplaylists .focused-playlist .playlist-tracks .track-item .track-control .move-track .material-icons {
+              font-size: 2rem; } }
     body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title {
-      max-width: calc(100% - 40px);
       margin: 0;
       display: inline-block;
       cursor: pointer;
       white-space: nowrap; }
+      @media (max-width: 480px) {
+        body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title {
+          display: flex;
+          flex-direction: column; } }
       body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-image {
         width: 50px;
         height: 50px;
         display: inline-block;
         vertical-align: top;
         margin-right: 5px; }
+        @media (max-width: 600px) {
+          body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-image {
+            width: 96px;
+            height: 96px; } }
+        @media (max-width: 480px) {
+          body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-image {
+            width: 100%;
+            margin: 0px 0px 5px; } }
         body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-image img {
           width: 100%;
           height: 100%;
@@ -772,6 +803,16 @@ body .userplaylists .focused-playlist {
         white-space: normal;
         margin-top: 13px;
         max-width: calc(100% - 58px); }
+        @media (max-width: 600px) {
+          body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-name {
+            margin-top: 0;
+            max-width: calc(100% - 102px);
+            font-size: 1.5rem; } }
+        @media (max-width: 480px) {
+          body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-name {
+            max-width: none;
+            font-size: 1.2rem;
+            text-align: justify; } }
         body .userplaylists .focused-playlist .playlist-tracks .track-item .track-title .track-name a {
           color: rgba(0, 0, 0, 0.87); }
 

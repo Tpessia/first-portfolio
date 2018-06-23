@@ -22,6 +22,9 @@ body {
                             font-size: 2rem;
                             vertical-align: bottom;
                             color: rgba(0, 0, 0, 0.87);
+                            @media (max-width: 600px) {
+                                font-size: 2.5rem;
+                            }
                         }
                     }
                 }                
@@ -30,8 +33,8 @@ body {
                         // padding-bottom: 10px;
                         display: inline-block;
                         // border-bottom: 4px solid $primary-color;
-                        max-width: calc(100% - 55px);
                         line-height: normal;
+                        max-width: calc(100% - 55px);
                         input {
                             max-width: 100%;
                             color: rgba(0, 0, 0, 0.87);
@@ -69,47 +72,73 @@ body {
                         padding-top: 10px;
                         border-top: 1px solid rgba(0, 0, 0, 0.15);
                     }
-                    @media (max-width: 600px) {
-                        .track-title {
-                            .track-name {
-                                margin-top: 0 !important;
+                    .track-control {
+                        display: -webkit-box;
+                        display: -moz-box;
+                        display: -ms-flexbox;
+                        display: -webkit-flex;
+                        display: flex;
+                        margin-right: 10px;
+                        @media (max-width: 600px) {
+                            -webkit-flex-direction: column;
+                            -ms-flex-direction: column;
+                            flex-direction: column;
+                        }
+                        .remove-track {
+                            text-align: center;
+                            width: auto;
+                            @media (min-width: 601px) {
+                                margin-top: 10px;
+                            }
+                            .material-icons {
+                                cursor: pointer;
+                                vertical-align: bottom;
+                                color: rgba(0, 0, 0, 0.87);
+                                font-size: 2rem;
+                                @media (max-width: 600px) {
+                                    font-size: 2.5rem;
+                                }
+                            }
+                        }
+                        .move-track {
+                            text-align: center;
+                            width: auto;
+                            margin-top: 5px;
+                            .material-icons {
+                                cursor: pointer;
+                                display: block;
+                                color: rgba(0, 0, 0, 0.87);
+                                font-size: 1.5rem;
+                                @media (max-width: 600px) {
+                                    font-size: 2rem;
+                                }
                             }
                         }
                     }
-                    .remove-track {
-                        text-align: center;
-                        width: auto;
-                        margin: 10px 5px 0 0;
-                        .material-icons {
-                            cursor: pointer;
-                            font-size: 2rem;
-                            vertical-align: bottom;
-                            color: rgba(0, 0, 0, 0.87);
-                        }
-                    }
-                    .move-track {
-                        text-align: center;
-                        width: auto;
-                        margin: 5px 10px 0 0;
-                        .material-icons {
-                            cursor: pointer;
-                            font-size: 1.5rem;
-                            display: block;
-                            color: rgba(0, 0, 0, 0.87);
-                        }
-                    }
                     .track-title {
-                        max-width: calc(100% - 40px);
+                        // max-width: calc(100% - 40px);
                         margin: 0;
                         display: inline-block;
                         cursor: pointer;
                         white-space: nowrap;
+                        @media (max-width: 480px) {
+                            display: flex;
+                            flex-direction: column;
+                        }
                         .track-image {
                             width: 50px;
                             height : 50px;
                             display : inline-block;
                             vertical-align : top;
                             margin-right : 5px;
+                            @media (max-width: 600px) {
+                                width: 96px;
+                                height: 96px;
+                            }
+                            @media (max-width: 480px) {
+                                width: 100%;
+                                margin: 0px 0px 5px;
+                            }
                             img {
                                 width : 100%;
                                 height : 100%;
@@ -123,6 +152,16 @@ body {
                             white-space: normal;
                             margin-top: 13px;
                             max-width: calc(100% - 58px);
+                            @media (max-width: 600px) {
+                                margin-top: 0;
+                                max-width: calc(100% - 102px);
+                                font-size: 1.5rem;
+                            }
+                            @media (max-width: 480px) {
+                                max-width: none;
+                                font-size: 1.2rem;
+                                text-align: justify;
+                            }
                             a {
                                 color: rgba(0, 0, 0, 0.87);
                             }

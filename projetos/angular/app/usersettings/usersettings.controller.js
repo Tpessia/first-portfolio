@@ -154,7 +154,7 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
                 'newName': $scope.userChangeable.name
             }).then(function (response) {
                 if (typeof response.data.UserID !== "undefined") {
-                    $scope.userChangeable.name = userService.user.name = response.data.Name;
+                    $scope.userChangeable.initialName = $scope.userChangeable.name = userService.user.name = response.data.Name;
 
                     M.toast({
                         html: 'Name changed',
