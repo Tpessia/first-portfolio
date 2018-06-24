@@ -9,6 +9,20 @@
 
     <base href="<?php echo $_SERVER['REQUEST_URI']; ?>">
 
+    <script>
+        window.paceOptions = {
+            document: true, // disabled
+            eventLag: true,
+            restartOnPushState: true,
+            restartOnRequestAfter: true,
+            ajax: {
+                trackMethods: [ 'POST','GET']
+            }
+        };
+    </script>
+    <script src="./lib/pace/pace.min.js"></script>
+    <link href="./lib/pace/pace-theme-minimal.tmpl.css" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="./lib/materialize/materialize.min.css" rel="stylesheet">
     <link href="./assets/styles/css/main.css" rel="stylesheet">
@@ -84,7 +98,7 @@
             </div>
         </div>
 
-        <div class="container breadcrumb-bar">
+        <div class="container breadcrumb-bar" ng-if="!isActive('/')">
             <nav class="row">
                 <div class="col s12 nav-wrapper">
                     <div>
