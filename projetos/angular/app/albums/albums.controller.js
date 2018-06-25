@@ -174,7 +174,7 @@ app.controller("AlbumsController", function ($rootScope, $scope, $location, albu
     }
 
     $scope.stripLink = function (text) {
-        return text.replace(/<a(.|\n)*?<\/a>/, '').trim();
+        return text.replace(/<a(.|\n)*?<\/a>.?/, '').trim();
     }
 
     $scope.getSummaryLink = function (text) {

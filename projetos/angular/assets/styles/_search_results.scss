@@ -54,13 +54,8 @@ body {
                         line-height: 1.2;
                         margin-bottom: 15px;
                     }
-                    .listen {
-                        margin-top: 10px;
-                        .btn {
-                            background-color: $primary-color-l;
-                        }
-                    }
                     .summary {
+                        margin-bottom: 20px;
                         .read-more {
                             text-decoration: underline;
                             &:hover {
@@ -68,46 +63,53 @@ body {
                             }
                         }
                     }
-                    // .artist {
-
-                    // }
-                    // .album {
-
-                    // }
-                    // .duration {
-
-                    // }
-                    // .listeners {
-
-                    // }
-                    // .playcount {
-
-                    // }
-                    .similar,
-                    .tags,
-                    .album-tracks {
-                        a {
-                            line-height: 2;
-                            padding: 2px 5px;
-                            margin: 0 4px;
-                            &:first-child {
-                                margin-left: 0;
-                            }
-                            &:last-child {
-                                margin-right: 0;
+                    .artist,
+                    .album,
+                    .duration {
+                        .label {
+                            font-weight: bold;
+                        }
+                    }
+                    .duration {
+                        margin-bottom: 20px;
+                    }
+                    .counter {
+                        .listeners,
+                        .playcount {
+                            font-style: italic;
+                            .label {
+                                font-style: normal;
                             }
                         }
                     }
-                    .similar,
-                    .album-tracks {
-                        a {
-                            background-color: $primary-color-l;
+                    .flags {
+                        margin-top: 20px;
+                        .similar,
+                        .tags,
+                        .album-tracks {
+                            a {
+                                line-height: 2;
+                                padding: 2px 5px;
+                                margin: 0 4px;
+                                &:first-child {
+                                    margin-left: 0;
+                                }
+                                &:last-child {
+                                    margin-right: 0;
+                                }
+                            }
                         }
-                    }
-                    .tags {
-                        a {
-                            background-color: rgba(0,0,0,0.87);
-                            color: white;
+                        .similar,
+                        .album-tracks {
+                            a {
+                                background-color: $primary-color-l;
+                            }
+                        }
+                        .tags {
+                            a {
+                                background-color: rgba(0, 0, 0, 0.87);
+                                color: white;
+                            }
                         }
                     }
                 }

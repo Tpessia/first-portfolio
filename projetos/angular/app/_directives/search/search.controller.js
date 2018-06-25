@@ -11,7 +11,7 @@ app.controller("SearchController", function ($scope, $location) {
             M.toast({
                 html: 'Invalid search',
                 classes: 'red darken-4',
-                displayLength: '3000'
+                displayLength: '2000'
             });
         }
     }

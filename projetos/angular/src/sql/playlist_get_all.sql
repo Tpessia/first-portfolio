@@ -1,8 +1,8 @@
 CREATE PROCEDURE `playlist_get_all` (
-	IN inUserID int
+	IN inUserID VARCHAR(255)
 )
 BEGIN
-SELECT *
+SELECT p.PlaylistID, p.Name, p.CreationDate
 FROM Playlist as p
 WHERE p.UserID = inUserID;
 END

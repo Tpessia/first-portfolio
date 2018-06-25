@@ -15,14 +15,14 @@ app.controller("PlaylistSelectionController", function ($scope, userService) {
                 addPlaylist(response.data.PlaylistID);
                 M.toast({
                     html: 'Playlist created',
-                    displayLength: '3000'
+                    displayLength: '2000'
                 });
             }
             else {
                 M.toast({
                     html: 'Error on playlist creation',
                     classes: 'red darken-4',
-                    displayLength: '3000'
+                    displayLength: '2000'
                 });
 
                 console.log(response)

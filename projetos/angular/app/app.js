@@ -59,18 +59,6 @@ app.run(function ($rootScope, $window, $timeout) {
 
         $rootScope.title = current.$$route.title;
         $rootScope.titleClass = current.$$route.title == '' ? 'home' : current.$$route.title.toLowerCase().replace(/ /g, "");
-
-        // Breadcrumb items
-
-        var breadcrumbItems = current.$$route.originalPath.split(/\//g).filter(function (e) { return e != "" });
-        breadcrumbItems.length == 0 ? breadcrumbItems[0] = 'home' : breadcrumbItems.unshift('home');
-
-        $rootScope.breadcrumb = {
-            items: breadcrumbItems,
-            urls: function (index) {
-                return '#!/' + $rootScope.breadcrumb.items.filter(function (e, i) { return i < index + 1 }).filter(function (e) { return e != 'home' }).join('/');
-            }
-        };
         
         // Scroll to Top
         
@@ -79,11 +67,15 @@ app.run(function ($rootScope, $window, $timeout) {
         }
     });
 
+
+
     // Base URLs
 
     $rootScope.baseUrl = $window.location.pathname.substring(0, $window.location.pathname.lastIndexOf("/")) + '/';
     
     $rootScope.fallbackImg = $rootScope.baseUrl + 'assets/img/logo-simple-512x512.png';
+
+    
 
     // Materialize init functions
 
@@ -108,7 +100,7 @@ app.run(function ($rootScope, $window, $timeout) {
         all: function () {
             var dropdown = this.headerDropdown();
             var sidenav = this.sidenav();
-
+            
             return {
                 headerDropdown: dropdown,
                 sidenav: sidenav
@@ -118,5 +110,11 @@ app.run(function ($rootScope, $window, $timeout) {
     $timeout(function () {
         $rootScope.materialize.all();
     }, 10);
+
+    // Dev shortcut
+
+    angular.get = function(injector) {
+        return angular.element(document.body).injector().get(injector);
+    }
     
 });

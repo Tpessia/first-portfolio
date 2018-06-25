@@ -43,10 +43,8 @@ app.service("userService", function ($rootScope, $http) {
         if (typeof data !== "undefined") {
             return $http.post($rootScope.baseUrl + 'src/php/user.signin.php', data).then(function (response) {
                 if (typeof response.data.UserID !== "undefined") {
-                    $http.post($rootScope.baseUrl + 'src/php/session.create.php', {
-                        username: response.data.Username,
-                        password: response.data.Password,
-                    });
+                    console.log(data);
+                    $http.post($rootScope.baseUrl + 'src/php/session.create.php', data);
                 }
                 
                 return response;
@@ -66,7 +64,7 @@ app.service("userService", function ($rootScope, $http) {
     };
 
     this.logOut = function () {
-        return $http.get($rootScope.baseUrl + 'src/php/session.delete.php').then(function (response) {
+        return $http.post($rootScope.baseUrl + 'src/php/session.delete.php').then(function (response) {
             return response;
         }, function (errResponse) {
             return errResponse;
@@ -74,7 +72,7 @@ app.service("userService", function ($rootScope, $http) {
     };
 
     this.sessionLogin = function () {
-        return $http.get($rootScope.baseUrl + 'src/php/session.login.php');
+        return $http.post($rootScope.baseUrl + 'src/php/session.login.php');
     };
 
     // Change settings

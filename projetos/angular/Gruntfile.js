@@ -2,6 +2,8 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
 
+        pkg: grunt.file.readJSON('package.json'),
+
         sass: {
             dist: {
                 files: [{
@@ -26,22 +28,39 @@ module.exports = function (grunt) {
             }
         },
 
+        'string-replace': {
+            dist: {
+                files: {
+                    'index.php': 'index.php',
+                },
+                options: {
+                    saveUnchanged: false,
+                    replacements: [{
+                        pattern: /\?v=(.*?)!/g,
+                        replacement: '?v=' + '<%= pkg.version %>' + '!'
+                    }]
+                }
+            }
+        },
+
         watch: {
             sass: {
                 files: ['assets/styles/*.scss'],
-                tasks: ['sass']
+                tasks: ['sass','string-replace']
             },
 
             uglify: {
                 files: ['app/**/*.js', '!app/app.min.js'],
-                tasks: ['uglify']
+                tasks: ['uglify','string-replace']
             }
         },
+
     });
 
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-string-replace');
 
     // Default task(s).
     grunt.registerTask('default', ['encapsulator']);
@@ -49,6 +68,7 @@ module.exports = function (grunt) {
     grunt.registerTask('encapsulator', [
         'sass',
         'uglify',
+        'string-replace',
         'watch'
     ]);
 

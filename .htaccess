@@ -48,7 +48,7 @@ Header unset X-UA-Compatible
 </FilesMatch>
 </IfModule>
 
-#Redirect
+# Redirect
 RewriteEngine On
 RewriteCond %{HTTP_HOST} !=localhost
 RewriteCond %{HTTP_HOST} !=127.0.0.1
@@ -66,6 +66,6 @@ ErrorDocument 403 /403/
 
 Options -Indexes
 
-#block php unless from post
+# Block php unless from post
 RewriteCond %{REQUEST_METHOD} !^POST$
 RewriteRule ^assets/php/contact.php$ - [NC,R=403,L]

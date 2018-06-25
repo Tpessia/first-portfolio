@@ -1,4 +1,4 @@
-app.controller("UserController", function ($rootScope, $scope, $timeout, $location, userService, youTubeService) {
+app.controller("UserController", function ($rootScope, $scope, $timeout, $route, userService, youTubeService) {
 
     $scope.user = userService.user;
 
@@ -55,20 +55,20 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, $locati
             userService.userSecure.userId = null;
 
             $timeout(function () {
-                $rootScope.materialize.sidenav();
+                $rootScope.materialize.all();
             }, 10);
 
             M.toast({
                 html: 'Logged Out',
-                displayLength: '3000'
+                displayLength: '2000'
             });
 
-            $location.path("/");
+            $route.reload();
         }, function (errResponse) {
             M.toast({
                 html: 'Error on logout',
                 classes: 'red darken-4',
-                displayLength: '3000'
+                displayLength: '2000'
             });
 
             console.log(errResponse);
@@ -87,6 +87,8 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, $locati
         $timeout(function () {
             $rootScope.materialize.all();
         }, 10);
+
+        // $route.reload();
     }
 
     // Login from session
@@ -94,16 +96,14 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, $locati
     sessionLogin();
     function sessionLogin() {
         $scope.sessionLoginResponse = userService.sessionLogin().then(function (response) {
-            return $scope.userMethods.signIn({
-                username: response.data.username,
-                password: response.data.password
-            }).then(function (response) {
-                return response;                
-            }, function (errResponse) {
-                console.log(errResponse);
+            if (typeof response.data.UserID !== "undefined") {
+                logUser(response.data);
 
-                return errResponse;
-            });
+                return userService.savedPlaylists.loadPlaylists();
+            }
+            else {
+                return response;
+            }
         }, function (errResponse) {
             console.log(errResponse);
 
@@ -148,14 +148,14 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, $locati
                     if (typeof response.data.TrackID !== "undefined") {
                         M.toast({
                             html: 'Track added',
-                            displayLength: '3000'
+                            displayLength: '2000'
                         });
                     }
                     else {
                         M.toast({
                             html: 'Error on track addition',
                             classes: 'red darken-4',
-                            displayLength: '3000'
+                            displayLength: '2000'
                         });
 
                         console.log(response);
@@ -164,7 +164,7 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, $locati
                     M.toast({
                         html: 'Error on track addition',
                         classes: 'red darken-4',
-                        displayLength: '3000'
+                        displayLength: '2000'
                     });
 
                     console.log(errResponse);
@@ -207,14 +207,14 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, $locati
                                         if (typeof response.data.TrackID !== "undefined") {
                                             M.toast({
                                                 html: 'Tracks added',
-                                                displayLength: '3000'
+                                                displayLength: '2000'
                                             });
                                         }
                                         else {
                                             M.toast({
                                                 html: 'Error on tracks addition',
                                                 classes: 'red darken-4',
-                                                displayLength: '3000'
+                                                displayLength: '2000'
                                             });
 
                                             console.log(response);
@@ -223,7 +223,7 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, $locati
                                         M.toast({
                                             html: 'Error on tracks addition',
                                             classes: 'red darken-4',
-                                            displayLength: '3000'
+                                            displayLength: '2000'
                                         });
 
                                         console.log(errResponse);
@@ -273,14 +273,14 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, $locati
                                         if (typeof response.data.TrackID !== "undefined") {
                                             M.toast({
                                                 html: 'Tracks added',
-                                                displayLength: '3000'
+                                                displayLength: '2000'
                                             });
                                         }
                                         else {
                                             M.toast({
                                                 html: 'Error on tracks addition',
                                                 classes: 'red darken-4',
-                                                displayLength: '3000'
+                                                displayLength: '2000'
                                             });
 
                                             console.log(response);
@@ -289,7 +289,7 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, $locati
                                         M.toast({
                                             html: 'Error on tracks addition',
                                             classes: 'red darken-4',
-                                            displayLength: '3000'
+                                            displayLength: '2000'
                                         });
 
                                         console.log(errResponse);

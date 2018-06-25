@@ -26,20 +26,25 @@
                     </div>
                     <div class="artist">
                         <a ng-href="{{ searchFor('artist', track.info.artist.name) }}" ng-if="track.info.artist.name">
-                            Artist: {{ track.info.artist.name }}
+                            <span class="label">Artist:</span> {{ track.info.artist.name }}
                         </a>
                         <span ng-if="track.info.artist.name === undefined">
-                            Artist: {{ track.artist }}
+                            <span class="label">Artist:</span> {{ track.artist }}
                         </span>
                     </div>
                     <div class="album" ng-if="track.info.album">
                         <a ng-href="{{ searchFor('album', track.info.artist.name + ' - ' + track.info.album.title) }}">
-                            Album: {{ track.info.album.title }}
+                            <span class="label">Album:</span> {{ track.info.album.title }}
                         </a>
                     </div>
-                    <div class="duration" ng-if="track.info.duration && track.info.duration != 0">Duration: {{ formatDuration(track.info.duration) }}</div>
-                    <div class="listeners">Listeners: {{ track.listeners }}</div>
-                    <div class="playcount" ng-if="track.info">Play Count: {{ track.info.playcount  }}</div>
+                    <div class="duration" ng-if="track.info.duration && track.info.duration != 0"><span class="label">Duration:</span> {{ formatDuration(track.info.duration) }}</div>
+                    <div class="summary" ng-if="track.info.wiki.summary && stripLink(track.info.wiki.summary) != ''">
+                        {{ stripLink(track.info.wiki.summary) }} |  <a class="read-more" ng-href="{{ getSummaryLink(track.info.wiki.summary) }}" target="_blank">Read more.</a>
+                    </div>
+                    <div class="counter">
+                        <div class="listeners"><span class="label">Listeners:</span> {{ track.listeners }}</div>
+                        <div class="playcount" ng-if="track.info"><span class="label">Play Count:</span> {{ track.info.playcount  }}</div>
+                    </div>
                 </div>
             </div>
         </div>

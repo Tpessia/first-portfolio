@@ -1,5 +1,5 @@
 CREATE PROCEDURE `user_change_name` (
-	IN inUserID int,
+	IN inUserID VARCHAR(255),
     IN inName VARCHAR(255)
 )
 BEGIN

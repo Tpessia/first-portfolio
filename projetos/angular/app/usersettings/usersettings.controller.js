@@ -88,7 +88,7 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
 
                     M.toast({
                         html: 'Avatar changed',
-                        displayLength: '3000'
+                        displayLength: '2000'
                     });
                 }
                 else {
@@ -97,7 +97,7 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
                     M.toast({
                         html: 'Error on avatar change',
                         classes: 'red darken-4',
-                        displayLength: '3000'
+                        displayLength: '2000'
                     });
                 }
             }
@@ -107,7 +107,7 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
         if ($scope.userChangeable.oldPassword != "" || $scope.userChangeable.newPassword != "") {
             changing.push('password');
 
-            if ($scope.userChangeable.oldPassword != "" && $scope.userChangeable.newPassword != "") {
+            if ($scope.userChangeable.oldPassword != "" && $scope.userChangeable.newPassword != "" && $scope.userChangeable.newPassword != $scope.userChangeable.oldPassword) {
                 userService.changePassword({
                     'userId': userService.userSecure.userId,
                     'oldPassword': $scope.userChangeable.oldPassword,
@@ -116,7 +116,7 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
                     if (typeof response.data.UserID !== "undefined") {
                         M.toast({
                             html: 'Password changed',
-                            displayLength: '3000'
+                            displayLength: '2000'
                         });
                     }
                     else {
@@ -125,7 +125,7 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
                         M.toast({
                             html: 'Error on password change',
                             classes: 'red darken-4',
-                            displayLength: '3000'
+                            displayLength: '2000'
                         });
                     }
                 }, function (errResponse) {
@@ -134,7 +134,7 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
                     M.toast({
                         html: 'Error on password change',
                         classes: 'red darken-4',
-                        displayLength: '3000'
+                        displayLength: '2000'
                     });
                 });
             }
@@ -142,7 +142,7 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
                 M.toast({
                     html: 'Error on password change',
                     classes: 'red darken-4',
-                    displayLength: '3000'
+                    displayLength: '2000'
                 });
             }
         }
@@ -158,7 +158,7 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
 
                     M.toast({
                         html: 'Name changed',
-                        displayLength: '3000'
+                        displayLength: '2000'
                     });
                 }
                 else {
@@ -167,7 +167,7 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
                     M.toast({
                         html: 'Error on name change',
                         classes: 'red darken-4',
-                        displayLength: '3000'
+                        displayLength: '2000'
                     });
                 }
             }, function (errResponse) {
@@ -176,7 +176,7 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
                 M.toast({
                     html: 'Error on name change',
                     classes: 'red darken-4',
-                    displayLength: '3000'
+                    displayLength: '2000'
                 });
             });
         }
@@ -184,7 +184,7 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
             M.toast({
                 html: 'No change has been made',
                 classes: 'red darken-4',
-                displayLength: '3000'
+                displayLength: '2000'
             });
         }
     };

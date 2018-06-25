@@ -1,59 +1,85 @@
 <?php
 
-// DB info
+if ($params = json_decode(file_get_contents('php://input'),true)) {
+    // DB info
 
-$servername = $_SERVER["SERVER_ADDR"] == "127.0.0.1" ? "sql131.main-hosting.eu" : "mysql.hostinger.com.br";
-$username = "u312806541_user1";
-$password = "dInPbOsAaNcJ!314159";
-$dbname = "u312806541_noise";
+    $servername = $_SERVER["SERVER_ADDR"] == "127.0.0.1" ? "sql131.main-hosting.eu" : "mysql.hostinger.com.br";
+    $username = "u312806541_user1";
+    $password = "dInPbOsAaNcJ!314159";
+    $dbname = "u312806541_noise";
 
-// Create connection
+    // Create connection
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Check connection
+    // Check connection
 
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 
 
 
-// User info
+    // User info
 
-$params = json_decode(file_get_contents('php://input'),true);
+    $username = mysqli_real_escape_string($conn, $params["username"]);
+    $password = mysqli_real_escape_string($conn, $params["password"]);
 
-$username = mysqli_real_escape_string($conn, $params["username"]);
-$password = mysqli_real_escape_string($conn, $params["password"]);
+    // Encryption
 
-// Insert
+    if ($keyfile = fopen("key.txt", "r")) {
+        $key = fread($keyfile,filesize("key.txt"));
 
-$sql = "
+        $cipher = "aes-256-ctr";
+        if (in_array($cipher, openssl_get_cipher_methods()))
+        {
+            // $ivlen = openssl_cipher_iv_length($cipher);
+            // $iv = openssl_random_pseudo_bytes($ivlen);
+            $iv = '3.14159265358979'; // Incorrect, the iv should be random
+            $password = mysqli_real_escape_string($conn, openssl_encrypt($password, $cipher, $key, $options=0, $iv));
+            
+            // Insert
 
-    CALL user_sign_in('". $username ."','". $password ."');
+            $sql = "
 
-";
+                CALL user_sign_in('". $username ."','". $password ."');
 
-$result = mysqli_query($conn, $sql);
+            ";
 
-if ($result) {
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo json_encode($row);
+            $result = mysqli_query($conn, $sql);
+
+            if ($result) {
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo json_encode($row);
+                    }
+                }
+                else {
+                    die("Error: Query returned 0 results");
+                }
+            }
+            else {
+                die("Error: " . $sql . "<br>" . mysqli_error($conn));
+            }
         }
+        else {
+            die("Invalid Cypher Method");
+        }
+
+        fclose($keyfile);
     }
     else {
-        die("Error: Query returned 0 results");
+        die("Invalid Key");
     }
+
+
+
+    // Close connection
+
+    mysqli_close($conn);
 }
 else {
-    die("Error: " . $sql . "<br>" . mysqli_error($conn));
+    die('Error: ' . 'Invalid parameters');
 }
-
-
-
-// Close connection
-
-mysqli_close($conn);
 
 ?>

@@ -1,14 +1,14 @@
-CREATE DEFINER=`u312806541_user1`@`191.188.45.253` PROCEDURE `playlist_rename`(
+CREATE PROCEDURE `playlist_rename`(
 	IN inPlaylistID int,
     IN inNewName VARCHAR(255),
-    IN inUserID int
+    IN inUserID VARCHAR(255)
 )
 BEGIN
 UPDATE Playlist
 SET Name = inNewName
 WHERE PlaylistID = inPlaylistID AND UserID = inUserID;
 
-SELECT *
+SELECT p.PlaylistID, p.Name, p.CreationDate
 FROM Playlist as p
 WHERE p.PlaylistID = inPlaylistID AND p.UserID = inUserID;
 END

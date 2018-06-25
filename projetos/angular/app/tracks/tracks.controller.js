@@ -157,6 +157,14 @@ app.controller("TracksController", function ($rootScope, $scope, $location, trac
         return minutes + ":" + seconds;
     }
 
+    $scope.stripLink = function (text) {
+        return text.replace(/<a(.|\n)*?<\/a>.?/, '').trim();
+    }
+
+    $scope.getSummaryLink = function (text) {
+        return text.match(/<a(.|\n)*?<\/a>/)[0].match(/href="(.|\n)*?"/)[0].replace('href="', '').replace('"', '');
+    }
+
     // Search on click
 
     $scope.searchFor = function (type, value) {

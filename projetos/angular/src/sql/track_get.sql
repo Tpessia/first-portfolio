@@ -1,9 +1,9 @@
-CREATE DEFINER=`u312806541_user1`@`191.188.45.253` PROCEDURE `track_get`(
+CREATE PROCEDURE `track_get`(
 	IN inPlaylistID int,
-    IN inUserID int
+    IN inUserID VARCHAR(255)
 )
 BEGIN
-SELECT *
+SELECT t.TrackID, t.Title, t.Video, t.Image, t.AdditionDate, t.Position, t.PlaylistID
 FROM Track as t
 WHERE t.PlaylistID = inPlaylistID AND t.UserID = inUserID;
 END

@@ -4,7 +4,6 @@ body {
             overflow: hidden;
         }
         .focused-playlist {
-            margin-bottom: 50px;
             .playlist-title {
                 margin: 25px 0 35px;
                 .options {
@@ -61,16 +60,25 @@ body {
             }
             .playlist-tracks {
                 .track-item {
-                    width: 100%;
-                    position: relative;
+                    $margins: 10px;
                     @include flex();
                     @include align-items(flex-start);
-                    padding-bottom: 10px;
-                    margin-bottom: 10px;
+                    width: 100%;
+                    position: relative;
+                    padding-bottom: $margins;
+                    margin-bottom: $margins;
                     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
                     &:first-child {
-                        padding-top: 10px;
+                        padding-top: $margins;
                         border-top: 1px solid rgba(0, 0, 0, 0.15);
+                    }
+                    @media (max-width: 600px) {
+                        $margins: 20px;
+                        padding-bottom: $margins;
+                        margin-bottom: $margins;
+                        &:first-child {
+                            padding-top: $margins;
+                        }
                     }
                     .track-control {
                         @include flex();

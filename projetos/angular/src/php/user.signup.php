@@ -1,65 +1,92 @@
 <?php
 
-date_default_timezone_set('America/Sao_Paulo');
+if ($params = json_decode(file_get_contents('php://input'),true)) {
+    date_default_timezone_set('America/Sao_Paulo');
 
-// DB info
+    // DB info
 
-$servername = $_SERVER["SERVER_ADDR"] == "127.0.0.1" ? "sql131.main-hosting.eu" : "mysql.hostinger.com.br";
-$username = "u312806541_user1";
-$password = "dInPbOsAaNcJ!314159";
-$dbname = "u312806541_noise";
+    $servername = $_SERVER["SERVER_ADDR"] == "127.0.0.1" ? "sql131.main-hosting.eu" : "mysql.hostinger.com.br";
+    $username = "u312806541_user1";
+    $password = "dInPbOsAaNcJ!314159";
+    $dbname = "u312806541_noise";
 
-// Create connection
+    // Create connection
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Check connection
+    // Check connection
 
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    
+
+    // User info
+
+    $username = mysqli_real_escape_string($conn, $params["username"]);
+    $email = mysqli_real_escape_string($conn, $params["email"]);
+    $password = mysqli_real_escape_string($conn, $params["password"]);
+    $name = mysqli_real_escape_string($conn, $params["username"]);
+    $avatar = "public/users/avatars/_default-avatar.jpg";
+    $date = date('Y-m-d H-i-s');
+
+    if (!preg_match('/\s/', $username)) {
+        // Encryption
+
+        if ($keyfile = fopen("key.txt", "r")) {
+            $key = fread($keyfile,filesize("key.txt"));
+
+            $cipher = "aes-256-ctr";
+            if (in_array($cipher, openssl_get_cipher_methods()))
+            {
+                // $ivlen = openssl_cipher_iv_length($cipher);
+                // $iv = openssl_random_pseudo_bytes($ivlen);
+                $iv = '3.14159265358979'; // Incorrect, the iv should be random
+                $user_id = mysqli_real_escape_string($conn, openssl_encrypt($key, $cipher, $username, $options=0, $iv)); // Incorrect, using key as content and username as key
+                $password = mysqli_real_escape_string($conn, openssl_encrypt($password, $cipher, $key, $options=0, $iv));
 
 
+                // Insert
 
-// User info
+                $sql = "
 
-$params = json_decode(file_get_contents('php://input'),true);
+                    CALL user_sign_up('". $user_id ."','". $username ."','". $email ."','". $password ."','". $name ."','". $avatar ."','". $date ."');
 
-$username = mysqli_real_escape_string($conn, $params["username"]);
-$email = mysqli_real_escape_string($conn, $params["email"]);
-$password = mysqli_real_escape_string($conn, $params["password"]);
-$name = mysqli_real_escape_string($conn, $params["username"]);
-$avatar = "public/users/avatars/_default-avatar.jpg";
-$date = date('Y-m-d H-i-s');
+                ";
 
-// Insert
+                $result = mysqli_query($conn, $sql);
 
-$sql = "
+                if ($result) {
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo json_encode($row);
+                        }
+                    }
+                    else {
+                        die("Error: Query returned 0 results");
+                    }
+                }
+                else {
+                    die("Error: " . $sql . "<br>" . mysqli_error($conn));
+                }
+            }
+            else {
+                die("Invalid Cypher Method");
+            }
 
-    CALL user_sign_up('". $username ."','". $email ."','". $password ."','". $name ."','". $avatar ."','". $date ."');
-
-";
-
-$result = mysqli_query($conn, $sql);
-
-if ($result) {
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo json_encode($row);
+            fclose($keyfile);
+        }
+        else {
+            die("Invalid Key");
         }
     }
-    else {
-        die("Error: Query returned 0 results");
-    }
+
+
+
+    // Close connection
+
+    mysqli_close($conn);
 }
-else {
-    die("Error: " . $sql . "<br>" . mysqli_error($conn));
-}
-
-
-
-// Close connection
-
-mysqli_close($conn);
 
 ?>

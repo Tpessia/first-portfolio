@@ -26,19 +26,23 @@
                     </div>
                     <div class="artist" ng-if="album.artist">
                         <a ng-href="{{ searchFor('artist', album.artist) }}">
-                            Artist: {{ album.artist }}
+                            <span class="label">Artist:</span> {{ album.artist }}
                         </a>
                     </div>
                     <div class="summary" ng-if="album.info.wiki.summary && stripLink(album.info.wiki.summary) != ''">
                         {{ stripLink(album.info.wiki.summary) }} |  <a class="read-more" ng-href="{{ getSummaryLink(album.info.wiki.summary) }}" target="_blank">Read more.</a>
                     </div>
-                    <div class="listeners" ng-if="album.info.listeners">Listeners: {{ album.info.listeners }}</div>
-                    <div class="playcount" ng-if="album.info.playcount">Play Count: {{ album.info.playcount  }}</div>
-                    <div class="album-tracks" ng-if="album.info.tracks.track && album.info.tracks.track.length != 0">
-                        Tracks: <a ng-repeat="track in album.info.tracks.track" ng-href="{{ searchFor('track', album.artist + ' - ' + track.name) }}">{{ track.name }}</a>
+                    <div class="counter">
+                        <div class="listeners" ng-if="album.info.listeners"><span class="label">Listeners:</span> {{ album.info.listeners }}</div>
+                        <div class="playcount" ng-if="album.info.playcount"><span class="label">Play Count:</span> {{ album.info.playcount  }}</div>
                     </div>
-                    <div class="tags" ng-if="album.info.tags.tag && album.info.tags.tag.length != 0">
-                        Tags: <a ng-repeat="tag in album.info.tags.tag" ng-href="{{ tag.url }}">{{ tag.name }}</a>
+                    <div class="flags">
+                        <div class="album-tracks" ng-if="album.info.tracks.track && album.info.tracks.track.length != 0">
+                            <span class="label">Tracks:</span> <a ng-repeat="track in album.info.tracks.track" ng-href="{{ searchFor('track', album.artist + ' - ' + track.name) }}">{{ track.name }}</a>
+                        </div>
+                        <div class="tags" ng-if="album.info.tags.tag && album.info.tags.tag.length != 0">
+                            <span class="label">Tags:</span> <a ng-repeat="tag in album.info.tags.tag" ng-href="{{ tag.url }}">{{ tag.name }}</a>
+                        </div>
                     </div>
                 </div>
             </div>

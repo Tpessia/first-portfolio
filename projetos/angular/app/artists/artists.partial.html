@@ -27,13 +27,17 @@
                     <div class="summary" ng-if="artist.info.bio.summary && stripLink(artist.info.bio.summary) != ''">
                         {{ stripLink(artist.info.bio.summary) }} |  <a class="read-more" ng-href="{{ artist.info.bio.links.link.href }}" target="_blank">Read more.</a>
                     </div>
-                    <div class="listeners" ng-if="artist.listenersy">Listeners: {{ artist.listeners }}</div>
-                    <div class="playcount" ng-if="artist.info.stats.playcount">Play Count: {{ artist.info.stats.playcount }}</div>
-                    <div class="similar" ng-if="artist.info.similar.artist && artist.info.similar.artist.length != 0">
-                        Similar: <a ng-repeat="similar in artist.info.similar.artist" ng-href="{{ searchFor('artist', similar.name) }}">{{ similar.name }}</a>
+                    <div class="counter">
+                        <div class="listeners" ng-if="artist.listenersy"><span class="label">Listeners:</span> {{ artist.listeners }}</div>
+                        <div class="playcount" ng-if="artist.info.stats.playcount"><span class="label">Play Count</span>: {{ artist.info.stats.playcount }}</div>
                     </div>
-                    <div class="tags" ng-if="artist.info.tags.tag && artist.info.tags.tag.length != 0">
-                        Tags: <a ng-repeat="tag in artist.info.tags.tag" ng-href="{{ tag.url }}">{{ tag.name }}</a>
+                    <div class="flags">
+                        <div class="similar" ng-if="artist.info.similar.artist && artist.info.similar.artist.length != 0">
+                            <span class="label">Similar:</span> <a ng-repeat="similar in artist.info.similar.artist" ng-href="{{ searchFor('artist', similar.name) }}">{{ similar.name }}</a>
+                        </div>
+                        <div class="tags" ng-if="artist.info.tags.tag && artist.info.tags.tag.length != 0">
+                            <span class="label">Tags:</span> <a ng-repeat="tag in artist.info.tags.tag" ng-href="{{ tag.url }}">{{ tag.name }}</a>
+                        </div>
                     </div>
                 </div>
             </div>

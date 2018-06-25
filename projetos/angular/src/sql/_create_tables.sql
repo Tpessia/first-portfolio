@@ -1,8 +1,8 @@
-CREATE PROCEDURE `_create_tables`()
+CREATE DEFINER=`u312806541_user1`@`189.8.93.10` PROCEDURE `_create_tables`()
 BEGIN
 CREATE TABLE IF NOT EXISTS User (
 
-    UserID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    UserID VARCHAR(255) NOT NULL PRIMARY KEY,
     
     Username VARCHAR(255) NOT NULL,
     
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS Playlist (
 
     CreationDate DATETIME NOT NULL,
 
-	UserID int NOT NULL,
+	UserID VARCHAR(255) NOT NULL,
        
     CONSTRAINT FK_UserPlaylist FOREIGN KEY (UserID) REFERENCES User(UserID),
     CONSTRAINT UC_NameUserID UNIQUE (Name,UserID)
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS Track (
     
     PlaylistID int NOT NULL,
     
-    UserID int NOT NULL,
+    UserID VARCHAR(255) NULL,
         
     CONSTRAINT FK_PlaylistTrack FOREIGN KEY (PlaylistID) REFERENCES Playlist(PlaylistID),
     CONSTRAINT FK_UserTrack FOREIGN KEY (UserID) REFERENCES User(UserID)

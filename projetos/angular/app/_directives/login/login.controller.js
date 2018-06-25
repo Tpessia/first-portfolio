@@ -16,7 +16,7 @@ app.controller("LoginModalController", function ($scope, $route) {
             if (typeof response.data.UserID !== "undefined") {
                 M.toast({
                     html: 'Logged in',
-                    displayLength: '3000'
+                    displayLength: '2000'
                 });
 
                 $scope.instances[0].close();
@@ -25,7 +25,7 @@ app.controller("LoginModalController", function ($scope, $route) {
                 M.toast({
                     html: 'Error on login',
                     classes: 'red darken-4',
-                    displayLength: '3000'
+                    displayLength: '2000'
                 });
 
                 console.log(response);
@@ -34,7 +34,7 @@ app.controller("LoginModalController", function ($scope, $route) {
             M.toast({
                 html: 'Error on login',
                 classes: 'red darken-4',
-                displayLength: '3000'
+                displayLength: '2000'
             });
 
             console.log(errResponse);
@@ -43,38 +43,47 @@ app.controller("LoginModalController", function ($scope, $route) {
 
     $scope.actions.signUp = function () {
         var data = $scope.formData.signUp;
-        $scope.signUp({
-            data: {
-                username: data.username,
-                password: data.password,
-                email: data.email
-            }
-        }).then(function (response) {
-            if (typeof response.data.UserID !== "undefined") {
-                M.toast({
-                    html: 'User created',
-                    displayLength: '3000'
-                });
+        
+        if (!/\s/.test(data.username)) { // username validate
+            $scope.signUp({
+                data: {
+                    username: data.username,
+                    password: data.password,
+                    email: data.email
+                }
+            }).then(function (response) {
+                if (typeof response.data.UserID !== "undefined") {
+                    M.toast({
+                        html: 'User created',
+                        displayLength: '2000'
+                    });
 
-                $scope.instances[0].close();
-            }
-            else {
+                    $scope.instances[0].close();
+                } else {
+                    M.toast({
+                        html: 'Error on user creation',
+                        classes: 'red darken-4',
+                        displayLength: '2000'
+                    });
+
+                    console.log(response);
+                }
+            }, function (errResponse) {
                 M.toast({
                     html: 'Error on user creation',
                     classes: 'red darken-4',
-                    displayLength: '3000'
+                    displayLength: '2000'
                 });
 
-                console.log(response);
-            }
-        }, function (errResponse) {
+                console.log(errResponse);
+            });
+        }
+        else {
             M.toast({
                 html: 'Error on user creation',
                 classes: 'red darken-4',
-                displayLength: '3000'
+                displayLength: '2000'
             });
-
-            console.log(errResponse);
-        });
+        }
     };
 });

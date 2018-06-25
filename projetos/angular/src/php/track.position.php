@@ -1,63 +1,63 @@
 <?php
 
-date_default_timezone_set('America/Sao_Paulo');
+if ($params = json_decode(file_get_contents('php://input'),true)) {    
+    date_default_timezone_set('America/Sao_Paulo');
 
-// DB info
+    // DB info
 
-$servername = $_SERVER["SERVER_ADDR"] == "127.0.0.1" ? "sql131.main-hosting.eu" : "mysql.hostinger.com.br";
-$username = "u312806541_user1";
-$password = "dInPbOsAaNcJ!314159";
-$dbname = "u312806541_noise";
+    $servername = $_SERVER["SERVER_ADDR"] == "127.0.0.1" ? "sql131.main-hosting.eu" : "mysql.hostinger.com.br";
+    $username = "u312806541_user1";
+    $password = "dInPbOsAaNcJ!314159";
+    $dbname = "u312806541_noise";
 
-// Create connection
+    // Create connection
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Check connection
+    // Check connection
 
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 
 
 
-// User info
+    // User info
 
-$params = json_decode(file_get_contents('php://input'),true);
+    $track = mysqli_real_escape_string($conn, $params["track"]);
+    $playlist = mysqli_real_escape_string($conn, $params["playlist"]);
+    $direction = mysqli_real_escape_string($conn, $params["direction"]);
+    $user = mysqli_real_escape_string($conn, $params["user"]);
 
-$track = mysqli_real_escape_string($conn, $params["track"]);
-$playlist = mysqli_real_escape_string($conn, $params["playlist"]);
-$direction = mysqli_real_escape_string($conn, $params["direction"]);
-$user = mysqli_real_escape_string($conn, $params["user"]);
+    // Insert
 
-// Insert
+    $sql = "
 
-$sql = "
+        CALL track_position('". $track ."','". $playlist ."','". $direction ."','". $user ."');
 
-    CALL track_position('". $track ."','". $playlist ."','". $direction ."','". $user ."');
+    ";
 
-";
+    $result = mysqli_query($conn, $sql);
 
-$result = mysqli_query($conn, $sql);
-
-if ($result) {
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo json_encode($row);
+    if ($result) {
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo json_encode($row);
+            }
+        }
+        else {
+            die("Error: Query returned 0 results");
         }
     }
     else {
-        die("Error: Query returned 0 results");
+        die("Error: " . $sql . "<br>" . mysqli_error($conn));
     }
+
+
+
+    // Close connection
+
+    mysqli_close($conn);
 }
-else {
-    die("Error: " . $sql . "<br>" . mysqli_error($conn));
-}
-
-
-
-// Close connection
-
-mysqli_close($conn);
 
 ?>

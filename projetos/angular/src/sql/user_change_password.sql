@@ -1,7 +1,7 @@
-CREATE DEFINER=`u312806541_user1`@`189.8.93.10` PROCEDURE `user_change_password`(
-	IN inUserID int,
-    IN inOldPassword int,
-    IN inNewPassword int
+CREATE PROCEDURE `user_change_password`(
+	IN inUserID VARCHAR(255),
+    IN inOldPassword VARCHAR(255),
+    IN inNewPassword VARCHAR(255)
 )
 BEGIN
 UPDATE User

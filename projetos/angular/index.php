@@ -25,13 +25,13 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="./lib/materialize/materialize.min.css" rel="stylesheet">
-    <link href="./assets/styles/css/main.css" rel="stylesheet">
+    <link href="./assets/styles/css/main.css?v=1.0.3!" rel="stylesheet"> <!-- V -->
 </head>
 <body ng-controller="UserController">    
     <header ng-controller="HeaderController">
         <ul id="user-dropdown-items" class="dropdown-content">
             <li ng-repeat="item in navItems.user" ng-class="{'active': isActive(item.url)}">
-                <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
+                <a href="{{ '#!' + item.url }}" ng-bind="item.text"></a>
             </li>
             <li>
                 <a class="logout" ng-click="userMethods.logOut()">Log Out</a>
@@ -46,14 +46,14 @@
                 <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li ng-repeat="item in navItems.main" ng-class="{'active': isActive(item.url)}">
-                        <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
+                        <a href="{{ '#!' + item.url }}" ng-bind="item.text"></a>
                     </li>
                     <li ng-if="!user.isLogged">
                         <a data-target="login-modal" class="login modal-trigger">Log In</a>
                     </li>
                     <li id="loginAvatar" ng-class="{'active': isActive('/user') || isActive('/user/playlists')}" ng-show="user.isLogged">
                         <a id="user-dropdown" href="#!" data-target="user-dropdown-items">
-                            <img alt="{{ user.name }}" class="circle avatar z-depth-1" ng-src="{{ user.avatar }}" >
+                            <img alt="Avatar" class="circle avatar z-depth-1" ng-src="{{ user.avatar }}" >
                         </a>
                     </li>
                 </ul>
@@ -66,20 +66,20 @@
                     <div class="background">
                         <img ng-src="{{ headerImgs.topTrack }}">
                     </div>
-                    <a href="#!/user"><img class="circle" alt="{{ user.name }}" ng-src="{{ user.avatar }}"></a>
-                    <a href="#!/user"><span class="white-text name">{{ user.name }}</span></a>
-                    <a href="#!/user"><span class="white-text email">{{ user.email }}</span></a>
+                    <a href="#!/user"><img class="circle" alt="Avatar" ng-src="{{ user.avatar }}"></a>
+                    <a href="#!/user"><span class="white-text name" ng-bind="user.name"></span></a>
+                    <a href="#!/user"><span class="white-text email" ng-bind="user.email"></span></a>
                 </div>
             </li>
             <li ng-repeat="item in navItems.main" ng-class="{'active': isActive(item.url)}">
-                <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
+                <a href="{{ '#!' + item.url }}" ng-bind="item.text"></a>
             </li>
             <li><div class="divider"></div></li>
             <li ng-if="!user.isLogged">
                 <a data-target="login-modal" class="login modal-trigger">Log In</a>
             </li>
             <li ng-if="user.isLogged" ng-repeat="item in navItems.user" ng-class="{'active': isActive(item.url)}">
-                <a href="{{ '#!' + item.url }}">{{ item.text }}</a>
+                <a href="{{ '#!' + item.url }}" ng-bind="item.text"></a>
             </li>
             <li ng-if="user.isLogged">
                 <a class="logout" ng-click="userMethods.logOut()">Log Out</a>
@@ -98,14 +98,8 @@
             </div>
         </div>
 
-        <div class="container breadcrumb-bar" ng-if="!isActive('/')">
-            <nav class="row">
-                <div class="col s12 nav-wrapper">
-                    <div>
-                        <a class="breadcrumb" ng-repeat="item in breadcrumb.items" ng-href="{{ breadcrumb.urls($index) }}" ng-bind="item"></a>
-                    </div>
-                </div>
-            </nav>
+        <div breadcrumb class="container" ng-if="!isActive('/')">
+            <!-- Breadcrumb -->
         </div>
     </header>
         
@@ -161,10 +155,9 @@
     <script src="./lib/angular/others/youtube-embed/iframe_api.js"></script>
     <script src="./lib/angular/others/youtube-embed/angular-youtube-embed.js"></script>
     <script src="./lib/angular/others/file-upload/angular-file-upload.min.js"></script>
-    <script src="./app/app.min.js"></script>
+    <script src="./app/app.min.js?v=1.0.3!"></script> <!-- V -->
 
-    <!-- <script src="./lib/jquery/jquery-3.2.1.min.js"></script> -->
     <script src="./lib/materialize/materialize.min.js"></script>
-    <script src="./assets/js/index.js"></script>
+    <script src="./assets/js/index.js?v=1.0.3!"></script> <!-- V -->
 </body>
 </html>

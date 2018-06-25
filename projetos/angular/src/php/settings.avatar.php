@@ -1,7 +1,11 @@
 <?php
-if (isset($_FILES["avatar"]) && isset($_POST["userId"])) {
+
+$avatar = $_FILES["avatar"];
+$userId = $_POST["userId"];
+
+if (isset($avatar) && isset($userId)) {
     $target_dir = "../../public/users/avatars/";
-    $file_name = $_POST["userId"] . "." . pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
+    $file_name = $userId . "." . pathinfo($avatar["name"], PATHINFO_EXTENSION);
     $target_file = $target_dir . $file_name;
     
     $final_path = "public/users/avatars/" . $file_name;
@@ -10,7 +14,7 @@ if (isset($_FILES["avatar"]) && isset($_POST["userId"])) {
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
     // Check if image file is a actual image or fake image
-    $check = getimagesize($_FILES["avatar"]["tmp_name"]);
+    $check = getimagesize($avatar["tmp_name"]);
     if($check !== false) {
         $uploadOk = 1;
     } else {
@@ -22,13 +26,13 @@ if (isset($_FILES["avatar"]) && isset($_POST["userId"])) {
     }
 
     // Check file size
-    if ($_FILES["avatar"]["size"] > 1000000) { // 1 MB
+    if ($avatar["size"] > 1000000) { // 1 MB
         $uploadOk = "Image too large";
     }
 
     // Check if $uploadOk is Ok (1) or error
     if ($uploadOk == 1) {
-        if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
+        if (move_uploaded_file($avatar["tmp_name"], $target_file)) {
 
             $img = imagecreatefromjpeg($target_file);
 
@@ -63,7 +67,7 @@ if (isset($_FILES["avatar"]) && isset($_POST["userId"])) {
 
             // Delete older imgs
 
-            $files = glob($target_dir . $_POST["userId"] . ".*");
+            $files = glob($target_dir . $userId . ".*");
 
             foreach($files as $file) {
                 if ($file != $target_file) {
@@ -92,14 +96,14 @@ if (isset($_FILES["avatar"]) && isset($_POST["userId"])) {
 
             // User info
 
-            $user_id = mysqli_real_escape_string($conn, $_POST["userId"]);
-            $avatar = mysqli_real_escape_string($conn, $final_path);
+            $user_id = mysqli_real_escape_string($conn, $userId);
+            $avatar_url = mysqli_real_escape_string($conn, $final_path);
             
             // Insert
 
             $sql = "
 
-                CALL user_change_avatar('". $user_id ."','". $avatar ."');
+                CALL user_change_avatar('". $user_id ."','". $avatar_url ."');
 
             ";
 
@@ -130,6 +134,7 @@ if (isset($_FILES["avatar"]) && isset($_POST["userId"])) {
     }
 }
 else {
-    echo "Expected file \"avatar\" or user data \"ID\" not received.";
+    die('Error: ' . 'Invalid parameters');
 }
+
 ?>

@@ -1,6 +1,7 @@
 CALL _create_tables();
 
 CALL user_sign_up(
+	'USERAUTH',
 	'tpessia',
     'thiago@pessia.com',
     '123456',
@@ -10,13 +11,13 @@ CALL user_sign_up(
 );
 
 CALL user_change_password(
-	1,
+	'USERAUTH',
     '123456',
     '654321'
 );
 
 CALL user_change_avatar(
-	1,
+	'USERAUTH',
     'public/users/avatars/1.jpg'
 );
 
@@ -33,22 +34,22 @@ FROM User;
 CALL playlist_create(
 	'Playlist 1',
     '2018-06-16 20:10:00',
-    1
+    'USERAUTH'
 );
 
 CALL playlist_rename(
 	1,
     'Playlist 2',
-    1
+    'USERAUTH'
 );
 
 CALL playlist_get_all(
-	1
+	'USERAUTH'
 );
 
 CALL playlist_get(
 	1,
-    1
+    'USERAUTH'
 );
 
 SELECT *
@@ -62,49 +63,47 @@ CALL track_add(
     'my-image.jpg',
     '2018-06-17 01:31',
     1,
-    1
+    'USERAUTH'
 );
 
 CALL track_get_all(
-	1
+	'USERAUTH'
 );
 
 CALL track_get(
     1,
-    1
+    'USERAUTH'
 );
-
-CALL track_remove(
-	1,
-    1,
-    1
-);
-
 
 CALL track_position(
 	1,
     1,
     "down",
-    1
+    'USERAUTH'
 );
 
-UPDATE Track -- reset all postions
-SET Position = TrackID;
+CALL track_remove(
+	1,
+    1,
+    'USERAUTH'
+);
 
 SELECT *
 FROM Track;
 
+
+
 CALL playlist_delete(
-	1
+	1,
+    'USERAUTH'
 );
 
 
 
 CALL user_delete(
 	'tpessia',
-    '123456',
-    'thiago@pessia.com',
-    1
+    '654321',
+    'thiago@pessia.com'
 );
 
 DROP TABLE Track;

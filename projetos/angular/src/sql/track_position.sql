@@ -1,13 +1,13 @@
-CREATE DEFINER=`u312806541_user1`@`191.188.45.253` PROCEDURE `track_position`(
+CREATE PROCEDURE `track_position`(
 	IN inTrackID int,
     IN inPlaylistID int,
     IN inDirection VARCHAR(255),
-    IN inUserID int
+    IN inUserID VARCHAR(255)
 )
 BEGIN
-SELECT *
-FROM Track
-WHERE TrackID = inTrackID AND PLaylistID = inPlaylistID;
+SELECT t.TrackID, t.Title, t.Video, t.Image, t.AdditionDate, t.Position, t.PlaylistID
+FROM Track as t
+WHERE t.TrackID = inTrackID AND t.PlaylistID = inPlaylistID;
 
 SET @position = 0;
 SET @max_position = 0;

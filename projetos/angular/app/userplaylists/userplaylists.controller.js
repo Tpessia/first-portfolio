@@ -69,10 +69,10 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
     $scope.deletePlaylist = function (playlistId) {
         if (window.confirm("This action is irreversible. Do you want to proceed?")) {
             userService.savedPlaylists.deletePlaylist(playlistId).then(function (response) {
-                if (typeof response.data.UserID !== "undefined") {
+                if (typeof response.data.PlaylistID !== "undefined") {
                     M.toast({
                         html: 'Playlist deleted',
-                        displayLength: '3000'
+                        displayLength: '2000'
                     });
 
                     var index = userService.savedPlaylists.getIndexId(playlistId),
@@ -85,7 +85,7 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
                     M.toast({
                         html: 'Error on playlist deletion',
                         classes: 'red darken-4',
-                        displayLength: '3000'
+                        displayLength: '2000'
                     });
 
                     console.log(response);
@@ -94,7 +94,7 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
                 M.toast({
                     html: 'Error on playlist deletion',
                     classes: 'red darken-4',
-                    displayLength: '3000'
+                    displayLength: '2000'
                 });
 
                 console.log(errResponse);
@@ -105,11 +105,13 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
     $scope.renamePlaylist = function (playlistId, newName) {
         $scope.state.renamingPlaylist = false;
 
+        newName = $scope.state.tempName; // Error, fix this
+
         userService.savedPlaylists.renamePlaylist(playlistId, newName).then(function (response) {
             if (typeof response.data.PlaylistID !== "undefined") {
                 M.toast({
                     html: 'Playlist renamed',
-                    displayLength: '3000'
+                    displayLength: '2000'
                 });
 
                 $route.reload();
@@ -118,7 +120,7 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
                 M.toast({
                     html: 'Error on playlist creation',
                     classes: 'red darken-4',
-                    displayLength: '3000'
+                    displayLength: '2000'
                 });
 
                 console.log(response);
@@ -127,7 +129,7 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
             M.toast({
                 html: 'Error on playlist creation',
                 classes: 'red darken-4',
-                displayLength: '3000'
+                displayLength: '2000'
             });
 
             console.log(errResponse);
@@ -137,16 +139,16 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
     $scope.removeTrack = function (playlistId, trackId) {
         userService.savedPlaylists.removeTrack(playlistId, trackId).then(function (response) {
             if (typeof response.data.TrackID !== "undefined") {
-                M.toast({
-                    html: 'Track removed',
-                    displayLength: '3000'
-                });
+                // M.toast({
+                //     html: 'Track removed',
+                //     displayLength: '2000'
+                // });
             }
             else {
                 M.toast({
                     html: 'Error on track removal',
                     classes: 'red darken-4',
-                    displayLength: '3000'
+                    displayLength: '2000'
                 });
 
                 console.log(response);
@@ -155,7 +157,7 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
             M.toast({
                 html: 'Error on track removal',
                 classes: 'red darken-4',
-                displayLength: '3000'
+                displayLength: '2000'
             });
 
             console.log(errResponse);
@@ -165,13 +167,16 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
     $scope.changeTrackPosition = function (playlistId, trackId, direction) {
         userService.savedPlaylists.changeTrackPosition(playlistId, trackId, direction).then(function (response) {
             if (typeof response.data.TrackID !== "undefined") {
-
+                // M.toast({
+                //     html: 'Position altered',
+                //     displayLength: '2000'
+                // });
             }
             else {
                 M.toast({
                     html: 'Error on position alteration',
                     classes: 'red darken-4',
-                    displayLength: '3000'
+                    displayLength: '2000'
                 });
 
                 console.log(response);
@@ -180,7 +185,7 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
             M.toast({
                 html: 'Error on position alteration',
                 classes: 'red darken-4',
-                displayLength: '3000'
+                displayLength: '2000'
             });
 
             console.log(errResponse);
@@ -215,8 +220,6 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
     // Easter egg
 
     $scope.$watch('state.tempName', function (newVal, oldVal) {
-        console.log(oldVal)
-        console.log(newVal)
         if (oldVal !== newVal && newVal == "314159") {
             $scope.easterEgg = true;
         }

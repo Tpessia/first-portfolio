@@ -150,7 +150,7 @@ app.controller("ArtistsController", function ($rootScope, $scope, $location, art
     // Helpers
 
     $scope.stripLink = function (text) {
-        return text.replace(/<a(.|\n)*?<\/a>/, '').trim();
+        return text.replace(/<a(.|\n)*?<\/a>.?/, '').trim();
     }
 
     // Search on click

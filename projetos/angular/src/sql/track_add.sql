@@ -1,10 +1,10 @@
-CREATE DEFINER=`u312806541_user1`@`191.188.45.253` PROCEDURE `track_add`(
+CREATE PROCEDURE `track_add`(
 	IN inTitle VARCHAR(255),
     IN inVideo VARCHAR(255),
     IN inImage VARCHAR(255),
     IN inAdditionDate DATETIME,
     IN inPlaylistID int,
-    IN inUserID int
+    IN inUserID VARCHAR(255)
 )
 BEGIN
 INSERT INTO Track (Title, Video, Image, AdditionDate, PlaylistID, UserID)
@@ -16,7 +16,7 @@ UPDATE Track
 SET Position = @track_id
 WHERE TrackID = @track_id;
 
-SELECT *
+SELECT t.TrackID, t.Title, t.Video, t.Image, t.AdditionDate, t.Position, t.PlaylistID
 FROM Track as t
 WHERE t.TrackID = @track_id AND t.PlaylistID = inPlaylistID;
 END
