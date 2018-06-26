@@ -1,6 +1,6 @@
 <?php
 
-if () {
+if ($params = json_decode(file_get_contents('php://input'),true)) {
     // DB info
 
     $servername = $_SERVER["SERVER_ADDR"] == "127.0.0.1" ? "sql131.main-hosting.eu" : "mysql.hostinger.com.br";
