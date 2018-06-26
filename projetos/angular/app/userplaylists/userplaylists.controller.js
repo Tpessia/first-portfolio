@@ -58,7 +58,7 @@ app.controller("UserPlaylistsController", function ($rootScope, $scope, $route, 
             'index': index
         };
         
-        if (typeof index === 'number' && (index % 1) === 0) {
+        if (typeof index === 'number' && (index % 1) === 0 && index >= 0) {
             $location.search('pl', index);
         }
         else {

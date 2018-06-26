@@ -23,7 +23,7 @@ app.controller("AlbumsController", function ($rootScope, $scope, $location, albu
                 for (var i in topArtists) {
                     (function (j) {
                         var artist = topArtists[j].name,
-                            rndPage = 1 + Math.floor(Math.random() * 2);
+                            rndPage = 1;// + Math.floor(Math.random() * 2);
 
                         artistsService.getTopAlbums(artist, rndPage, 1).then(function (response) { // get random album
                             if (typeof response.data.error === "undefined") {

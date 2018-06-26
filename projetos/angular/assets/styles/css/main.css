@@ -651,19 +651,20 @@ body #search-results .results .search-item .meta-data .flags {
 body main .usersettings {
   margin-top: 20px; }
   body main .usersettings form {
+    margin-top: 25px;
     margin-bottom: 50px; }
     body main .usersettings form .row {
       margin-bottom: 0px; }
-      body main .usersettings form .row .avatar {
+      body main .usersettings form .row.user-data .avatar {
         text-align: center; }
-        body main .usersettings form .row .avatar .img-wrapper {
+        body main .usersettings form .row.user-data .avatar .img-wrapper {
           display: inline-block;
           position: relative;
           width: 100%;
           min-height: 250px;
           max-width: 260px;
           max-height: 260px; }
-          body main .usersettings form .row .avatar .img-wrapper #avatar-img {
+          body main .usersettings form .row.user-data .avatar .img-wrapper #avatar-img {
             min-height: inherit;
             max-width: inherit;
             max-height: inherit;
@@ -671,7 +672,7 @@ body main .usersettings {
             object-position: center;
             height: 100%;
             width: 100%; }
-          body main .usersettings form .row .avatar .img-wrapper .edit {
+          body main .usersettings form .row.user-data .avatar .img-wrapper .edit {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -681,7 +682,7 @@ body main .usersettings {
             color: white;
             font-weight: 600;
             padding: 0; }
-            body main .usersettings form .row .avatar .img-wrapper .edit label {
+            body main .usersettings form .row.user-data .avatar .img-wrapper .edit label {
               display: block;
               width: 100%;
               padding: 0 16px;
@@ -689,26 +690,45 @@ body main .usersettings {
               font-weight: inherit;
               font-size: inherit;
               cursor: pointer; }
-              body main .usersettings form .row .avatar .img-wrapper .edit label .material-icons {
+              body main .usersettings form .row.user-data .avatar .img-wrapper .edit label .material-icons {
                 vertical-align: top;
                 margin: 0 5px; }
-            body main .usersettings form .row .avatar .img-wrapper .edit input {
+            body main .usersettings form .row.user-data .avatar .img-wrapper .edit input {
               display: none;
               opacity: 0;
               position: absolute;
               z-index: -1; }
-          body main .usersettings form .row .avatar .img-wrapper .info {
+          body main .usersettings form .row.user-data .avatar .img-wrapper .info {
             display: block;
             text-align: left;
             position: absolute;
             bottom: -20px; }
-      body main .usersettings form .row .img-wrapper,
-      body main .usersettings form .row .input-field {
+      body main .usersettings form .row.user-data .img-wrapper,
+      body main .usersettings form .row.user-data .input-field {
         margin-bottom: 2rem; }
-      body main .usersettings form .row #us-submit {
-        background-color: #ff5722; }
+      body main .usersettings form .row.important-data {
+        margin-top: 15px; }
+        body main .usersettings form .row.important-data .password.old-pass {
+          margin-bottom: 0.5rem; }
+        body main .usersettings form .row.important-data .password.new-pass {
+          margin-bottom: 2rem; }
+        @media (max-width: 992px) {
+          body main .usersettings form .row.important-data .password.old-pass {
+            margin-bottom: 0; } }
+        body main .usersettings form .row.important-data .delete #disclaimer {
+          text-align: justify;
+          line-height: 2;
+          margin: 20px 0 15px; }
+        @media (max-width: 992px) {
+          body main .usersettings form .row.important-data .delete {
+            border-top: 1px solid rgba(0, 0, 0, 0.87);
+            margin-top: 35px; } }
     body main .usersettings form > .row {
       margin-bottom: 20px; }
+    body main .usersettings form #us-submit {
+      background-color: #ff5722; }
+  body main .usersettings #modal-delete {
+    max-width: 500px; }
 
 body .userplaylists .carousel-wrapper {
   overflow: hidden; }

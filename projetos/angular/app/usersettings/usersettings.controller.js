@@ -1,4 +1,4 @@
-app.controller("UserSettingsController", function ($rootScope, $scope, $location, userService, FileUploader) {
+app.controller("UserSettingsController", function ($rootScope, $scope, $location, $route, userService, FileUploader) {
     
     // Check session
 
@@ -19,6 +19,14 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
                     'avatar': userService.user.avatar,
                     'oldPassword': "",
                     'newPassword': ""
+                };
+
+                $scope.userDelete = {
+                    'password': ''
+                };
+
+                $scope.instances = {
+                    modals: M.Modal.init($$("main .modal"), {})
                 };
             }
         }, function (errResponse) {
@@ -183,6 +191,51 @@ app.controller("UserSettingsController", function ($rootScope, $scope, $location
         if (changing.length == 0) {
             M.toast({
                 html: 'No change has been made',
+                classes: 'red darken-4',
+                displayLength: '2000'
+            });
+        }
+    };
+
+    $scope.deleteAccount = function () {
+        if ($scope.userDelete.password != "") {
+            var data = {
+                'userId': userService.userSecure.userId,
+                'password': $scope.userDelete.password
+            };
+
+            userService.deleteAccount(data).then(function (response) {
+                if (typeof response.data.UserID !== "undefined") {
+                    $scope.instances.modals[0].close();
+                    angular.element($$("body")).scope().userMethods.logOut();
+
+                    M.toast({
+                        html: 'Account permanently deleted',
+                        displayLength: '2000'
+                    });
+                }
+                else {
+                    console.log(response);
+
+                    M.toast({
+                        html: 'Error on account deletion',
+                        classes: 'red darken-4',
+                        displayLength: '2000'
+                    });
+                }
+            }, function (errResponse) {
+                console.log(errResponse);
+
+                M.toast({
+                    html: 'Error on account deletion',
+                    classes: 'red darken-4',
+                    displayLength: '2000'
+                });
+            });
+        }
+        else {
+            M.toast({
+                html: 'Invalid password',
                 classes: 'red darken-4',
                 displayLength: '2000'
             });

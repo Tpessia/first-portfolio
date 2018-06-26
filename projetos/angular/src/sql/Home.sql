@@ -101,9 +101,8 @@ CALL playlist_delete(
 
 
 CALL user_delete(
-	'tpessia',
-    '654321',
-    'thiago@pessia.com'
+	'USERAUTH',
+    '654321'
 );
 
 DROP TABLE Track;

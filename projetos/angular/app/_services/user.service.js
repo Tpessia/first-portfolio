@@ -43,7 +43,6 @@ app.service("userService", function ($rootScope, $http) {
         if (typeof data !== "undefined") {
             return $http.post($rootScope.baseUrl + 'src/php/user.signin.php', data).then(function (response) {
                 if (typeof response.data.UserID !== "undefined") {
-                    console.log(data);
                     $http.post($rootScope.baseUrl + 'src/php/session.create.php', data);
                 }
                 
@@ -88,6 +87,10 @@ app.service("userService", function ($rootScope, $http) {
     this.changePassword = function (data) {
         return $http.post($rootScope.baseUrl + 'src/php/settings.password.php', data);
     };
+
+    this.deleteAccount = function (data) {
+        return $http.post($rootScope.baseUrl + 'src/php/user.delete.php', data);
+    }
 
     // Playlists
 
@@ -182,7 +185,7 @@ app.service("userService", function ($rootScope, $http) {
                 return new Promise(
                     function (resolve, reject) {
                         resolve({
-                            data: '0'
+                            data: null
                         });
                     }
                 );
@@ -217,7 +220,7 @@ app.service("userService", function ($rootScope, $http) {
                 return new Promise(
                     function (resolve, reject) {
                         resolve({
-                            data: '0'
+                            data: null
                         });
                     }
                 );
@@ -248,7 +251,7 @@ app.service("userService", function ($rootScope, $http) {
                 return new Promise(
                     function (resolve, reject) {
                         resolve({
-                            data: '0'
+                            data: null
                         });
                     }
                 );
@@ -280,7 +283,7 @@ app.service("userService", function ($rootScope, $http) {
                 return new Promise(
                     function (resolve, reject) {
                         resolve({
-                            data: '0'
+                            data: null
                         });
                     }
                 );
@@ -335,7 +338,7 @@ app.service("userService", function ($rootScope, $http) {
                 return new Promise(
                     function (resolve, reject) {
                         resolve({
-                            data: '0'
+                            data: null
                         });
                     }
                 );
@@ -369,7 +372,7 @@ app.service("userService", function ($rootScope, $http) {
                 return new Promise(
                     function (resolve, reject) {
                         resolve({
-                            data: '0'
+                            data: null
                         });
                     }
                 );
@@ -418,27 +421,52 @@ app.service("userService", function ($rootScope, $http) {
                 return new Promise(
                     function (resolve, reject) {
                         resolve({
-                            data: '0'
+                            data: null
                         });
                     }
                 );
             }
         },
         appendPlaylist: function (playlistId, sourcePlaylist) {
-            if (self.user.isLogged && this.playlistExistsId(playlistId) && typeof sourcePlaylist !== "undefined") {
-                var request = new Promise(function (resolve, reject) { resolve({ data: '0' }); });
+            var $this = this;
+            if (self.user.isLogged && this.playlistExistsId(playlistId) && typeof sourcePlaylist !== "undefined" && sourcePlaylist.length > 0) {
+                var waitForLast = {};
+                waitForLast.promise = new Promise(function (resolve, reject) {
+                    waitForLast.resolve = resolve;
+                    waitForLast.reject = reject;
+                });
 
-                for (var i in sourcePlaylist) {
-                    request = this.addTrack(playlistId, sourcePlaylist[i]);
+                var i = -1;
+                trackRequest(playlistId, sourcePlaylist);
+
+                function trackRequest(id, source) {                    
+                    i++;
+
+                    if (i < source.length - 1) {
+                        $this.addTrack(id, source[i]).then(function (response) {
+                            trackRequest(id, source);
+                        }, function (errResponse) {
+                            console.log(errResponse);
+                            trackRequest(id, source);
+                        });
+                    }
+                    else if (i == source.length - 1) { // last
+                        $this.addTrack(id, source[i]).then(function (response) {
+                            waitForLast.resolve(response);
+                        }, function (errResponse) {
+                            console.log(errResponse);
+                            waitForLast.reject(errResponse);
+                        });
+                    }
                 }
 
-                return request;
+                return waitForLast.promise;
             }
             else {
                 return new Promise(
                     function (resolve, reject) {
                         resolve({
-                            data: '0'
+                            data: null
                         });
                     }
                 );

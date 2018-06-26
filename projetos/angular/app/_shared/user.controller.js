@@ -88,7 +88,7 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, $route,
             $rootScope.materialize.all();
         }, 10);
 
-        // $route.reload();
+        $route.reload();
     }
 
     // Login from session
@@ -203,7 +203,17 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, $route,
                                     getVideosIds(id, response.data.nextPageToken);
                                 }
                                 else { // se não, adiciona todos os dados
+                                    window.onbeforeunload = function () { return 'Adding track...'; };
+                                    var addingToast = M.toast({
+                                        html: 'Adding tracks...',
+                                        displayLength: '999999',
+                                        completeCallback: function () {
+                                            window.onbeforeunload = function () { return null; };
+                                        }
+                                    });
                                     userService.savedPlaylists.appendPlaylist(playlistId, videosData).then(function (response) {
+                                        addingToast.dismiss();
+
                                         if (typeof response.data.TrackID !== "undefined") {
                                             M.toast({
                                                 html: 'Tracks added',
@@ -220,6 +230,8 @@ app.controller("UserController", function ($rootScope, $scope, $timeout, $route,
                                             console.log(response);
                                         }
                                     }, function (errResponse) {
+                                        addingToast.dismiss();
+
                                         M.toast({
                                             html: 'Error on tracks addition',
                                             classes: 'red darken-4',

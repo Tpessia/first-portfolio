@@ -1,13 +1,18 @@
-CREATE DEFINER=`u312806541_user1`@`189.8.93.10` PROCEDURE `user_delete`(
-	IN inUsername VARCHAR(255),
-    IN inPassword VARCHAR(255),
-    IN inEmail VARCHAR(255)
+CREATE PROCEDURE `user_delete`(
+	IN inUserID VARCHAR(255),
+    IN inPassword VARCHAR(255)
 )
 BEGIN
-SELECT u.UserID, u.Username, u.Email, u.Name, u.Avatar, u.CreationDate
+SELECT u.UserID
 FROM User as u
-WHERE u.Username = inUsername AND u.Password = inPassword AND u.Email = inEmail;
+WHERE u.UserID = inUserID AND u.Password = inPassword;
+
+DELETE FROM Track
+WHERE UserID = inUserID;
+
+DELETE FROM Playlist
+WHERE UserID = inUserID;
 
 DELETE FROM User
-WHERE Username = inUsername AND Password = inPassword AND Email = inEmail;
+WHERE UserID = inUserID AND Password = inPassword;
 END
