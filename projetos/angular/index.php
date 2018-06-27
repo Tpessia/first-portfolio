@@ -25,7 +25,7 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="./lib/materialize/materialize.min.css" rel="stylesheet">
-    <link href="./assets/styles/css/main.css?v=1.0.3!" rel="stylesheet"> <!-- V -->
+    <link href="./assets/styles/css/main.css?v=1.0.5!" rel="stylesheet"> <!-- V -->
 </head>
 <body ng-controller="UserController">    
     <header ng-controller="HeaderController">
@@ -155,9 +155,9 @@
     <script src="./lib/angular/others/youtube-embed/iframe_api.js"></script>
     <script src="./lib/angular/others/youtube-embed/angular-youtube-embed.js"></script>
     <script src="./lib/angular/others/file-upload/angular-file-upload.min.js"></script>
-    <script src="./app/app.min.js?v=1.0.3!"></script> <!-- V -->
+    <script src="./app/app.min.js?v=1.0.5!"></script> <!-- V -->
 
     <script src="./lib/materialize/materialize.min.js"></script>
-    <script src="./assets/js/index.js?v=1.0.3!"></script> <!-- V -->
+    <script src="./assets/js/index.js?v=1.0.5!"></script> <!-- V -->
 </body>
 </html>
