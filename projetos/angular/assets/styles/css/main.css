@@ -277,6 +277,72 @@ materialize-video-fab .video-fab {
       materialize-video-fab .video-fab ul li a.fab-add {
         background-color: #ff5722; }
 
+[by-country] .row .tabs {
+  margin-bottom: 30px; }
+  [by-country] .row .tabs .tab a {
+    color: #ff5722; }
+    [by-country] .row .tabs .tab a:focus {
+      background-color: transparent; }
+  [by-country] .row .tabs .indicator {
+    background-color: #ffccbc; }
+[by-country] .row .tabs-content {
+  height: auto !important; }
+  [by-country] .row .tabs-content * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+  [by-country] .row .tabs-content #country-tracks,
+  [by-country] .row .tabs-content #country-artists {
+    min-height: unset; }
+    [by-country] .row .tabs-content #country-tracks.active,
+    [by-country] .row .tabs-content #country-artists.active {
+      position: relative !important; }
+    [by-country] .row .tabs-content #country-tracks .card .card-image,
+    [by-country] .row .tabs-content #country-artists .card .card-image {
+      width: 100px;
+      height: 100px;
+      margin: 10px; }
+      [by-country] .row .tabs-content #country-tracks .card .card-image img,
+      [by-country] .row .tabs-content #country-artists .card .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center; }
+    [by-country] .row .tabs-content #country-tracks .card .card-stacked .card-content,
+    [by-country] .row .tabs-content #country-artists .card .card-stacked .card-content {
+      padding: 10px; }
+      [by-country] .row .tabs-content #country-tracks .card .card-stacked .card-content a,
+      [by-country] .row .tabs-content #country-artists .card .card-stacked .card-content a {
+        color: rgba(0, 0, 0, 0.87); }
+        [by-country] .row .tabs-content #country-tracks .card .card-stacked .card-content a:hover,
+        [by-country] .row .tabs-content #country-artists .card .card-stacked .card-content a:hover {
+          text-decoration: underline; }
+      [by-country] .row .tabs-content #country-tracks .card .card-stacked .card-content .data a:first-child,
+      [by-country] .row .tabs-content #country-artists .card .card-stacked .card-content .data a:first-child {
+        font-weight: bold; }
+      [by-country] .row .tabs-content #country-tracks .card .card-stacked .card-content .counter .listeners,
+      [by-country] .row .tabs-content #country-tracks .card .card-stacked .card-content .counter .playcount,
+      [by-country] .row .tabs-content #country-artists .card .card-stacked .card-content .counter .listeners,
+      [by-country] .row .tabs-content #country-artists .card .card-stacked .card-content .counter .playcount {
+        font-style: italic; }
+        [by-country] .row .tabs-content #country-tracks .card .card-stacked .card-content .counter .listeners .label,
+        [by-country] .row .tabs-content #country-tracks .card .card-stacked .card-content .counter .playcount .label,
+        [by-country] .row .tabs-content #country-artists .card .card-stacked .card-content .counter .listeners .label,
+        [by-country] .row .tabs-content #country-artists .card .card-stacked .card-content .counter .playcount .label {
+          font-style: normal; }
+      [by-country] .row .tabs-content #country-tracks .card .card-stacked .card-content .summary,
+      [by-country] .row .tabs-content #country-artists .card .card-stacked .card-content .summary {
+        margin-top: 10px; }
+        [by-country] .row .tabs-content #country-tracks .card .card-stacked .card-content .summary .read-more,
+        [by-country] .row .tabs-content #country-artists .card .card-stacked .card-content .summary .read-more {
+          text-decoration: underline; }
+          [by-country] .row .tabs-content #country-tracks .card .card-stacked .card-content .summary .read-more:hover,
+          [by-country] .row .tabs-content #country-artists .card .card-stacked .card-content .summary .read-more:hover {
+            text-decoration: none; }
+
 @media (max-width: 992px) {
   [grid-albums] .img-cover,
   [grid-artists] .img-cover,
