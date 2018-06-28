@@ -126,6 +126,8 @@ materialize-video-fab {
         }
         .input-field {
             margin: 0;
+            white-space : nowrap;
+            margin-right: 50px;
             @media (max-width: 992px) {
                 width: 100%;
                 margin-top: 10px;
@@ -133,10 +135,14 @@ materialize-video-fab {
             input {
                 margin: 0;
             }
+            .material-icons {
+                margin: 0;
+                font-size: 2.2rem;
+                color: rgba(0, 0, 0, 0.87);
+                vertical-align: middle;
+            }
             .autocomplete-content {
-                // margin: 0;
-                // position: absolute;
-                // width: 100%;
+                white-space: normal;
                 li {
                     span {
                         color: rgba(0, 0, 0, 0.87);

@@ -6,30 +6,33 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
 
     $scope.countries = geoService.countries;
 
-    geoService.getUserLocation().then(function (response) {
-        try {
-            if (typeof response.data.error === "undefined") {
-                $scope.currentCountry = $scope.tempCurrentCountry = geoService.alfa2ToName[response.data.country];
-            }
-            else {
-                console.log(response);
+    // Search Object
 
-                $scope.currentCountry = $scope.tempCurrentCountry = 'United States of America';
-            }
+    createSearchObj();
+    function createSearchObj() {
+        var countriesArr = [],
+            j = 0;
+
+        for (var i in $scope.countries) {
+            countriesArr[j] = {
+                name: i
+            };
+
+            j++;
         }
-        catch (e) {
-            console.log(response);
 
-            $scope.currentCountry = $scope.tempCurrentCountry = 'United States of America';
-        }
-    }, function (errResponse) {
-        console.log(errResponse);
+        $scope.countriesSearch = new Fuse(countriesArr, {
+            shouldSort: true,
+            threshold: 0.3,
+            location: 0,
+            distance: 100,
+            maxPatternLength: 32,
+            minMatchCharLength: 1,
+            keys: ["name"]
+        });
+    }
 
-        $scope.currentCountry = $scope.tempCurrentCountry = 'United States of America';
-    }).finally(function () {
-        $scope.getTracksByCountry($scope.currentCountry);
-        $scope.getArtistsByCountry($scope.currentCountry);
-    });
+    // Get Tracks and Artists
 
     $scope.getTracksByCountry = function (country, page, limit) {
         if (typeof page === "undefined") {
@@ -62,7 +65,7 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
                         }, function (errResponse) {                            
                             console.log(errResponse)
                         }).finally(function () {
-                            if ($scope.crountryTracks[j].image !== "undefined" && $scope.crountryTracks[j].image[0]["#text"] == "") {
+                            if ($scope.crountryTracks.length > 0 && $scope.crountryTracks[j].image !== "undefined" && $scope.crountryTracks[j].image[0]["#text"] == "") {
                                 $scope.crountryTracks[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
                             }
 
@@ -88,7 +91,7 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
         }
 
         var countryCode = $scope.countries[country];
-
+        
         geoService.getArtistsByCountry(countryCode, page, limit).then(function (response) {
             if (typeof response.data.error === "undefined") {
                 $scope.crountryArtists = response.data.topartists.artist.slice(-limit);
@@ -110,7 +113,7 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
                         }, function (errResponse) {                            
                             console.log(errResponse)
                         }).finally(function () {
-                            if ($scope.crountryArtists[j].image !== "undefined" && $scope.crountryArtists[j].image[0]["#text"] == "") {
+                            if ($scope.crountryArtists.length > 0 && $scope.crountryArtists[j].image !== "undefined" && $scope.crountryArtists[j].image[0]["#text"] == "") {
                                 $scope.crountryArtists[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
                             }
 
@@ -125,6 +128,61 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
         }, function(errResponse) {
             console.log(errResponse);
         });
+    };
+
+    $scope.getAllByCountry = function () {
+        $scope.getTracksByCountry($scope.currentCountry);
+        $scope.getArtistsByCountry($scope.currentCountry);
+    }
+
+    // Get user location on render
+
+    geoService.getUserLocation().then(function (response) {
+        try {
+            if (typeof response.data.error === "undefined") {
+                $scope.currentCountry = $scope.tempCurrentCountry = geoService.alfa2ToName[response.data.country];
+            }
+            else {
+                console.log(response);
+
+                $scope.currentCountry = $scope.tempCurrentCountry = 'United States of America';
+            }
+        }
+        catch (e) {
+            console.log(response);
+
+            $scope.currentCountry = $scope.tempCurrentCountry = 'United States of America';
+        }
+    }, function (errResponse) {
+        console.log(errResponse);
+
+        $scope.currentCountry = $scope.tempCurrentCountry = 'United States of America';
+    }).finally(function () {
+        $scope.getAllByCountry();
+    });
+
+    // Events and Actions
+
+    $scope.searchByCountry = function (country) {
+        if ($scope.instances.autocomplete[0].activeIndex == -1) { // User didn't choosed from autoselect
+            // $scope.instances.autocomplete[0].close();
+            $$('body')[0].click()
+
+            var result = $scope.countriesSearch.search(country);
+
+            if (result.length > 0) {
+                $scope.currentCountry = $scope.tempCurrentCountry = result[0].name;
+
+                $scope.getAllByCountry();
+            }
+            else {
+                M.toast({
+                    html: 'Invalid country',
+                    classes: 'red darken-4',
+                    displayLength: '2000'
+                });
+            }
+        }
     };
 
     // Helpers

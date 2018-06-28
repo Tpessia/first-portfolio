@@ -47,7 +47,7 @@ app.controller("AlbumsController", function ($rootScope, $scope, $location, albu
                                     }, function (errResponse) {
                                         console.log(errResponse);
                                     }).finally(function () {
-                                        if ($scope.albums[j].image !== "undefined" && $scope.albums[j].image[0]["#text"] == "") {
+                                        if ($scope.albums.length > 0 && $scope.albums[j].image !== "undefined" && $scope.albums[j].image[0]["#text"] == "") {
                                             $scope.albums[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
                                         }
 
@@ -99,7 +99,7 @@ app.controller("AlbumsController", function ($rootScope, $scope, $location, albu
                         }, function (errResponse) {                                
                             console.log(errResponse);
                         }).finally(function () {
-                            if ($scope.searchedAlbums[j].image !== "undefined" && $scope.searchedAlbums[j].image[0]["#text"] == "") {
+                            if ($scope.searchedAlbums.length > 0 && $scope.searchedAlbums[j].image !== "undefined" && $scope.searchedAlbums[j].image[0]["#text"] == "") {
                                 $scope.searchedAlbums[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
                             }
 

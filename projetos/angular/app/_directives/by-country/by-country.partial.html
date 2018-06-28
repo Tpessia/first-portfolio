@@ -1,7 +1,8 @@
 <div class="main-title">
 	<h3>BY COUNTRY</h3>
 	<div class="input-field dark-input">
-		<input type="text" id="countries-input" class="autocomplete" placeholder="Country Name" ng-model="tempCurrentCountry">
+		<input type="text" id="countries-input" class="autocomplete" placeholder="Country Name" ng-model="tempCurrentCountry" ng-keydown="$event.keyCode === 13 && searchByCountry(tempCurrentCountry)">
+		<i class="material-icons" ng-click="searchByCountry(tempCurrentCountry)">search</i>
 	</div>
 </div>
 <div class="row">
@@ -36,7 +37,7 @@
 					</div>
 				</div>
 			</div>
-			<div materialize-pag run-on-init="true" max-page="5" page-change-func="getTracksByCountry(currentCountry, page)" on-click="backToTop()"></div>
+			<div materialize-pag run-on-init="false" max-page="5" page-change-func="getTracksByCountry(currentCountry, page)" on-click="backToTop()"></div>
 		</div>
 		<div class="not-found" ng-show="crountryTracks.length == 0">
 			<p>

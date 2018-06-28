@@ -295,17 +295,26 @@ materialize-video-fab .video-fab {
   [by-country] .main-title h3 {
     margin: 0; }
   [by-country] .main-title .input-field {
-    margin: 0; }
+    margin: 0;
+    white-space: nowrap;
+    margin-right: 50px; }
     @media (max-width: 992px) {
       [by-country] .main-title .input-field {
         width: 100%;
         margin-top: 10px; } }
     [by-country] .main-title .input-field input {
       margin: 0; }
-    [by-country] .main-title .input-field .autocomplete-content li span {
-      color: rgba(0, 0, 0, 0.87); }
-      [by-country] .main-title .input-field .autocomplete-content li span.highlight {
-        color: #ff7043; }
+    [by-country] .main-title .input-field .material-icons {
+      margin: 0;
+      font-size: 2.2rem;
+      color: rgba(0, 0, 0, 0.87);
+      vertical-align: middle; }
+    [by-country] .main-title .input-field .autocomplete-content {
+      white-space: normal; }
+      [by-country] .main-title .input-field .autocomplete-content li span {
+        color: rgba(0, 0, 0, 0.87); }
+        [by-country] .main-title .input-field .autocomplete-content li span.highlight {
+          color: #ff7043; }
 [by-country] .row .tabs {
   margin-bottom: 30px; }
   [by-country] .row .tabs .tab a {

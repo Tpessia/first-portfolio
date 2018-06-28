@@ -17,11 +17,10 @@ app.directive('byCountry', function () {
                     limit: 3,
                     onAutocomplete: function (country) {
                         element.triggerHandler('blur');
-
+                        
                         scope.currentCountry = country;
 
-                        scope.getTracksByCountry(scope.currentCountry);
-                        scope.getArtistsByCountry(scope.currentCountry);
+                        scope.getAllByCountry();
                     }
                 })
             }

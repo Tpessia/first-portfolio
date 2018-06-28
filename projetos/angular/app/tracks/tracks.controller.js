@@ -35,7 +35,7 @@ app.controller("TracksController", function ($rootScope, $scope, $location, trac
                         }, function (errResponse) {
                             console.log(errResponse)
                         }).finally(function () {
-                            if ($scope.tracks[j].image !== "undefined" && $scope.tracks[j].image[0]["#text"] == "") {
+                            if ($scope.tracks.length > 0 && $scope.tracks[j].image !== "undefined" && $scope.tracks[j].image[0]["#text"] == "") {
                                 $scope.tracks[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
                             }
 
@@ -80,7 +80,7 @@ app.controller("TracksController", function ($rootScope, $scope, $location, trac
                         }, function (errResponse) {                            
                             console.log(errResponse);
                         }).finally(function () {
-                            if ($scope.searchedTracks[j].image !== "undefined" && $scope.searchedTracks[j].image[0]["#text"] == "") {
+                            if ($scope.searchedTracks.length > 0 && $scope.searchedTracks[j].image !== "undefined" && $scope.searchedTracks[j].image[0]["#text"] == "") {
                                 $scope.searchedTracks[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
                             }
 

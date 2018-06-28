@@ -158,6 +158,7 @@
     <script src="./app/app.min.js?v=1.1!"></script> <!-- V -->
 
     <script src="./lib/materialize/materialize.min.js"></script>
+    <script src="./lib/fuse/fuse.min.js"></script>
     <script src="./assets/js/index.js?v=1.1!"></script> <!-- V -->
 </body>
 </html>

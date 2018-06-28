@@ -32,7 +32,7 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
                         }, function (errResponse) {                            
                             console.log(errResponse);
                         }).finally(function () {
-                            if ($scope.rndTracks[j].image !== "undefined" && $scope.rndTracks[j].image[0]["#text"] == "") {
+                            if ($scope.rndTracks.length > 0 && $scope.rndTracks[j].image !== "undefined" && $scope.rndTracks[j].image[0]["#text"] == "") {
                                 $scope.rndTracks[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
                             }
 
@@ -89,7 +89,7 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
                         }, function (errResponse) {                            
                             console.log(errResponse)
                         }).finally(function () {
-                            if ($scope.tracks[j].image !== "undefined" && $scope.tracks[j].image[0]["#text"] == "") {
+                            if ($scope.tracks.length > 0 && $scope.tracks[j].image !== "undefined" && $scope.tracks[j].image[0]["#text"] == "") {
                                 $scope.tracks[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
                             }
 
@@ -172,7 +172,7 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
                         }, function (errResponse) {                            
                             console.log(errResponse);
                         }).finally(function () {
-                            if ($scope.tags[j].image !== "undefined" && $scope.tags[j].image[0]["#text"] == "") {
+                            if ($scope.tags.length > 0 && $scope.tags[j].image !== "undefined" && $scope.tags[j].image[0]["#text"] == "") {
                                 $scope.tags[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
                             }
 
