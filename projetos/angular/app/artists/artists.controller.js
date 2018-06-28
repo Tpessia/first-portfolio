@@ -171,4 +171,10 @@ app.controller("ArtistsController", function ($rootScope, $scope, $location, art
                 break;
         }
     };
+
+    // Scroll back to top
+
+    $scope.backToTop = function () {
+        scrollTo(document.documentElement, $$('#search-results')[0].offsetTop - $$('nav')[0].offsetHeight, 600);
+    };
 });

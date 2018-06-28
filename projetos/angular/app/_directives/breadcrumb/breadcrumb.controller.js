@@ -7,7 +7,7 @@ app.controller("BreadcrumbController", function ($rootScope, $scope, $location) 
         var breadcrumbItems = current.$$route.originalPath.split(/\//g).filter(function (e) { // Create breadcrumb path array
             return e != ""
         });
-
+        
         breadcrumbItems.length == 0 ? breadcrumbItems[0] = 'home' : breadcrumbItems.unshift('home'); // Transform '/' to 'home'
 
         $scope.breadcrumb = [];

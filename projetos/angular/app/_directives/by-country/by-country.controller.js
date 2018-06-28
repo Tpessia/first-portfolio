@@ -4,7 +4,34 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
         limit: 5
     };
 
-    $scope.getTracksByCountry = function (page, limit) {
+    $scope.countries = geoService.countries;
+
+    geoService.getUserLocation().then(function (response) {
+        try {
+            if (typeof response.data.error === "undefined") {
+                $scope.currentCountry = $scope.tempCurrentCountry = geoService.alfa2ToName[response.data.country];
+            }
+            else {
+                console.log(response);
+
+                $scope.currentCountry = $scope.tempCurrentCountry = 'United States of America';
+            }
+        }
+        catch (e) {
+            console.log(response);
+
+            $scope.currentCountry = $scope.tempCurrentCountry = 'United States of America';
+        }
+    }, function (errResponse) {
+        console.log(errResponse);
+
+        $scope.currentCountry = $scope.tempCurrentCountry = 'United States of America';
+    }).finally(function () {
+        $scope.getTracksByCountry($scope.currentCountry);
+        $scope.getArtistsByCountry($scope.currentCountry);
+    });
+
+    $scope.getTracksByCountry = function (country, page, limit) {
         if (typeof page === "undefined") {
             var page = dft.page;
         }
@@ -12,7 +39,9 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
             var limit = dft.limit;
         }
 
-        geoService.getTracksByCountry('Brazil', page, limit).then(function (response) {
+        var countryCode = $scope.countries[country];
+
+        geoService.getTracksByCountry(countryCode, page, limit).then(function (response) {
             if (typeof response.data.error === "undefined") {
                 $scope.crountryTracks = response.data.tracks.track.slice(-limit);
 
@@ -49,9 +78,8 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
             console.log(errResponse);
         });
     };
-    $scope.getTracksByCountry(1, 5);
 
-    $scope.getArtistsByCountry = function (page, limit) {
+    $scope.getArtistsByCountry = function (country, page, limit) {
         if (typeof page === "undefined") {
             var page = dft.page;
         }
@@ -59,7 +87,9 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
             var limit = dft.limit;
         }
 
-        geoService.getArtistsByCountry('Brazil', page, limit).then(function (response) {
+        var countryCode = $scope.countries[country];
+
+        geoService.getArtistsByCountry(countryCode, page, limit).then(function (response) {
             if (typeof response.data.error === "undefined") {
                 $scope.crountryArtists = response.data.topartists.artist.slice(-limit);
 
@@ -96,7 +126,6 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
             console.log(errResponse);
         });
     };
-    $scope.getArtistsByCountry(1, 5);
 
     // Helpers
 
@@ -125,5 +154,11 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
                 throw 'Invalid video type "' + type + '"';
                 break;
         }
+    };
+
+    // Scroll back to top
+
+    $scope.backToTop = function () {
+        scrollTo(document.documentElement, $$('.country .tabs')[0].offsetTop - $$('nav')[0].offsetHeight, 600);
     };
 });

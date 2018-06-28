@@ -199,4 +199,10 @@ app.controller("AlbumsController", function ($rootScope, $scope, $location, albu
                 break;
         }
     };
+
+    // Scroll back to top
+
+    $scope.backToTop = function () {
+        scrollTo(document.documentElement, $$('#search-results')[0].offsetTop - $$('nav')[0].offsetHeight, 600);
+    };
 });

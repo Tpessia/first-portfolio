@@ -61,7 +61,7 @@ body {
             .playlist-tracks {
                 .track-item {
                     $margins: 10px;
-                    @include flex();
+                    @include flex;
                     @include align-items(flex-start);
                     width: 100%;
                     position: relative;
@@ -81,7 +81,7 @@ body {
                         }
                     }
                     .track-control {
-                        @include flex();
+                        @include flex;
                         margin-right: 10px;
                         @media (max-width: 600px) {
                             @include flex-direction(column);
@@ -130,7 +130,7 @@ body {
                         cursor: pointer;
                         white-space: nowrap;
                         @media (max-width: 480px) {
-                            @include flex();
+                            @include flex;
                             @include flex-direction(column);
                         }
                         .track-image {

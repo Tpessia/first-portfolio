@@ -7,6 +7,10 @@ app.controller("PaginationController", function ($scope) {
     $scope.offsetPage = 0;
 
     $scope.nextPage = function() {
+        if (typeof $scope.onClick !== "undefined") {
+            $scope.onClick();
+        }
+
         $scope.lastPage = $scope.currentPage;
         if ($scope.currentPage + 1 == $scope.offsetPage + $scope.maxPage) { // if next page equals last page on grid, advance grid
             $scope.offsetPage++;
@@ -15,6 +19,10 @@ app.controller("PaginationController", function ($scope) {
     };
 
     $scope.prevPage = function () {
+        if (typeof $scope.onClick !== "undefined") {
+            $scope.onClick();
+        }
+
         $scope.lastPage = $scope.currentPage;
         if ($scope.currentPage - 1 <= 0) { // prevent prev page <= 0
             return false;
@@ -26,6 +34,10 @@ app.controller("PaginationController", function ($scope) {
     };
 
     $scope.goToPage = function (page) {
+        if (typeof $scope.onClick !== "undefined") {
+            $scope.onClick();
+        }
+        
         $scope.lastPage = $scope.currentPage;
         if (page == $scope.offsetPage + $scope.maxPage) { // // if next page equals last page on grid, advance grid
             $scope.offsetPage++;
