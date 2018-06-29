@@ -41,7 +41,7 @@ app.controller("SearchController", function ($scope, $location, $q, tracksServic
                 limit = instance.options.limit;
                 
             tracksService.getTrackSearch(newVal, 1, limit, $scope.autocompleteAbort.promise).then(function (response) {
-                if (typeof response.data.error === "undefined") {
+                if (typeof response.data.error === "undefined" && typeof response.data.results !== "undefined") {
                     var tracks = response.data.results.trackmatches.track,
                         autoTracks = {};
 
