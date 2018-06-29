@@ -39,21 +39,26 @@ app.controller("SearchController", function ($scope, $location, $q, tracksServic
 
             var instance = $scope.instances.autocomplete[0],
                 limit = instance.options.limit;
-a = instance;
+                
             tracksService.getTrackSearch(newVal, 1, limit, $scope.autocompleteAbort.promise).then(function (response) {
-                var tracks = response.data.results.trackmatches.track,
-                    autoTracks = {};
+                if (typeof response.data.error === "undefined") {
+                    var tracks = response.data.results.trackmatches.track,
+                        autoTracks = {};
 
-                for (var i in tracks) {
-                    var name = tracks[i].name;
+                    for (var i in tracks) {
+                        var name = tracks[i].name;
 
-                    autoTracks[name] = null;
+                        autoTracks[name] = null;
+                    }
+
+                    instance.updateData(autoTracks);
                 }
-
-                instance.updateData(autoTracks);
+                else {
+                    console.log(response);
+                }
             }, function (errResponse) {
-                if (errResponse.xhrStatus == "abort") { // Generated when $scope.autocompleteAbort is resolved
-
+                if (errResponse.xhrStatus != "abort") {
+                    console.log(errResponse);
                 }
             });
         }
