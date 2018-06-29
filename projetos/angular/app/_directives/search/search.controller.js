@@ -53,6 +53,7 @@ app.controller("SearchController", function ($scope, $location, $q, tracksServic
                             }
 
                             instance.updateData(autoTracks);
+                            instance.open();
                         }
                         else {
                             console.log(response);
@@ -76,6 +77,7 @@ app.controller("SearchController", function ($scope, $location, $q, tracksServic
                             }
 
                             instance.updateData(autoArtists);
+                            instance.open();
                         }
                         else {
                             console.log(response);
@@ -99,6 +101,7 @@ app.controller("SearchController", function ($scope, $location, $q, tracksServic
                             }
 
                             instance.updateData(autoAlbums);
+                            instance.open();
                         }
                         else {
                             console.log(response);
