@@ -1,4 +1,4 @@
-app.controller("SearchController", function ($scope, $location) {
+app.controller("SearchController", function ($scope, $location, $q, tracksService, artistsService, albumsService) {
     $scope.searchAvailable = true;
 
     $scope.onSubmit = function(key) {
@@ -25,7 +25,37 @@ app.controller("SearchController", function ($scope, $location) {
 
     $scope.$watch('key', function (newVal, oldVal) {
         if (newVal !== oldVal) {
+            // Unlock search
+
             $scope.searchAvailable = true;
+
+            // Autocomplete
+
+            if (typeof $scope.autocompleteAbort !== "undefined") {
+                $scope.autocompleteAbort.resolve();
+            }
+
+            $scope.autocompleteAbort = $q.defer();
+
+            var instance = $scope.instances.autocomplete[0],
+                limit = instance.options.limit;
+a = instance;
+            tracksService.getTrackSearch(newVal, 1, limit, $scope.autocompleteAbort.promise).then(function (response) {
+                var tracks = response.data.results.trackmatches.track,
+                    autoTracks = {};
+
+                for (var i in tracks) {
+                    var name = tracks[i].name;
+
+                    autoTracks[name] = null;
+                }
+
+                instance.updateData(autoTracks);
+            }, function (errResponse) {
+                if (errResponse.xhrStatus == "abort") { // Generated when $scope.autocompleteAbort is resolved
+
+                }
+            });
         }
     });
 

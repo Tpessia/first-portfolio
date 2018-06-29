@@ -323,6 +323,14 @@ materialize-video-fab .video-fab {
       background-color: transparent; }
   [by-country] .row .tabs .indicator {
     background-color: #ffccbc; }
+  [by-country] .row .tabs .progress {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    margin: 0;
+    background-color: #ffccbc; }
+    [by-country] .row .tabs .progress .indeterminate {
+      background-color: #ff5722; }
 [by-country] .row .tabs-content {
   height: auto !important; }
   [by-country] .row .tabs-content * {
@@ -502,7 +510,8 @@ materialize-video-fab .video-fab {
         right: 20px;
         font-size: 2.5rem;
         cursor: pointer; }
-    [search-wide] form input {
+    [search-wide] form .input-field input {
+      color: rgba(0, 0, 0, 0.87) !important;
       margin: 0 !important;
       padding: 0 55px !important;
       box-sizing: border-box !important;
@@ -510,26 +519,32 @@ materialize-video-fab .video-fab {
       height: 3.5rem !important;
       border-bottom: 1px solid #ffccbc !important;
       box-shadow: 0 1px 0 0 #ffccbc !important; }
-      [search-wide] form input::placeholder {
+      [search-wide] form .input-field input::placeholder {
         color: rgba(0, 0, 0, 0.5);
         transition: .3s color; }
-      [search-wide] form input:-ms-input-placeholder {
+      [search-wide] form .input-field input:-ms-input-placeholder {
         color: rgba(0, 0, 0, 0.5);
         transition: .3s color; }
-      [search-wide] form input::-ms-input-placeholder {
+      [search-wide] form .input-field input::-ms-input-placeholder {
         color: rgba(0, 0, 0, 0.5);
         transition: .3s color; }
-      [search-wide] form input.is-focus {
+      [search-wide] form .input-field input.is-focus {
         border-bottom: 1px solid #ff7043 !important;
         box-shadow: 0 1px 0 0 #ff7043 !important; }
-        [search-wide] form input.is-focus::placeholder {
+        [search-wide] form .input-field input.is-focus::placeholder {
           color: rgba(0, 0, 0, 0.65); }
-        [search-wide] form input.is-focus:-ms-input-placeholder {
+        [search-wide] form .input-field input.is-focus:-ms-input-placeholder {
           color: rgba(0, 0, 0, 0.65); }
-        [search-wide] form input.is-focus::-ms-input-placeholder {
+        [search-wide] form .input-field input.is-focus::-ms-input-placeholder {
           color: rgba(0, 0, 0, 0.65); }
-        [search-wide] form input.is-focus ~ .material-icons {
+        [search-wide] form .input-field input.is-focus ~ .material-icons {
           color: rgba(0, 0, 0, 0.75); }
+    [search-wide] form .input-field .autocomplete-content {
+      white-space: normal; }
+      [search-wide] form .input-field .autocomplete-content li span {
+        color: rgba(0, 0, 0, 0.87); }
+        [search-wide] form .input-field .autocomplete-content li span.highlight {
+          color: #ff7043; }
 
 [yt-player] {
   display: inline-block;

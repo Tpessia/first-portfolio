@@ -42,9 +42,14 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
             var limit = dft.limit;
         }
 
+        var progressBar = $$('.country .progress');
+        angular.element(progressBar).removeClass('hide');
+
         var countryCode = $scope.countries[country];
 
         geoService.getTracksByCountry(countryCode, page, limit).then(function (response) {
+            angular.element(progressBar).removeClass('artists-complete').addClass('hide');
+
             if (typeof response.data.error === "undefined") {
                 $scope.crountryTracks = response.data.tracks.track.slice(-limit);
 

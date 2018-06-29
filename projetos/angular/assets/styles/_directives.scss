@@ -168,6 +168,16 @@ materialize-video-fab {
             .indicator {
                 background-color: $primary-color-xl;
             }
+            .progress {
+                position : absolute;
+                z-index: 1;
+                bottom: 0;
+                margin: 0;
+                background-color : $primary-color-xl;;
+                .indeterminate {
+                    background-color: $primary-color;
+                }
+            }
         }
         .tabs-content {
             height: auto !important;
@@ -356,40 +366,54 @@ materialize-video-fab {
                 cursor: pointer;
             }
         }
-        input {
-            margin: 0 !important;
-            padding: 0 55px !important;
-            box-sizing: border-box !important;
-            font-size: 1.5rem !important;
-            height: 3.5rem !important;
-            border-bottom: 1px solid $primary-color-xl !important;
-            box-shadow: 0 1px 0 0 $primary-color-xl !important;
-            &::placeholder {
-                color: rgba(0, 0, 0, 0.5);
-                transition: .3s color;
-            }
-            &:-ms-input-placeholder {
-                color: rgba(0, 0, 0, 0.5);
-                transition: .3s color;
-            }
-            &::-ms-input-placeholder {
-                color: rgba(0, 0, 0, 0.5);
-                transition: .3s color;
-            }
-            &.is-focus {
-                border-bottom: 1px solid $primary-color-l !important;
-                box-shadow: 0 1px 0 0 $primary-color-l !important;
+        .input-field {
+            input {
+                color: rgba(0,0,0,0.87) !important;
+                margin: 0 !important;
+                padding: 0 55px !important;
+                box-sizing: border-box !important;
+                font-size: 1.5rem !important;
+                height: 3.5rem !important;
+                border-bottom: 1px solid $primary-color-xl !important;
+                box-shadow: 0 1px 0 0 $primary-color-xl !important;
                 &::placeholder {
-                    color: rgba(0, 0, 0, 0.65);
+                    color: rgba(0, 0, 0, 0.5);
+                    transition: .3s color;
                 }
                 &:-ms-input-placeholder {
-                    color: rgba(0, 0, 0, 0.65);
+                    color: rgba(0, 0, 0, 0.5);
+                    transition: .3s color;
                 }
                 &::-ms-input-placeholder {
-                    color: rgba(0, 0, 0, 0.65);
+                    color: rgba(0, 0, 0, 0.5);
+                    transition: .3s color;
                 }
-                &~.material-icons {
-                    color: rgba(0, 0, 0, 0.75);
+                &.is-focus {
+                    border-bottom: 1px solid $primary-color-l !important;
+                    box-shadow: 0 1px 0 0 $primary-color-l !important;
+                    &::placeholder {
+                        color: rgba(0, 0, 0, 0.65);
+                    }
+                    &:-ms-input-placeholder {
+                        color: rgba(0, 0, 0, 0.65);
+                    }
+                    &::-ms-input-placeholder {
+                        color: rgba(0, 0, 0, 0.65);
+                    }
+                    &~.material-icons {
+                        color: rgba(0, 0, 0, 0.75);
+                    }
+                }
+            }
+            .autocomplete-content {
+                white-space: normal;
+                li {
+                    span {
+                        color: rgba(0, 0, 0, 0.87);
+                        &.highlight {
+                            color: $primary-color-l;
+                        }
+                    }
                 }
             }
         }
