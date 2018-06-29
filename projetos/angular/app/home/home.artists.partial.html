@@ -2,13 +2,17 @@
 <ul id="top-artists" class="collection">
     <li ng-repeat="artist in artists" class="collection-item avatar">
         <img ng-src="{{ (artist.imgsDone) ? artist.image[1]['#text'] : '' }}" alt="{{ artist.name }}" class="circle">
-        <div class="title artist-name">{{ artist.name }}</div>
+        <div class="title artist-name">
+            <a ng-href="{{ searchFor('artist', artist.name) }}">
+                {{ artist.name }}
+            </a>
+        </div>
         <p class="description">
             Play Count: {{ artist.playcount }}
             <br>
             Listeners: {{ artist.listeners }}
         </p>
-        <a href="{{ searchFor('artist', artist.name) }}" class="secondary-content">
+        <a ng-href="{{ searchFor('artist', artist.name) }}" class="secondary-content">
             <i class="material-icons">more_vert</i>
         </a>
     </li>

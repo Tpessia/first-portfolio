@@ -228,15 +228,17 @@ app.controller("HomeController", function ($rootScope, $scope, $q, topsService, 
     // Search on click
 
     $scope.searchFor = function (type, value) {
+        var encodedValue = encodeURIComponent(value);
+
         switch (type) {
             case 'track':
-                return $rootScope.baseUrl + '#!/tracks?search=' + value;
+                return $rootScope.baseUrl + '#!/tracks?search=' + encodedValue;
                 break;
             case 'artist':
-                return $rootScope.baseUrl + '#!/artists?search=' + value;
+                return $rootScope.baseUrl + '#!/artists?search=' + encodedValue;
                 break;
             case 'album':
-                return $rootScope.baseUrl + '#!/albums?search=' + value;
+                return $rootScope.baseUrl + '#!/albums?search=' + encodedValue;
                 break;
             default:
                 throw 'Invalid video type "' + type + '"';

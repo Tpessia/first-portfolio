@@ -188,9 +188,7 @@ app.controller("ByCountryController", function ($rootScope, $scope, $q, geoServi
 
     $scope.searchByCountry = function (country) {
         if ($scope.instances.autocomplete[0].activeIndex == -1) { // User didn't choosed from autoselect
-            // instance.dropdown.close();
-            // angular.element(instance.el).triggerHandler('blur');
-            $$('body')[0].click()
+            $$('[by-country] .autocomplete')[0].blur();
 
             var result = $scope.countriesSearch.search(country);
 
@@ -222,15 +220,17 @@ app.controller("ByCountryController", function ($rootScope, $scope, $q, geoServi
     // Search on click
 
     $scope.searchFor = function (type, value) {
+        var encodedValue = encodeURIComponent(value);
+
         switch (type) {
             case 'track':
-                return $rootScope.baseUrl + '#!/tracks?search=' + value;
+                return $rootScope.baseUrl + '#!/tracks?search=' + encodedValue;
                 break;
             case 'artist':
-                return $rootScope.baseUrl + '#!/artists?search=' + value;
+                return $rootScope.baseUrl + '#!/artists?search=' + encodedValue;
                 break;
             case 'album':
-                return $rootScope.baseUrl + '#!/albums?search=' + value;
+                return $rootScope.baseUrl + '#!/albums?search=' + encodedValue;
                 break;
             default:
                 throw 'Invalid video type "' + type + '"';

@@ -694,6 +694,8 @@ body .home .tops .tops-list {
         padding-right: 40px; }
         body .home .tops .tops-list .panel-wrapper .collection .collection-item.avatar .title {
           font-weight: 500; }
+          body .home .tops .tops-list .panel-wrapper .collection .collection-item.avatar .title a {
+            color: inherit; }
         body .home .tops .tops-list .panel-wrapper .collection .collection-item.avatar .description {
           font-size: 0.9rem; }
         body .home .tops .tops-list .panel-wrapper .collection .collection-item .secondary-content i {
@@ -702,11 +704,11 @@ body .home .tops .tops-list {
           body .home .tops .tops-list .panel-wrapper .collection .collection-item .secondary-content i:hover {
             color: #bdbdbd; }
       body .home .tops .tops-list .panel-wrapper .collection#top-tracks .collection-item .artist-name {
-        display: block;
-        margin-bottom: 5px;
+        margin-top: -3px;
+        margin-bottom: 3px;
         line-height: 1; }
-        body .home .tops .tops-list .panel-wrapper .collection#top-tracks .collection-item .artist-name small {
-          display: block; }
+        body .home .tops .tops-list .panel-wrapper .collection#top-tracks .collection-item .artist-name a {
+          display: inline-block; }
       body .home .tops .tops-list .panel-wrapper .collection#top-tags .collection-item {
         text-transform: capitalize; }
   body .home .tops .tops-list .progress {

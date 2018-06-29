@@ -5,7 +5,7 @@ app.controller("SearchController", function ($scope, $location, $q, tracksServic
         var searchSuccess = $scope.onSearch({ searchKey: key });
         if (searchSuccess) {
             $scope.searchAvailable = false;
-            $$(".search-wide input")[0].blur();
+            $$("[search-wide] input")[0].blur();
         }
         else {
             M.toast({

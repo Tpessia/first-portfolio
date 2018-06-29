@@ -16,12 +16,14 @@ body {
                             &.avatar {
                                 .title {
                                     font-weight: 500;
+                                    a {
+                                        color: inherit;
+                                    }
                                 }
                                 .description {
                                     font-size: 0.9rem;
                                 }
                             }
-                            &:not(.avatar) {}
                             .secondary-content {
                                 i {
                                     transition: all 0.2s linear;
@@ -35,11 +37,14 @@ body {
                         &#top-tracks {
                             .collection-item {
                                 .artist-name {
-                                    display: block;
-                                    margin-bottom: 5px;
+                                    margin-top: -3px;
+                                    margin-bottom: 3px;
                                     line-height: 1;
-                                    small {
-                                        display: block;
+                                    a {
+                                        display: inline-block;
+                                        // small {
+                                        //     display: block;
+                                        // }
                                     }
                                 }
                             }

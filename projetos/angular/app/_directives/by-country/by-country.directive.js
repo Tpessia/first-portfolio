@@ -16,7 +16,7 @@ app.directive('byCountry', function () {
                     data: autoCountries,
                     limit: 3,
                     onAutocomplete: function (country) {
-                        element.triggerHandler('blur');
+                        $$('[by-country] .autocomplete')[0].blur();
                         
                         scope.currentCountry = country;
 
