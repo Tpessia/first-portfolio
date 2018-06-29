@@ -1,4 +1,4 @@
-app.controller("HomeController", function ($rootScope, $scope, topsService, tracksService) {
+app.controller("HomeController", function ($rootScope, $scope, $q, topsService, tracksService) {
 
     var dft = {
         page: 1,
@@ -12,13 +12,18 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
 
         var page = 1 + Math.floor(Math.random() * 20); // Page 1 to 20
 
-        topsService.getTopTracks(page, limit).then(function (response) {
+        if (typeof $scope.randomTracksAbort !== "undefined") { // prepare abort option
+            $scope.randomTracksAbort.resolve();
+        }
+        $scope.randomTracksAbort = $q.defer();
+
+        topsService.getTopTracks(page, limit, $scope.randomTracksAbort.promise).then(function (response) {
             if (typeof response.data.error === "undefined") {
                 $scope.rndTracks = response.data.tracks.track.slice(-limit);
 
                 for (var i in $scope.rndTracks) {
                     (function (j) {
-                        tracksService.getTrackInfo($scope.rndTracks[j].artist.name, $scope.rndTracks[j].name).then(function (response) {
+                        tracksService.getTrackInfo($scope.rndTracks[j].artist.name, $scope.rndTracks[j].name, $scope.randomTracksAbort.promise).then(function (response) {
                             if (typeof response.data.error === "undefined") {
                                 if (typeof response.data.track !== "undefined") {
                                     $scope.rndTracks[j].info = response.data.track;
@@ -29,8 +34,10 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
                             } else {
                                 console.log(response);
                             }
-                        }, function (errResponse) {                            
-                            console.log(errResponse);
+                        }, function (errResponse) {
+                            if (errResponse.xhrStatus != "abort") {
+                                console.log(errResponse);
+                            }
                         }).finally(function () {
                             if ($scope.rndTracks.length > 0 && $scope.rndTracks[j].image !== "undefined" && $scope.rndTracks[j].image[0]["#text"] == "") {
                                 $scope.rndTracks[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
@@ -45,9 +52,11 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
                 console.log(response);
             }
         }, function (errResponse) {
-            $scope.rndTracks = $scope.tracks;
+            if (errResponse.xhrStatus != "abort") {
+                $scope.rndTracks = $scope.tracks;
 
-            console.log(errResponse);
+                console.log(errResponse);
+            }
         });
     };
     $scope.getRandomTracks(5);
@@ -66,7 +75,12 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
 
         angular.element(progressBar).removeClass('hide');
 
-        topsService.getTopTracks(page, limit).then(function (response) {
+        if (typeof $scope.topTracksAbort !== "undefined") { // prepare abort option
+            $scope.topTracksAbort.resolve();
+        }
+        $scope.topTracksAbort = $q.defer();
+
+        topsService.getTopTracks(page, limit, $scope.topTracksAbort.promise).then(function (response) {
             angular.element(progressBar).addClass('hide');
 
             if (typeof response.data.error === "undefined") {
@@ -74,7 +88,7 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
 
                 for (var i in $scope.tracks) {
                     (function (j) {
-                        tracksService.getTrackInfo($scope.tracks[j].artist.name, $scope.tracks[j].name).then(function (response) {
+                        tracksService.getTrackInfo($scope.tracks[j].artist.name, $scope.tracks[j].name, $scope.topTracksAbort.promise).then(function (response) {
                             if (typeof response.data.error === "undefined") {
                                 if (typeof response.data.track !== "undefined") {
                                     $scope.tracks[j].info = response.data.track;
@@ -86,8 +100,10 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
                             else {
                                 console.log(response);
                             }
-                        }, function (errResponse) {                            
-                            console.log(errResponse)
+                        }, function (errResponse) {
+                            if (errResponse.xhrStatus != "abort") {
+                                console.log(errResponse)
+                            }
                         }).finally(function () {
                             if ($scope.tracks.length > 0 && $scope.tracks[j].image !== "undefined" && $scope.tracks[j].image[0]["#text"] == "") {
                                 $scope.tracks[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
@@ -102,9 +118,11 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
                 console.log(response);
             }
         }, function(errResponse) {
-            angular.element(progressBar).addClass('hide');
+            if (errResponse.xhrStatus != "abort") {
+                angular.element(progressBar).addClass('hide');
 
-            console.log(errResponse);
+                console.log(errResponse);
+            }
         });
     };
 
@@ -119,8 +137,13 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
         var progressBar = $$('#artists-wrapper .progress');
 
         angular.element(progressBar).removeClass('hide');
+
+        if (typeof $scope.topArtistsAbort !== "undefined") { // prepare abort option
+            $scope.topArtistsAbort.resolve();
+        }
+        $scope.topArtistsAbort = $q.defer();
         
-        topsService.getTopArtists(page, limit).then(function (response) {
+        topsService.getTopArtists(page, limit, $scope.topArtistsAbort.promise).then(function (response) {
             angular.element(progressBar).addClass('hide');
 
             if (typeof response.data.error === "undefined") {
@@ -134,9 +157,11 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
                 console.log(response);
             }
         }, function(errResponse) {
-            angular.element(progressBar).addClass('hide');
+            if (errResponse.xhrStatus != "abort") {
+                angular.element(progressBar).addClass('hide');
 
-            console.log(errResponse);
+                console.log(errResponse);
+            }
         });
     };
 
@@ -152,7 +177,12 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
 
         angular.element(progressBar).removeClass('hide');
 
-        topsService.getTopTags(page, limit).then(function (response) {
+        if (typeof $scope.topTagsAbort !== "undefined") { // prepare abort option
+            $scope.topTagsAbort.resolve();
+        }
+        $scope.topTagsAbort = $q.defer();
+
+        topsService.getTopTags(page, limit, $scope.topTagsAbort.promise).then(function (response) {
             angular.element(progressBar).addClass('hide');
 
             if (typeof response.data.error === "undefined") {
@@ -162,15 +192,17 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
                     (function(j) {
                         $scope.tags[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
 
-                        topsService.getTopArtistsByTag($scope.tags[j].name, page, limit).then(function (response) {
+                        topsService.getTopArtistsByTag($scope.tags[j].name, page, limit, $scope.topTagsAbort.promise).then(function (response) {
                             if (typeof response.data.error === "undefined") {
                                 $scope.tags[j].image = response.data.topartists.artist[0].image;
                             }
                             else {
                                 console.log(response);
                             }
-                        }, function (errResponse) {                            
-                            console.log(errResponse);
+                        }, function (errResponse) {
+                            if (errResponse.xhrStatus != "abort") {
+                                console.log(errResponse);
+                            }
                         }).finally(function () {
                             if ($scope.tags.length > 0 && $scope.tags[j].image !== "undefined" && $scope.tags[j].image[0]["#text"] == "") {
                                 $scope.tags[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
@@ -185,9 +217,11 @@ app.controller("HomeController", function ($rootScope, $scope, topsService, trac
                 console.log(response);
             }
         }, function(errResponse) {
-            angular.element(progressBar).addClass('hide');
+            if (errResponse.xhrStatus != "abort") {
+                angular.element(progressBar).addClass('hide');
 
-            console.log(errResponse);
+                console.log(errResponse);
+            }
         });
     };
 

@@ -1,4 +1,4 @@
-app.controller("ArtistsController", function ($rootScope, $scope, $location, artistsService, topsService) {
+app.controller("ArtistsController", function ($rootScope, $scope, $location, $q, artistsService, topsService) {
     var dft = {
         page: 1,
         limit: 5
@@ -16,7 +16,6 @@ app.controller("ArtistsController", function ($rootScope, $scope, $location, art
         }
 
         topsService.getTopArtists(page, limit).then(function (response) {
-
             if (typeof response.data.error === "undefined") {
                 $scope.artists = response.data.artists.artist.slice(-limit);
 
@@ -61,13 +60,18 @@ app.controller("ArtistsController", function ($rootScope, $scope, $location, art
             var limit = dft.limit;
         }
 
-        artistsService.getArtistSearch(artist, page, limit).then(function (response) {
+        if (typeof $scope.artistSearchAbort !== "undefined") { // prepare abort option
+            $scope.artistSearchAbort.resolve();
+        }
+        $scope.artistSearchAbort = $q.defer();
+
+        artistsService.getArtistSearch(artist, page, limit, $scope.artistSearchAbort.promise).then(function (response) {
             if (typeof response.data.error === "undefined") {
                 $scope.searchedArtists = response.data.results.artistmatches.artist.slice(-limit);
 
                 for (var i in $scope.searchedArtists) {
                     (function (j) {
-                        artistsService.getArtistInfo($scope.searchedArtists[j].name).then(function (response) {
+                        artistsService.getArtistInfo($scope.searchedArtists[j].name, $scope.artistSearchAbort.promise).then(function (response) {
                             if (typeof response.data.error === "undefined") {
                                 if (typeof response.data.artist !== "undefined") {
                                     $scope.searchedArtists[j].info = response.data.artist;
@@ -78,8 +82,10 @@ app.controller("ArtistsController", function ($rootScope, $scope, $location, art
                             } else {
                                 console.log(response.data);
                             }
-                        }, function (errResponse) {                            
-                            console.log(errResponse);
+                        }, function (errResponse) {
+                            if (errResponse.xhrStatus != "abort") {
+                                console.log(errResponse);
+                            }
                         }).finally(function () {
                             if ($scope.searchedArtists.length > 0 && $scope.searchedArtists[j].image !== "undefined" && $scope.searchedArtists[j].image[0]["#text"] == "") {
                                 $scope.searchedArtists[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
@@ -94,7 +100,9 @@ app.controller("ArtistsController", function ($rootScope, $scope, $location, art
                 console.log(response);
             }
         }, function (errResponse) {
-            console.log(errResponse);
+            if (errResponse.xhrStatus != "abort") {
+                console.log(errResponse);
+            }
         });
     };
 
@@ -175,6 +183,6 @@ app.controller("ArtistsController", function ($rootScope, $scope, $location, art
     // Scroll back to top
 
     $scope.backToTop = function () {
-        scrollTo(document.documentElement, $$('#search-results')[0].offsetTop - $$('nav')[0].offsetHeight, 600);
+        scrollTo($$('#search-results')[0].offsetTop - $$('nav')[0].offsetHeight, 600);
     };
 });

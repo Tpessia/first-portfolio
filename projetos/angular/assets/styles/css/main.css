@@ -257,8 +257,15 @@ body {
     margin-top: 0;
     margin-bottom: 0;
     padding: 15px 0; }
-    [materialize-pag] .pagination .active {
-      background-color: #ff7043; }
+    [materialize-pag] .pagination li {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none; }
+      [materialize-pag] .pagination li.active {
+        background-color: #ff7043; }
 
 materialize-video-fab .video-fab {
   position: absolute;
@@ -315,6 +322,8 @@ materialize-video-fab .video-fab {
         color: rgba(0, 0, 0, 0.87); }
         [by-country] .main-title .input-field .autocomplete-content li span.highlight {
           color: #ff7043; }
+[by-country] .row .not-found {
+  height: 150px; }
 [by-country] .row .tabs {
   margin-bottom: 30px; }
   [by-country] .row .tabs .tab a {
@@ -708,7 +717,7 @@ body .home .tops .tops-list {
       background-color: #ff5722; }
 
 body #search-results .results .not-found {
-  margin: 25px 15px 15px; }
+  height: 150px; }
 body #search-results .results .search-item:not(:last-child) {
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.4); }
@@ -866,6 +875,8 @@ body main .usersettings {
   body main .usersettings #modal-delete {
     max-width: 500px; }
 
+body .userplaylists .not-found {
+  height: 150px; }
 body .userplaylists .carousel-wrapper {
   overflow: hidden; }
 body .userplaylists .focused-playlist .playlist-title {

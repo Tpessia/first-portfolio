@@ -1,5 +1,5 @@
 <div class="row albums">
-    <div class="col s12 search" search-wide search-for="'Albums'" key="inputKey" on-search="onSearch(searchKey)" on-close="onClose()">
+    <div class="col s12 search" search-wide search-type="'Albums'" key="inputKey" on-search="onSearch(searchKey)" on-close="onClose()">
         <!-- Search Input -->
     </div>
     <div id="top-grid" class="col s12" ng-if="!isSearch">
@@ -41,7 +41,7 @@
                             <span class="label">Tracks:</span> <a ng-repeat="track in album.info.tracks.track" ng-href="{{ searchFor('track', album.artist + ' - ' + track.name) }}">{{ track.name }}</a>
                         </div>
                         <div class="tags" ng-if="album.info.tags.tag && album.info.tags.tag.length != 0">
-                            <span class="label">Tags:</span> <a ng-repeat="tag in album.info.tags.tag" ng-href="{{ tag.url }}">{{ tag.name }}</a>
+                            <span class="label">Tags:</span> <a ng-repeat="tag in album.info.tags.tag" ng-href="{{ tag.url }}" target="_blank">{{ tag.name }}</a>
                         </div>
                     </div>
                 </div>

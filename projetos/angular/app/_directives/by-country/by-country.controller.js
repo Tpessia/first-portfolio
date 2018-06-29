@@ -1,4 +1,4 @@
-app.controller("ByCountryController", function ($rootScope, $scope, geoService, tracksService, artistsService) {
+app.controller("ByCountryController", function ($rootScope, $scope, $q, geoService, tracksService, artistsService) {
     var dft = {
         page: 1,
         limit: 5
@@ -47,7 +47,12 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
 
         var countryCode = $scope.countries[country];
 
-        geoService.getTracksByCountry(countryCode, page, limit).then(function (response) {
+        if (typeof $scope.tracksCountryAbort !== "undefined") { // prepare abort option
+            $scope.tracksCountryAbort.resolve();
+        }
+        $scope.tracksCountryAbort = $q.defer();
+
+        geoService.getTracksByCountry(countryCode, page, limit, $scope.tracksCountryAbort.promise).then(function (response) {
             angular.element(progressBar).removeClass('artists-complete').addClass('hide');
 
             if (typeof response.data.error === "undefined") {
@@ -55,7 +60,7 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
 
                 for (var i in $scope.crountryTracks) {
                     (function (j) {
-                        tracksService.getTrackInfo($scope.crountryTracks[j].artist.name, $scope.crountryTracks[j].name).then(function (response) {
+                        tracksService.getTrackInfo($scope.crountryTracks[j].artist.name, $scope.crountryTracks[j].name, $scope.tracksCountryAbort.promise).then(function (response) {
                             if (typeof response.data.error === "undefined") {
                                 if (typeof response.data.track !== "undefined") {
                                     $scope.crountryTracks[j].info = response.data.track;
@@ -68,7 +73,9 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
                                 console.log(response);
                             }
                         }, function (errResponse) {                            
-                            console.log(errResponse)
+                            if (errResponse.xhrStatus != "abort") {
+                                console.log(errResponse);
+                            }
                         }).finally(function () {
                             if ($scope.crountryTracks.length > 0 && $scope.crountryTracks[j].image !== "undefined" && $scope.crountryTracks[j].image[0]["#text"] == "") {
                                 $scope.crountryTracks[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
@@ -83,7 +90,9 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
                 console.log(response);
             }
         }, function(errResponse) {
-            console.log(errResponse);
+            if (errResponse.xhrStatus != "abort") {
+                console.log(errResponse);
+            }
         });
     };
 
@@ -96,14 +105,19 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
         }
 
         var countryCode = $scope.countries[country];
+
+        if (typeof $scope.artistsCountryAbort !== "undefined") { // prepare abort option
+            $scope.artistsCountryAbort.resolve();
+        }
+        $scope.artistsCountryAbort = $q.defer();
         
-        geoService.getArtistsByCountry(countryCode, page, limit).then(function (response) {
+        geoService.getArtistsByCountry(countryCode, page, limit, $scope.artistsCountryAbort.promise).then(function (response) {
             if (typeof response.data.error === "undefined") {
                 $scope.crountryArtists = response.data.topartists.artist.slice(-limit);
 
                 for (var i in $scope.crountryArtists) {
                     (function (j) {
-                        artistsService.getArtistInfo($scope.crountryArtists[j].name).then(function (response) {
+                        artistsService.getArtistInfo($scope.crountryArtists[j].name, $scope.artistsCountryAbort.promise).then(function (response) {
                             if (typeof response.data.error === "undefined") {
                                 if (typeof response.data.artist !== "undefined") {
                                     $scope.crountryArtists[j].info = response.data.artist;
@@ -116,7 +130,9 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
                                 console.log(response);
                             }
                         }, function (errResponse) {                            
-                            console.log(errResponse)
+                            if (errResponse.xhrStatus != "abort") {
+                                console.log(errResponse);
+                            }
                         }).finally(function () {
                             if ($scope.crountryArtists.length > 0 && $scope.crountryArtists[j].image !== "undefined" && $scope.crountryArtists[j].image[0]["#text"] == "") {
                                 $scope.crountryArtists[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
@@ -131,7 +147,9 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
                 console.log(response);
             }
         }, function(errResponse) {
-            console.log(errResponse);
+            if (errResponse.xhrStatus != "abort") {
+                console.log(errResponse);
+            }
         });
     };
 
@@ -170,7 +188,8 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
 
     $scope.searchByCountry = function (country) {
         if ($scope.instances.autocomplete[0].activeIndex == -1) { // User didn't choosed from autoselect
-            // $scope.instances.autocomplete[0].close();
+            // instance.dropdown.close();
+            // angular.element(instance.el).triggerHandler('blur');
             $$('body')[0].click()
 
             var result = $scope.countriesSearch.search(country);
@@ -222,6 +241,6 @@ app.controller("ByCountryController", function ($rootScope, $scope, geoService, 
     // Scroll back to top
 
     $scope.backToTop = function () {
-        scrollTo(document.documentElement, $$('.country .tabs')[0].offsetTop - $$('nav')[0].offsetHeight, 600);
+        scrollTo($$('.country .tabs')[0].offsetTop - $$('nav')[0].offsetHeight, 600);
     };
 });

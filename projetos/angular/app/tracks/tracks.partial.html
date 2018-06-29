@@ -1,5 +1,5 @@
 <div class="row tracks">
-    <div class="col s12 search" search-wide search-for="'Tracks'" key="inputKey" on-search="onSearch(searchKey)" on-close="onClose()">
+    <div class="col s12 search" search-wide search-type="'Tracks'" key="inputKey" on-search="onSearch(searchKey)" on-close="onClose()">
         <!-- Search Input -->
     </div>
     <div id="top-grid" class="col s12" ng-if="!isSearch">
@@ -12,7 +12,9 @@
         <h3 class="main-title">RESULTS FOR "{{ searchKey }}"</h3>
         <div class="results">
             <div class="not-found" ng-show="!searchedTracks.length">
-                No results for "{{ searchKey }}"
+                <p>
+                    No results for "{{ searchKey }}"
+                </p>
             </div>
             <div class="row search-item" ng-repeat="track in searchedTracks">
                 <div class="img-box col s12 m6">

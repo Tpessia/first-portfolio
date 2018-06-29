@@ -1,5 +1,5 @@
 <div class="row artists">
-    <div class="col s12 search" search-wide search-for="'Artists'" key="inputKey" on-search="onSearch(searchKey)" on-close="onClose()">
+    <div class="col s12 search" search-wide search-type="'Artists'" key="inputKey" on-search="onSearch(searchKey)" on-close="onClose()">
         <!-- Search Input -->
     </div>
     <div id="top-grid" class="col s12" ng-if="!isSearch">
@@ -12,7 +12,9 @@
         <h3 class="main-title">RESULTS FOR "{{ searchKey }}"</h3>
         <div class="results">
             <div class="not-found" ng-show="!searchedArtists.length">
-                No results for "{{ searchKey }}"
+                <p>
+                    No results for "{{ searchKey }}"
+                </p>
             </div>
             <div class="row search-item" ng-repeat="artist in searchedArtists">
                 <div class="img-box col s12 m6">
@@ -36,7 +38,7 @@
                             <span class="label">Similar:</span> <a ng-repeat="similar in artist.info.similar.artist" ng-href="{{ searchFor('artist', similar.name) }}">{{ similar.name }}</a>
                         </div>
                         <div class="tags" ng-if="artist.info.tags.tag && artist.info.tags.tag.length != 0">
-                            <span class="label">Tags:</span> <a ng-repeat="tag in artist.info.tags.tag" ng-href="{{ tag.url }}">{{ tag.name }}</a>
+                            <span class="label">Tags:</span> <a ng-repeat="tag in artist.info.tags.tag" ng-href="{{ tag.url }}" target="_blank">{{ tag.name }}</a>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-app.controller("TracksController", function ($rootScope, $scope, $location, tracksService, topsService) {
+app.controller("TracksController", function ($rootScope, $scope, $location, $q, tracksService, topsService) {
     var dft = {
         page: 1,
         limit: 5
@@ -60,13 +60,18 @@ app.controller("TracksController", function ($rootScope, $scope, $location, trac
             var limit = dft.limit;
         }
 
-        tracksService.getTrackSearch(track, page, limit).then(function (response) {
+        if (typeof $scope.trackSearchAbort !== "undefined") { // prepare abort option
+            $scope.trackSearchAbort.resolve();
+        }
+        $scope.trackSearchAbort = $q.defer();
+
+        tracksService.getTrackSearch(track, page, limit, $scope.trackSearchAbort.promise).then(function (response) {
             if (typeof response.data.error === "undefined") {
                 $scope.searchedTracks = response.data.results.trackmatches.track.slice(-limit);
 
                 for (var i in $scope.searchedTracks) {
                     (function (j) {
-                        tracksService.getTrackInfo($scope.searchedTracks[j].artist, $scope.searchedTracks[j].name).then(function (response) {
+                        tracksService.getTrackInfo($scope.searchedTracks[j].artist, $scope.searchedTracks[j].name, $scope.trackSearchAbort.promise).then(function (response) {
                             if (typeof response.data.error === "undefined") {
                                 if (typeof response.data.track !== "undefined") {
                                     $scope.searchedTracks[j].info = response.data.track;
@@ -78,7 +83,9 @@ app.controller("TracksController", function ($rootScope, $scope, $location, trac
                                 console.log(response);
                             }
                         }, function (errResponse) {                            
-                            console.log(errResponse);
+                            if (errResponse.xhrStatus != "abort") {
+                                console.log(errResponse);
+                            }
                         }).finally(function () {
                             if ($scope.searchedTracks.length > 0 && $scope.searchedTracks[j].image !== "undefined" && $scope.searchedTracks[j].image[0]["#text"] == "") {
                                 $scope.searchedTracks[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
@@ -93,7 +100,9 @@ app.controller("TracksController", function ($rootScope, $scope, $location, trac
                 console.log(response);
             }
         }, function (errResponse) {
-            console.log(errResponse);
+            if (errResponse.xhrStatus != "abort") {
+                console.log(errResponse);
+            }
         });
     };
 
@@ -187,6 +196,6 @@ app.controller("TracksController", function ($rootScope, $scope, $location, trac
     // Scroll back to top
 
     $scope.backToTop = function () {
-        scrollTo(document.documentElement, $$('#search-results')[0].offsetTop - $$('nav')[0].offsetHeight, 600);
+        scrollTo($$('#search-results')[0].offsetTop - $$('nav')[0].offsetHeight, 600);
     };
 });

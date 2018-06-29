@@ -82,8 +82,11 @@
         margin-top: 0;
         margin-bottom: 0;
         padding: 15px 0;
-        .active {
-            background-color: $primary-color-l;
+        li {
+            @include user-select(none);
+            &.active {
+                background-color: $primary-color-l;
+            }
         }
     }
 }
@@ -155,6 +158,9 @@ materialize-video-fab {
         }
     }
     .row {
+        .not-found {
+            height: 150px;
+        }
         .tabs {
             margin-bottom: 30px;
             .tab {

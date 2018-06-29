@@ -1,10 +1,18 @@
 app.service("geoService", function ($http, apiKeysService) {
-    this.getTracksByCountry = function (country, page, limit) {
-        return $http.get('//ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&api_key=' + apiKeysService.getLastFmKey() + '&format=json&country=' + encodeURIComponent(country) + '&limit=' + encodeURIComponent(limit) + '&page=' + encodeURIComponent(page));
+    this.getTracksByCountry = function (country, page, limit, timeout) {
+        if (typeof timeout === "undefined") {
+            timeout = null;
+        }
+
+        return $http.get('//ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&api_key=' + apiKeysService.getLastFmKey() + '&format=json&country=' + encodeURIComponent(country) + '&limit=' + encodeURIComponent(limit) + '&page=' + encodeURIComponent(page), { timeout: timeout });
     };
 
-    this.getArtistsByCountry = function (country, page, limit) {
-        return $http.get('//ws.audioscrobbler.com/2.0/?method=geo.gettopartists&api_key=' + apiKeysService.getLastFmKey() + '&format=json&country=' + encodeURIComponent(country) + '&limit=' + encodeURIComponent(limit) + '&page=' + encodeURIComponent(page));
+    this.getArtistsByCountry = function (country, page, limit, timeout) {
+        if (typeof timeout === "undefined") {
+            timeout = null;
+        }
+
+        return $http.get('//ws.audioscrobbler.com/2.0/?method=geo.gettopartists&api_key=' + apiKeysService.getLastFmKey() + '&format=json&country=' + encodeURIComponent(country) + '&limit=' + encodeURIComponent(limit) + '&page=' + encodeURIComponent(page), { timeout: timeout });
     };
 
     this.getUserLocation = function () {

@@ -1,6 +1,8 @@
 var $$ = document.querySelectorAll.bind(document);
 
-function scrollTo(element, to, duration) {
+function scrollTo(to, duration) {
+    var element = document.documentElement || document.body;
+
     if (duration <= 0) return;
     var difference = to - element.scrollTop;
     var perTick = difference / duration * 10;
@@ -8,6 +10,6 @@ function scrollTo(element, to, duration) {
     setTimeout(function () {
         element.scrollTop = element.scrollTop + perTick;
         if (element.scrollTop === to) return;
-        scrollTo(element, to, duration - 10);
+        scrollTo(to, duration - 10);
     }, 10);
 }

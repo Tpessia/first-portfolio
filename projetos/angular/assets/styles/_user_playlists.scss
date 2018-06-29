@@ -1,5 +1,8 @@
 body {
     .userplaylists {
+        .not-found {
+            height: 150px;
+        }
         .carousel-wrapper {
             overflow: hidden;
         }

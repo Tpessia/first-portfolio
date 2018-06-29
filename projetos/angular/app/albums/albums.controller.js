@@ -1,4 +1,4 @@
-app.controller("AlbumsController", function ($rootScope, $scope, $location, albumsService, topsService, artistsService) {
+app.controller("AlbumsController", function ($rootScope, $scope, $location, $q, albumsService, topsService, artistsService) {
     var dft = {
         page: 1,
         limit: 5
@@ -79,13 +79,18 @@ app.controller("AlbumsController", function ($rootScope, $scope, $location, albu
             var limit = dft.limit;
         }
 
-        albumsService.getAlbumSearch(album, page, limit).then(function (response) {
+        if (typeof $scope.albumSearchAbort !== "undefined") { // prepare abort option
+            $scope.albumSearchAbort.resolve();
+        }
+        $scope.albumSearchAbort = $q.defer();
+
+        albumsService.getAlbumSearch(album, page, limit, $scope.albumSearchAbort.promise).then(function (response) {
             if (typeof response.data.error === "undefined") {
                 $scope.searchedAlbums = response.data.results.albummatches.album.slice(-limit);
 
                 for (var i in $scope.searchedAlbums) {
                     (function (j) {
-                        albumsService.getAlbumInfo($scope.searchedAlbums[j].artist, $scope.searchedAlbums[j].name).then(function (response) {
+                        albumsService.getAlbumInfo($scope.searchedAlbums[j].artist, $scope.searchedAlbums[j].name, $scope.albumSearchAbort.promise).then(function (response) {
                             if (typeof response.data.error === "undefined") {
                                 if (typeof response.data.album !== "undefined") {
                                     $scope.searchedAlbums[j].info = response.data.album;
@@ -97,7 +102,9 @@ app.controller("AlbumsController", function ($rootScope, $scope, $location, albu
                                 console.log(response.data);
                             }
                         }, function (errResponse) {                                
-                            console.log(errResponse);
+                            if (errResponse.xhrStatus != "abort") {
+                                console.log(errResponse);
+                            }
                         }).finally(function () {
                             if ($scope.searchedAlbums.length > 0 && $scope.searchedAlbums[j].image !== "undefined" && $scope.searchedAlbums[j].image[0]["#text"] == "") {
                                 $scope.searchedAlbums[j].image = [{'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}, {'#text': $rootScope.fallbackImg}];
@@ -112,7 +119,9 @@ app.controller("AlbumsController", function ($rootScope, $scope, $location, albu
                 console.log(response);
             }
         }, function (errResponse) {
-            console.log(errResponse);
+            if (errResponse.xhrStatus != "abort") {
+                console.log(errResponse);
+            }
         });
     };
 
@@ -203,6 +212,6 @@ app.controller("AlbumsController", function ($rootScope, $scope, $location, albu
     // Scroll back to top
 
     $scope.backToTop = function () {
-        scrollTo(document.documentElement, $$('#search-results')[0].offsetTop - $$('nav')[0].offsetHeight, 600);
+        scrollTo($$('#search-results')[0].offsetTop - $$('nav')[0].offsetHeight, 600);
     };
 });

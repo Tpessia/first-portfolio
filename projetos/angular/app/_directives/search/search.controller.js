@@ -24,43 +24,94 @@ app.controller("SearchController", function ($scope, $location, $q, tracksServic
     }
 
     $scope.$watch('key', function (newVal, oldVal) {
-        if (newVal !== oldVal) {
+        if (newVal !== oldVal && newVal != "") {
             // Unlock search
 
             $scope.searchAvailable = true;
 
             // Autocomplete
 
-            if (typeof $scope.autocompleteAbort !== "undefined") {
+            if (typeof $scope.autocompleteAbort !== "undefined") { // prepare abort option
                 $scope.autocompleteAbort.resolve();
             }
-
             $scope.autocompleteAbort = $q.defer();
 
-            var instance = $scope.instances.autocomplete[0],
+            var instance = M.Autocomplete.getInstance($scope.instances.autocomplete[0].el),
                 limit = instance.options.limit;
                 
-            tracksService.getTrackSearch(newVal, 1, limit, $scope.autocompleteAbort.promise).then(function (response) {
-                if (typeof response.data.error === "undefined" && typeof response.data.results !== "undefined") {
-                    var tracks = response.data.results.trackmatches.track,
-                        autoTracks = {};
+            switch ($scope.searchType) {
+                case 'Tracks':
+                    tracksService.getTrackSearch(newVal, 1, limit, $scope.autocompleteAbort.promise).then(function (response) {
+                        if (typeof response.data.error === "undefined" && typeof response.data.results !== "undefined") {
+                            var tracks = response.data.results.trackmatches.track,
+                                autoTracks = {};
 
-                    for (var i in tracks) {
-                        var name = tracks[i].name;
+                            for (var i in tracks) {
+                                var name = tracks[i].name;
 
-                        autoTracks[name] = null;
-                    }
+                                autoTracks[name] = null;
+                            }
 
-                    instance.updateData(autoTracks);
-                }
-                else {
-                    console.log(response);
-                }
-            }, function (errResponse) {
-                if (errResponse.xhrStatus != "abort") {
-                    console.log(errResponse);
-                }
-            });
+                            instance.updateData(autoTracks);
+                        }
+                        else {
+                            console.log(response);
+                        }
+                    }, function (errResponse) {
+                        if (errResponse.xhrStatus != "abort") {
+                            console.log(errResponse);
+                        }
+                    });
+                    break;
+                case 'Artists':
+                    artistsService.getArtistSearch(newVal, 1, limit, $scope.autocompleteAbort.promise).then(function (response) {
+                        if (typeof response.data.error === "undefined" && typeof response.data.results !== "undefined") {
+                            var artists = response.data.results.artistmatches.artist,
+                                autoArtists = {};
+
+                            for (var i in artists) {
+                                var name = artists[i].name;
+
+                                autoArtists[name] = null;
+                            }
+
+                            instance.updateData(autoArtists);
+                        }
+                        else {
+                            console.log(response);
+                        }
+                    }, function (errResponse) {
+                        if (errResponse.xhrStatus != "abort") {
+                            console.log(errResponse);
+                        }
+                    });
+                    break;
+                case 'Albums':
+                    albumsService.getAlbumSearch(newVal, 1, limit, $scope.autocompleteAbort.promise).then(function (response) {
+                        if (typeof response.data.error === "undefined" && typeof response.data.results !== "undefined") {
+                            var albums = response.data.results.albummatches.album,
+                                autoAlbums = {};
+
+                            for (var i in albums) {
+                                var name = albums[i].name;
+
+                                autoAlbums[name] = null;
+                            }
+
+                            instance.updateData(autoAlbums);
+                        }
+                        else {
+                            console.log(response);
+                        }
+                    }, function (errResponse) {
+                        if (errResponse.xhrStatus != "abort") {
+                            console.log(errResponse);
+                        }
+                    });
+                    break;
+                default:
+                    throw 'Invalid search type';
+            }
         }
     });
 

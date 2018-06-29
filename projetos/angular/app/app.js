@@ -53,7 +53,7 @@ app.run(function ($rootScope, $window, $timeout) {
 
     // Route change
 
-    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+    $rootScope.$on('$routeChangeSuccess', function ($event, current, previous) {
 
         // Change Title
 
@@ -61,9 +61,9 @@ app.run(function ($rootScope, $window, $timeout) {
         $rootScope.titleClass = current.$$route.title == '' ? 'home' : current.$$route.title.toLowerCase().replace(/ /g, "");
         
         // Scroll to Top
-        
+
         if (typeof previous !== "undefined" && current.$$route.originalPath != previous.$$route.originalPath) { // check if redirect or reload
-            $window.scrollTo(0, 0);
+            scrollTo(0, 10);
         }
     });
 

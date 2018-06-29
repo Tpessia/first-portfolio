@@ -1,7 +1,7 @@
 app.directive('searchWide', function () {
     return {
         scope: {
-            searchFor: '=',
+            searchType: '=',
             key: '=',
             onSearch: '&',
             onClose: '&'
@@ -9,7 +9,7 @@ app.directive('searchWide', function () {
         controller: 'SearchController',
         templateUrl: 'app/_directives/search/search.partial.html',
         link: function (scope, element, attr) {
-            scope.instances = {
+            a = scope.instances = {
                 autocomplete: M.Autocomplete.init($$('.autocomplete'), {
                     limit: 3,
                     onAutocomplete: function (key) {

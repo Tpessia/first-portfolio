@@ -28,7 +28,7 @@
 				<div class="card-stacked">
 					<div class="card-content">
 						<div class="data">
-							<a href="{{ searchFor('track', track.name) }}" class="track">{{ track.name }}</a> | <a href="{{ searchFor('artist', track.artist.name) }}" class="artist">{{ track.artist.name }}</a>
+							<a href="{{ searchFor('track', track.name + ' - ' + track.artist.name) }}" class="track">{{ track.name }}</a> | <a href="{{ searchFor('artist', track.artist.name) }}" class="artist">{{ track.artist.name }}</a>
 						</div>
 						<div class="counter">
 	                        <span class="listeners"><span class="label">Listeners:</span> {{ track.listeners }}</span>
@@ -57,7 +57,7 @@
 				<div class="card-stacked">
 					<div class="card-content">
 						<div class="data">
-							<a href="{{ searchFor('artist', artist.artist.name) }}" class="artist">{{ artist.name }}</a>
+							<a href="{{ searchFor('artist', artist.name) }}" class="artist">{{ artist.name }}</a>
 						</div>
 						<div class="counter">
 	                        <span class="listeners"><span class="label">Listeners:</span> {{ artist.listeners }}</span>
