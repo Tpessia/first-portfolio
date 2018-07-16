@@ -10,7 +10,9 @@ app.directive('byCountry', function () {
 
             scope.instances = {
                 tabs: M.Tabs.init($$('.tabs'), {
-                    swipeable: true
+                    swipeable: function () {
+                        return !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                    }
                 }),
                 autocomplete: M.Autocomplete.init($$('.autocomplete'), {
                     data: autoCountries,
