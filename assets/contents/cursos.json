@@ -50,10 +50,18 @@
         "url": "https://www.pluralsight.com/courses/bootstrap-3",
         "certificate_url": "/assets/img/certificados/bootstrap/certificado-bootstrap.jpg"
     },
+    "WordPress": {
+        "name": "WordPress",
+        "id": "7",
+        "tags": ["CMS"],
+        "img": "/assets/img/certificados/wordpress/wordpress.png",
+        "url": "https://www.youtube.com/playlist?list=PLpcSpRrAaOaqMA4RdhSnnNcaqOVpX7qi5",
+        "certificate_url": "/"
+    },
     "C# Básico": 
     { 
         "name": "C# Básico",
-        "id": "7", 
+        "id": "8", 
         "tags": ["Básico", "Back end"], 
         "img": "/assets/img/certificados/csharp/csharp.png",
         "url": "https://www.udemy.com/csharp-tutorial-for-beginners/",
@@ -62,7 +70,7 @@
     "C# Intermediário": 
     { 
         "name": "C# Intermediário",
-        "id": "8", 
+        "id": "9", 
         "tags": ["Intermediário", "Back end"], 
         "img": "/assets/img/certificados/csharp/csharp.png",
         "url": "https://www.udemy.com/csharp-intermediate-classes-interfaces-and-oop/",
@@ -71,10 +79,19 @@
     "C# Avançado": 
     { 
         "name": "C# Avançado",
-        "id": "9", 
+        "id": "10", 
         "tags": ["Avançado", "Back end"], 
         "img": "/assets/img/certificados/csharp/csharp.png",
         "url": "https://www.udemy.com/csharp-advanced/",
         "certificate_url": "/assets/img/certificados/csharp/certificado-csharp3.jpg"
+    },
+    "ASP.NET MVC 5":
+    {
+        "name": "ASP.NET MVC 5",
+        "id": "11", 
+        "tags": ["Avançado", "Back end"], 
+        "img": "/assets/img/certificados/aspnetmvc/aspnetmvc.png",
+        "url": "https://www.udemy.com/the-complete-aspnet-mvc-5-course",
+        "certificate_url": "/assets/img/certificados/aspnetmvc/certificado-aspnetmvc.jpg"
     }
 }

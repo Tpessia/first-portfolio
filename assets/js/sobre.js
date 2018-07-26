@@ -51,7 +51,7 @@ function bindAnimations() {
 }
 
 function clickHandlers() {
-    $(".tags div").on("click", function () { //click nas habilidades leva ao wikipedia
-        window.open("https://pt.wikipedia.org/wiki/" + $(this).html());
-    });
+    // $(".tags div").on("click", function () { //click nas habilidades leva ao wikipedia
+    //     window.open("https://pt.wikipedia.org/wiki/" + $(this).html());
+    // });
 }

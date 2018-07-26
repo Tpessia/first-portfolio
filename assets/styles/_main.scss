@@ -1,7 +1,7 @@
-$page-bg: #fff;
-$colorSubNav: #fff;
-$colorNav: #fff; //nav/footer color
-$navTextColor: #000;
+$page-bg: #ffffff;
+$colorSubNav: #e0e0e0;
+$colorNav: #ffffff; //nav/footer color
+$navTextColor: #000000;
 
 .colorNav {background-color: $colorNav !important;}
 $colorA: #1C2833; //main color
@@ -27,9 +27,9 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    @media (min-width: 1201px) {
-        padding-bottom: 66px;
-    }
+    // @media (min-width: 1201px) {
+    //     padding-bottom: 66px;
+    // }
 
     #ldn {
         display: none;
@@ -174,13 +174,23 @@ body {
                 padding-left: 80%;
                 border-top: 1px solid transparent;
                 @media (min-width: 601px) {
-                    margin-top: 80px;
+                    margin-top: 76px;
                 }
                 @media (max-width: 992px) {
                     padding-left: 0px;
                 }
                 .input-field {
                     margin-right: 3px;
+                    ::placeholder {
+                        color: rgba(0, 0, 0, 0.7);
+                        opacity: 1;
+                    }
+                    :-ms-input-placeholder {
+                        color: rgba(0, 0, 0, 0.7);
+                    }
+                    ::-ms-input-placeholder {
+                        color: rgba(0, 0, 0, 0.7);
+                    }
                     #searchVal {
                         color: lighten($navTextColor, 54%);
                         padding-right: 3.5em;
@@ -189,7 +199,8 @@ body {
                         box-sizing: border-box;
                         &:focus {
                             color: $navTextColor;
-                            &+#search {
+                            &~#search,
+                            &~#close {
                                 color: $navTextColor;
                             }
                         }
@@ -201,7 +212,7 @@ body {
                     }
                     #search {
                         cursor: default;
-                        color: lighten($navTextColor, 54%);
+                        color: rgba(0, 0, 0, 0.75);
                         right: auto;
                         left: 0.5em;
                         top: -11%;
@@ -277,13 +288,13 @@ body {
     }
 
     footer {
-        @media (min-width: 1201px) {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 5;
-        }
+        // @media (min-width: 1201px) {
+        //     position: fixed;
+        //     bottom: 0;
+        //     left: 0;
+        //     right: 0;
+        //     z-index: 5;
+        // }
         background-color: $colorNav !important;
         padding: 5px 10px 0 0;
         line-height: normal;

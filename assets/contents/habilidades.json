@@ -39,6 +39,11 @@
         "img": "/assets/img/habilidades/bootstrap.png",
         "level": "50"
     },
+    "ASP.NET MVC": {
+        "name": "ASP.NET MVC",
+        "img": "/assets/img/habilidades/aspnetmvc.png",
+        "level": "40"
+    },
     "C#": {
         "name": "C#",
         "img": "/assets/img/habilidades/csharp.png",
