@@ -56,9 +56,10 @@ RewriteCond %{HTTP_HOST} !=192.168.1.7:8080
 RewriteCond %{REMOTE_ADDR} !=127.0.0.1
 RewriteCond %{REMOTE_ADDR} !=::1
 RewriteCond %{REMOTE_ADDR} !=192.168.1.7:8080
-RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP_HOST} !^www\.thiagopessia\.com$ [NC]
-RewriteRule ^(.*)$ https://www.thiagopessia.com/$1 [L,R=301]
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 ErrorDocument 404 /404/
 
