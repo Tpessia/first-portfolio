@@ -56,7 +56,7 @@ function createContent() {
     gridHabilidades();
     
     function carouselProjetos() {
-        var carousel = '<div class="carousel-item %%ISWHITE%%"><div class="bg-carousel" style="background-image: url(%%IMG%%);" title="%%NAME%%"><a href="%%URL%%" target="_blank"><i class="material-icons">open_in_new</i></a></div></div>';
+        var carousel = '<div class="carousel-item %%ISWHITE%%"><div class="bg-carousel" style="background-image: url(%%IMG%%);" title="%%NAME%%"><a href="%%URL%%" target="_blank" class="open-project btn-floating waves-effect waves-light blue-grey darken-4"><i class="material-icons">open_in_new</i></a></div></div>';
 
         var carouselT = new TemplateManager(carousel);
 

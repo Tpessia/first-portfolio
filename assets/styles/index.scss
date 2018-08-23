@@ -27,6 +27,11 @@ body {
                         background-repeat: no-repeat;
                         background-position: center;
                         background-size: cover;
+                        .open-project {
+                            position: absolute;
+                            right: 25px;
+                            top: 25px;
+                        }
                     }
                     &.verMais {
                         background-color: rgba(0, 0, 0, 0.87) !important;

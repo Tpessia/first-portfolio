@@ -253,6 +253,10 @@ body main #projetos {
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover; }
+      body main #projetos .carousel .carousel-item .bg-carousel .open-project {
+        position: absolute;
+        right: 25px;
+        top: 25px; }
     body main #projetos .carousel .carousel-item.verMais {
       background-color: rgba(0, 0, 0, 0.87) !important;
       overflow-x: hidden; }
