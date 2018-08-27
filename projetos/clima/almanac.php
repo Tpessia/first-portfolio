@@ -11,7 +11,7 @@ $temp_low_record_year = new DateTime($data["almanac"]["temp_low"]["recordyear"] 
 $servername = $_SERVER["SERVER_ADDR"] == "127.0.0.1" ? "sql131.main-hosting.eu" : "mysql.hostinger.com.br";
 $dbname = "u643780299_clima";
 $username = "u643780299_admin";
-$password = "PoZvHuYgMtIp&314159";
+$password = "0123456789";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);

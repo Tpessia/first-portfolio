@@ -7,7 +7,7 @@ if ($params = json_decode(file_get_contents('php://input'),true)) {
 
     $servername = $_SERVER["SERVER_ADDR"] == "127.0.0.1" ? "sql131.main-hosting.eu" : "mysql.hostinger.com.br";
     $username = "u643780299_user1";
-    $password = "dInPbOsAaNcJ!314159";
+    $password = "0123456789";
     $dbname = "u643780299_noise";
 
     // Create connection
