@@ -5,9 +5,9 @@
 <body>
     <?php
         $servername = "mysql.hostinger.com.br";
-        $username = "u312806541_user";
+        $username = "u643780299_user";
         $password = "0123456789";
-        $dbname = "u312806541_db";
+        $dbname = "u643780299_db";
 
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);

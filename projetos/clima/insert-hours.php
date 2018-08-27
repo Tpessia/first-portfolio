@@ -1,7 +1,7 @@
 <?php
     $servername = $_SERVER["SERVER_ADDR"] == "127.0.0.1" ? "sql131.main-hosting.eu" : "mysql.hostinger.com.br";
-    $dbname = "u312806541_clima";
-    $username = "u312806541_admin";
+    $dbname = "u643780299_clima";
+    $username = "u643780299_admin";
     $password = "PoZvHuYgMtIp&314159";
 
     // Create connection

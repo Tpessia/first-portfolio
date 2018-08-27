@@ -46,8 +46,8 @@
     }
 
     $servername = $_SERVER["SERVER_ADDR"] == "127.0.0.1" ? "sql131.main-hosting.eu" : "mysql.hostinger.com.br";
-    $dbname = "u312806541_clima";
-    $username = "u312806541_admin";
+    $dbname = "u643780299_clima";
+    $username = "u643780299_admin";
     $password = "PoZvHuYgMtIp&314159";
     
     // SELECT maxtempm, meantempm, mintempm FROM `sao_paulo_summary` WHERE date BETWEEN "1996-06-30" AND "1996-07-30"
