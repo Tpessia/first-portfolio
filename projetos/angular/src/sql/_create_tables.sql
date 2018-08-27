@@ -1,4 +1,4 @@
-CREATE DEFINER=`u643780299_user1`@`189.8.93.10` PROCEDURE `_create_tables`()
+CREATE PROCEDURE `_create_tables`()
 BEGIN
 CREATE TABLE IF NOT EXISTS User (
 
