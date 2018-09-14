@@ -107,7 +107,7 @@ board.on('ready', function () { //on arduino ready
         });
 
         function requests() {
-            request('http://www.pessia.xyz/arduino/assets/php/input.bin' + '?' + Math.random(), function (error, response, body) {
+            request('http://www.thiagopessia.com/arduino/assets/php/input.bin' + '?' + Math.random(), function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var data = parseInt(body);
                     // console.log(data); // Print the body of response.
@@ -118,13 +118,13 @@ board.on('ready', function () { //on arduino ready
                 }
             });
 
-            request('http://www.pessia.xyz/arduino/assets/php/serverStatus.php', function (error, response, body) {
+            request('http://www.thiagopessia.com/arduino/assets/php/serverStatus.php', function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     //send connection
                 }
             });
 
-            request('http://www.pessia.xyz/arduino/assets/php/ledStatus.php' + '?' + 'output=' + currentState, function (error, response, body) {
+            request('http://www.thiagopessia.com/arduino/assets/php/ledStatus.php' + '?' + 'output=' + currentState, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     //send connection
                 }

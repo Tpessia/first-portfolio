@@ -20,7 +20,7 @@ board.on('ready', function () { //on arduino ready
     var interval = setInterval(requests, 1000);
     var sending = false;
     function requests() {
-        request('http://www.pessia.xyz/arduino/assets/php/portao.bin' + '?' + (Math.random() * Math.random()), function (error, response, body) {
+        request('http://www.thiagopessia.com/arduino/assets/php/portao.bin' + '?' + (Math.random() * Math.random()), function (error, response, body) {
             // receive input
             if (!error && response.statusCode == 200) {
                 var data = parseInt(body);
@@ -35,7 +35,7 @@ board.on('ready', function () { //on arduino ready
             }
         });
 
-        request('http://www.pessia.xyz/arduino/assets/php/input.bin' + '?' + (Math.random() * Math.random()), function (error, response, body) {
+        request('http://www.thiagopessia.com/arduino/assets/php/input.bin' + '?' + (Math.random() * Math.random()), function (error, response, body) {
             // receive input
             if (!error && response.statusCode == 200) {
                 var data = parseInt(body);
@@ -47,8 +47,8 @@ board.on('ready', function () { //on arduino ready
             }
         });
 
-        request('http://www.pessia.xyz/arduino/assets/php/ledStatus.php' + '?' + 'output=' + currentState);
+        request('http://www.thiagopessia.com/arduino/assets/php/ledStatus.php' + '?' + 'output=' + currentState);
 
-        request('http://www.pessia.xyz/arduino/assets/php/serverStatus.php');
+        request('http://www.thiagopessia.com/arduino/assets/php/serverStatus.php');
     }
 });

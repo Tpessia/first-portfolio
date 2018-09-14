@@ -21,7 +21,7 @@ function do_post_request($url, $data, $optional_headers = null)
   return $response;
 }
 
-$url = "https://www.pessia.xyz/projetos/php-requests/index.php";
+$url = "https://www.thiagopessia.com/projetos/php-requests/index.php";
 
 $data = array(
     "teste" => "1"    

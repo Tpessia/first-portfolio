@@ -14,7 +14,7 @@
 		ledStatus = 0;
 		function ajax() {
 			$.ajax({
-				url: "http://www.pessia.xyz/arduino/assets/php/serverStatus.php", //envia uma conexao vazia
+				url: "http://www.thiagopessia.com/arduino/assets/php/serverStatus.php", //envia uma conexao vazia
 				success: function (data) {
 					$("#svStatus").html("You are simulating the server! " + data);
 				},
@@ -24,7 +24,7 @@
 			});
 
 			$.ajax({
-				url: "http://www.pessia.xyz/arduino/assets/php/input.bin"  + "?" + Math.random(), //recebe o input do usuario
+				url: "http://www.thiagopessia.com/arduino/assets/php/input.bin"  + "?" + Math.random(), //recebe o input do usuario
 				success: function (data) {
 					ledStatus = data;
 					$("#in").html("Input ok " + data);
@@ -35,7 +35,7 @@
 			});
 
 			$.ajax({
-				url: "http://www.pessia.xyz/arduino/assets/php/portao.bin" + "?" + Math.random(), //recebe o input do usuario
+				url: "http://www.thiagopessia.com/arduino/assets/php/portao.bin" + "?" + Math.random(), //recebe o input do usuario
 				success: function (data) {
 					$("#portao").html("Portao ok " + data);
 				},
@@ -45,7 +45,7 @@
 			});
 
 			$.ajax({
-				url: "http://www.pessia.xyz/arduino/assets/php/ledStatus.php?output=" + ledStatus, //finge que o valor recebido foi enviado ao led da placa
+				url: "http://www.thiagopessia.com/arduino/assets/php/ledStatus.php?output=" + ledStatus, //finge que o valor recebido foi enviado ao led da placa
 				success: function (data) {
 					$("#out").html("Output ok " + data);
 				},

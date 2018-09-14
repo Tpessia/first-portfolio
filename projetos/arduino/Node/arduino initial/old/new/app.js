@@ -85,7 +85,7 @@ board.on('ready', function () { //on arduino ready
 
         client.on('ajax', function () {
             // $.ajax({
-            //     url: "http://www.pessia.xyz/projetos/arduino/",
+            //     url: "http://www.thiagopessia.com/projetos/arduino/",
             //     success: function(data) {
             //         console.log("received");
             //         toggle(data); //call change function, sending the range value via parameter
@@ -94,7 +94,7 @@ board.on('ready', function () { //on arduino ready
             //         client.broadcast.emit('state', data); //send the value to all clients, including the one which the value was sent from
             //     }
             // })
-            request('http://www.pessia.xyz/projetos/arduino/bin.php', function (error, response, body) {
+            request('http://www.thiagopessia.com/projetos/arduino/bin.php', function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var data = parseInt(body);
                     console.log(data); // Print the body of response.

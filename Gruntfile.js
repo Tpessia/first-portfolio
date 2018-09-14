@@ -80,7 +80,7 @@ module.exports = function (grunt) {
             dist: {
                 pattern: ['Views/*.html', '!Views/403.html'],
                 siteRoot: './',
-                homepage: 'http://www.pessia.xyz',
+                homepage: 'http://www.thiagopessia.com',
                 changefreq: 'monthly',
             }
         },
