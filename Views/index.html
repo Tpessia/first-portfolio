@@ -3,12 +3,14 @@
 <head>
     <!-- Head -->
     @@include('Shared/head.html', {"file":"index","title":"Thiago Pessia","description":"Entre no meu portfolio e veja meus projetos, habilidades, hobbies e muito mais!"})
+    <script src="/lib/particles.min.js"></script>
+    <script src="/assets/js/particles.js"></script>
 </head>
 <body class="loading">
     <!-- Header -->
     @@include('Shared/header.html', {"index": "active"})
     <main>
-        <section>
+        <section id="projetos-container">
             <div class="container">
                 <div id="projetos" class="row valign-wrapper">
                     <div class="col s12 l5">
@@ -43,7 +45,8 @@
                 </div>
             </div>
         </section>
-        <section class="blue-grey darken-4">
+        <section id="cursos-container">
+            <div id="particles-js"></div>
             <div class="container">
                 <div id="cursos" class="row">
                     <div class="col s12">
@@ -70,7 +73,7 @@
                 </div>
             </div>
         </section>
-        <section>
+        <section id="habilidades-container">
             <div class="container">
                 <div id="habilidades" class="row">
                     <div class="col s12">

@@ -237,56 +237,56 @@ body {
 @media (min-width: 1201px) {
   body .container {
     width: 70% !important; } }
-body main #projetos {
+body main #projetos-container #projetos {
   margin-bottom: 50px; }
   @media (min-width: 601px) {
-    body main #projetos {
+    body main #projetos-container #projetos {
       margin-top: 50px; } }
   @media (max-width: 992px) {
-    body main #projetos {
+    body main #projetos-container #projetos {
       display: block; } }
-  body main #projetos .carousel {
+  body main #projetos-container #projetos .carousel {
     height: 400px !important; }
-    body main #projetos .carousel .carousel-item .bg-carousel {
+    body main #projetos-container #projetos .carousel .carousel-item .bg-carousel {
       height: 100%;
       width: 100%;
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover; }
-      body main #projetos .carousel .carousel-item .bg-carousel .open-project {
+      body main #projetos-container #projetos .carousel .carousel-item .bg-carousel .open-project {
         position: absolute;
         right: 25px;
         top: 25px; }
-    body main #projetos .carousel .carousel-item.verMais {
+    body main #projetos-container #projetos .carousel .carousel-item.verMais {
       background-color: rgba(0, 0, 0, 0.87) !important;
       overflow-x: hidden; }
-      body main #projetos .carousel .carousel-item.verMais .text {
+      body main #projetos-container #projetos .carousel .carousel-item.verMais .text {
         color: white !important;
         padding-top: 100px;
         font-size: 3.5rem; }
-      body main #projetos .carousel .carousel-item.verMais .arrow {
+      body main #projetos-container #projetos .carousel .carousel-item.verMais .arrow {
         width: 200px;
         margin-top: -50px;
         left: 0px; }
-    body main #projetos .carousel .carousel-item.active.iswhite ~ .indicators .indicator-item {
+    body main #projetos-container #projetos .carousel .carousel-item.active.iswhite ~ .indicators .indicator-item {
       -webkit-filter: invert(100%);
       filter: invert(100%); }
-  body main #projetos div h1 {
+  body main #projetos-container #projetos div h1 {
     letter-spacing: 1.5vw;
     text-transform: uppercase;
     font-size: 8rem; }
-  body main #projetos div.hide-on-large-only h1 {
+  body main #projetos-container #projetos div.hide-on-large-only h1 {
     letter-spacing: 5px;
     font-size: 12vw; }
-  body main #projetos div.hide-on-med-and-up .col {
+  body main #projetos-container #projetos div.hide-on-med-and-up .col {
     padding: 0 !important; }
-    body main #projetos div.hide-on-med-and-up .col .bg-projetos {
+    body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos {
       height: 275px;
       position: relative;
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover; }
-      body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos {
+      body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos {
         position: absolute;
         transition: all 0.7s;
         padding: 20px;
@@ -303,16 +303,16 @@ body main #projetos {
         left: 50%;
         transform: translate(-50%, -49.8%);
         overflow: hidden; }
-        body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos .title {
+        body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos .title {
           line-height: normal;
           font-size: 7vw;
           max-width: 95%; }
-        body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos .hidden-content {
+        body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos .hidden-content {
           font-size: 1rem;
           transition: all 0.7s;
           height: 0;
           opacity: 0; }
-        body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos .visitar {
+        body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos .visitar {
           transition: all 0.7s;
           bottom: 0;
           cursor: pointer;
@@ -321,11 +321,11 @@ body main #projetos {
           padding: 20px;
           font-weight: 400;
           opacity: 0; }
-          body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos .visitar.disabled {
+          body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos .visitar.disabled {
             color: #039be542;
             cursor: default !important;
             pointer-events: none; }
-        body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos:not(.mobileAnim) .title {
+        body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos:not(.mobileAnim) .title {
           display: flex;
           justify-content: center;
           text-align: center;
@@ -333,23 +333,23 @@ body main #projetos {
           top: 50%;
           transform: translateY(-50%);
           width: calc(100% - 40px); }
-        body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos:not(.mobileAnim) .hidden-content {
+        body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos:not(.mobileAnim) .hidden-content {
           transition: opacity 0s; }
-        body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos:not(.mobileAnim) .visitar {
+        body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos:not(.mobileAnim) .visitar {
           pointer-events: none;
           cursor: default;
           transition: opacity 0s; }
-        body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos.mobileAnim {
+        body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos.mobileAnim {
           width: 100%;
           height: inherit;
           max-width: 100%;
           max-height: 100%;
           border-radius: unset; }
-          body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos.mobileAnim .hidden-content {
+          body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos.mobileAnim .hidden-content {
             height: calc(275px / 2);
             margin-top: 10px;
             opacity: 1; }
-          body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos.mobileAnim .close {
+          body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos.mobileAnim .close {
             cursor: pointer;
             top: 0;
             right: 0;
@@ -358,113 +358,121 @@ body main #projetos {
             padding: 10px 20px;
             font-size: 4vw;
             display: block !important; }
-          body main #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos.mobileAnim .visitar {
+          body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos .content-projetos.mobileAnim .visitar {
             opacity: 1; }
-      body main #projetos div.hide-on-med-and-up .col .bg-projetos.verMais {
+      body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos.verMais {
         background-color: rgba(0, 0, 0, 0.87) !important;
         overflow-x: hidden;
         text-align: center; }
-        body main #projetos div.hide-on-med-and-up .col .bg-projetos.verMais .text {
+        body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos.verMais .text {
           color: #fff !important;
           padding-top: 85px;
           font-size: 8vw; }
-        body main #projetos div.hide-on-med-and-up .col .bg-projetos.verMais .arrow {
+        body main #projetos-container #projetos div.hide-on-med-and-up .col .bg-projetos.verMais .arrow {
           width: 115px;
           margin-top: -25px;
           left: 0; }
-body main #cursos .card {
-  overflow: hidden; }
-  body main #cursos .card .card-image {
+body main #cursos-container {
+  background-color: #323232;
+  position: relative; }
+  body main #cursos-container #cursos .card {
     overflow: hidden;
-    height: 170px; }
-    body main #cursos .card .card-image .card-bg {
-      height: 100%;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat; }
-  body main #cursos .card .card-action {
-    padding: 14px 21px; }
-  body main #cursos .card .card-reveal {
-    transition: transform .7s; }
-    body main #cursos .card .card-reveal .card-title {
-      pointer-events: none; }
-      body main #cursos .card .card-reveal .card-title .certificate {
-        pointer-events: auto; }
-        body main #cursos .card .card-reveal .card-title .certificate img {
-          width: 30px;
-          float: right; }
-    body main #cursos .card .card-reveal .tags {
-      margin: 5px 0 0 -5px;
-      max-height: 115px;
-      overflow: auto; }
-      body main #cursos .card .card-reveal .tags div {
-        display: inline-block;
-        font-size: 1rem;
-        min-width: 50px;
-        text-align: center;
-        border: 1px solid rgba(0, 0, 0, 0.8);
-        margin: 4px 5px;
-        padding: 2px 5px;
-        cursor: default; }
-    body main #cursos .card .card-reveal .course-link {
-      position: absolute;
-      bottom: 15px; }
-      body main #cursos .card .card-reveal .course-link a {
-        cursor: pointer;
-        font-size: 1.2rem;
-        font-weight: 300;
-        transition: color .3s; }
-        body main #cursos .card .card-reveal .course-link a:active {
-          color: black; }
-    body main #cursos .card .card-reveal.preTop {
-      display: block;
-      transform: translate(0, -200%); }
-    body main #cursos .card .card-reveal.fromTop {
-      display: block;
-      transform: translate(0, -100%); }
-    body main #cursos .card .card-reveal.preBottom {
-      display: block; }
-    body main #cursos .card .card-reveal.fromBottom {
-      display: block;
-      transform: translateY(-100%); }
-    body main #cursos .card .card-reveal.preRight {
-      display: block;
-      transform: translate(100%, -100%); }
-    body main #cursos .card .card-reveal.fromRight {
-      display: block;
-      transform: translate(0, -100%); }
-    body main #cursos .card .card-reveal.preLeft {
-      display: block;
-      transform: translate(-100%, -100%); }
-    body main #cursos .card .card-reveal.fromLeft {
-      display: block;
-      transform: translate(0, -100%); }
-body main #cursos .verMais .card-bg {
-  background-color: #f5f5f5;
-  text-align: center; }
-  body main #cursos .verMais .card-bg .text {
-    color: black;
-    font-size: 2rem;
-    padding-top: 50px; }
-  body main #cursos .verMais .card-bg .arrow {
-    width: 100px !important;
-    margin: -15px auto 0 auto; }
-body main #cursos .verMais .card-action {
-  color: transparent !important;
-  background-color: #f5f5f5 !important;
-  border-top: 1px solid #f5f5f5 !important; }
-body main #habilidades .col {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0; }
+    body main #cursos-container #cursos .card .card-image {
+      overflow: hidden;
+      height: 170px; }
+      body main #cursos-container #cursos .card .card-image .card-bg {
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat; }
+    body main #cursos-container #cursos .card .card-action {
+      padding: 14px 21px; }
+    body main #cursos-container #cursos .card .card-reveal {
+      transition: transform .7s; }
+      body main #cursos-container #cursos .card .card-reveal .card-title {
+        pointer-events: none; }
+        body main #cursos-container #cursos .card .card-reveal .card-title .certificate {
+          pointer-events: auto; }
+          body main #cursos-container #cursos .card .card-reveal .card-title .certificate img {
+            width: 30px;
+            float: right; }
+      body main #cursos-container #cursos .card .card-reveal .tags {
+        margin: 5px 0 0 -5px;
+        max-height: 115px;
+        overflow: auto; }
+        body main #cursos-container #cursos .card .card-reveal .tags div {
+          display: inline-block;
+          font-size: 1rem;
+          min-width: 50px;
+          text-align: center;
+          border: 1px solid rgba(0, 0, 0, 0.8);
+          margin: 4px 5px;
+          padding: 2px 5px;
+          cursor: default; }
+      body main #cursos-container #cursos .card .card-reveal .course-link {
+        position: absolute;
+        bottom: 15px; }
+        body main #cursos-container #cursos .card .card-reveal .course-link a {
+          cursor: pointer;
+          font-size: 1.2rem;
+          font-weight: 300;
+          transition: color .3s; }
+          body main #cursos-container #cursos .card .card-reveal .course-link a:active {
+            color: black; }
+      body main #cursos-container #cursos .card .card-reveal.preTop {
+        display: block;
+        transform: translate(0, -200%); }
+      body main #cursos-container #cursos .card .card-reveal.fromTop {
+        display: block;
+        transform: translate(0, -100%); }
+      body main #cursos-container #cursos .card .card-reveal.preBottom {
+        display: block; }
+      body main #cursos-container #cursos .card .card-reveal.fromBottom {
+        display: block;
+        transform: translateY(-100%); }
+      body main #cursos-container #cursos .card .card-reveal.preRight {
+        display: block;
+        transform: translate(100%, -100%); }
+      body main #cursos-container #cursos .card .card-reveal.fromRight {
+        display: block;
+        transform: translate(0, -100%); }
+      body main #cursos-container #cursos .card .card-reveal.preLeft {
+        display: block;
+        transform: translate(-100%, -100%); }
+      body main #cursos-container #cursos .card .card-reveal.fromLeft {
+        display: block;
+        transform: translate(0, -100%); }
+  body main #cursos-container #cursos .verMais .card-bg {
+    background-color: #f5f5f5;
+    text-align: center; }
+    body main #cursos-container #cursos .verMais .card-bg .text {
+      color: black;
+      font-size: 2rem;
+      padding-top: 50px; }
+    body main #cursos-container #cursos .verMais .card-bg .arrow {
+      width: 100px !important;
+      margin: -15px auto 0 auto; }
+  body main #cursos-container #cursos .verMais .card-action {
+    color: transparent !important;
+    background-color: #f5f5f5 !important;
+    border-top: 1px solid #f5f5f5 !important; }
+  body main #cursos-container #particles-js {
+    position: absolute;
+    width: 100%; }
+body main #habilidades-container #habilidades .col {
   margin-bottom: 2.5vw; }
-  body main #habilidades .col div {
+  body main #habilidades-container #habilidades .col div {
     text-align: center; }
     @media (min-width: 601px) {
-      body main #habilidades .col div:nth-child(3n+2) {
+      body main #habilidades-container #habilidades .col div:nth-child(3n+2) {
         text-align: left; }
-      body main #habilidades .col div:nth-child(3n+3) {
+      body main #habilidades-container #habilidades .col div:nth-child(3n+3) {
         text-align: center; }
-      body main #habilidades .col div:nth-child(3n+4) {
+      body main #habilidades-container #habilidades .col div:nth-child(3n+4) {
         text-align: right; } }
-    body main #habilidades .col div img {
+    body main #habilidades-container #habilidades .col div img {
       width: 65%;
       padding: 5%; }
 body main #cursos h1,

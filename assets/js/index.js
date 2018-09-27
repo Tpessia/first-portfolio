@@ -56,7 +56,7 @@ function createContent() {
     gridHabilidades();
     
     function carouselProjetos() {
-        var carousel = '<div class="carousel-item %%ISWHITE%%"><div class="bg-carousel" style="background-image: url(%%IMG%%);" title="%%NAME%%"><a href="%%URL%%" target="_blank" class="open-project btn-floating waves-effect waves-light blue-grey darken-4"><i class="material-icons">open_in_new</i></a></div></div>';
+        var carousel = '<div class="carousel-item %%ISWHITE%%"><a href="%%URL%%" target="_blank"><div class="bg-carousel" style="background-image: url(%%IMG%%);" title="%%NAME%%"></div></a></div>';
 
         var carouselT = new TemplateManager(carousel);
 
@@ -103,13 +103,15 @@ function createContent() {
 }
 
 function initializers() {
-    var elem = document.querySelector('.carousel');
-    $('.carousel.carousel-slider').carousel({
-        fullWidth: true,
-        indicators: true
+    //Materialize
+    $('.tooltipped').tooltip({
+        delay: 100
     });
 
-    $('.tooltipped').tooltip();
+    $('.carousel').carousel({
+        fullWidth: true,
+        indicators: true
+    });    
 }
 
 function bindAnimations() {
@@ -130,17 +132,16 @@ function bindAnimations() {
         }
     });
 
-    // $("#projetos .carousel .verMais").on("mouseenter", function () {
-    //     $arrow = $(this).find(".arrow");
-    //     $arrow.animate({
-    //         'margin-left': '150%'
-    //     }, 500, function () {
-    //         $arrow.css('margin-left', '-150%');
-    //         $arrow.animate({
-    //             'margin-left': '0'
-    //         }, 500);
-    //     });
-    // });
+    var interval = setInterval(function () {
+        $('.carousel').carousel('next');
+    }, 3500);
+    $('.carousel').on("click", function () {
+        clearInterval(interval);
+
+        interval = setInterval(function () {
+            $('.carousel').carousel('next');
+        }, 3500);
+    });
 }
 
 function clickHandlers() {
