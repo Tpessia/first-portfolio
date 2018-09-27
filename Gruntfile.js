@@ -14,32 +14,32 @@ module.exports = function (grunt) {
         },
 
         sass: {
-            // options: {
-            //     sourcemap: 'none',
-            // },
             dist: {
+                options: {
+                    style: "compressed"
+                },
                 files: [{
                     expand: true,
                     cwd: 'assets/styles',
                     src: ['*.scss'],
                     dest: 'assets/styles/css',
-                    ext: '.css'
+                    ext: '.min.css'
                 }]
             }
         },
 
-        cssmin: {
+        uglify: {
             options: {
                 sourceMap: true
             },
-            target: {
-                files: [{
-                    expand: true,
-                    cwd: './',
-                    src: ['assets/styles/css/*.css', 'assets/styles/css/!*.min.css'],
-                    dest: 'assets/styles/css/min',
-                    ext: '.min.css'
-                }]
+            my_target: {
+                files: {
+                    'assets/js/min/index.min.js': ['assets/js/main.js', 'assets/js/index.js'],
+                    'assets/js/min/projetos.min.js': ['assets/js/main.js', 'assets/js/projetos.js'],
+                    'assets/js/min/sobre.min.js': ['assets/js/main.js', 'assets/js/sobre.js'],
+                    'assets/js/min/contato.min.js': ['assets/js/main.js', 'assets/js/contato.js'],
+                    'assets/js/min/error.min.js': ['assets/js/main.js', 'assets/js/error.js'],
+                }
             }
         },
 
@@ -47,9 +47,6 @@ module.exports = function (grunt) {
             options: {
                 globals: {
                     main_title: "Pessia",
-                    title: "Pessia",
-                    description: "",
-                    file: "index",
                     index: "",
                     projetos: "",
                     sobre: "",
@@ -88,7 +85,12 @@ module.exports = function (grunt) {
         watch: {
             sass: {
                 files: 'assets/styles/*.scss',
-                tasks: ['sass'/*, 'cssmin'*/]
+                tasks: ['sass']
+            },
+
+            sass: {
+                files: 'assets/js/*.js',
+                tasks: ['uglify']
             },
 
             html: {
@@ -104,15 +106,15 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-include-replace');
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-sitemap');
 
     // Default task(s).
     grunt.registerTask('default', ['encapsulator']);
 
-    grunt.registerTask('encapsulator', ['sass'/*, 'cssmin'*/, 'connect', 'includereplace', 'sitemap', 'watch']);
+    grunt.registerTask('encapsulator', ['sass', 'uglify', 'includereplace', 'sitemap', 'connect', 'watch']);
 
 };

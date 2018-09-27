@@ -190,6 +190,9 @@ body {
         #cursos-container {
             background-color: #323232;
             position: relative;
+            .container {
+                padding-bottom: 1px; // fix
+            }
             #cursos {
                 .card {
                     overflow: hidden;

@@ -1,7 +1,7 @@
 $(function () {
 
     // Initial config
-    
+
     function initializeParticles(pBoxId, targetElem) {
         // Destroy previous
         if (window["pJSDom"] instanceof Array && window["pJSDom"].length > 0) {
@@ -14,7 +14,7 @@ $(function () {
 
         // Load particles
         particlesJS.load(pBoxId, '/lib/particles.json', function () {
-            console.log('callback - particles.js config loaded');
+            // console.log('callback - particles.js config loaded');
         });
     }
 

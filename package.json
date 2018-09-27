@@ -13,8 +13,8 @@
   },
   "devDependencies": {
     "grunt-contrib-connect": "^1.0.2",
-    "grunt-contrib-cssmin": "^2.2.1",
     "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^4.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-include-replace": "^5.0.0",
     "grunt-sitemap": "^1.2.1"
