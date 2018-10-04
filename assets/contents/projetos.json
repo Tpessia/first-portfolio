@@ -16,7 +16,7 @@
         "description": "App que transforma tabelas do Excel ou escritas manualmente em tabelas HTML.", 
         "img": "/assets/img/projetos/tablefy.png",
         "iswhite": "iswhite",
-        "url": "/projetos/tablefy/",
+        "url": "/tablefy/",
         "fallback_url": "/assets/img/projetos/tablefy.png"
     },
     "Bolão Russia": 
@@ -46,7 +46,7 @@
         "description": "Mecanismo de pesquisa do histórico climático da cidade de São Paulo, com dados a partir de 30/06/1996.",
         "img": "/assets/img/projetos/clima-sao-paulo.jpg",
         "iswhite": "iswhite",
-        "url": "/projetos/clima/",
+        "url": "/clima-sao-paulo/",
         "fallback_url": "/assets/img/projetos/clima-sao-paulo-fallback.png"
     },
     "Noise Pollution": 
@@ -56,7 +56,7 @@
         "description": "Web App desenvolvido em AngularJS, com ferramentas de pesquisa e ranking para músicas, artistas e albums.",
         "img": "/assets/img/projetos/noise-pollution.jpg",
         "iswhite": "iswhite",
-        "url": "/projetos/angular/",
+        "url": "/noise-pollution/",
         "fallback_url": "/assets/img/projetos/noise-pollution-fallback.png"
     }
 }
