@@ -132,12 +132,21 @@ function bindAnimations() {
         }
     });
 
+    // Carousel
     var interval = setInterval(function () {
         $('.carousel').carousel('next');
     }, 3500);
     $('.carousel').on("click", function () {
         clearInterval(interval);
 
+        interval = setInterval(function () {
+            $('.carousel').carousel('next');
+        }, 3500);
+    });
+    $('.carousel').on("mouseenter", function () {
+        clearInterval(interval);
+    });
+    $('.carousel').on("mouseleave", function () {
         interval = setInterval(function () {
             $('.carousel').carousel('next');
         }, 3500);
