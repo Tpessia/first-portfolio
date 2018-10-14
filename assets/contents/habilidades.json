@@ -47,9 +47,24 @@
         "img": "/assets/img/habilidades/bootstrap.png",
         "level": "40"
     },
+    "PHP": {
+        "name": "PHP",
+        "img": "/assets/img/habilidades/php.png",
+        "level": "35"
+    },
+    "Python": {
+        "name": "Python",
+        "img": "/assets/img/habilidades/python.png",
+        "level": "35"
+    },
+    "MySQL": {
+        "name": "MySQL",
+        "img": "/assets/img/habilidades/mysql.png",
+        "level": "30"
+    },
     "Photoshop": {
         "name": "Photoshop",
         "img": "/assets/img/habilidades/photoshop.jpg",
-        "level": "30"
+        "level": "25"
     }
 }
