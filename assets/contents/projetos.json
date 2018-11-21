@@ -26,7 +26,7 @@
         "description": "Web App de bolões para a Copa do Mundo de 2018. Desenvolvido como PWA (Powerful Web App) e Offline First.", 
         "img": "/assets/img/projetos/bolao.jpg",
         "iswhite": "",
-        "url": "https://www.bolaodomauricio.xyz/?login=0001",
+        "url": "/assets/img/projetos/original/bolao_fallback.png",
         "fallback_url": "/assets/img/projetos/bolao_fallback.png"
     },
     "Promoção Nesfit Smart Fit": 

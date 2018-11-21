@@ -147,6 +147,8 @@ function bindAnimations() {
         clearInterval(interval);
     });
     $('.carousel').on("mouseleave", function () {
+        clearInterval(interval);
+        
         interval = setInterval(function () {
             $('.carousel').carousel('next');
         }, 3500);
