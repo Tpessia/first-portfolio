@@ -91,7 +91,16 @@
         "id": "11", 
         "tags": ["Avançado", "Back end"], 
         "img": "/assets/img/certificados/aspnetmvc/aspnetmvc.png",
-        "url": "https://www.udemy.com/the-complete-aspnet-mvc-5-course",
+        "url": "https://www.udemy.com/the-complete-aspnet-mvc-5-course/",
         "certificate_url": "https://www.udemy.com/certificate/UC-XVYXD19Y/"
+    },
+    "Windows Forms & SQL Server":
+    {
+        "name": "Windows Forms & SQL Server",
+        "id": "12", 
+        "tags": ["Intermediário", "Back end"], 
+        "img": "/assets/img/certificados/winforms/winforms.jpg",
+        "url": "https://www.udemy.com/csharp6windowsforms/",
+        "certificate_url": "https://www.udemy.com/certificate/UC-G2RCFPAB/"
     }
 }

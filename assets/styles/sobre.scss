@@ -34,6 +34,9 @@ body {
             }
             .card-action {
                 padding: 14px 21px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
             }
             .card-reveal {
                 transition: transform .7s;
