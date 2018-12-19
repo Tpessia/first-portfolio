@@ -15,5 +15,5 @@
     $result = file_get_contents($url, false, $context);
     if ($result === FALSE) { /* Handle error */ }
 
-    var_dump($result);
+    json_encode($result);
 ?>
